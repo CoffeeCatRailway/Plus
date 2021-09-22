@@ -3,8 +3,11 @@
   "package": "io.github.coffeecatrailway.plus.mixin",
   "compatibilityLevel": "JAVA_8",
   "minVersion": "0.8",
-  "refmap": "plus.refmap.json",
-  "mixins": [],
+  "mixins": [
+    "LivingEntityMixin",
+    "FrostWalkerEnchantmentMixin",
+    "WaterWalkerEnchantmentMixin"
+  ],
   "client": [],
   "injectors": {
     "defaultRequire": 1

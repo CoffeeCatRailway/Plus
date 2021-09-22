@@ -2,6 +2,7 @@ package io.github.coffeecatrailway.plus;
 
 import io.github.coffeecatrailway.plus.data.gen.*;
 import io.github.coffeecatrailway.plus.registry.PlusBlocks;
+import io.github.coffeecatrailway.plus.registry.PlusEnchantments;
 import io.github.coffeecatrailway.plus.registry.PlusItems;
 import io.github.ocelot.sonar.Sonar;
 import net.minecraft.data.DataGenerator;
@@ -36,6 +37,7 @@ public class PlusMod
 
         PlusBlocks.load(bus);
         PlusItems.load(bus);
+        PlusEnchantments.load(bus);
     }
 
     private void onGatherData(GatherDataEvent event)

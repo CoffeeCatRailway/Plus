@@ -1,11 +1,14 @@
 package io.github.coffeecatrailway.plus;
 
+import com.google.common.collect.Lists;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.List;
 
 /**
  * @author CoffeeCatRailway
@@ -21,12 +24,17 @@ public class PlusConfig
 
     public static class Server
     {
+        public final ForgeConfigSpec.DoubleValue heatWalkerLevel;
+        public final ForgeConfigSpec.DoubleValue frostWalkerLevel;
+
         public Server(ForgeConfigSpec.Builder builder)
         {
-            builder.comment("Server Configurable Settings");
-//            this.crackedEggSpawnChance = builder.comment("The chance of a cracked egg dropping from a thrown egg").translation(CONFIG + "item.crackedEggSpawnChance")
-//                    .defineInRange("crackedEggSpawnChance", .25d, 0d, 1d);
-//            builder.pop();
+            builder.comment("Server Configurable Settings").push(Lists.newArrayList("item", "enchantment"));
+            this.heatWalkerLevel = builder.comment("Default heat walker enchant level. min(16, level + modifier)").translation(CONFIG + "item.enchantment.heatWalkerLevel")
+                    .defineInRange("heatWalkerLevel", 2d, 0d, 16d);
+            this.frostWalkerLevel = builder.comment("Default frost walker enchant level. min(16, level + modifier)").translation(CONFIG + "item.enchantment.frostWalkerLevel")
+                    .defineInRange("frostWalkerLevel", 2d, 0d, 16d);
+            builder.pop(2);
         }
 
         public static void init(ModLoadingContext context)
