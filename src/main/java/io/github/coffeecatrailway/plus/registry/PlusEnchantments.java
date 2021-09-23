@@ -6,6 +6,7 @@ import io.github.coffeecatrailway.plus.data.gen.PlusLanguage;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -14,7 +15,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nullable;
+import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * @author CoffeeCatRailway
@@ -25,7 +28,14 @@ public class PlusEnchantments
     private static final Logger LOGGER = LogManager.getLogger();
     protected static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, PlusMod.MOD_ID);
 
-    public static final RegistryObject<HeatWalkerEnchantment> HEAT_WALKER = ENCHANTMENTS.register("heat_walker", () -> new HeatWalkerEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.FEET));
+    public static final RegistryObject<HeatWalkerEnchantment> HEAT_WALKER = register("heat_walker", () -> new HeatWalkerEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.FEET));
+
+    private static <T extends Enchantment> RegistryObject<T> register(String id, Supplier<T> enchantment)
+    {
+        RegistryObject<T> object = ENCHANTMENTS.register(id, enchantment);
+        PlusLanguage.ENCHANTMENTS.put(object, PlusLanguage.capitalize(id));
+        return object;
+    }
 
     public static void load(IEventBus bus)
     {

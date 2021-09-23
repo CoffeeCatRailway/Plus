@@ -3,6 +3,7 @@ package io.github.coffeecatrailway.plus.data.gen;
 import io.github.coffeecatrailway.plus.PlusMod;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.LanguageProvider;
 import net.minecraftforge.fml.RegistryObject;
@@ -20,6 +21,7 @@ public class PlusLanguage extends LanguageProvider
     public static final Map<String, String> EXTRA = new HashMap<>();
     public static final Map<RegistryObject<? extends Item>, String> ITEMS = new HashMap<>();
     public static final Map<RegistryObject<? extends Block>, String> BLOCKS = new HashMap<>();
+    public static final Map<RegistryObject<? extends Enchantment>, String> ENCHANTMENTS = new HashMap<>();
 
     public PlusLanguage(DataGenerator generator)
     {
@@ -32,6 +34,7 @@ public class PlusLanguage extends LanguageProvider
         EXTRA.forEach(this::add);
         ITEMS.forEach((item, name) -> this.add(item.get(), name));
         BLOCKS.forEach((block, name) -> this.add(block.get(), name));
+        ENCHANTMENTS.forEach((enchantment, name) -> this.add(enchantment.get(), name));
     }
 
     public static String capitalize(String id)
