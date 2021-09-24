@@ -33,7 +33,7 @@ public class PlusBlockStates extends BlockStateProvider
         {
             model = this.models().cubeColumn("brittle_basalt_" + i, PlusMod.getLocation("block/brittle_basalt_side_" + i), PlusMod.getLocation("block/brittle_basalt_top_" + i));
             for (Direction.Axis axis : Direction.Axis.values())
-                partialState.with(BrittleBasaltBlock.AGE, i).with(BrittleBasaltBlock.AXIS, axis).modelForState().modelFile(model).addModel();
+                partialState.with(BrittleBasaltBlock.AGE, i).with(BrittleBasaltBlock.AXIS, axis).modelForState().rotationX(axis == Direction.Axis.X || axis == Direction.Axis.Z ? 90 : 0).rotationY(axis == Direction.Axis.X ? 90 : 0).modelFile(model).addModel();
         }
     }
 
