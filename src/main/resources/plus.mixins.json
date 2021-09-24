@@ -6,7 +6,6 @@
   "mixins": [
     "LivingEntityMixin",
     "FrostWalkerEnchantmentMixin",
-    "WaterWalkerEnchantmentMixin"
   ],
   "client": [],
   "injectors": {
