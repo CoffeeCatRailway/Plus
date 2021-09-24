@@ -79,13 +79,8 @@ public class BrittleBasaltBlock extends RotatedPillarBlock
 
     protected void crack(Level level, BlockPos pos)
     {
-        if (level.dimensionType().ultraWarm())
-            level.removeBlock(pos, false);
-        else
-        {
-            level.setBlockAndUpdate(pos, Blocks.LAVA.defaultBlockState());
-            level.neighborChanged(pos, Blocks.LAVA, pos);
-        }
+        level.setBlockAndUpdate(pos, Blocks.LAVA.defaultBlockState());
+        level.neighborChanged(pos, Blocks.LAVA, pos);
     }
 
     private boolean fewerNeigboursThan(BlockGetter blockGetter, BlockPos pos, int max)
