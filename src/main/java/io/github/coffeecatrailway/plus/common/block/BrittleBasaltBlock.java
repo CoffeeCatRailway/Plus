@@ -40,7 +40,7 @@ public class BrittleBasaltBlock extends RotatedPillarBlock
     @Override
     public void tick(BlockState state, ServerLevel level, BlockPos pos, Random random)
     {
-        if ((random.nextInt(3) == 0 || this.fewerNeigboursThan(level, pos, 4)) && level.getMaxLocalRawBrightness(pos) > 11 - state.getValue(AGE) - state.getLightBlock(level, pos) && this.slightlyCrack(state, level, pos))
+        if ((random.nextInt(3) == 0 || this.fewerNeigboursThan(level, pos, 4)) && this.slightlyCrack(state, level, pos))
         {
             BlockPos.MutableBlockPos mutablePos = new BlockPos.MutableBlockPos();
 
