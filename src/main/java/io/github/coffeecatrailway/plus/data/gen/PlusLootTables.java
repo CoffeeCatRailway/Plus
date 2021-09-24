@@ -3,6 +3,7 @@ package io.github.coffeecatrailway.plus.data.gen;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import io.github.coffeecatrailway.plus.PlusMod;
+import io.github.coffeecatrailway.plus.registry.PlusBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.data.loot.ChestLoot;
@@ -71,6 +72,7 @@ public class PlusLootTables extends ForgeLootTableProvider
         @Override
         protected void addTables()
         {
+            this.add(PlusBlocks.BRITTLE_BASALT.get(), noDrop());
         }
 
         @Override

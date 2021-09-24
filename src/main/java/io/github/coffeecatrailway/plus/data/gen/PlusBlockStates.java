@@ -1,10 +1,15 @@
 package io.github.coffeecatrailway.plus.data.gen;
 
 import io.github.coffeecatrailway.plus.PlusMod;
+import io.github.coffeecatrailway.plus.common.block.BrittleBasaltBlock;
+import io.github.coffeecatrailway.plus.registry.PlusBlocks;
+import net.minecraft.core.Direction;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
+import net.minecraftforge.client.model.generators.ModelFile;
+import net.minecraftforge.client.model.generators.VariantBlockStateBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 /**
@@ -21,6 +26,15 @@ public class PlusBlockStates extends BlockStateProvider
     @Override
     protected void registerStatesAndModels()
     {
+        int i;
+        VariantBlockStateBuilder.PartialBlockstate partialState = this.getVariantBuilder(PlusBlocks.BRITTLE_BASALT.get()).partialState();
+        ModelFile model;
+        for (i = 0; i < 4; i++)
+        {
+            model = this.models().cubeColumn("brittle_basalt_" + i, PlusMod.getLocation("block/brittle_basalt_side_" + i), PlusMod.getLocation("block/brittle_basalt_top_" + i));
+            for (Direction.Axis axis : Direction.Axis.values())
+                partialState.with(BrittleBasaltBlock.AGE, i).with(BrittleBasaltBlock.AXIS, axis).modelForState().modelFile(model).addModel();
+        }
     }
 
     private void toItem(Block block)

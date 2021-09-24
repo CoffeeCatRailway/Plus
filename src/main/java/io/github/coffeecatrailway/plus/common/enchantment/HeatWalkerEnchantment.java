@@ -1,6 +1,8 @@
 package io.github.coffeecatrailway.plus.common.enchantment;
 
 import io.github.coffeecatrailway.plus.PlusConfig;
+import io.github.coffeecatrailway.plus.common.block.BrittleBasaltBlock;
+import io.github.coffeecatrailway.plus.registry.PlusBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
@@ -59,7 +61,7 @@ public class HeatWalkerEnchantment extends Enchantment
     {
         if (!entity.isOnGround())
             return;
-        BlockState basalt = Blocks.BASALT.defaultBlockState(); // TODO: Custom block
+        BlockState basalt = PlusBlocks.BRITTLE_BASALT.get().defaultBlockState();
         double size = Math.min(16d, PlusConfig.SERVER.heatWalkerLevel.get() + enchantmentLevel);
         BlockPos.MutableBlockPos mutablePos = new BlockPos.MutableBlockPos();
 
@@ -75,8 +77,8 @@ public class HeatWalkerEnchantment extends Enchantment
                     boolean isFull = state.getBlock() == Blocks.LAVA && state.getValue(LiquidBlock.LEVEL) == 0;
                     if (state.getMaterial() == Material.LAVA && isFull && basalt.canSurvive(level, pos) && level.isUnobstructed(basalt, pos, CollisionContext.empty()) && !ForgeEventFactory.onBlockPlace(entity, BlockSnapshot.create(level.dimension(), level, pos), Direction.UP))
                     {
-                        level.setBlockAndUpdate(pos, basalt);
-                        level.getBlockTicks().scheduleTick(pos, Blocks.BASALT, Mth.nextInt(entity.getRandom(), 60, 120));
+                        level.setBlockAndUpdate(pos, basalt.setValue(BrittleBasaltBlock.AXIS, Direction.Axis.getRandom(entity.getRandom())));
+                        level.getBlockTicks().scheduleTick(pos, PlusBlocks.BRITTLE_BASALT.get(), Mth.nextInt(entity.getRandom(), 60, 120));
                     }
                 }
             }
