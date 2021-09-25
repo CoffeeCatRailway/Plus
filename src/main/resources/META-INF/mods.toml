@@ -20,7 +20,7 @@ Discord: https://discord.com/invite/JM4NjRzZPS
 '''
 
 [modproperties.${modId}]
-catalogueItemIcon="minecraft:air"
+catalogueItemIcon="plus:fox_fur"
 
 [[dependencies.${modId}]]
 modId="forge"

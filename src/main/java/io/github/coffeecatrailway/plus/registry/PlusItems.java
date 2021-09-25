@@ -24,7 +24,8 @@ public class PlusItems
     protected static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, PlusMod.MOD_ID);
 
     // Crafting Ingredients
-//    public static final RegistryObject<Item> WOODEN_GEAR = registerIdAsName("wooden_gear", Item::new);
+    public static final RegistryObject<Item> FOX_FUR = registerIdAsName("fox_fur", prop -> new Item(prop.tab(CreativeModeTab.TAB_MISC)));
+    public static final RegistryObject<Item> SNOW_FOX_FUR = registerIdAsName("snow_fox_fur", prop -> new Item(prop.tab(CreativeModeTab.TAB_MISC)));
 
     protected static <T extends Item> RegistryObject<T> registerIdAsName(String id, Function<Item.Properties, T> factory)
     {

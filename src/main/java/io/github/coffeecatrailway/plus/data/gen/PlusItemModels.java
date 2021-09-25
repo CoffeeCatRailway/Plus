@@ -5,11 +5,13 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import io.github.coffeecatrailway.plus.PlusMod;
+import io.github.coffeecatrailway.plus.registry.PlusItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.HashCache;
 import net.minecraft.data.models.model.ModelLocationUtils;
 import net.minecraft.data.models.model.ModelTemplate;
+import net.minecraft.data.models.model.ModelTemplates;
 import net.minecraft.data.models.model.TextureMapping;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -57,6 +59,8 @@ public class PlusItemModels implements DataProvider
 
     private void register()
     {
+        this.generateFlatItem(PlusItems.FOX_FUR.get(), ModelTemplates.FLAT_ITEM);
+        this.generateFlatItem(PlusItems.SNOW_FOX_FUR.get(), ModelTemplates.FLAT_ITEM);
     }
 
     private void generateFlatItem(Item item, ModelTemplate modelsUtil)

@@ -4,6 +4,7 @@ import io.github.coffeecatrailway.plus.data.gen.*;
 import io.github.coffeecatrailway.plus.registry.PlusBlocks;
 import io.github.coffeecatrailway.plus.registry.PlusEnchantments;
 import io.github.coffeecatrailway.plus.registry.PlusItems;
+import io.github.coffeecatrailway.plus.registry.PlusLootModifiers;
 import io.github.ocelot.sonar.Sonar;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
@@ -16,8 +17,6 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 @Mod(PlusMod.MOD_ID)
 public class PlusMod
@@ -38,6 +37,7 @@ public class PlusMod
         PlusBlocks.load(bus);
         PlusItems.load(bus);
         PlusEnchantments.load(bus);
+        PlusLootModifiers.load(bus);
     }
 
     private void onGatherData(GatherDataEvent event)
@@ -51,6 +51,7 @@ public class PlusMod
         generator.addProvider(new PlusItemModels(generator));
         generator.addProvider(new PlusBlockStates(generator, existingFileHelper));
         generator.addProvider(new PlusLanguage(generator));
+        generator.addProvider(new PlusLootModifierGen(generator));
     }
 
     public static ResourceLocation getLocation(String path)
