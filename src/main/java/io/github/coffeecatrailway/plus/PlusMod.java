@@ -5,6 +5,7 @@ import io.github.coffeecatrailway.plus.registry.PlusBlocks;
 import io.github.coffeecatrailway.plus.registry.PlusEnchantments;
 import io.github.coffeecatrailway.plus.registry.PlusItems;
 import io.github.coffeecatrailway.plus.registry.PlusLootModifiers;
+import io.github.coffeecatrailway.plus.util.PlusDamageSource;
 import io.github.ocelot.sonar.Sonar;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
@@ -38,6 +39,8 @@ public class PlusMod
         PlusItems.load(bus);
         PlusEnchantments.load(bus);
         PlusLootModifiers.load(bus);
+
+        PlusDamageSource.load();
     }
 
     private void onGatherData(GatherDataEvent event)

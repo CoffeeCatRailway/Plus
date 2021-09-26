@@ -27,6 +27,8 @@ public class PlusConfig
         public final ForgeConfigSpec.DoubleValue heatWalkerLevel;
         public final ForgeConfigSpec.DoubleValue frostWalkerLevel;
 
+        public final ForgeConfigSpec.DoubleValue sawBladeDamage;
+
         public Server(ForgeConfigSpec.Builder builder)
         {
             builder.comment("Server Configurable Settings").push(Lists.newArrayList("item", "enchantment"));
@@ -35,6 +37,10 @@ public class PlusConfig
             this.frostWalkerLevel = builder.comment("Default frost walker enchant level. min(16, level + modifier)").translation(CONFIG + "item.enchantment.frostWalkerLevel")
                     .defineInRange("frostWalkerLevel", 2d, 0d, 16d);
             builder.pop(2);
+            builder.push("block");
+            this.sawBladeDamage = builder.comment("How much damage is dealt to entities standing on a stonecutter/saw bench").translation(CONFIG + "block.sawBladeDamage")
+                    .defineInRange("sawBladeDamage", 2d, 0d, Double.MAX_VALUE);
+            builder.pop();
         }
 
         public static void init(ModLoadingContext context)
