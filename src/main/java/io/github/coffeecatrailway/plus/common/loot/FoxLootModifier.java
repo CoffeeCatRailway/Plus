@@ -40,14 +40,14 @@ public class FoxLootModifier extends LootModifier
         Entity entity = context.getParamOrNull(LootContextParams.THIS_ENTITY);
         if (entity instanceof Fox)
         {
-            Fox fox = (Fox) entity;
-            switch (fox.getFoxType())
+            int furAmount = Mth.nextInt(context.getRandom(), this.minFur, this.maxFur + context.getLootingModifier());
+            switch (((Fox) entity).getFoxType())
             {
                 case RED:
-                    loot.add(new ItemStack(PlusItems.FOX_FUR.get(), Mth.nextInt(context.getRandom(), this.minFur, this.maxFur)));
+                    loot.add(new ItemStack(PlusItems.FOX_FUR.get(), furAmount));
                     break;
                 case SNOW:
-                    loot.add(new ItemStack(PlusItems.SNOW_FOX_FUR.get(), Mth.nextInt(context.getRandom(), this.minFur, this.maxFur)));
+                    loot.add(new ItemStack(PlusItems.SNOW_FOX_FUR.get(), furAmount));
                     break;
             }
         }
@@ -66,8 +66,8 @@ public class FoxLootModifier extends LootModifier
         public JsonObject write(FoxLootModifier modifier)
         {
             JsonObject json = this.makeConditions(modifier.conditions);
-            json.addProperty("minFur", 3);
-            json.addProperty("maxFur", 5);
+            json.addProperty("minFur", modifier.minFur);
+            json.addProperty("maxFur", modifier.maxFur);
             return json;
         }
     }
