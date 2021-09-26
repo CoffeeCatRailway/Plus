@@ -51,7 +51,7 @@ public class PlusMod
         generator.addProvider(new PlusItemModels(generator));
         generator.addProvider(new PlusBlockStates(generator, existingFileHelper));
         generator.addProvider(new PlusLanguage(generator));
-        generator.addProvider(new PlusLootModifierGen(generator));
+        generator.addProvider(new PlusLootModifierProvider(generator));
     }
 
     public static ResourceLocation getLocation(String path)

@@ -2,7 +2,6 @@ package io.github.coffeecatrailway.plus.registry;
 
 import io.github.coffeecatrailway.plus.PlusMod;
 import io.github.coffeecatrailway.plus.common.loot.FoxLootModifier;
-import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;

@@ -11,9 +11,9 @@ import net.minecraftforge.common.data.GlobalLootModifierProvider;
  * @author CoffeeCatRailway
  * Created: 25/09/2021
  */
-public class PlusLootModifierGen extends GlobalLootModifierProvider
+public class PlusLootModifierProvider extends GlobalLootModifierProvider
 {
-    public PlusLootModifierGen(DataGenerator gen)
+    public PlusLootModifierProvider(DataGenerator gen)
     {
         super(gen, PlusMod.MOD_ID);
     }
