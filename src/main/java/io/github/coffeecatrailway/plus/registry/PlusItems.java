@@ -32,8 +32,8 @@ public class PlusItems
     public static final RegistryObject<FoxHatItem> FOX_HAT = registerIdAsName("fox_hat", prop -> new FoxHatItem(PlusArmorMaterials.FOX_HAT, prop));
     public static final RegistryObject<FoxHatItem> SNOW_FOX_HAT = registerIdAsName("snow_fox_hat", prop -> new FoxHatItem(PlusArmorMaterials.SNOW_FOX_HAT, prop));
 
-    public static final RegistryObject<Item> FOX_MEAT = registerIdAsName("fox_meat", prop -> new Item(prop.food(PlusFoods.FOX_MEAT).tab(CreativeModeTab.TAB_FOOD)));
-    public static final RegistryObject<Item> COOKED_FOX_MEAT = registerIdAsName("cooked_fox_meat", prop -> new Item(prop.food(PlusFoods.COOKED_FOX_MEAT).tab(CreativeModeTab.TAB_FOOD)));
+    public static final RegistryObject<Item> FOX_MEAT = registerWithName("fox_meat", "Raw Fox", prop -> new Item(prop.food(PlusFoods.FOX_MEAT).tab(CreativeModeTab.TAB_FOOD)));
+    public static final RegistryObject<Item> COOKED_FOX_MEAT = registerWithName("cooked_fox_meat", "Cooked Fox", prop -> new Item(prop.food(PlusFoods.COOKED_FOX_MEAT).tab(CreativeModeTab.TAB_FOOD)));
 
     protected static <T extends Item> RegistryObject<T> registerIdAsName(String id, Function<Item.Properties, T> factory)
     {
