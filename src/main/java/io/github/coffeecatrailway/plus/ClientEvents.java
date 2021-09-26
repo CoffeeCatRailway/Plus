@@ -15,8 +15,8 @@ public class ClientEvents
 {
     public static void init(final FMLClientSetupEvent event)
     {
-        event.enqueueWork(() -> {
-
-        });
+//        event.enqueueWork(() -> {
+//
+//        });
     }
 }

@@ -1,6 +1,8 @@
 package io.github.coffeecatrailway.plus.registry;
 
 import io.github.coffeecatrailway.plus.PlusMod;
+import io.github.coffeecatrailway.plus.common.item.FoxHatItem;
+import io.github.coffeecatrailway.plus.common.item.PlusArmorMaterials;
 import io.github.coffeecatrailway.plus.data.gen.PlusLanguage;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -26,6 +28,9 @@ public class PlusItems
     // Crafting Ingredients
     public static final RegistryObject<Item> FOX_FUR = registerIdAsName("fox_fur", prop -> new Item(prop.tab(CreativeModeTab.TAB_MISC)));
     public static final RegistryObject<Item> SNOW_FOX_FUR = registerIdAsName("snow_fox_fur", prop -> new Item(prop.tab(CreativeModeTab.TAB_MISC)));
+
+    public static final RegistryObject<FoxHatItem> FOX_HAT = registerIdAsName("fox_hat", prop -> new FoxHatItem(PlusArmorMaterials.FOX_HAT, prop));
+    public static final RegistryObject<FoxHatItem> SNOW_FOX_HAT = registerIdAsName("snow_fox_hat", prop -> new FoxHatItem(PlusArmorMaterials.SNOW_FOX_HAT, prop));
 
     protected static <T extends Item> RegistryObject<T> registerIdAsName(String id, Function<Item.Properties, T> factory)
     {
