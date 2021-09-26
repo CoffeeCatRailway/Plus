@@ -36,3 +36,4 @@ run/
 src/generated/resources/.cache/
 *.ase
 *.bbmodel
+TODO.txt
