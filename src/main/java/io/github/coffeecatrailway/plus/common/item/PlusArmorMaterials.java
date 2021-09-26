@@ -16,8 +16,8 @@ import java.util.function.Supplier;
  */
 public enum PlusArmorMaterials implements ArmorMaterial
 {
-    FOX_HAT("fox_hat", 5, new int[]{1, 0, 0, 0}, 15, SoundEvents.ARMOR_EQUIP_LEATHER, 0f, 0f, () -> Ingredient.of(PlusItems.FOX_FUR.get())),
-    SNOW_FOX_HAT("snow_fox_hat", 7, new int[]{1, 0, 0, 0}, 15, SoundEvents.ARMOR_EQUIP_LEATHER, 0f, 0f, () -> Ingredient.of(PlusItems.SNOW_FOX_FUR.get()));
+    FOX_HAT("fox_hat", 5, new int[]{1, 1, 1, 1}, 15, SoundEvents.ARMOR_EQUIP_LEATHER, 0f, 0f, () -> Ingredient.of(PlusItems.FOX_FUR.get())),
+    SNOW_FOX_HAT("snow_fox_hat", 7, new int[]{1, 1, 1, 1}, 15, SoundEvents.ARMOR_EQUIP_LEATHER, 0f, 0f, () -> Ingredient.of(PlusItems.SNOW_FOX_FUR.get()));
 
     private static final int[] HEALTH_PER_SLOT = new int[]{13, 15, 16, 11};
     private final String name;
