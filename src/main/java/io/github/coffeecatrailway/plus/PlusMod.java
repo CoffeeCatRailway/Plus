@@ -1,14 +1,12 @@
 package io.github.coffeecatrailway.plus;
 
 import io.github.coffeecatrailway.plus.data.gen.*;
-import io.github.coffeecatrailway.plus.registry.PlusBlocks;
-import io.github.coffeecatrailway.plus.registry.PlusEnchantments;
-import io.github.coffeecatrailway.plus.registry.PlusItems;
-import io.github.coffeecatrailway.plus.registry.PlusLootModifiers;
+import io.github.coffeecatrailway.plus.registry.*;
 import io.github.coffeecatrailway.plus.util.PlusDamageSource;
 import io.github.ocelot.sonar.Sonar;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.stats.StatType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -39,7 +37,10 @@ public class PlusMod
         PlusItems.load(bus);
         PlusEnchantments.load(bus);
         PlusLootModifiers.load(bus);
+        PlusMenuTypes.load(bus);
+        PlusRecipes.load(bus);
 
+        bus.addGenericListener(StatType.class, PlusStats::register);
         PlusDamageSource.load();
     }
 

@@ -1,5 +1,7 @@
 {
   "block.plus.brittle_basalt": "Brittle Basalt",
+  "block.plus.saw_bench": "Saw Bench",
+  "container.plus.saw_bench": "Saw Bench",
   "death.attack.plus.sawBlade": "%1$s was cut in half",
   "enchantment.plus.heat_walker": "Heat Walker",
   "item.plus.cooked_fox_meat": "Cooked Fox",
@@ -7,5 +9,6 @@
   "item.plus.fox_hat": "Fox Hat",
   "item.plus.fox_meat": "Raw Fox",
   "item.plus.snow_fox_fur": "Snow Fox Fur",
-  "item.plus.snow_fox_hat": "Snow Fox Hat"
+  "item.plus.snow_fox_hat": "Snow Fox Hat",
+  "stat.plus.interact_with_saw_bench": "Interactions with Saw Bench"
 }

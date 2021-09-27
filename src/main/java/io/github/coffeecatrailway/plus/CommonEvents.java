@@ -27,6 +27,6 @@ public class CommonEvents
         BlockState state = entity.level.getBlockState(entity.blockPosition());
         if (!state.is(Blocks.STONECUTTER))
             return;
-        entity.hurt(PlusDamageSource.SAW_BLADE, (float) (PlusConfig.SERVER.sawBladeDamage.get() * 1f));
+        entity.hurt(PlusDamageSource.SAW_BLADE, (float) (PlusConfig.SERVER.sawBladeDamage.get() * 1.5f));
     }
 }

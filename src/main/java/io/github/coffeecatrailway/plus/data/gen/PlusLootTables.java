@@ -73,6 +73,7 @@ public class PlusLootTables extends ForgeLootTableProvider
         protected void addTables()
         {
             this.add(PlusBlocks.BRITTLE_BASALT.get(), noDrop());
+            this.dropSelf(PlusBlocks.SAW_BENCH.get());
         }
 
         @Override
