@@ -6,6 +6,7 @@ import io.github.coffeecatrailway.plus.registry.PlusItems;
 import io.github.coffeecatrailway.plus.registry.PlusRecipes;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.Tag;
 import net.minecraft.world.item.Item;
@@ -60,6 +61,13 @@ public class PlusRecipeProvider extends RecipeProvider
                 Blocks.WARPED_FENCE, Blocks.WARPED_FENCE_GATE, Blocks.WARPED_BUTTON, Blocks.WARPED_PRESSURE_PLATE, Blocks.WARPED_DOOR, Blocks.WARPED_TRAPDOOR, Blocks.WARPED_SIGN);
         this.sawBenchRecipes(consumer, "crimson", Blocks.CRIMSON_STEM, Blocks.CRIMSON_HYPHAE, ItemTags.CRIMSON_STEMS, Blocks.STRIPPED_CRIMSON_STEM, Blocks.STRIPPED_CRIMSON_HYPHAE, Blocks.CRIMSON_PLANKS, Blocks.CRIMSON_STAIRS, Blocks.CRIMSON_SLAB,
                 Blocks.CRIMSON_FENCE, Blocks.CRIMSON_FENCE_GATE, Blocks.CRIMSON_BUTTON, Blocks.CRIMSON_PRESSURE_PLATE, Blocks.CRIMSON_DOOR, Blocks.CRIMSON_TRAPDOOR, Blocks.CRIMSON_SIGN);
+
+        ShapedRecipeBuilder.shaped(PlusItems.CHAIN_LINK.get(), 3).define('i', Tags.Items.INGOTS_IRON).define('n', Tags.Items.NUGGETS_IRON).pattern("i").pattern("n").unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON)).unlockedBy("has_nugget", has(Tags.Items.NUGGETS_IRON)).save(consumer);
+        ShapedRecipeBuilder.shaped(Items.CHAIN).define('l', PlusItems.CHAIN_LINK.get()).pattern("l").pattern("l").pattern("l").unlockedBy("has_link", has(PlusItems.CHAIN_LINK.get())).save(consumer, new ResourceLocation("chain"));
+        ShapedRecipeBuilder.shaped(Items.CHAINMAIL_HELMET).define('l', PlusItems.CHAIN_LINK.get()).pattern("lll").pattern("l l").unlockedBy("has_link", has(PlusItems.CHAIN_LINK.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(Items.CHAINMAIL_CHESTPLATE).define('l', PlusItems.CHAIN_LINK.get()).pattern("l l").pattern("lll").pattern("lll").unlockedBy("has_link", has(PlusItems.CHAIN_LINK.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(Items.CHAINMAIL_LEGGINGS).define('l', PlusItems.CHAIN_LINK.get()).pattern("lll").pattern("l l").pattern("l l").unlockedBy("has_link", has(PlusItems.CHAIN_LINK.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(Items.CHAINMAIL_BOOTS).define('l', PlusItems.CHAIN_LINK.get()).pattern("l l").pattern("l l").unlockedBy("has_link", has(PlusItems.CHAIN_LINK.get())).save(consumer);
     }
 
     private void sawBenchRecipes(Consumer<FinishedRecipe> consumer, String woodName, Block log, Block wood, Tag.Named<Item> logTag, Block strippedLog, Block strippedWood, Block planks, Block stairs, Block slab,

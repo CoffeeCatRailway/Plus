@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i",
+    "n"
+  ],
+  "key": {
+    "i": {
+      "tag": "forge:ingots/iron"
+    },
+    "n": {
+      "tag": "forge:nuggets/iron"
+    }
+  },
+  "result": {
+    "item": "plus:chain_link",
+    "count": 3
+  }
+}
