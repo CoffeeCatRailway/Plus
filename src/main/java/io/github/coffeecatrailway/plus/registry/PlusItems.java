@@ -37,6 +37,12 @@ public class PlusItems
 
     public static final RegistryObject<Item> CHAIN_LINK = registerIdAsName("chain_link", prop -> new Item(prop.tab(CreativeModeTab.TAB_DECORATIONS)));
 
+    public static final RegistryObject<Item> BAT = registerWithName("bat", "Raw Bat", prop -> new Item(prop.food(PlusFoods.BAT).tab(CreativeModeTab.TAB_FOOD)));
+    public static final RegistryObject<Item> COOKED_BAT = registerWithName("cooked_bat", "Cooked Bat", prop -> new Item(prop.food(PlusFoods.COOKED_BAT).tab(CreativeModeTab.TAB_FOOD)));
+
+    public static final RegistryObject<Item> SQUID = registerWithName("squid", "Raw Squid", prop -> new Item(prop.food(PlusFoods.SQUID).tab(CreativeModeTab.TAB_FOOD)));
+    public static final RegistryObject<Item> CALAMARI = registerWithName("calamari", "Calamari", prop -> new Item(prop.food(PlusFoods.CALAMARI).tab(CreativeModeTab.TAB_FOOD)));
+
     protected static <T extends Item> RegistryObject<T> registerIdAsName(String id, Function<Item.Properties, T> factory)
     {
         return registerWithName(id, null, factory);

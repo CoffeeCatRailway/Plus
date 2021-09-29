@@ -69,6 +69,12 @@ public class PlusItemModels implements DataProvider
         this.generateFlatItem(PlusItems.COOKED_FOX_MEAT.get(), ModelTemplates.FLAT_ITEM);
 
         this.generateFlatItem(PlusItems.CHAIN_LINK.get(), ModelTemplates.FLAT_ITEM);
+
+        this.generateFlatItem(PlusItems.BAT.get(), ModelTemplates.FLAT_ITEM);
+        this.generateFlatItem(PlusItems.COOKED_BAT.get(), ModelTemplates.FLAT_ITEM);
+
+        this.generateFlatItem(PlusItems.SQUID.get(), ModelTemplates.FLAT_ITEM);
+        this.generateFlatItem(PlusItems.CALAMARI.get(), ModelTemplates.FLAT_ITEM);
     }
 
     private void generateFlatItem(Item item, ModelTemplate modelsUtil)

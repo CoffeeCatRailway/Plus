@@ -7,15 +7,12 @@ import net.minecraft.util.GsonHelper;
 import net.minecraft.util.IntRange;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.Fox;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
-import net.minecraft.world.level.storage.loot.functions.SmeltItemFunction;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceWithLootingCondition;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
-import net.minecraftforge.common.loot.LootModifier;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -25,44 +22,36 @@ import java.util.Random;
  * @author CoffeeCatRailway
  * Created: 25/09/2021
  */
-public class FoxLootModifier extends LootModifier
+public class FoxLootModifier extends CookableFoodLootModifier
 {
     private final IntRange furRange;
-    private final IntRange meatRange;
 
-    public FoxLootModifier(LootItemCondition[] conditions,  IntRange furRange, IntRange meatRange)
+    public FoxLootModifier(LootItemCondition[] conditions, IntRange furRange, IntRange meatRange)
     {
-        super(conditions);
+        super(conditions, PlusItems.FOX_MEAT::get, meatRange, true, EntityType.FOX);
         this.furRange = furRange;
-        this.meatRange = meatRange;
     }
 
     @NotNull
     @Override
     protected List<ItemStack> doApply(List<ItemStack> loot, LootContext context)
     {
-        Entity entity = context.getParamOrNull(LootContextParams.THIS_ENTITY);
-        if (entity instanceof Fox)
-        {
-            Random random = context.getRandom();
-            int furAmount = this.furRange.randomValue(random) + Mth.nextInt(random, 0, context.getLootingModifier());
-            switch (((Fox) entity).getFoxType())
-            {
-                case RED:
-                    loot.add(new ItemStack(PlusItems.FOX_FUR.get(), furAmount));
-                    break;
-                case SNOW:
-                    loot.add(new ItemStack(PlusItems.SNOW_FOX_FUR.get(), furAmount));
-                    break;
-            }
+        Entity entity = this.getEntity(context);
+        if (!(entity instanceof Fox))
+            return super.doApply(loot, context);
 
-            ItemStack meat = new ItemStack(PlusItems.FOX_MEAT.get());
-            if (entity.isOnFire())
-                meat = SmeltItemFunction.smelted().build().apply(meat, context);
-            meat.setCount(this.meatRange.randomValue(random) + Mth.nextInt(random, 0, context.getLootingModifier()));
-            loot.add(meat);
+        Random random = context.getRandom();
+        int furAmount = this.furRange.randomValue(random) + Mth.nextInt(random, 0, context.getLootingModifier());
+        switch (((Fox) entity).getFoxType())
+        {
+            case RED:
+                loot.add(new ItemStack(PlusItems.FOX_FUR.get(), furAmount));
+                break;
+            case SNOW:
+                loot.add(new ItemStack(PlusItems.SNOW_FOX_FUR.get(), furAmount));
+                break;
         }
-        return loot;
+        return super.doApply(loot, context);
     }
 
     public static class Serializer extends GlobalLootModifierSerializer<FoxLootModifier>
@@ -79,10 +68,10 @@ public class FoxLootModifier extends LootModifier
         public JsonObject write(FoxLootModifier modifier)
         {
             JsonObject json = this.makeConditions(modifier.conditions);
-            json.addProperty("minFur", modifier.furRange.getMinInclusive());
-            json.addProperty("maxFur", modifier.furRange.getMaxInclusive());
             json.addProperty("minMeat", modifier.meatRange.getMinInclusive());
             json.addProperty("maxMeat", modifier.meatRange.getMaxInclusive());
+            json.addProperty("minFur", modifier.furRange.getMinInclusive());
+            json.addProperty("maxFur", modifier.furRange.getMaxInclusive());
             return json;
         }
     }

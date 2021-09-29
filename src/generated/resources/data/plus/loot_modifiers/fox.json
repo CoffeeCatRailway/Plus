@@ -1,8 +1,8 @@
 {
   "conditions": [],
-  "minFur": 1,
-  "maxFur": 4,
   "minMeat": 1,
   "maxMeat": 3,
-  "type": "plus:fox_items"
+  "minFur": 1,
+  "maxFur": 4,
+  "type": "plus:fox"
 }

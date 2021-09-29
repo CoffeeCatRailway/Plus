@@ -68,6 +68,14 @@ public class PlusRecipeProvider extends RecipeProvider
         ShapedRecipeBuilder.shaped(Items.CHAINMAIL_CHESTPLATE).define('l', PlusItems.CHAIN_LINK.get()).pattern("l l").pattern("lll").pattern("lll").unlockedBy("has_link", has(PlusItems.CHAIN_LINK.get())).save(consumer);
         ShapedRecipeBuilder.shaped(Items.CHAINMAIL_LEGGINGS).define('l', PlusItems.CHAIN_LINK.get()).pattern("lll").pattern("l l").pattern("l l").unlockedBy("has_link", has(PlusItems.CHAIN_LINK.get())).save(consumer);
         ShapedRecipeBuilder.shaped(Items.CHAINMAIL_BOOTS).define('l', PlusItems.CHAIN_LINK.get()).pattern("l l").pattern("l l").unlockedBy("has_link", has(PlusItems.CHAIN_LINK.get())).save(consumer);
+
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(PlusItems.BAT.get()), PlusItems.COOKED_BAT.get(), .35f, 200).unlockedBy("has_bat", has(PlusItems.BAT.get())).save(consumer);
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(PlusItems.BAT.get()), PlusItems.COOKED_BAT.get(), .35f, 100, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_bat", has(PlusItems.BAT.get())).save(consumer, PlusMod.getLocation("cooked_bat_from_smoking"));
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(PlusItems.BAT.get()), PlusItems.COOKED_BAT.get(), .35f, 600, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_bat", has(PlusItems.BAT.get())).save(consumer, PlusMod.getLocation("cooked_bat_from_campfire"));
+
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(PlusItems.SQUID.get()), PlusItems.CALAMARI.get(), .35f, 200).unlockedBy("has_squid", has(PlusItems.SQUID.get())).save(consumer);
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(PlusItems.SQUID.get()), PlusItems.CALAMARI.get(), .35f, 100, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_squid", has(PlusItems.SQUID.get())).save(consumer, PlusMod.getLocation("calamari_from_smoking"));
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(PlusItems.SQUID.get()), PlusItems.CALAMARI.get(), .35f, 600, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_squid", has(PlusItems.SQUID.get())).save(consumer, PlusMod.getLocation("calamari_from_campfire"));
     }
 
     private void sawBenchRecipes(Consumer<FinishedRecipe> consumer, String woodName, Block log, Block wood, Tag.Named<Item> logTag, Block strippedLog, Block strippedWood, Block planks, Block stairs, Block slab,

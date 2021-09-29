@@ -1,6 +1,8 @@
 {
   "replace": false,
   "entries": [
+    "plus:bat",
+    "plus:squid",
     "plus:fox"
   ]
 }
