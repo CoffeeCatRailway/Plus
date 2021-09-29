@@ -34,9 +34,9 @@ mandatory=true
 versionRange="[1.16.5]"
 ordering="NONE"
 side="BOTH"
-#[[dependencies.hamncheese]]
-#modId="jei"
-#mandatory=false
-#versionRange="[7,]"
-#ordering="NONE"
-#side="CLIENT"
+[[dependencies.${modId}]]
+modId="jei"
+mandatory=false
+versionRange="[7,]"
+ordering="NONE"
+side="CLIENT"
