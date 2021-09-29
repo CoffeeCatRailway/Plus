@@ -3,6 +3,7 @@ package io.github.coffeecatrailway.plus.registry;
 import io.github.coffeecatrailway.plus.PlusMod;
 import io.github.coffeecatrailway.plus.common.loot.CookableFoodLootModifier;
 import io.github.coffeecatrailway.plus.common.loot.FoxLootModifier;
+import io.github.coffeecatrailway.plus.common.loot.StriderLootModifier;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
@@ -22,6 +23,7 @@ public class PlusLootModifiers
 
     public static final RegistryObject<FoxLootModifier.Serializer> FOX = LOOT_MODIFIERS.register("fox", FoxLootModifier.Serializer::new);
     public static final RegistryObject<CookableFoodLootModifier.Serializer> COOKABLE = LOOT_MODIFIERS.register("cookable", CookableFoodLootModifier.Serializer::new);
+    public static final RegistryObject<StriderLootModifier.Serializer> STRIDER = LOOT_MODIFIERS.register("strider", StriderLootModifier.Serializer::new);
 
     public static void load(IEventBus bus)
     {
