@@ -29,6 +29,8 @@ public class PlusConfig
 
         public final ForgeConfigSpec.DoubleValue sawBladeDamage;
 
+        public final ForgeConfigSpec.IntValue turtleScuteDrop;
+
         public Server(ForgeConfigSpec.Builder builder)
         {
             builder.comment("Server Configurable Settings").push(Lists.newArrayList("item", "enchantment"));
@@ -36,10 +38,12 @@ public class PlusConfig
                     .defineInRange("heatWalkerLevel", 2d, 0d, 16d);
             this.frostWalkerLevel = builder.comment("Default frost walker enchant level. min(16, level + modifier)").translation(CONFIG + "item.enchantment.frostWalkerLevel")
                     .defineInRange("frostWalkerLevel", 2d, 0d, 16d);
-            builder.pop(2);
-            builder.push("block");
+            builder.pop(2).push("block");
             this.sawBladeDamage = builder.comment("How much damage is dealt to entities standing on a stonecutter/saw bench").translation(CONFIG + "block.sawBladeDamage")
                     .defineInRange("sawBladeDamage", 2d, 0d, Double.MAX_VALUE);
+            builder.pop().push("entity");
+            this.turtleScuteDrop = builder.comment("How many scute(s) are dropped from turtles becoming adults", "Vanilla value: 1").translation(CONFIG + "entity.turtleScuteDrop")
+                            .defineInRange("turtleScuteDrop", 2, 1, Integer.MAX_VALUE);
             builder.pop();
         }
 
