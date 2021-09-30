@@ -36,7 +36,7 @@ public class FoxLootModifier extends CookableFoodLootModifier
     @Override
     protected List<ItemStack> doApply(List<ItemStack> loot, LootContext context)
     {
-        Entity entity = this.getEntity(context);
+        Entity entity = getEntity(context, this.entityId);
         if (!(entity instanceof Fox))
             return super.doApply(loot, context);
 

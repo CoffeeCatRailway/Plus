@@ -3,7 +3,7 @@ package io.github.coffeecatrailway.plus.data.gen;
 import io.github.coffeecatrailway.plus.PlusMod;
 import io.github.coffeecatrailway.plus.common.loot.CookableFoodLootModifier;
 import io.github.coffeecatrailway.plus.common.loot.FoxLootModifier;
-import io.github.coffeecatrailway.plus.common.loot.StriderLootModifier;
+import io.github.coffeecatrailway.plus.common.loot.ChanceLootModifier;
 import io.github.coffeecatrailway.plus.registry.PlusItems;
 import io.github.coffeecatrailway.plus.registry.PlusLootModifiers;
 import net.minecraft.data.DataGenerator;
@@ -30,6 +30,7 @@ public class PlusLootModifierProvider extends GlobalLootModifierProvider
         this.add("fox", PlusLootModifiers.FOX.get(), new FoxLootModifier(new LootItemCondition[0], new IntRange(1, 4), new IntRange(1, 3)));
         this.add("bat", PlusLootModifiers.COOKABLE.get(), new CookableFoodLootModifier(new LootItemCondition[0], PlusItems.BAT::get, new IntRange(1, 1), false, EntityType.BAT));
         this.add("squid", PlusLootModifiers.COOKABLE.get(), new CookableFoodLootModifier(new LootItemCondition[0], PlusItems.SQUID::get, new IntRange(2, 6), true, EntityType.SQUID));
-        this.add("strider", PlusLootModifiers.STRIDER.get(), new StriderLootModifier(new LootItemCondition[0], () -> Items.NETHERITE_SCRAP, .1f));
+        this.add("strider", PlusLootModifiers.CHANCE.get(), new ChanceLootModifier(new LootItemCondition[0], () -> Items.NETHERITE_SCRAP, .01f, EntityType.STRIDER));
+        this.add("bee", PlusLootModifiers.CHANCE.get(), new ChanceLootModifier(new LootItemCondition[0], PlusItems.STINGER::get, .5f, EntityType.BEE));
     }
 }

@@ -54,7 +54,7 @@ public class CookableFoodLootModifier extends LootModifier
     @Override
     protected List<ItemStack> doApply(List<ItemStack> loot, LootContext context)
     {
-        Entity entity = this.getEntity(context);
+        Entity entity = getEntity(context, this.entityId);
         if (entity == null)
             return loot;
 
@@ -72,10 +72,10 @@ public class CookableFoodLootModifier extends LootModifier
     }
 
     @Nullable
-    protected Entity getEntity(LootContext context)
+    protected static Entity getEntity(LootContext context, ResourceLocation entityId)
     {
         Entity entity = context.getParamOrNull(LootContextParams.THIS_ENTITY);
-        if (entity == null || !entity.getType().getRegistryName().equals(this.entityId))
+        if (entity == null || !entity.getType().getRegistryName().equals(entityId))
             return null;
         return entity;
     }

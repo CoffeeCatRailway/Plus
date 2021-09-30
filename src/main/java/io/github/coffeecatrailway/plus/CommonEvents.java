@@ -1,7 +1,11 @@
 package io.github.coffeecatrailway.plus;
 
+import io.github.coffeecatrailway.plus.registry.PlusItems;
 import io.github.coffeecatrailway.plus.util.PlusDamageSource;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.PotionBrewing;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.entity.living.LivingEvent;
@@ -18,6 +22,7 @@ public class CommonEvents
 {
     public static void init(final FMLCommonSetupEvent event)
     {
+        PotionBrewing.addMix(Potions.AWKWARD, PlusItems.STINGER.get(), Potions.POISON);
     }
 
     @SubscribeEvent

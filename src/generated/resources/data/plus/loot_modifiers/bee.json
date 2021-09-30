@@ -1,0 +1,7 @@
+{
+  "conditions": [],
+  "item": "plus:stinger",
+  "chance": 0.5,
+  "entity": "minecraft:bee",
+  "type": "plus:chance"
+}
