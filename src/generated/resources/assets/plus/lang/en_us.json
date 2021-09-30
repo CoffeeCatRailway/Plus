@@ -6,7 +6,7 @@
   "enchantment.plus.heat_walker": "Heat Walker",
   "gui.plus.jei.category.saw_bench": "Saw Bench",
   "item.plus.bat": "Raw Bat",
-  "item.plus.calamari": "Calamari",
+  "item.plus.calamari": "Calamari Ring",
   "item.plus.chain_link": "Chain Link",
   "item.plus.cooked_bat": "Cooked Bat",
   "item.plus.cooked_fox_meat": "Cooked Fox",
@@ -15,6 +15,6 @@
   "item.plus.fox_meat": "Raw Fox",
   "item.plus.snow_fox_fur": "Snow Fox Fur",
   "item.plus.snow_fox_hat": "Snow Fox Hat",
-  "item.plus.squid": "Raw Squid",
+  "item.plus.squid": "Raw Calamari Ring",
   "stat.plus.interact_with_saw_bench": "Interactions with Saw Bench"
 }
