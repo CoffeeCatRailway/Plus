@@ -15,14 +15,17 @@ public class PlusFoods
 {
     private static final Supplier<MobEffectInstance> HUNGER = () -> new MobEffectInstance(MobEffects.HUNGER, 400, 1);
 
-    public static final FoodProperties FOX_MEAT = new FoodProperties.Builder().nutrition(3).saturationMod(.3f).build();
+    public static final FoodProperties FOX_MEAT = new FoodProperties.Builder().nutrition(3).saturationMod(.3f).meat().build();
     public static final FoodProperties COOKED_FOX_MEAT = times(FOX_MEAT, 2.33f, 2f).build();
 
-    public static final FoodProperties BAT = new FoodProperties.Builder().nutrition(1).saturationMod(.15f).effect(HUNGER, 1f).build();
-    public static final FoodProperties COOKED_BAT = new FoodProperties.Builder().nutrition(2).saturationMod(.3f).build();
+    public static final FoodProperties BAT = new FoodProperties.Builder().nutrition(1).saturationMod(.15f).effect(HUNGER, 1f).meat().build();
+    public static final FoodProperties COOKED_BAT = new FoodProperties.Builder().nutrition(2).saturationMod(.3f).meat().build();
 
-    public static final FoodProperties SQUID = new FoodProperties.Builder().nutrition(3).saturationMod(.3f).build();
+    public static final FoodProperties SQUID = new FoodProperties.Builder().nutrition(3).saturationMod(.3f).meat().build();
     public static final FoodProperties CALAMARI = times(SQUID, 1.66f, 2f).build();
+
+    public static final FoodProperties TURTLE = new FoodProperties.Builder().nutrition(3).saturationMod(.3f).meat().build();
+    public static final FoodProperties COOKED_TURTLE = times(TURTLE, 2.66f).build();
 
     private static FoodProperties.Builder times(FoodProperties copy, float amount)
     {
