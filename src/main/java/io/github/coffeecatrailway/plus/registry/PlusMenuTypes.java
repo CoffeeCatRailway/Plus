@@ -1,6 +1,7 @@
 package io.github.coffeecatrailway.plus.registry;
 
 import io.github.coffeecatrailway.plus.PlusMod;
+import io.github.coffeecatrailway.plus.common.inventory.FletchingTableMenu;
 import io.github.coffeecatrailway.plus.common.inventory.SawBenchMenu;
 import io.github.coffeecatrailway.plus.data.gen.PlusLanguage;
 import net.minecraft.world.inventory.MenuType;
@@ -23,6 +24,7 @@ public class PlusMenuTypes
     protected static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(ForgeRegistries.CONTAINERS, PlusMod.MOD_ID);
 
     public static final RegistryObject<MenuType<SawBenchMenu>> SAW_BENCH = register("saw_bench", () -> new MenuType<>(SawBenchMenu::new));
+    public static final RegistryObject<MenuType<FletchingTableMenu>> FLETCHING_TABLE = register("fletching_table", () -> new MenuType<>(FletchingTableMenu::new));
 
     private static <T extends MenuType<?>> RegistryObject<T> register(String id, Supplier<T> menu)
     {

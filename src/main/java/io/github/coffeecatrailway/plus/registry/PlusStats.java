@@ -24,6 +24,7 @@ public class PlusStats
     private static final Logger LOGGER = LogManager.getLogger();
 
     public static ResourceLocation INTERACT_WITH_SAW_BENCH;
+    public static ResourceLocation INTERACT_WITH_FLETCHING_TABLE;
 
     public static void register(RegistryEvent.Register<StatType<?>> event)
     {
@@ -31,6 +32,7 @@ public class PlusStats
             return;
 
         INTERACT_WITH_SAW_BENCH = register("interact_with_saw_bench", "Interactions with Saw Bench", StatFormatter.DEFAULT);
+        INTERACT_WITH_FLETCHING_TABLE = register("interact_with_fletching_table", "Interactions with Fletching Table", StatFormatter.DEFAULT);
 
         LOGGER.debug("Loaded");
     }

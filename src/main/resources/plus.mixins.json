@@ -8,7 +8,8 @@
     "FrostWalkerEnchantmentMixin",
     "CampfireBlockMixin",
     "MagmaBlockMixin",
-    "TurtleMixin"
+    "TurtleMixin",
+    "FletchingTableBlockMixin"
   ],
   "client": [],
   "injectors": {

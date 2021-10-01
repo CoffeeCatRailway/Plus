@@ -1,5 +1,6 @@
 package io.github.coffeecatrailway.plus;
 
+import io.github.coffeecatrailway.plus.client.gui.FletchingTableScreen;
 import io.github.coffeecatrailway.plus.client.gui.SawBenchScreen;
 import io.github.coffeecatrailway.plus.registry.PlusBlocks;
 import io.github.coffeecatrailway.plus.registry.PlusMenuTypes;
@@ -27,5 +28,6 @@ public class ClientEvents
             ItemBlockRenderTypes.setRenderLayer(PlusBlocks.SAW_BENCH.get(), cutoutMipped);
         });
         MenuScreens.register(PlusMenuTypes.SAW_BENCH.get(), SawBenchScreen::new);
+        MenuScreens.register(PlusMenuTypes.FLETCHING_TABLE.get(), FletchingTableScreen::new);
     }
 }

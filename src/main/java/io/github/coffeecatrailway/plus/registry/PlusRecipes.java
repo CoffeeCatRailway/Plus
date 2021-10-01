@@ -1,6 +1,7 @@
 package io.github.coffeecatrailway.plus.registry;
 
 import io.github.coffeecatrailway.plus.PlusMod;
+import io.github.coffeecatrailway.plus.common.item.crafting.FletchingTableRecipe;
 import io.github.coffeecatrailway.plus.common.item.crafting.SawBenchRecipe;
 import io.github.coffeecatrailway.plus.common.item.crafting.SingleItemSerializer;
 import net.minecraft.core.Registry;
@@ -25,8 +26,10 @@ public class PlusRecipes
     protected static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, PlusMod.MOD_ID);
 
     public static RecipeType<SawBenchRecipe> SAW_BENCH_TYPE;
+    public static RecipeType<FletchingTableRecipe> FLETCHING_TABLE_TYPE;
 
     public static final RegistryObject<SingleItemRecipe.Serializer<SawBenchRecipe>> SAW_BENCH_SERIALIZER = SERIALIZERS.register("saw_bench", () -> new SingleItemSerializer<>(SawBenchRecipe::new));
+    public static final RegistryObject<FletchingTableRecipe.Serializer> FLETCHING_TABLE_SERIALIZER = SERIALIZERS.register("fletching_table", FletchingTableRecipe.Serializer::new);
 
     private static <R extends Recipe<?>> RecipeType<R> register(String id)
     {
@@ -45,6 +48,7 @@ public class PlusRecipes
         LOGGER.debug("Loaded");
 
         SAW_BENCH_TYPE = register("saw_bench");
+        FLETCHING_TABLE_TYPE = register("fletching_table");
 
         SERIALIZERS.register(bus);
     }

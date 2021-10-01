@@ -1,6 +1,7 @@
 package io.github.coffeecatrailway.plus.data.gen;
 
 import io.github.coffeecatrailway.plus.PlusMod;
+import io.github.coffeecatrailway.plus.data.FletchingTableRecipeBuilder;
 import io.github.coffeecatrailway.plus.registry.PlusBlocks;
 import io.github.coffeecatrailway.plus.registry.PlusItems;
 import io.github.coffeecatrailway.plus.registry.PlusRecipes;
@@ -11,6 +12,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.Tag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
@@ -80,6 +82,9 @@ public class PlusRecipeProvider extends RecipeProvider
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(PlusItems.TURTLE.get()), PlusItems.COOKED_TURTLE.get(), .35f, 200).unlockedBy("has_turtle", has(PlusItems.TURTLE.get())).save(consumer);
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(PlusItems.TURTLE.get()), PlusItems.COOKED_TURTLE.get(), .35f, 100, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_turtle", has(PlusItems.TURTLE.get())).save(consumer, PlusMod.getLocation("cooked_turtle_from_smoking"));
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(PlusItems.TURTLE.get()), PlusItems.COOKED_TURTLE.get(), .35f, 600, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_turtle", has(PlusItems.TURTLE.get())).save(consumer, PlusMod.getLocation("cooked_turtle_from_campfire"));
+
+        FletchingTableRecipeBuilder.arrow(Potions.POISON).feather(Ingredient.of(Tags.Items.FEATHERS)).rod(Ingredient.of(Tags.Items.RODS_WOODEN)).tip(Ingredient.of(Items.FLINT))
+                .unlockedBy("has_feathers", has(Tags.Items.FEATHERS)).unlockedBy("has_sticks", has(Tags.Items.RODS_WOODEN)).unlockedBy("has_flint", has(Items.FLINT)).save(consumer);
     }
 
     private void sawBenchRecipes(Consumer<FinishedRecipe> consumer, String woodName, Block log, Block wood, Tag.Named<Item> logTag, Block strippedLog, Block strippedWood, Block planks, Block stairs, Block slab,
