@@ -1,0 +1,14 @@
+{
+  "type": "plus:fletching_table",
+  "feather": {
+    "tag": "forge:feathers"
+  },
+  "rod": {
+    "tag": "forge:rods/wooden"
+  },
+  "tip": {
+    "item": "minecraft:flint"
+  },
+  "potion": "minecraft:poison",
+  "count": 1
+}
