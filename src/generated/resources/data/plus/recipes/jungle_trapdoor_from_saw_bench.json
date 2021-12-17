@@ -1,7 +1,7 @@
 {
   "type": "plus:saw_bench",
   "ingredient": {
-    "item": "minecraft:jungle_planks"
+    "item": "minecraft:jungle_slab"
   },
   "result": "minecraft:jungle_trapdoor",
   "count": 2

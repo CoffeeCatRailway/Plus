@@ -1,7 +1,7 @@
 {
   "type": "plus:saw_bench",
   "ingredient": {
-    "item": "minecraft:warped_planks"
+    "item": "minecraft:warped_slab"
   },
   "result": "minecraft:warped_trapdoor",
   "count": 2

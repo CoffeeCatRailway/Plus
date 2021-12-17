@@ -1,7 +1,7 @@
 {
   "type": "plus:saw_bench",
   "ingredient": {
-    "item": "minecraft:acacia_planks"
+    "item": "minecraft:acacia_slab"
   },
   "result": "minecraft:acacia_trapdoor",
   "count": 2

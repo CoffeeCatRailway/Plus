@@ -1,7 +1,7 @@
 {
   "type": "plus:saw_bench",
   "ingredient": {
-    "item": "minecraft:oak_planks"
+    "item": "minecraft:oak_slab"
   },
   "result": "minecraft:oak_trapdoor",
   "count": 2

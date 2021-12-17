@@ -1,7 +1,7 @@
 {
   "type": "plus:saw_bench",
   "ingredient": {
-    "item": "minecraft:dark_oak_planks"
+    "item": "minecraft:dark_oak_slab"
   },
   "result": "minecraft:dark_oak_trapdoor",
   "count": 2

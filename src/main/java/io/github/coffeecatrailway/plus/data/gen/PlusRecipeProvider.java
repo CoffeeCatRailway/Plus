@@ -86,17 +86,18 @@ public class PlusRecipeProvider extends RecipeProvider
                                  Block fence, Block fenceGate, Block button, Block pressurePlate, Block door, Block trapDoor, Block sign)
     {
         Ingredient planksIngredient = Ingredient.of(planks);
+        Ingredient slabIngredient = Ingredient.of(slab);
         this.sawBench(Ingredient.of(log), strippedLog).unlocks("has_log", has(log)).save(consumer, PlusMod.getLocation("stripped_" + woodName + "_log_from_saw_bench"));
         this.sawBench(Ingredient.of(wood), strippedWood).unlocks("has_wood", has(wood)).save(consumer, PlusMod.getLocation("stripped_" + woodName + "_wood_from_saw_bench"));
         this.sawBench(Ingredient.of(logTag), planks, 6).unlocks("has_logs", has(logTag)).save(consumer, PlusMod.getLocation(woodName + "_planks_from_saw_bench"));
         this.sawBench(planksIngredient, stairs).unlocks("has_planks", has(planks)).save(consumer, PlusMod.getLocation(woodName + "_stairs_from_saw_bench"));
         this.sawBench(planksIngredient, slab, 2).unlocks("has_planks", has(planks)).save(consumer, PlusMod.getLocation(woodName + "_slab_from_saw_bench"));
-        this.sawBench(planksIngredient, fence).unlocks("has_planks", has(planks)).save(consumer, PlusMod.getLocation(woodName + "_fence_from_saw_bench"));
-        this.sawBench(planksIngredient, fenceGate).unlocks("has_planks", has(planks)).save(consumer, PlusMod.getLocation(woodName + "_fence_gate_from_saw_bench"));
-        this.sawBench(planksIngredient, button, 2).unlocks("has_planks", has(planks)).save(consumer, PlusMod.getLocation(woodName + "_button_from_saw_bench"));
-        this.sawBench(planksIngredient, pressurePlate).unlocks("has_planks", has(planks)).save(consumer, PlusMod.getLocation(woodName + "_pressure_plate_from_saw_bench"));
+        this.sawBench(planksIngredient, fence, 2).unlocks("has_planks", has(planks)).save(consumer, PlusMod.getLocation(woodName + "_fence_from_saw_bench"));
+        this.sawBench(planksIngredient, fenceGate, 2).unlocks("has_planks", has(planks)).save(consumer, PlusMod.getLocation(woodName + "_fence_gate_from_saw_bench"));
+        this.sawBench(planksIngredient, button, 3).unlocks("has_planks", has(planks)).save(consumer, PlusMod.getLocation(woodName + "_button_from_saw_bench"));
+        this.sawBench(slabIngredient, pressurePlate, 3).unlocks("has_slab", has(slab)).save(consumer, PlusMod.getLocation(woodName + "_pressure_plate_from_saw_bench"));
         this.sawBench(planksIngredient, door, 2).unlocks("has_planks", has(planks)).save(consumer, PlusMod.getLocation(woodName + "_door_from_saw_bench"));
-        this.sawBench(planksIngredient, trapDoor, 2).unlocks("has_planks", has(planks)).save(consumer, PlusMod.getLocation(woodName + "_trapdoor_from_saw_bench"));
+        this.sawBench(slabIngredient, trapDoor, 2).unlocks("has_slab", has(slab)).save(consumer, PlusMod.getLocation(woodName + "_trapdoor_from_saw_bench"));
         this.sawBench(planksIngredient, sign, 2).unlocks("has_planks", has(planks)).save(consumer, PlusMod.getLocation(woodName + "_sign_from_saw_bench"));
     }
 

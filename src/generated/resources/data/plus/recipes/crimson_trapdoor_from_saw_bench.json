@@ -1,7 +1,7 @@
 {
   "type": "plus:saw_bench",
   "ingredient": {
-    "item": "minecraft:crimson_planks"
+    "item": "minecraft:crimson_slab"
   },
   "result": "minecraft:crimson_trapdoor",
   "count": 2
