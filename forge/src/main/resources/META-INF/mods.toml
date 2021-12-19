@@ -1,0 +1,39 @@
+modLoader="javafml"
+loaderVersion="[39,)"
+license="https://www.gnu.org/licenses/gpl-3.0.en.html"
+issueTrackerURL="https://github.com/CoffeeCatRailway/Plus/issues"
+
+[[mods]]
+modId="${id}"
+version="${version}"
+displayName="${name}"
+logoFile="logo.png"
+updateJSONURL="https://raw.githubusercontent.com/CoffeeCatRailway/Plus/main/update_checker.json"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/plus"
+authors="CoffeeCatRailway"
+#credits="ManWithoutTaste for mouse model & any others who've helped!"
+description='''
+Minceraft plus some stuffs
+
+Disclaimer: I only upload to https://www.curseforge.com & https://modrinth.com/
+Discord: https://discord.com/invite/JM4NjRzZPS
+'''
+
+[[dependencies.${id}]]
+modId="forge"
+mandatory=true
+versionRange="[39,)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.${id}]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.18.1]"
+ordering="NONE"
+side="BOTH"
+[[dependencies.${id}]]
+modId="jei"
+mandatory=false
+versionRange="[9,]"
+ordering="NONE"
+side="CLIENT"

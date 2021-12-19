@@ -1,0 +1,23 @@
+dependencies {
+    // We depend on fabric loader here to use the fabric @Environment annotations and get the mixin dependencies
+    // Do NOT use other classes from fabric loader
+    modImplementation "net.fabricmc:fabric-loader:${rootProject.fabricVersion}"
+
+    modApi "dev.architectury:architectury:${rootProject.architecturyVersion}"
+
+    modCompileOnly("me.shedaniel.cloth:cloth-config:${rootProject.clothVersion}") {
+        exclude(group: "net.fabricmc.fabric-api")
+    }
+}
+
+architectury {
+    common()
+}
+
+java {
+    withSourcesJar()
+}
+
+loom {
+//    accessWidenerPath.set(file("src/main/resources/${project.mod_id}.accesswidener"))
+}

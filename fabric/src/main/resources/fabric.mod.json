@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "${id}",
+  "version": "${version}",
+  "name": "${name}",
+  "description": "Minceraft plus some stuffs\n\nDisclaimer: I only upload to https://www.curseforge.com & https://modrinth.com/\nDiscord: https://discord.com/invite/JM4NjRzZPS",
+  "authors": [
+    "CoffeeCatRailway"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/plus",
+    "sources": "https://github.com/CoffeeCatRailway/Plus",
+    "issues": "https://github.com/CoffeeCatRailway/Plus/issues"
+  },
+  "license": "https://www.gnu.org/licenses/gpl-3.0.en.html",
+  "icon": "assets/plus/textures/item/fox_fur.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": ["io.github.coffeecatrailway.plus.fabric.PlusFabricClient"],
+    "main": ["io.github.coffeecatrailway.plus.fabric.PlusFabric"],
+    "modmenu": ["io.github.coffeecatrailway.plus.fabric.PlusModMenu"]
+  },
+  "mixins": [
+    "plus.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.12.11",
+    "fabric": "*",
+    "minecraft": ">=1.18",
+    "architectury": ">=3.2.52"
+  },
+  "suggests": {
+    "flamingo": "*"
+  }
+}

@@ -7,3 +7,9 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+
+rootProject.name = "Plus"
+
+include("common")
+include("fabric")
+include("forge")

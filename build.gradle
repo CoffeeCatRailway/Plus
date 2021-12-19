@@ -1,186 +1,67 @@
 plugins {
-    id 'dev.architectury.loom' version '0.7.2-SNAPSHOT'
-    id 'io.github.juuxel.loom-quiltflower' version '1.1.1'
-    id 'com.github.johnrengelman.shadow' version '7.0.0'
-    id 'maven-publish'
+    id "architectury-plugin" version "3.4-SNAPSHOT"
+    id "dev.architectury.loom" version "0.10.0-SNAPSHOT" apply false
+    id "io.github.juuxel.loom-quiltflower-mini" version "1.0.0" apply false
 }
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+architectury {
+    minecraft = rootProject.mcVersion
+}
 
-archivesBaseName = project.modId
-version = "${project.mcVersion}-${project.modVersion}"
-group = "${project.mavenGroup}.${project.modId}"
+subprojects {
+    apply plugin: "dev.architectury.loom"
+    apply plugin: "io.github.juuxel.loom-quiltflower-mini"
 
-loom {
-    // use this if you are using the official mojang mappings
-    // and want loom to stop warning you about their license
-    silentMojangMappingsLicense()
-
-    mixinConfigs = ["plus.mixins.json"]
-
-    dataGen {
-        mod project.modId
+    loom {
+        silentMojangMappingsLicense()
     }
 
-    runs {
-        client {
-            runDir "run"
-        }
-        server {
-            runDir "run/server"
-        }
-    }
-
-    launches {
-        data {
-            arg "--existing", file("src/main/resources").absolutePath
+    dependencies {
+        minecraft "com.mojang:minecraft:${rootProject.mcVersion}"
+        mappings loom.layered() {
+            officialMojangMappings()
         }
     }
 }
 
-configurations {
-    shade
-}
+allprojects {
+    apply plugin: "java"
+    apply plugin: "architectury-plugin"
+    apply plugin: "maven-publish"
 
-repositories {
-    mavenLocal()
-    maven {
-        url "https://www.cursemaven.com"
-        content {
-            includeGroup "curse.maven"
-        }
-    }
-    maven {
-        name = "Progwml6 (Just Enough Items)"
-        url = "https://dvs1.progwml6.com/files/maven/"
-    }
-	maven {
-        name = "JustEnoughItems fallback"
-        url = "https://modmaven.k-4u.nl"
-    }
-    maven {
-        name = "JitPack"
-        url = "https://jitpack.io"
-    }
-}
+    archivesBaseName = rootProject.name
+    version = "${rootProject.modVersion}-${rootProject.mcVersion}"
+    group = rootProject.mavenGroup
 
-dependencies {
-    // to change the versions see the gradle.properties file
-    minecraft "com.mojang:minecraft:${project.mcVersion}"
-
-    // choose what mappings you want to use here
-    // leave this uncommented if you want to use mojang's official mappings
-    mappings minecraft.officialMojangMappings()
-
-    // uncomment this if you want to use yarn mappings
-    // mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-
-    // uncomment this if you want to use mcp mappings
-    // mappings "de.oceanlabs.mcp:mcp_${project.mcp_channel}:${project.mcp_mappings}"
-
-    // your forge dependency, this is **required** when using Forge Loom in forge mode!
-    forge "net.minecraftforge:forge:${project.mcVersion}-${project.forgeVersion}"
-
-    modCompileOnly "mezz.jei:jei-1.16.5:${jeiVersion}:api"
-    modRuntime "mezz.jei:jei-1.16.5:${jeiVersion}"
-
-    // These mods make life easier during runtime. They aren't strictly necessary
-
-    modRuntime "curse.maven:shutupexperimentalsettings-407174:3188120"
-    modRuntime "curse.maven:configured-457570:3340535"
-    modRuntime "curse.maven:catalogue-459701:3399554"
-
-    modImplementation "com.github.Ocelot5836:Sonar:${project.sonarVersion}"
-    shade "com.github.Ocelot5836:Sonar:${project.sonarVersion}"
-}
-
-processResources {
-    // define properties that can be used during resource processing
-    inputs.property("modId", project.modId)
-    inputs.property("modVersion", project.modVersion)
-    inputs.property("modAuthor", project.modAuthor)
-
-    // this will replace the property "${version}" in your mods.toml
-    // with the version you've defined in your gradle.properties
-    filesMatching("META-INF/mods.toml") {
-        expand 'modId': project.modId, 'modVersion': project.modVersion, 'modAuthor': project.modAuthor
-    }
-}
-
-shadowJar {
-    configurations = [project.configurations.shade]
-    relocate 'io.github.ocelot.sonar', "io.github.ocelot.${project.modId}.lib.sonar"
-    classifier "shadow"
-    exclude(["**/*.ase", "**/*.bbmodel"])
-}
-
-remapJar {
-    dependsOn(shadowJar)
-    input.set(shadowJar.archivePath)
-}
-
-tasks.withType(JavaCompile).configureEach {
-    // ensure that the encoding is set to UTF-8, no matter what the system default is
-    // this fixes some edge cases with special characters not displaying correctly
-    // see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
-    // If Javadoc is generated, this must be specified in that task too.
-    it.options.encoding = "UTF-8"
-
-    // The Minecraft launcher currently installs Java 8 for users, so your mod probably wants to target Java 8 too
-    // JDK 9 introduced a new way of specifying this that will make sure no newer classes or methods are used.
-    // We'll use that if it's available, but otherwise we'll use the older option.
-    def targetVersion = 8
-    if (JavaVersion.current().isJava9Compatible()) {
-        it.options.release = targetVersion
-    }
-}
-
-java {
-    // Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
-    // if it is present.
-    // If you remove this line, sources will not be generated.
-    withSourcesJar()
-}
-
-jar {
-    from("LICENSE") {
-        rename { "${it}_${project.archivesBaseName}" }
-    }
-
-    // add some additional metadata to the jar manifest
-    manifest {
-        attributes([
-                "Specification-Title"     : "Plus",
-                "Specification-Vendor"    : project.modAuthor,
-                "Specification-Version"   : "1",
-                "Implementation-Title"    : project.modId,
-                "Implementation-Version"  : archiveVersion,
-                "Implementation-Vendor"   : project.modAuthor,
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-        ])
-    }
-}
-
-// configure the maven publication
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            // add all the jars that should be included when publishing to maven
-            artifact(remapJar) {
-                builtBy remapJar
-            }
-            artifact(sourcesJar) {
-                builtBy remapSourcesJar
-            }
-        }
-    }
-
-    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
     repositories {
-        // Add repositories to publish to here.
-        // Notice: This block does NOT have the same function as the block in the top level.
-        // The repositories here will be used for publishing your artifact, not for
-        // retrieving dependencies.
+    }
+
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+        options.release.set(17)
+    }
+
+    java {
+        withSourcesJar()
     }
 }
+
+//    dataGen {
+//        mod project.modId
+//    }
+//
+//    runs {
+//        client {
+//            runDir "run"
+//        }
+//        server {
+//            runDir "run/server"
+//        }
+//    }
+//
+//    launches {
+//        data {
+//            arg "--existing", file("src/main/resources").absolutePath
+//        }
+//    }
+//}

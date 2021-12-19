@@ -1,0 +1,92 @@
+//import groovy.json.JsonOutput
+//import groovy.json.JsonSlurper
+
+plugins {
+    id "com.github.johnrengelman.shadow" version "7.0.0"
+}
+
+architectury {
+    platformSetupLoomIde()
+    fabric()
+}
+
+loom {
+    mixin {
+        defaultRefmapName = "${project.modId}-refmap.json"
+    }
+//    accessWidenerPath.set(project(":common").file("src/main/resources/${project.mod_id}.accesswidener"))
+}
+
+configurations {
+    common
+    shadowCommon // Don't use shadow from the shadow plugin because we don't want IDEA to index this.
+    compileClasspath.extendsFrom common
+    runtimeClasspath.extendsFrom common
+    developmentFabric.extendsFrom common
+}
+
+
+repositories {
+    maven { url "https://maven.terraformersmc.com/" }
+}
+
+dependencies {
+    modImplementation "net.fabricmc:fabric-loader:${rootProject.fabricVersion}"
+    modApi "net.fabricmc.fabric-api:fabric-api:${rootProject.fabricApiVersion}"
+    modApi "dev.architectury:architectury-fabric:${rootProject.architecturyVersion}"
+
+    modImplementation("me.shedaniel.cloth:cloth-config-fabric:${rootProject.clothVersion}") {
+        exclude(group: "net.fabricmc.fabric-api")
+    }
+    modImplementation "com.terraformersmc:modmenu:${rootProject.modMenuVersion}"
+
+    common(project(path: ":common", configuration: "namedElements")) { transitive false }
+    shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
+}
+
+processResources {
+    inputs.property "id", rootProject.modId
+    inputs.property "name", rootProject.name
+    inputs.property "version", rootProject.modVersion
+
+    filesMatching("fabric.mod.json") {
+        expand "id": rootProject.modId,
+                "name": rootProject.name,
+                "version": rootProject.modVersion
+    }
+
+//    doLast {
+//        fileTree(dir: outputs.files.asPath, include: "**/*.json").each {
+//            File file -> file.text = JsonOutput.toJson(new JsonSlurper().parse(file))
+//        }
+//    }
+}
+
+shadowJar {
+    exclude "archiectury.common.json"
+
+    configurations = [project.configurations.shadowCommon]
+    classifier "dev-shadow"
+}
+
+remapJar {
+    input.set shadowJar.archiveFile
+    dependsOn shadowJar
+    classifier "fabric"
+}
+
+jar {
+    classifier "dev"
+}
+
+sourcesJar {
+    def commonSources = project(":common").sourcesJar
+    dependsOn commonSources
+    from commonSources.archiveFile.map { zipTree(it) }
+}
+
+components.java {
+    withVariantsFromConfiguration(project.configurations.shadowRuntimeElements) {
+        skip()
+    }
+}

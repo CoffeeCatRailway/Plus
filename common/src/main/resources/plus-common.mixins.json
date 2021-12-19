@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "package": "io.github.coffeecatrailway.plus.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "minVersion": "0.8",
+  "_mixins": [
+    "LivingEntityMixin",
+    "FrostWalkerEnchantmentMixin",
+    "CampfireBlockMixin",
+    "MagmaBlockMixin",
+    "TurtleMixin"
+  ],
+  "client": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

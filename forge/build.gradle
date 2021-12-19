@@ -1,0 +1,107 @@
+//import groovy.json.JsonOutput
+//import groovy.json.JsonSlurper
+
+plugins {
+    id "com.github.johnrengelman.shadow" version "7.0.0"
+}
+
+archivesBaseName = "${rootProject.archivesBaseName}-${project.name}"
+
+loom {
+//    accessWidenerPath.set(project(":common").file("src/main/resources/${project.modId}.accesswidener"))
+
+    forge {
+        mixinConfig "${project.modId}-common.mixins.json"
+        mixinConfig "${project.modId}.mixins.json"
+
+//        convertAccessWideners.set(true)
+//        extraAccessWideners.add("${project.modId}.accesswidener")
+    }
+    mixin {
+        defaultRefmapName = "${project.modId}-refmap.json"
+    }
+}
+
+architectury {
+    platformSetupLoomIde()
+    forge()
+}
+
+configurations {
+    common
+    shadowCommon // Don't use shadow from the shadow plugin because we don't want IDEA to index this.
+    compileClasspath.extendsFrom common
+    runtimeClasspath.extendsFrom common
+    developmentForge.extendsFrom common
+}
+
+repositories {
+    maven {
+        name = "Progwml6 (Just Enough Items)"
+        url = "https://dvs1.progwml6.com/files/maven/"
+    }
+	maven {
+        name = "JustEnoughItems fallback"
+        url = "https://modmaven.k-4u.nl"
+    }
+}
+
+dependencies {
+    forge "net.minecraftforge:forge:${rootProject.mcVersion}-${rootProject.forgeVersion}"
+    modApi "dev.architectury:architectury-forge:${rootProject.architecturyVersion}"
+
+    modImplementation "me.shedaniel.cloth:cloth-config-forge:${rootProject.clothVersion}"
+
+    modImplementation "mezz.jei:jei-1.18.1:${rootProject.jeiVersion}"
+
+    common(project(path: ":common", configuration: "namedElements")) { transitive false }
+    shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
+}
+
+processResources {
+    inputs.property "id", rootProject.modId
+    inputs.property "name", rootProject.name
+    inputs.property "version", rootProject.modVersion
+
+    filesMatching(["META-INF/mods.toml", "pack.mcmeta"]) {
+        expand "id": rootProject.modId,
+                "name": rootProject.name,
+                "version": rootProject.modVersion
+    }
+
+//    doLast {
+//        fileTree(dir: outputs.files.asPath, include: "**/*.json").each {
+//            File file -> file.text = JsonOutput.toJson(new JsonSlurper().parse(file))
+//        }
+//    }
+}
+
+shadowJar {
+    exclude "fabric.mod.json"
+    exclude "archiectury.common.json"
+
+    configurations = [project.configurations.shadowCommon]
+    classifier "dev-shadow"
+}
+
+remapJar {
+    input.set shadowJar.archiveFile
+    dependsOn shadowJar
+    classifier "forge"
+}
+
+jar {
+    classifier "dev"
+}
+
+sourcesJar {
+    def commonSources = project(":common").sourcesJar
+    dependsOn commonSources
+    from commonSources.archiveFile.map { zipTree(it) }
+}
+
+components.java {
+    withVariantsFromConfiguration(project.configurations.shadowRuntimeElements) {
+        skip()
+    }
+}
