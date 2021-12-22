@@ -1,14 +1,14 @@
 package io.github.coffeecatrailway.plus.registry;
 
 import io.github.coffeecatrailway.plus.PlusMod;
+import io.github.coffeecatrailway.plus.common.loot.ChanceLootModifier;
 import io.github.coffeecatrailway.plus.common.loot.CookableFoodLootModifier;
 import io.github.coffeecatrailway.plus.common.loot.FoxLootModifier;
-import io.github.coffeecatrailway.plus.common.loot.ChanceLootModifier;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

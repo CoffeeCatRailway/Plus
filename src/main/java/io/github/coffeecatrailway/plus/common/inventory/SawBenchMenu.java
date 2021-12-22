@@ -68,7 +68,7 @@ public class SawBenchMenu extends AbstractContainerMenu
             }
 
             @Override
-            public ItemStack onTake(Player player, ItemStack stack)
+            public void onTake(Player player, ItemStack stack)
             {
                 stack.onCraftedBy(player.level, player, stack.getCount());
                 SawBenchMenu.this.resultContainer.awardUsedRecipes(player);
@@ -84,7 +84,6 @@ public class SawBenchMenu extends AbstractContainerMenu
                         SawBenchMenu.this.lastSoundTime = gameTime;
                     }
                 });
-                return super.onTake(player, stack);
             }
         });
 
@@ -241,6 +240,6 @@ public class SawBenchMenu extends AbstractContainerMenu
     {
         super.removed(player);
         this.resultContainer.removeItemNoUpdate(1);
-        this.access.execute((level, pos) -> this.clearContainer(player, player.level, this.container));
+        this.access.execute((level, pos) -> this.clearContainer(player, this.container));
     }
 }

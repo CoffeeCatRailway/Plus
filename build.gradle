@@ -5,30 +5,31 @@ plugins {
     id 'maven-publish'
 }
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = targetCompatibility = JavaVersion.VERSION_17
 
-archivesBaseName = project.modId
+archivesBaseName = project.modName
 version = "${project.mcVersion}-${project.modVersion}"
-group = "${project.mavenGroup}.${project.modId}"
+group = project.mavenGroup
 
 loom {
     // use this if you are using the official mojang mappings
     // and want loom to stop warning you about their license
     silentMojangMappingsLicense()
 
-    mixinConfigs = ["plus.mixins.json"]
+    forge {
+        mixinConfigs = ["${project.modVersion}.mixins.json"]
 
-    dataGen {
-        mod project.modId
-    }
-
-    runs {
-        client {
-            runDir "run"
+        dataGen {
+            mod project.modId
         }
-        server {
-            runDir "run/server"
+
+        runs {
+            client {
+                runDir "run"
+            }
+            server {
+                runDir "run/server"
+            }
         }
     }
 
@@ -59,10 +60,10 @@ repositories {
         name = "JustEnoughItems fallback"
         url = "https://modmaven.k-4u.nl"
     }
-    maven {
-        name = "JitPack"
-        url = "https://jitpack.io"
-    }
+//    maven {
+//        name = "JitPack"
+//        url = "https://jitpack.io"
+//    }
 }
 
 dependencies {
@@ -88,23 +89,22 @@ dependencies {
     // These mods make life easier during runtime. They aren't strictly necessary
 
     modRuntime "curse.maven:shutupexperimentalsettings-407174:3544525"
-    modRuntime "curse.maven:configured-457570:3559398"
-    modRuntime "curse.maven:catalogue-459701:3559402"
 
-    modImplementation "com.github.Ocelot5836:Sonar:${project.sonarVersion}"
-    shade "com.github.Ocelot5836:Sonar:${project.sonarVersion}"
+//    modImplementation "com.github.Ocelot5836:Sonar:${project.sonarVersion}"
+//    shade "com.github.Ocelot5836:Sonar:${project.sonarVersion}"
 }
 
 processResources {
     // define properties that can be used during resource processing
-    inputs.property("modId", project.modId)
-    inputs.property("modVersion", project.modVersion)
-    inputs.property("modAuthor", project.modAuthor)
+    inputs.property("name", project.modName)
+    inputs.property("id", project.modId)
+    inputs.property("version", project.modVersion)
+    inputs.property("author", project.modAuthor)
 
     // this will replace the property "${version}" in your mods.toml
     // with the version you've defined in your gradle.properties
     filesMatching("META-INF/mods.toml") {
-        expand 'modId': project.modId, 'modVersion': project.modVersion, 'modAuthor': project.modAuthor
+        expand 'name': project.modId, 'modName': project.modId, 'version': project.modVersion, 'author': project.modAuthor
     }
 }
 
@@ -142,7 +142,7 @@ jar {
     // add some additional metadata to the jar manifest
     manifest {
         attributes([
-                "Specification-Title"     : "Plus",
+                "Specification-Title"     : project.modName,
                 "Specification-Vendor"    : project.modAuthor,
                 "Specification-Version"   : "1",
                 "Implementation-Title"    : project.modId,

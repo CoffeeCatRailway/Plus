@@ -3,19 +3,14 @@ package io.github.coffeecatrailway.plus.common.loot;
 import com.google.gson.JsonObject;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
-import net.minecraft.util.IntRange;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.monster.Strider;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.storage.loot.LootContext;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.common.loot.LootModifier;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -44,13 +39,13 @@ public class ChanceLootModifier extends LootModifier
     }
 
     public ChanceLootModifier(LootItemCondition[] conditions, Supplier<ItemLike> item, float chance, ResourceLocation entityId)
-        {
+    {
         super(conditions);
         this.item = item;
         this.chance = Mth.clamp(chance, 0f, 1f);
         if (chance < 0f || chance > 1f)
             LOGGER.error("Drop chance was out of bounds '{}'! Corrected to '{}'!", chance, this.chance);
-            this.entityId = entityId;
+        this.entityId = entityId;
     }
 
     @NotNull

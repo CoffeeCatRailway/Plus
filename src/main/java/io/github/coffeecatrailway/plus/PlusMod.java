@@ -3,7 +3,6 @@ package io.github.coffeecatrailway.plus;
 import io.github.coffeecatrailway.plus.data.gen.*;
 import io.github.coffeecatrailway.plus.registry.*;
 import io.github.coffeecatrailway.plus.util.PlusDamageSource;
-import io.github.ocelot.sonar.Sonar;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.stats.StatType;
@@ -14,8 +13,8 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 
 @Mod(PlusMod.MOD_ID)
 public class PlusMod
@@ -25,7 +24,6 @@ public class PlusMod
     public PlusMod()
     {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-        Sonar.init(bus);
         PlusConfig.Server.init(ModLoadingContext.get());
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> bus.addListener(ClientEvents::init));
         bus.addListener(CommonEvents::init);

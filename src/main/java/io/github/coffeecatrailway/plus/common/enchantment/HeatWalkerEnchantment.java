@@ -71,14 +71,14 @@ public class HeatWalkerEnchantment extends Enchantment
             {
                 mutablePos.set(pos.getX(), pos.getY() + 1, pos.getZ());
                 BlockState state = level.getBlockState(mutablePos);
-                if (state.isAir(level, mutablePos))
+                if (state.isAir())
                 {
                     state = level.getBlockState(pos);
                     boolean isFull = state.getBlock() == Blocks.LAVA && state.getValue(LiquidBlock.LEVEL) == 0;
                     if (state.getMaterial() == Material.LAVA && isFull && basalt.canSurvive(level, pos) && level.isUnobstructed(basalt, pos, CollisionContext.empty()) && !ForgeEventFactory.onBlockPlace(entity, BlockSnapshot.create(level.dimension(), level, pos), Direction.UP))
                     {
                         level.setBlockAndUpdate(pos, basalt.setValue(BrittleBasaltBlock.AXIS, Direction.Axis.getRandom(entity.getRandom())));
-                        level.getBlockTicks().scheduleTick(pos, PlusBlocks.BRITTLE_BASALT.get(), Mth.nextInt(entity.getRandom(), 60, 120));
+                        level.scheduleTick(pos, PlusBlocks.BRITTLE_BASALT.get(), Mth.nextInt(entity.getRandom(), 60, 120));
                     }
                 }
             }

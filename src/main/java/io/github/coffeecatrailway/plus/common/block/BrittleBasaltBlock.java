@@ -49,10 +49,10 @@ public class BrittleBasaltBlock extends RotatedPillarBlock
                 mutablePos.setWithOffset(pos, direction);
                 BlockState blockstate = level.getBlockState(mutablePos);
                 if (blockstate.is(this) && !this.slightlyCrack(blockstate, level, mutablePos))
-                    level.getBlockTicks().scheduleTick(mutablePos, this, Mth.nextInt(random, 20, 40));
+                    level.scheduleTick(mutablePos, this, Mth.nextInt(random, 20, 40));
             }
         } else
-            level.getBlockTicks().scheduleTick(pos, this, Mth.nextInt(random, 20, 40));
+            level.scheduleTick(pos, this, Mth.nextInt(random, 20, 40));
     }
 
     private boolean slightlyCrack(BlockState state, Level level, BlockPos pos)

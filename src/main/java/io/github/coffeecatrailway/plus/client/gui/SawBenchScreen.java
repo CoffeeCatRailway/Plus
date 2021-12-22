@@ -7,6 +7,7 @@ import io.github.coffeecatrailway.plus.common.inventory.SawBenchMenu;
 import io.github.coffeecatrailway.plus.common.item.crafting.SawBenchRecipe;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -50,8 +51,9 @@ public class SawBenchScreen extends AbstractContainerScreen<SawBenchMenu>
     protected void renderBg(PoseStack poseStack, float partialTicks, int mouseX, int mouseY)
     {
         this.renderBackground(poseStack);
-        RenderSystem.color4f(1f, 1f, 1f, 1f);
-        this.minecraft.getTextureManager().bind(BG_LOCATION);
+        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.setShaderTexture(0, BG_LOCATION);
         this.blit(poseStack, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
         this.blit(poseStack, this.leftPos + 119, this.topPos + 15 + (int) (41f * this.scrollOffs), 176 + (this.isScrollBarActive() ? 0 : 12), 0, 12, 15);
         int n = this.leftPos + 52;
