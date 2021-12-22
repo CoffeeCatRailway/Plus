@@ -21,3 +21,21 @@ java {
 loom {
 //    accessWidenerPath.set(file("src/main/resources/${project.mod_id}.accesswidener"))
 }
+
+publishing {
+    publications {
+        mavenCommon(MavenPublication) {
+            artifactId = rootProject.archivesBaseName
+            // add all the jars that should be included when publishing to maven
+            artifact remapJar
+            artifact(sourcesJar) {
+                builtBy remapSourcesJar
+            }
+        }
+    }
+
+    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+    repositories {
+        // Add repositories to publish to here.
+    }
+}
