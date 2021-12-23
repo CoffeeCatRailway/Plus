@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "plus:turtle"
+            "items": [
+              "plus:turtle"
+            ]
           }
         ]
       }

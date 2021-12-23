@@ -3,7 +3,6 @@ package io.github.coffeecatrailway.plus.common.loot;
 import com.google.gson.JsonObject;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
-import net.minecraft.util.IntRange;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -31,17 +30,17 @@ import java.util.function.Supplier;
 public class CookableFoodLootModifier extends LootModifier
 {
     protected final Supplier<ItemLike> cookable;
-    protected final IntRange meatRange;
+    protected final IntRangeOld meatRange;
 
     protected final boolean allowLooting;
     protected final ResourceLocation entityId;
 
-    public CookableFoodLootModifier(LootItemCondition[] conditions, Supplier<ItemLike> food, IntRange meatRange, boolean allowLooting, EntityType<?> entity)
+    public CookableFoodLootModifier(LootItemCondition[] conditions, Supplier<ItemLike> food, IntRangeOld meatRange, boolean allowLooting, EntityType<?> entity)
     {
         this(conditions, food, meatRange, allowLooting, entity.getRegistryName());
     }
 
-    public CookableFoodLootModifier(LootItemCondition[] conditions, Supplier<ItemLike> food, IntRange meatRange, boolean allowLooting, ResourceLocation entityId)
+    public CookableFoodLootModifier(LootItemCondition[] conditions, Supplier<ItemLike> food, IntRangeOld meatRange, boolean allowLooting, ResourceLocation entityId)
     {
         super(conditions);
         this.cookable = food;
@@ -85,7 +84,7 @@ public class CookableFoodLootModifier extends LootModifier
         @Override
         public CookableFoodLootModifier read(ResourceLocation location, JsonObject object, LootItemCondition[] conditions)
         {
-            IntRange meatRange = new IntRange(GsonHelper.getAsInt(object, "min"), GsonHelper.getAsInt(object, "max"));
+            IntRangeOld meatRange = new IntRangeOld(object);
             Item cookable = ForgeRegistries.ITEMS.getValue(new ResourceLocation(GsonHelper.getAsString(object, "item")));
             return new CookableFoodLootModifier(conditions, () -> cookable, meatRange, GsonHelper.getAsBoolean(object, "allowLooting"), new ResourceLocation(GsonHelper.getAsString(object, "entity")));
         }
@@ -95,8 +94,8 @@ public class CookableFoodLootModifier extends LootModifier
         {
             JsonObject json = this.makeConditions(modifier.conditions);
             json.addProperty("item", modifier.cookable.get().asItem().getRegistryName().toString());
-            json.addProperty("min", modifier.meatRange.getMinInclusive());
-            json.addProperty("max", modifier.meatRange.getMaxInclusive());
+            json.addProperty("min", modifier.meatRange.getMin());
+            json.addProperty("max", modifier.meatRange.getMax());
             json.addProperty("allowLooting", modifier.allowLooting);
             json.addProperty("entity", modifier.entityId.toString());
             return json;

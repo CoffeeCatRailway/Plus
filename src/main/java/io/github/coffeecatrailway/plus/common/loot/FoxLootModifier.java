@@ -4,7 +4,7 @@ import com.google.gson.JsonObject;
 import io.github.coffeecatrailway.plus.registry.PlusItems;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
-import net.minecraft.util.IntRange;
+import net.minecraft.world.level.storage.loot.IntRange;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -24,9 +24,9 @@ import java.util.Random;
  */
 public class FoxLootModifier extends CookableFoodLootModifier
 {
-    private final IntRange furRange;
+    private final IntRangeOld furRange;
 
-    public FoxLootModifier(LootItemCondition[] conditions, IntRange furRange, IntRange meatRange)
+    public FoxLootModifier(LootItemCondition[] conditions, IntRangeOld furRange, IntRangeOld meatRange)
     {
         super(conditions, PlusItems.FOX_MEAT::get, meatRange, true, EntityType.FOX);
         this.furRange = furRange;
@@ -59,8 +59,8 @@ public class FoxLootModifier extends CookableFoodLootModifier
         @Override
         public FoxLootModifier read(ResourceLocation location, JsonObject object, LootItemCondition[] conditions)
         {
-            IntRange furRange = new IntRange(GsonHelper.getAsInt(object, "minFur"), GsonHelper.getAsInt(object, "maxFur"));
-            IntRange meatRange = new IntRange(GsonHelper.getAsInt(object, "minMeat"), GsonHelper.getAsInt(object, "maxMeat"));
+            IntRangeOld furRange = new IntRangeOld(object.getAsJsonObject("furRange"));
+            IntRangeOld meatRange = new IntRangeOld(object.getAsJsonObject("meatRange"));
             return new FoxLootModifier(conditions, furRange, meatRange);
         }
 
@@ -68,10 +68,14 @@ public class FoxLootModifier extends CookableFoodLootModifier
         public JsonObject write(FoxLootModifier modifier)
         {
             JsonObject json = this.makeConditions(modifier.conditions);
-            json.addProperty("minMeat", modifier.meatRange.getMinInclusive());
-            json.addProperty("maxMeat", modifier.meatRange.getMaxInclusive());
-            json.addProperty("minFur", modifier.furRange.getMinInclusive());
-            json.addProperty("maxFur", modifier.furRange.getMaxInclusive());
+            JsonObject meatRange = new JsonObject();
+            meatRange.addProperty("min", modifier.meatRange.getMin());
+            meatRange.addProperty("max", modifier.meatRange.getMax());
+            json.add("meatRange", meatRange);
+            JsonObject furRange = new JsonObject();
+            furRange.addProperty("min", modifier.furRange.getMin());
+            furRange.addProperty("max", modifier.furRange.getMax());
+            json.add("furRange", furRange);
             return json;
         }
     }
