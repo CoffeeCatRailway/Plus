@@ -2,7 +2,7 @@ package io.github.coffeecatrailway.plus.data.gen;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
-import io.github.coffeecatrailway.plus.PlusMod;
+import io.github.coffeecatrailway.plus.Plus;
 import io.github.coffeecatrailway.plus.registry.PlusBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.loot.BlockLoot;
@@ -16,7 +16,6 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.ValidationContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
-import net.minecraftforge.common.data.ForgeLootTableProvider;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
@@ -71,7 +70,7 @@ public class PlusLootTables extends LootTableProvider
         @Override
         protected Iterable<EntityType<?>> getKnownEntities()
         {
-            return ForgeRegistries.ENTITIES.getValues().stream().filter(entityType -> entityType.getRegistryName() != null && PlusMod.MOD_ID.equals(entityType.getRegistryName().getNamespace())).collect(Collectors.toSet());
+            return ForgeRegistries.ENTITIES.getValues().stream().filter(entityType -> entityType.getRegistryName() != null && Plus.MOD_ID.equals(entityType.getRegistryName().getNamespace())).collect(Collectors.toSet());
         }
     }
 
@@ -87,7 +86,7 @@ public class PlusLootTables extends LootTableProvider
         @Override
         protected Iterable<Block> getKnownBlocks()
         {
-            return ForgeRegistries.BLOCKS.getValues().stream().filter(entityType -> entityType.getRegistryName() != null && PlusMod.MOD_ID.equals(entityType.getRegistryName().getNamespace())).collect(Collectors.toSet());
+            return ForgeRegistries.BLOCKS.getValues().stream().filter(entityType -> entityType.getRegistryName() != null && Plus.MOD_ID.equals(entityType.getRegistryName().getNamespace())).collect(Collectors.toSet());
         }
     }
 }
