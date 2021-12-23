@@ -16,12 +16,12 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 
-@Mod(PlusMod.MOD_ID)
-public class PlusMod
+@Mod(Plus.MOD_ID)
+public class Plus
 {
     public static final String MOD_ID = "plus";
 
-    public PlusMod()
+    public Plus()
     {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         PlusConfig.Server.init(ModLoadingContext.get());
@@ -59,6 +59,6 @@ public class PlusMod
 
     public static ResourceLocation getLocation(String path)
     {
-        return new ResourceLocation(PlusMod.MOD_ID, path);
+        return new ResourceLocation(Plus.MOD_ID, path);
     }
 }

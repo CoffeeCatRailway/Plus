@@ -1,6 +1,6 @@
 package io.github.coffeecatrailway.plus.data.gen;
 
-import io.github.coffeecatrailway.plus.PlusMod;
+import io.github.coffeecatrailway.plus.Plus;
 import io.github.coffeecatrailway.plus.registry.PlusBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
@@ -23,7 +23,7 @@ public class PlusBlockTags extends BlockTagsProvider
 
     public PlusBlockTags(DataGenerator generator, @Nullable ExistingFileHelper fileHelper)
     {
-        super(generator, PlusMod.MOD_ID, fileHelper);
+        super(generator, Plus.MOD_ID, fileHelper);
     }
 
     @Override

@@ -2,7 +2,7 @@ package io.github.coffeecatrailway.plus.client.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import io.github.coffeecatrailway.plus.PlusMod;
+import io.github.coffeecatrailway.plus.Plus;
 import io.github.coffeecatrailway.plus.common.inventory.SawBenchMenu;
 import io.github.coffeecatrailway.plus.common.item.crafting.SawBenchRecipe;
 import net.minecraft.client.Minecraft;
@@ -27,7 +27,7 @@ import java.util.List;
 @OnlyIn(Dist.CLIENT)
 public class SawBenchScreen extends AbstractContainerScreen<SawBenchMenu>
 {
-    private static final ResourceLocation BG_LOCATION = PlusMod.getLocation("textures/gui/container/saw_bench.png");
+    private static final ResourceLocation BG_LOCATION = Plus.getLocation("textures/gui/container/saw_bench.png");
     private float scrollOffs;
     private boolean scrolling;
     private int startIndex;

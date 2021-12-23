@@ -16,7 +16,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
  * Created: 7/04/2021
  */
 @OnlyIn(Dist.CLIENT)
-@Mod.EventBusSubscriber(modid = PlusMod.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = Plus.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ClientEvents
 {
     public static void init(final FMLClientSetupEvent event)

@@ -1,6 +1,6 @@
 package io.github.coffeecatrailway.plus.registry;
 
-import io.github.coffeecatrailway.plus.PlusMod;
+import io.github.coffeecatrailway.plus.Plus;
 import io.github.coffeecatrailway.plus.common.inventory.SawBenchMenu;
 import io.github.coffeecatrailway.plus.data.gen.PlusLanguage;
 import net.minecraft.world.inventory.MenuType;
@@ -20,14 +20,14 @@ import java.util.function.Supplier;
 public class PlusMenuTypes
 {
     private static final Logger LOGGER = LogManager.getLogger();
-    protected static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(ForgeRegistries.CONTAINERS, PlusMod.MOD_ID);
+    protected static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(ForgeRegistries.CONTAINERS, Plus.MOD_ID);
 
     public static final RegistryObject<MenuType<SawBenchMenu>> SAW_BENCH = register("saw_bench", () -> new MenuType<>(SawBenchMenu::new));
 
     private static <T extends MenuType<?>> RegistryObject<T> register(String id, Supplier<T> menu)
     {
         RegistryObject<T> object = MENUS.register(id, menu);
-        PlusLanguage.EXTRA.put("container." + PlusMod.MOD_ID + "." + id, PlusLanguage.capitalize(id));
+        PlusLanguage.EXTRA.put("container." + Plus.MOD_ID + "." + id, PlusLanguage.capitalize(id));
         return object;
     }
 

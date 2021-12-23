@@ -1,6 +1,6 @@
 package io.github.coffeecatrailway.plus.registry;
 
-import io.github.coffeecatrailway.plus.PlusMod;
+import io.github.coffeecatrailway.plus.Plus;
 import io.github.coffeecatrailway.plus.common.enchantment.HeatWalkerEnchantment;
 import io.github.coffeecatrailway.plus.data.gen.PlusLanguage;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -21,7 +21,7 @@ import java.util.function.Supplier;
 public class PlusEnchantments
 {
     private static final Logger LOGGER = LogManager.getLogger();
-    protected static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, PlusMod.MOD_ID);
+    protected static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, Plus.MOD_ID);
 
     public static final RegistryObject<HeatWalkerEnchantment> HEAT_WALKER = register("heat_walker", () -> new HeatWalkerEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.FEET));
 

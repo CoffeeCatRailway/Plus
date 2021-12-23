@@ -8,8 +8,6 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.List;
-
 /**
  * @author CoffeeCatRailway
  * Created: 21/10/2020
@@ -19,7 +17,7 @@ public class PlusConfig
     public static Server SERVER;
     private static ForgeConfigSpec SERVER_SPEC;
 
-    private static final String CONFIG = "config." + PlusMod.MOD_ID + ".";
+    private static final String CONFIG = "config." + Plus.MOD_ID + ".";
     private static final Logger LOGGER = LogManager.getLogger();
 
     public static class Server

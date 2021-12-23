@@ -1,13 +1,11 @@
 package io.github.coffeecatrailway.plus.integration.jei;
 
-import io.github.coffeecatrailway.plus.PlusMod;
-import io.github.coffeecatrailway.plus.client.gui.SawBenchScreen;
+import io.github.coffeecatrailway.plus.Plus;
 import io.github.coffeecatrailway.plus.registry.PlusBlocks;
 import io.github.coffeecatrailway.plus.registry.PlusRecipes;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.helpers.IGuiHelper;
-import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
@@ -27,9 +25,9 @@ import java.util.stream.Collectors;
 @JeiPlugin
 public class PlusJEIPlugin implements IModPlugin
 {
-    private static final ResourceLocation UID = PlusMod.getLocation("plugin/jei");
+    private static final ResourceLocation UID = Plus.getLocation("plugin/jei");
 
-    protected static final ResourceLocation SAW_BENCH_UID = PlusMod.getLocation("category/saw_bench");
+    protected static final ResourceLocation SAW_BENCH_UID = Plus.getLocation("category/saw_bench");
 
     @Override
     public ResourceLocation getPluginUid()

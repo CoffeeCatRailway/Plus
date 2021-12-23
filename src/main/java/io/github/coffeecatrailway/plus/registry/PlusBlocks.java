@@ -1,6 +1,6 @@
 package io.github.coffeecatrailway.plus.registry;
 
-import io.github.coffeecatrailway.plus.PlusMod;
+import io.github.coffeecatrailway.plus.Plus;
 import io.github.coffeecatrailway.plus.common.block.BrittleBasaltBlock;
 import io.github.coffeecatrailway.plus.common.block.SawBenchBlock;
 import io.github.coffeecatrailway.plus.data.gen.PlusLanguage;
@@ -30,7 +30,7 @@ import java.util.function.Supplier;
 public class PlusBlocks
 {
     private static final Logger LOGGER = LogManager.getLogger();
-    protected static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, PlusMod.MOD_ID);
+    protected static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Plus.MOD_ID);
 
     public static final RegistryObject<BrittleBasaltBlock> BRITTLE_BASALT = registerWithItem("brittle_basalt", () -> new BrittleBasaltBlock(BlockBehaviour.Properties.copy(Blocks.BASALT).randomTicks()), null);
 

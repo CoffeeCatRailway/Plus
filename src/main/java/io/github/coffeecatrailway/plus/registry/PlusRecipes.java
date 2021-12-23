@@ -1,6 +1,6 @@
 package io.github.coffeecatrailway.plus.registry;
 
-import io.github.coffeecatrailway.plus.PlusMod;
+import io.github.coffeecatrailway.plus.Plus;
 import io.github.coffeecatrailway.plus.common.item.crafting.SawBenchRecipe;
 import io.github.coffeecatrailway.plus.common.item.crafting.SingleItemSerializer;
 import net.minecraft.core.Registry;
@@ -22,7 +22,7 @@ import org.apache.logging.log4j.Logger;
 public class PlusRecipes
 {
     private static final Logger LOGGER = LogManager.getLogger();
-    protected static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, PlusMod.MOD_ID);
+    protected static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, Plus.MOD_ID);
 
     public static RecipeType<SawBenchRecipe> SAW_BENCH_TYPE;
 
@@ -30,7 +30,7 @@ public class PlusRecipes
 
     private static <R extends Recipe<?>> RecipeType<R> register(String id)
     {
-        return Registry.register(Registry.RECIPE_TYPE, PlusMod.getLocation(id), new RecipeType<R>()
+        return Registry.register(Registry.RECIPE_TYPE, Plus.getLocation(id), new RecipeType<R>()
         {
             @Override
             public String toString()

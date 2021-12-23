@@ -1,6 +1,6 @@
 package io.github.coffeecatrailway.plus.registry;
 
-import io.github.coffeecatrailway.plus.PlusMod;
+import io.github.coffeecatrailway.plus.Plus;
 import io.github.coffeecatrailway.plus.common.item.FoxHatItem;
 import io.github.coffeecatrailway.plus.common.item.PlusArmorMaterials;
 import io.github.coffeecatrailway.plus.data.gen.PlusLanguage;
@@ -23,7 +23,7 @@ import java.util.function.Function;
 public class PlusItems
 {
     private static final Logger LOGGER = LogManager.getLogger();
-    protected static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, PlusMod.MOD_ID);
+    protected static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Plus.MOD_ID);
 
     // Crafting Ingredients
     public static final RegistryObject<Item> FOX_FUR = registerIdAsName("fox_fur", prop -> new Item(prop.tab(CreativeModeTab.TAB_MISC)));

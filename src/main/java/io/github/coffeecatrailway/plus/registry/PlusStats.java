@@ -1,16 +1,13 @@
 package io.github.coffeecatrailway.plus.registry;
 
-import io.github.coffeecatrailway.plus.PlusMod;
+import io.github.coffeecatrailway.plus.Plus;
 import io.github.coffeecatrailway.plus.data.gen.PlusLanguage;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.stats.StatFormatter;
 import net.minecraft.stats.StatType;
 import net.minecraft.stats.Stats;
-import net.minecraft.world.item.Item;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -37,10 +34,10 @@ public class PlusStats
 
     private static ResourceLocation register(String idPath, String localizedName, StatFormatter formatter)
     {
-        ResourceLocation id = PlusMod.getLocation(idPath);
+        ResourceLocation id = Plus.getLocation(idPath);
         Registry.register(Registry.CUSTOM_STAT, idPath, id);
         Stats.CUSTOM.get(id, formatter);
-        PlusLanguage.EXTRA.put("stat." + PlusMod.MOD_ID + "." + idPath, localizedName);
+        PlusLanguage.EXTRA.put("stat." + Plus.MOD_ID + "." + idPath, localizedName);
         return id;
     }
 }

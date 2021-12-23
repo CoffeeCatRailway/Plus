@@ -1,6 +1,6 @@
 package io.github.coffeecatrailway.plus.data.gen;
 
-import io.github.coffeecatrailway.plus.PlusMod;
+import io.github.coffeecatrailway.plus.Plus;
 import io.github.coffeecatrailway.plus.registry.PlusBlocks;
 import io.github.coffeecatrailway.plus.registry.PlusItems;
 import io.github.coffeecatrailway.plus.registry.PlusRecipes;
@@ -38,12 +38,12 @@ public class PlusRecipeProvider extends RecipeProvider
         ShapedRecipeBuilder.shaped(PlusItems.SNOW_FOX_HAT.get()).define('f', PlusItems.SNOW_FOX_FUR.get()).pattern("fff").pattern("f f").pattern(" f ").unlockedBy("has_fur", has(PlusItems.SNOW_FOX_FUR.get())).save(consumer);
 
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(PlusItems.FOX_MEAT.get()), PlusItems.COOKED_FOX_MEAT.get(), .35f, 200).unlockedBy("has_fox_meat", has(PlusItems.FOX_MEAT.get())).save(consumer);
-        SimpleCookingRecipeBuilder.cooking(Ingredient.of(PlusItems.FOX_MEAT.get()), PlusItems.COOKED_FOX_MEAT.get(), .35f, 100, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_fox_meat", has(PlusItems.FOX_MEAT.get())).save(consumer, PlusMod.getLocation("cooked_fox_meat_from_smoking"));
-        SimpleCookingRecipeBuilder.cooking(Ingredient.of(PlusItems.FOX_MEAT.get()), PlusItems.COOKED_FOX_MEAT.get(), .35f, 600, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_fox_meat", has(PlusItems.FOX_MEAT.get())).save(consumer, PlusMod.getLocation("cooked_fox_meat_from_campfire"));
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(PlusItems.FOX_MEAT.get()), PlusItems.COOKED_FOX_MEAT.get(), .35f, 100, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_fox_meat", has(PlusItems.FOX_MEAT.get())).save(consumer, Plus.getLocation("cooked_fox_meat_from_smoking"));
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(PlusItems.FOX_MEAT.get()), PlusItems.COOKED_FOX_MEAT.get(), .35f, 600, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_fox_meat", has(PlusItems.FOX_MEAT.get())).save(consumer, Plus.getLocation("cooked_fox_meat_from_campfire"));
 
         ShapedRecipeBuilder.shaped(PlusBlocks.SAW_BENCH.get()).define('i', Tags.Items.INGOTS_IRON).define('p', ItemTags.PLANKS).pattern(" i ").pattern("ppp").unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON)).unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
-        this.sawBench(Ingredient.of(ItemTags.PLANKS), Items.STICK, 2).unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer, PlusMod.getLocation("sticks_from_saw_bench"));
-        this.sawBench(Ingredient.of(ItemTags.LOGS), Items.STICK, 12).unlockedBy("has_logs", has(ItemTags.LOGS)).save(consumer, PlusMod.getLocation("sticks_logs_from_saw_bench"));
+        this.sawBench(Ingredient.of(ItemTags.PLANKS), Items.STICK, 2).unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer, Plus.getLocation("sticks_from_saw_bench"));
+        this.sawBench(Ingredient.of(ItemTags.LOGS), Items.STICK, 12).unlockedBy("has_logs", has(ItemTags.LOGS)).save(consumer, Plus.getLocation("sticks_logs_from_saw_bench"));
 
         this.sawBenchRecipes(consumer, "oak", Blocks.OAK_LOG, Blocks.OAK_WOOD, ItemTags.OAK_LOGS, Blocks.STRIPPED_OAK_LOG, Blocks.STRIPPED_OAK_WOOD, Blocks.OAK_PLANKS, Blocks.OAK_STAIRS, Blocks.OAK_SLAB,
                 Blocks.OAK_FENCE, Blocks.OAK_FENCE_GATE, Blocks.OAK_BUTTON, Blocks.OAK_PRESSURE_PLATE, Blocks.OAK_DOOR, Blocks.OAK_TRAPDOOR, Blocks.OAK_SIGN);
@@ -70,16 +70,16 @@ public class PlusRecipeProvider extends RecipeProvider
         ShapedRecipeBuilder.shaped(Items.CHAINMAIL_BOOTS).define('l', PlusItems.CHAIN_LINK.get()).pattern("l l").pattern("l l").unlockedBy("has_link", has(PlusItems.CHAIN_LINK.get())).save(consumer);
 
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(PlusItems.BAT.get()), PlusItems.COOKED_BAT.get(), .35f, 200).unlockedBy("has_bat", has(PlusItems.BAT.get())).save(consumer);
-        SimpleCookingRecipeBuilder.cooking(Ingredient.of(PlusItems.BAT.get()), PlusItems.COOKED_BAT.get(), .35f, 100, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_bat", has(PlusItems.BAT.get())).save(consumer, PlusMod.getLocation("cooked_bat_from_smoking"));
-        SimpleCookingRecipeBuilder.cooking(Ingredient.of(PlusItems.BAT.get()), PlusItems.COOKED_BAT.get(), .35f, 600, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_bat", has(PlusItems.BAT.get())).save(consumer, PlusMod.getLocation("cooked_bat_from_campfire"));
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(PlusItems.BAT.get()), PlusItems.COOKED_BAT.get(), .35f, 100, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_bat", has(PlusItems.BAT.get())).save(consumer, Plus.getLocation("cooked_bat_from_smoking"));
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(PlusItems.BAT.get()), PlusItems.COOKED_BAT.get(), .35f, 600, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_bat", has(PlusItems.BAT.get())).save(consumer, Plus.getLocation("cooked_bat_from_campfire"));
 
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(PlusItems.SQUID.get()), PlusItems.CALAMARI.get(), .35f, 200).unlockedBy("has_squid", has(PlusItems.SQUID.get())).save(consumer);
-        SimpleCookingRecipeBuilder.cooking(Ingredient.of(PlusItems.SQUID.get()), PlusItems.CALAMARI.get(), .35f, 100, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_squid", has(PlusItems.SQUID.get())).save(consumer, PlusMod.getLocation("calamari_from_smoking"));
-        SimpleCookingRecipeBuilder.cooking(Ingredient.of(PlusItems.SQUID.get()), PlusItems.CALAMARI.get(), .35f, 600, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_squid", has(PlusItems.SQUID.get())).save(consumer, PlusMod.getLocation("calamari_from_campfire"));
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(PlusItems.SQUID.get()), PlusItems.CALAMARI.get(), .35f, 100, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_squid", has(PlusItems.SQUID.get())).save(consumer, Plus.getLocation("calamari_from_smoking"));
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(PlusItems.SQUID.get()), PlusItems.CALAMARI.get(), .35f, 600, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_squid", has(PlusItems.SQUID.get())).save(consumer, Plus.getLocation("calamari_from_campfire"));
 
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(PlusItems.TURTLE.get()), PlusItems.COOKED_TURTLE.get(), .35f, 200).unlockedBy("has_turtle", has(PlusItems.TURTLE.get())).save(consumer);
-        SimpleCookingRecipeBuilder.cooking(Ingredient.of(PlusItems.TURTLE.get()), PlusItems.COOKED_TURTLE.get(), .35f, 100, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_turtle", has(PlusItems.TURTLE.get())).save(consumer, PlusMod.getLocation("cooked_turtle_from_smoking"));
-        SimpleCookingRecipeBuilder.cooking(Ingredient.of(PlusItems.TURTLE.get()), PlusItems.COOKED_TURTLE.get(), .35f, 600, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_turtle", has(PlusItems.TURTLE.get())).save(consumer, PlusMod.getLocation("cooked_turtle_from_campfire"));
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(PlusItems.TURTLE.get()), PlusItems.COOKED_TURTLE.get(), .35f, 100, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_turtle", has(PlusItems.TURTLE.get())).save(consumer, Plus.getLocation("cooked_turtle_from_smoking"));
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(PlusItems.TURTLE.get()), PlusItems.COOKED_TURTLE.get(), .35f, 600, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_turtle", has(PlusItems.TURTLE.get())).save(consumer, Plus.getLocation("cooked_turtle_from_campfire"));
     }
 
     private void sawBenchRecipes(Consumer<FinishedRecipe> consumer, String woodName, Block log, Block wood, Tag.Named<Item> logTag, Block strippedLog, Block strippedWood, Block planks, Block stairs, Block slab,
@@ -87,18 +87,18 @@ public class PlusRecipeProvider extends RecipeProvider
     {
         Ingredient planksIngredient = Ingredient.of(planks);
         Ingredient slabIngredient = Ingredient.of(slab);
-        this.sawBench(Ingredient.of(log), strippedLog).unlockedBy("has_log", has(log)).save(consumer, PlusMod.getLocation("stripped_" + woodName + "_log_from_saw_bench"));
-        this.sawBench(Ingredient.of(wood), strippedWood).unlockedBy("has_wood", has(wood)).save(consumer, PlusMod.getLocation("stripped_" + woodName + "_wood_from_saw_bench"));
-        this.sawBench(Ingredient.of(logTag), planks, 6).unlockedBy("has_logs", has(logTag)).save(consumer, PlusMod.getLocation(woodName + "_planks_from_saw_bench"));
-        this.sawBench(planksIngredient, stairs).unlockedBy("has_planks", has(planks)).save(consumer, PlusMod.getLocation(woodName + "_stairs_from_saw_bench"));
-        this.sawBench(planksIngredient, slab, 2).unlockedBy("has_planks", has(planks)).save(consumer, PlusMod.getLocation(woodName + "_slab_from_saw_bench"));
-        this.sawBench(planksIngredient, fence, 2).unlockedBy("has_planks", has(planks)).save(consumer, PlusMod.getLocation(woodName + "_fence_from_saw_bench"));
-        this.sawBench(planksIngredient, fenceGate, 2).unlockedBy("has_planks", has(planks)).save(consumer, PlusMod.getLocation(woodName + "_fence_gate_from_saw_bench"));
-        this.sawBench(planksIngredient, button, 3).unlockedBy("has_planks", has(planks)).save(consumer, PlusMod.getLocation(woodName + "_button_from_saw_bench"));
-        this.sawBench(slabIngredient, pressurePlate, 3).unlockedBy("has_slab", has(slab)).save(consumer, PlusMod.getLocation(woodName + "_pressure_plate_from_saw_bench"));
-        this.sawBench(planksIngredient, door, 2).unlockedBy("has_planks", has(planks)).save(consumer, PlusMod.getLocation(woodName + "_door_from_saw_bench"));
-        this.sawBench(slabIngredient, trapDoor, 2).unlockedBy("has_slab", has(slab)).save(consumer, PlusMod.getLocation(woodName + "_trapdoor_from_saw_bench"));
-        this.sawBench(planksIngredient, sign, 2).unlockedBy("has_planks", has(planks)).save(consumer, PlusMod.getLocation(woodName + "_sign_from_saw_bench"));
+        this.sawBench(Ingredient.of(log), strippedLog).unlockedBy("has_log", has(log)).save(consumer, Plus.getLocation("stripped_" + woodName + "_log_from_saw_bench"));
+        this.sawBench(Ingredient.of(wood), strippedWood).unlockedBy("has_wood", has(wood)).save(consumer, Plus.getLocation("stripped_" + woodName + "_wood_from_saw_bench"));
+        this.sawBench(Ingredient.of(logTag), planks, 6).unlockedBy("has_logs", has(logTag)).save(consumer, Plus.getLocation(woodName + "_planks_from_saw_bench"));
+        this.sawBench(planksIngredient, stairs).unlockedBy("has_planks", has(planks)).save(consumer, Plus.getLocation(woodName + "_stairs_from_saw_bench"));
+        this.sawBench(planksIngredient, slab, 2).unlockedBy("has_planks", has(planks)).save(consumer, Plus.getLocation(woodName + "_slab_from_saw_bench"));
+        this.sawBench(planksIngredient, fence, 2).unlockedBy("has_planks", has(planks)).save(consumer, Plus.getLocation(woodName + "_fence_from_saw_bench"));
+        this.sawBench(planksIngredient, fenceGate, 2).unlockedBy("has_planks", has(planks)).save(consumer, Plus.getLocation(woodName + "_fence_gate_from_saw_bench"));
+        this.sawBench(planksIngredient, button, 3).unlockedBy("has_planks", has(planks)).save(consumer, Plus.getLocation(woodName + "_button_from_saw_bench"));
+        this.sawBench(slabIngredient, pressurePlate, 3).unlockedBy("has_slab", has(slab)).save(consumer, Plus.getLocation(woodName + "_pressure_plate_from_saw_bench"));
+        this.sawBench(planksIngredient, door, 2).unlockedBy("has_planks", has(planks)).save(consumer, Plus.getLocation(woodName + "_door_from_saw_bench"));
+        this.sawBench(slabIngredient, trapDoor, 2).unlockedBy("has_slab", has(slab)).save(consumer, Plus.getLocation(woodName + "_trapdoor_from_saw_bench"));
+        this.sawBench(planksIngredient, sign, 2).unlockedBy("has_planks", has(planks)).save(consumer, Plus.getLocation(woodName + "_sign_from_saw_bench"));
     }
 
     private SingleItemRecipeBuilder sawBench(Ingredient ingredient, ItemLike result)

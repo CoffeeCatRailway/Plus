@@ -1,6 +1,6 @@
 package io.github.coffeecatrailway.plus.integration.jei;
 
-import io.github.coffeecatrailway.plus.PlusMod;
+import io.github.coffeecatrailway.plus.Plus;
 import io.github.coffeecatrailway.plus.common.item.crafting.SawBenchRecipe;
 import io.github.coffeecatrailway.plus.registry.PlusBlocks;
 import mezz.jei.api.constants.ModIds;
@@ -39,7 +39,7 @@ public class SawBenchCategory implements IRecipeCategory<SawBenchRecipe>
         ResourceLocation location = RECIPE_GUI_VANILLA;
         background = guiHelper.createDrawable(location, 0, 220, width, height);
         icon = guiHelper.createDrawableIngredient(new ItemStack(PlusBlocks.SAW_BENCH.get()));
-        localizedName = new TranslatableComponent("gui." + PlusMod.MOD_ID + ".jei.category.saw_bench");
+        localizedName = new TranslatableComponent("gui." + Plus.MOD_ID + ".jei.category.saw_bench");
     }
 
     @Override
@@ -55,13 +55,7 @@ public class SawBenchCategory implements IRecipeCategory<SawBenchRecipe>
     }
 
     @Override
-    public String getTitle()
-    {
-        return this.getTitleAsTextComponent().getString();
-    }
-
-    @Override
-    public Component getTitleAsTextComponent()
+    public Component getTitle()
     {
         return this.localizedName;
     }

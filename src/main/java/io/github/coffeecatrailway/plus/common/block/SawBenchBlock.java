@@ -1,14 +1,13 @@
 package io.github.coffeecatrailway.plus.common.block;
 
 import io.github.coffeecatrailway.plus.PlusConfig;
-import io.github.coffeecatrailway.plus.PlusMod;
+import io.github.coffeecatrailway.plus.Plus;
 import io.github.coffeecatrailway.plus.common.inventory.SawBenchMenu;
 import io.github.coffeecatrailway.plus.registry.PlusStats;
 import io.github.coffeecatrailway.plus.util.PlusDamageSource;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
@@ -17,7 +16,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerLevelAccess;
-import net.minecraft.world.inventory.StonecutterMenu;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.StonecutterBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -31,7 +29,7 @@ import javax.annotation.Nullable;
  */
 public class SawBenchBlock extends StonecutterBlock
 {
-    private static final Component CONTAINER_TITLE = new TranslatableComponent("container." + PlusMod.MOD_ID + ".saw_bench");
+    private static final Component CONTAINER_TITLE = new TranslatableComponent("container." + Plus.MOD_ID + ".saw_bench");
 
     public SawBenchBlock(Properties properties)
     {

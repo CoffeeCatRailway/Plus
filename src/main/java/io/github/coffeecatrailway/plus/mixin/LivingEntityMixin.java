@@ -10,6 +10,7 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.extensions.IForgeEntity;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -29,8 +30,14 @@ public abstract class LivingEntityMixin extends Entity implements IForgeEntity
     @Inject(method = "onChangedBlock(Lnet/minecraft/core/BlockPos;)V", at = @At("HEAD"))
     protected void onChangedBlock(BlockPos pos, CallbackInfo callback)
     {
-        int level = EnchantmentHelper.getEnchantmentLevel(PlusEnchantments.HEAT_WALKER.get(), (LivingEntity) this.getEntity());
+        int level = EnchantmentHelper.getEnchantmentLevel(PlusEnchantments.HEAT_WALKER.get(), (LivingEntity) this.getSelf());
         if (level > 0)
-            HeatWalkerEnchantment.onEntityMoved((LivingEntity) this.getEntity(), this.level, pos, level);
+            HeatWalkerEnchantment.onEntityMoved((LivingEntity) this.getSelf(), this.level, pos, level);
+    }
+
+    @Unique
+    private Entity getSelf()
+    {
+        return this;
     }
 }

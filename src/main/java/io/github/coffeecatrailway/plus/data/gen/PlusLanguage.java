@@ -1,6 +1,6 @@
 package io.github.coffeecatrailway.plus.data.gen;
 
-import io.github.coffeecatrailway.plus.PlusMod;
+import io.github.coffeecatrailway.plus.Plus;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -25,13 +25,13 @@ public class PlusLanguage extends LanguageProvider
 
     public PlusLanguage(DataGenerator generator)
     {
-        super(generator, PlusMod.MOD_ID, "en_us");
+        super(generator, Plus.MOD_ID, "en_us");
     }
 
     @Override
     protected void addTranslations()
     {
-        this.add("gui." + PlusMod.MOD_ID + ".jei.category.saw_bench", "Saw Bench");
+        this.add("gui." + Plus.MOD_ID + ".jei.category.saw_bench", "Saw Bench");
         EXTRA.forEach(this::add);
         ITEMS.forEach((item, name) -> this.add(item.get(), name));
         BLOCKS.forEach((block, name) -> this.add(block.get(), name));

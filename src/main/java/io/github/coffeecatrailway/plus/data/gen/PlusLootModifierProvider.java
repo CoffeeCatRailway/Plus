@@ -1,6 +1,6 @@
 package io.github.coffeecatrailway.plus.data.gen;
 
-import io.github.coffeecatrailway.plus.PlusMod;
+import io.github.coffeecatrailway.plus.Plus;
 import io.github.coffeecatrailway.plus.common.loot.CookableFoodLootModifier;
 import io.github.coffeecatrailway.plus.common.loot.FoxLootModifier;
 import io.github.coffeecatrailway.plus.common.loot.ChanceLootModifier;
@@ -21,7 +21,7 @@ public class PlusLootModifierProvider extends GlobalLootModifierProvider
 {
     public PlusLootModifierProvider(DataGenerator gen)
     {
-        super(gen, PlusMod.MOD_ID);
+        super(gen, Plus.MOD_ID);
     }
 
     @Override

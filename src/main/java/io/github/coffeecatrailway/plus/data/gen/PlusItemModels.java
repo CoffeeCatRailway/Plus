@@ -4,7 +4,7 @@ import com.google.common.collect.Maps;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
-import io.github.coffeecatrailway.plus.PlusMod;
+import io.github.coffeecatrailway.plus.Plus;
 import io.github.coffeecatrailway.plus.registry.PlusItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
@@ -116,6 +116,6 @@ public class PlusItemModels implements DataProvider
     @Override
     public String getName()
     {
-        return PlusMod.MOD_ID + " Block State Definitions";
+        return Plus.MOD_ID + " Block State Definitions";
     }
 }

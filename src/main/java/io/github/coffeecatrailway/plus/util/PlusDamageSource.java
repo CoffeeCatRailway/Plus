@@ -1,6 +1,6 @@
 package io.github.coffeecatrailway.plus.util;
 
-import io.github.coffeecatrailway.plus.PlusMod;
+import io.github.coffeecatrailway.plus.Plus;
 import io.github.coffeecatrailway.plus.data.gen.PlusLanguage;
 import net.minecraft.world.damagesource.DamageSource;
 import org.apache.logging.log4j.LogManager;
@@ -20,7 +20,7 @@ public class PlusDamageSource
 
     private static DamageSource register(String id, String deathMsg, Function<DamageSource, DamageSource> factory)
     {
-        id = PlusMod.MOD_ID + "." + id;
+        id = Plus.MOD_ID + "." + id;
         DamageSource source = factory.apply(new DamageSource(id));
         PlusLanguage.EXTRA.put("death.attack." + id, deathMsg);
         return source;
