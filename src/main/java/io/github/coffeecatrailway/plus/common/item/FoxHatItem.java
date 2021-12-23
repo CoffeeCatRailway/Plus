@@ -1,6 +1,7 @@
 package io.github.coffeecatrailway.plus.common.item;
 
-import io.github.coffeecatrailway.plus.PlusMod;
+import io.github.coffeecatrailway.plus.Plus;
+import io.github.coffeecatrailway.plus.client.PlusModelLayers;
 import io.github.coffeecatrailway.plus.client.entity.FoxHatModel;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.Entity;
@@ -10,7 +11,10 @@ import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.client.IItemRenderProperties;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.function.Consumer;
 
 /**
  * @author CoffeeCatRailway
@@ -18,8 +22,6 @@ import org.jetbrains.annotations.Nullable;
  */
 public class FoxHatItem extends ArmorItem
 {
-    private final FoxHatModel hatModel = new FoxHatModel();
-
     public FoxHatItem(ArmorMaterial material, Properties properties)
     {
         super(material, EquipmentSlot.HEAD, properties.tab(CreativeModeTab.TAB_COMBAT));
@@ -32,26 +34,31 @@ public class FoxHatItem extends ArmorItem
         if (slot != EquipmentSlot.HEAD)
             return null;
         if (this.material == PlusArmorMaterials.FOX_HAT)
-            return PlusMod.MOD_ID + ":textures/models/armor/fox_hat.png";
+            return Plus.MOD_ID + ":textures/models/armor/fox_hat.png";
         else if (this.material == PlusArmorMaterials.SNOW_FOX_HAT)
-            return PlusMod.MOD_ID + ":textures/models/armor/snow_fox_hat.png";
+            return Plus.MOD_ID + ":textures/models/armor/snow_fox_hat.png";
         else
             return null;
     }
 
-    @SuppressWarnings("unchecked")
-    @Nullable
     @Override
-    public <A extends HumanoidModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack stack, EquipmentSlot armorSlot, A parent)
+    public void initializeClient(Consumer<IItemRenderProperties> consumer)
     {
-        if (!stack.isEmpty())
+        consumer.accept(new IItemRenderProperties()
         {
-            FoxHatModel hatModel = new FoxHatModel();
-            hatModel.setAllVisible(true);
-            hatModel.crouching = parent.crouching;
-            hatModel.young = parent.young;
-            return (A) hatModel;
-        }
-        return null;
+            @Override
+            public <A extends HumanoidModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack stack, EquipmentSlot armorSlot, A parent)
+            {
+                if (!stack.isEmpty())
+                {
+                    FoxHatModel hatModel = PlusModelLayers.FOX_HAT_MODEL;
+                    hatModel.setAllVisible(true);
+                    hatModel.crouching = parent.crouching;
+                    hatModel.young = parent.young;
+                    return (A) hatModel;
+                }
+                return null;
+            }
+        });
     }
 }

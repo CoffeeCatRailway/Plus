@@ -5,6 +5,8 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.world.entity.LivingEntity;
 
 /**
@@ -14,37 +16,33 @@ import net.minecraft.world.entity.LivingEntity;
  */
 public class FoxHatModel extends HumanoidModel<LivingEntity>
 {
-    public FoxHatModel()
+    public FoxHatModel(ModelPart part)
     {
-        super(1f, 0f, 56, 38);
+        super(part);
+    }
 
-        ModelPart body = new ModelPart(this);
-        body.setPos(0f, 0f, 0f);
-        body.texOffs(16, 18).addBox(-4f, 0f, -2f, 8f, 12f, 4f, 0.75f, false);
+    public static LayerDefinition createBodyLayer()
+    {
+        MeshDefinition meshdefinition = HumanoidModel.createMesh(CubeDeformation.NONE, 0f);
+        PartDefinition partdefinition = meshdefinition.getRoot();
 
-        ModelPart rightArm = new ModelPart(this);
-        rightArm.setPos(0f, 0f, 0f);
-        rightArm.texOffs(0, 18).addBox(-3f, -2f, -2f, 4f, 12f, 4f, 0.75f, false);
+        float inflate = .2f;
+        partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-4.5f, -8.5f, -4.7f, 9f, 9f, 9f, new CubeDeformation(inflate))
+                .texOffs(36, 0).addBox(-4.5f, -11.5f, -3f, 3f, 3f, 4f, new CubeDeformation(inflate))
+                .texOffs(36, 7).addBox(1.5f, -11.5f, -3f, 3f, 3f, 4f, new CubeDeformation(inflate))
+                .texOffs(36, 14).addBox(-2f, -3.5f, -7f, 4f, 4f, 3f, new CubeDeformation(inflate)), PartPose.offset(-.5f, -6.5f, 2.5f));
 
-        ModelPart leftArm = new ModelPart(this);
-        leftArm.setPos(0f, 0f, 0f);
-        leftArm.texOffs(40, 21).addBox(-1f, -2f, -2f, 4f, 12f, 4f, 0.75f, false);
+        inflate = 1f;
+        partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(16, 18).addBox(-4f, 0f, -2f, 8f, 12f, 4f, new CubeDeformation(inflate)), PartPose.offset(0f, 0f, 0f));
+        partdefinition.addOrReplaceChild("right_arm", CubeListBuilder.create().texOffs(0, 18).addBox(-3f, -2f, -2f, 4f, 12f, 4f, new CubeDeformation(inflate)), PartPose.offset(-6f, 2f, 0f));
+        partdefinition.addOrReplaceChild("left_arm", CubeListBuilder.create().texOffs(40, 21).addBox(-1f, -2f, -2f, 4f, 12f, 4f, new CubeDeformation(inflate)), PartPose.offset(6f, 2f, 0f));
 
-        ModelPart head = new ModelPart(this);
-        head.setPos(-0.5f, -6.5f, 2.5f);
-        head.texOffs(0, 0).addBox(-4f, -2f, -7f, 9f, 9f, 9f, 0f, false);
-        head.texOffs(36, 0).addBox(-4f, -5f, -6f, 3f, 3f, 4f, 0f, false);
-        head.texOffs(36, 7).addBox(2f, -5f, -6f, 3f, 3f, 4f, 0f, false);
-        head.texOffs(36, 14).addBox(-1.5f, 3f, -10f, 4f, 4f, 3f, 0f, false);
+        return LayerDefinition.create(meshdefinition, 56, 38);
+    }
 
-        this.body = new ModelPart(this);
-        this.body.addChild(body);
-        this.rightArm = new ModelPart(this);
-        this.rightArm.addChild(rightArm);
-        this.leftArm = new ModelPart(this);
-        this.leftArm.addChild(leftArm);
-        this.head = new ModelPart(this);
-        this.head.addChild(head);
+    @Override
+    protected Iterable<ModelPart> bodyParts() {
+        return ImmutableList.<ModelPart>of(this.body, this.rightArm, this.leftArm);
     }
 
     @Override
@@ -52,18 +50,5 @@ public class FoxHatModel extends HumanoidModel<LivingEntity>
     {
         this.setAllVisible(true);
         super.renderToBuffer(arg, arg2, i, j, f, g, h, k);
-    }
-
-    @Override
-    protected Iterable<ModelPart> bodyParts()
-    {
-        return ImmutableList.<ModelPart>of(this.body, this.rightArm, this.leftArm);
-    }
-
-    public void setRotationAngle(ModelPart modelRenderer, float x, float y, float z)
-    {
-        modelRenderer.xRot = x;
-        modelRenderer.yRot = y;
-        modelRenderer.zRot = z;
     }
 }
