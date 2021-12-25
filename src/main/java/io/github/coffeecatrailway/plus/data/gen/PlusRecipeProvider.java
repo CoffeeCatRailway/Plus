@@ -82,9 +82,6 @@ public class PlusRecipeProvider extends RecipeProvider
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(PlusItems.TURTLE.get()), PlusItems.COOKED_TURTLE.get(), .35f, 100, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_turtle", has(PlusItems.TURTLE.get())).save(consumer, Plus.getLocation("cooked_turtle_from_smoking"));
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(PlusItems.TURTLE.get()), PlusItems.COOKED_TURTLE.get(), .35f, 600, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_turtle", has(PlusItems.TURTLE.get())).save(consumer, Plus.getLocation("cooked_turtle_from_campfire"));
 
-//        UpgradeRecipeBuilder.smithing(Ingredient.of(Items.COPPER_INGOT), Ingredient.of(Items.GOLD_INGOT), PlusItems.ROSE_GOLD_INGOT.get())
-//                .unlocks("has_copper_ingot", has(Items.COPPER_INGOT)).unlocks("has_gold_ingot", has(Items.GOLD_INGOT))
-//                .save(consumer, Plus.getLocation("rose_gold_ingot_smithing"));
         ShapelessRecipeBuilder.shapeless(PlusItems.RAW_ROSE_GOLD.get(), 2).requires(Items.RAW_GOLD).requires(Items.RAW_COPPER).unlockedBy("has_raw_gold", has(Items.RAW_GOLD)).unlockedBy("has_raw_copper", has(Items.RAW_COPPER)).save(consumer, Plus.getLocation("raw_rose_gold_from_crafting"));
         ShapelessRecipeBuilder.shapeless(PlusBlocks.RAW_ROSE_GOLD_BLOCK.get(), 2).requires(Items.RAW_GOLD_BLOCK).requires(Items.RAW_COPPER_BLOCK).unlockedBy("has_raw_gold", has(Items.RAW_GOLD_BLOCK)).unlockedBy("has_raw_copper", has(Items.RAW_COPPER_BLOCK)).save(consumer, Plus.getLocation("raw_rose_gold_block_from_crafting"));
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(PlusItems.RAW_ROSE_GOLD.get()), PlusItems.ROSE_GOLD_INGOT.get(), 1f, 200).unlockedBy("has_raw_rose_gold", has(PlusItems.RAW_ROSE_GOLD.get())).save(consumer, Plus.getLocation("rose_gold_ingot_from_smelting"));
@@ -92,6 +89,46 @@ public class PlusRecipeProvider extends RecipeProvider
         storageRecipe(consumer, PlusItems.RAW_ROSE_GOLD.get(), PlusBlocks.RAW_ROSE_GOLD_BLOCK.get(), true);
         storageRecipe(consumer, PlusItems.ROSE_GOLD_INGOT.get(), PlusBlocks.ROSE_GOLD_BLOCK.get(), true);
         storageRecipe(consumer, PlusItems.ROSE_GOLD_NUGGET.get(), PlusItems.ROSE_GOLD_INGOT.get(), true);
+        ShapedRecipeBuilder.shaped(PlusItems.ROSE_GOLD_SWORD.get())
+                .define('#', Items.STICK)
+                .define('X', PlusItems.ROSE_GOLD_INGOT.get())
+                .pattern("X")
+                .pattern("X")
+                .pattern("#")
+                .unlockedBy("has_rose_gold_ingot", has(PlusItems.ROSE_GOLD_INGOT.get()))
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(PlusItems.ROSE_GOLD_SHOVEL.get())
+                .define('#', Items.STICK)
+                .define('X', PlusItems.ROSE_GOLD_INGOT.get())
+                .pattern("X")
+                .pattern("#")
+                .pattern("#")
+                .unlockedBy("has_rose_gold_ingot", has(PlusItems.ROSE_GOLD_INGOT.get()))
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(PlusItems.ROSE_GOLD_PICKAXE.get())
+                .define('#', Items.STICK)
+                .define('X', PlusItems.ROSE_GOLD_INGOT.get())
+                .pattern("XXX")
+                .pattern(" # ")
+                .pattern(" # ")
+                .unlockedBy("has_rose_gold_ingot", has(PlusItems.ROSE_GOLD_INGOT.get()))
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(PlusItems.ROSE_GOLD_AXE.get())
+                .define('#', Items.STICK)
+                .define('X', PlusItems.ROSE_GOLD_INGOT.get())
+                .pattern("XX")
+                .pattern("X#")
+                .pattern(" #")
+                .unlockedBy("has_rose_gold_ingot", has(PlusItems.ROSE_GOLD_INGOT.get()))
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(PlusItems.ROSE_GOLD_HOE.get())
+                .define('#', Items.STICK)
+                .define('X', PlusItems.ROSE_GOLD_INGOT.get())
+                .pattern("XX")
+                .pattern(" #")
+                .pattern(" #")
+                .unlockedBy("has_rose_gold_ingot", has(PlusItems.ROSE_GOLD_INGOT.get()))
+                .save(consumer);
     }
     
     private static void storageRecipe(Consumer<FinishedRecipe> consumer, ItemLike ingot, ItemLike block, boolean big)

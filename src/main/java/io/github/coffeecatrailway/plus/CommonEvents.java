@@ -1,5 +1,6 @@
 package io.github.coffeecatrailway.plus;
 
+import io.github.coffeecatrailway.plus.common.item.PlusTiers;
 import io.github.coffeecatrailway.plus.registry.PlusItems;
 import io.github.coffeecatrailway.plus.util.PlusDamageSource;
 import net.minecraft.world.entity.LivingEntity;
@@ -21,6 +22,7 @@ public class CommonEvents
 {
     public static void init(final FMLCommonSetupEvent event)
     {
+        PlusTiers.init();
         PotionBrewing.addMix(Potions.AWKWARD, PlusItems.STINGER.get(), Potions.POISON);
     }
 

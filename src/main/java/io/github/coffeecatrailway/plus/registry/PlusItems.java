@@ -3,9 +3,9 @@ package io.github.coffeecatrailway.plus.registry;
 import io.github.coffeecatrailway.plus.Plus;
 import io.github.coffeecatrailway.plus.common.item.FoxHatItem;
 import io.github.coffeecatrailway.plus.common.item.PlusArmorMaterials;
+import io.github.coffeecatrailway.plus.common.item.PlusTiers;
 import io.github.coffeecatrailway.plus.data.gen.PlusLanguage;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -52,6 +52,11 @@ public class PlusItems
     public static final RegistryObject<Item> RAW_ROSE_GOLD = registerIdAsName("raw_rose_gold", prop -> new Item(prop.tab(CreativeModeTab.TAB_MATERIALS)));
     public static final RegistryObject<Item> ROSE_GOLD_INGOT = registerIdAsName("rose_gold_ingot", prop -> new Item(prop.tab(CreativeModeTab.TAB_MATERIALS)));
     public static final RegistryObject<Item> ROSE_GOLD_NUGGET = registerIdAsName("rose_gold_nugget", prop -> new Item(prop.tab(CreativeModeTab.TAB_MATERIALS)));
+    public static final RegistryObject<Item> ROSE_GOLD_SWORD = registerIdAsName("rose_gold_sword", prop -> new SwordItem(PlusTiers.ROSE_GOLD, 3, -2.4f, prop.tab(CreativeModeTab.TAB_COMBAT)));
+    public static final RegistryObject<Item> ROSE_GOLD_SHOVEL = registerIdAsName("rose_gold_shovel", prop -> new ShovelItem(PlusTiers.ROSE_GOLD, 1.5f, -3f, prop.tab(CreativeModeTab.TAB_TOOLS)));
+    public static final RegistryObject<Item> ROSE_GOLD_PICKAXE = registerIdAsName("rose_gold_pickaxe", prop -> new PickaxeItem(PlusTiers.ROSE_GOLD, 1, -2.8f, prop.tab(CreativeModeTab.TAB_TOOLS)));
+    public static final RegistryObject<Item> ROSE_GOLD_AXE = registerIdAsName("rose_gold_axe", prop -> new AxeItem(PlusTiers.ROSE_GOLD, 6f, -3f, prop.tab(CreativeModeTab.TAB_TOOLS)));
+    public static final RegistryObject<Item> ROSE_GOLD_HOE = registerIdAsName("rose_gold_hoe", prop -> new HoeItem(PlusTiers.ROSE_GOLD, 0, -3f, prop.tab(CreativeModeTab.TAB_TOOLS)));
 
     protected static <T extends Item> RegistryObject<T> registerIdAsName(String id, Function<Item.Properties, T> factory)
     {

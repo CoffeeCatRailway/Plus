@@ -1,5 +1,6 @@
-package io.github.coffeecatrailway.plus;
+package io.github.coffeecatrailway.plus.client;
 
+import io.github.coffeecatrailway.plus.Plus;
 import io.github.coffeecatrailway.plus.client.gui.SawBenchScreen;
 import io.github.coffeecatrailway.plus.registry.PlusBlocks;
 import io.github.coffeecatrailway.plus.registry.PlusMenuTypes;

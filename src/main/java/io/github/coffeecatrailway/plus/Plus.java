@@ -1,5 +1,6 @@
 package io.github.coffeecatrailway.plus;
 
+import io.github.coffeecatrailway.plus.client.ClientEvents;
 import io.github.coffeecatrailway.plus.data.gen.*;
 import io.github.coffeecatrailway.plus.registry.*;
 import io.github.coffeecatrailway.plus.util.PlusDamageSource;
