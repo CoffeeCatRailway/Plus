@@ -1,5 +1,6 @@
 {
   "block.plus.brittle_basalt": "Brittle Basalt",
+  "block.plus.rose_gold_block": "Rose Gold Block",
   "block.plus.saw_bench": "Saw Bench",
   "container.plus.saw_bench": "Saw Bench",
   "death.attack.plus.sawBlade": "%1$s was cut in half",
@@ -14,6 +15,8 @@
   "item.plus.fox_fur": "Fox Fur",
   "item.plus.fox_hat": "Fox Hat",
   "item.plus.fox_meat": "Raw Fox",
+  "item.plus.rose_gold_ingot": "Rose Gold Ingot",
+  "item.plus.rose_gold_nugget": "Rose Gold Nugget",
   "item.plus.snow_fox_fur": "Snow Fox Fur",
   "item.plus.snow_fox_hat": "Snow Fox Hat",
   "item.plus.squid": "Raw Calamari Ring",

@@ -1,0 +1,9 @@
+{
+  "conditions": [],
+  "item": "plus:squid",
+  "min": 2,
+  "max": 6,
+  "allowLooting": true,
+  "entity": "minecraft:glow_squid",
+  "type": "plus:cookable"
+}
