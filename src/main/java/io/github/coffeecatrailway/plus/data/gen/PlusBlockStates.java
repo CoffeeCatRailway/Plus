@@ -47,6 +47,8 @@ public class PlusBlockStates extends BlockStateProvider
             partialState.with(SawBenchBlock.FACING, dir).modelForState().rotationY((int) dir.getOpposite().toYRot()).modelFile(model).addModel();
         this.toItem(PlusBlocks.SAW_BENCH.get());
 
+        this.simpleBlock(PlusBlocks.RAW_ROSE_GOLD_BLOCK.get());
+        this.toItem(PlusBlocks.RAW_ROSE_GOLD_BLOCK.get());
         this.simpleBlock(PlusBlocks.ROSE_GOLD_BLOCK.get());
         this.toItem(PlusBlocks.ROSE_GOLD_BLOCK.get());
     }

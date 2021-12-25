@@ -1,6 +1,7 @@
 package io.github.coffeecatrailway.plus.data.gen;
 
 import io.github.coffeecatrailway.plus.Plus;
+import io.github.coffeecatrailway.plus.registry.PlusBlocks;
 import io.github.coffeecatrailway.plus.registry.PlusItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
@@ -41,5 +42,7 @@ public class PlusItemTags extends ItemTagsProvider
         this.tag(Tags.Items.INGOTS).addTag(INGOTS_ROSE_GOLD);
         this.tag(NUGGETS_ROSE_GOLD).add(PlusItems.ROSE_GOLD_NUGGET.get());
         this.tag(Tags.Items.NUGGETS).addTag(NUGGETS_ROSE_GOLD);
+        this.tag(ItemTags.PIGLIN_LOVED).add(PlusBlocks.ROSE_GOLD_BLOCK.get().asItem(), PlusBlocks.ROSE_GOLD_BLOCK.get().asItem(), PlusItems.RAW_ROSE_GOLD.get(), PlusItems.ROSE_GOLD_INGOT.get(), PlusItems.ROSE_GOLD_NUGGET.get());
+//        this.tag(ItemTags.CLUSTER_MAX_HARVESTABLES).add(PlusItems.ROSE_GOLD_PICKAXE.get());
     }
 }

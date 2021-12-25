@@ -1,5 +1,6 @@
 {
   "block.plus.brittle_basalt": "Brittle Basalt",
+  "block.plus.raw_rose_gold_block": "Raw Rose Gold Block",
   "block.plus.rose_gold_block": "Rose Gold Block",
   "block.plus.saw_bench": "Saw Bench",
   "container.plus.saw_bench": "Saw Bench",
@@ -15,6 +16,7 @@
   "item.plus.fox_fur": "Fox Fur",
   "item.plus.fox_hat": "Fox Hat",
   "item.plus.fox_meat": "Raw Fox",
+  "item.plus.raw_rose_gold": "Raw Rose Gold",
   "item.plus.rose_gold_ingot": "Rose Gold Ingot",
   "item.plus.rose_gold_nugget": "Rose Gold Nugget",
   "item.plus.snow_fox_fur": "Snow Fox Fur",

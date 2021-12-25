@@ -2,29 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "plus:rose_gold_ingot_smithing"
+      "plus:rose_gold_ingot_from_smelting"
     ]
   },
   "criteria": {
-    "has_copper_ingot": {
+    "has_raw_rose_gold": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:copper_ingot"
-            ]
-          }
-        ]
-      }
-    },
-    "has_gold_ingot": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "minecraft:gold_ingot"
+              "plus:raw_rose_gold"
             ]
           }
         ]
@@ -33,14 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "plus:rose_gold_ingot_smithing"
+        "recipe": "plus:rose_gold_ingot_from_smelting"
       }
     }
   },
   "requirements": [
     [
-      "has_copper_ingot",
-      "has_gold_ingot",
+      "has_raw_rose_gold",
       "has_the_recipe"
     ]
   ]

@@ -81,6 +81,7 @@ public class PlusItemModels implements DataProvider
 
         this.generateFlatItem(PlusItems.STINGER.get(), ModelTemplates.FLAT_ITEM);
 
+        this.generateFlatItem(PlusItems.RAW_ROSE_GOLD.get(), ModelTemplates.FLAT_ITEM);
         this.generateFlatItem(PlusItems.ROSE_GOLD_INGOT.get(), ModelTemplates.FLAT_ITEM);
         this.generateFlatItem(PlusItems.ROSE_GOLD_NUGGET.get(), ModelTemplates.FLAT_ITEM);
     }

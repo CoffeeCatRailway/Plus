@@ -38,6 +38,7 @@ public class PlusBlocks
 
     public static final RegistryObject<SawBenchBlock> SAW_BENCH = register("saw_bench", () -> new SawBenchBlock(BlockBehaviour.Properties.of(Material.WOOD).requiresCorrectToolForDrops().strength(3.5f)), prop -> prop.tab(CreativeModeTab.TAB_DECORATIONS));
 
+    public static final RegistryObject<Block> RAW_ROSE_GOLD_BLOCK = register("raw_rose_gold_block", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_PINK).requiresCorrectToolForDrops().strength(5f, 6f).sound(SoundType.STONE)), prop -> prop.tab(CreativeModeTab.TAB_BUILDING_BLOCKS));
     public static final RegistryObject<Block> ROSE_GOLD_BLOCK = register("rose_gold_block", () -> new Block(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.TERRACOTTA_PINK).requiresCorrectToolForDrops().strength(3f, 6f).sound(SoundType.METAL)), prop -> prop.tab(CreativeModeTab.TAB_BUILDING_BLOCKS));
 
     public static <T extends Block> RegistryObject<T> register(String id, Supplier<T> block, Function<Item.Properties, Item.Properties> properties)

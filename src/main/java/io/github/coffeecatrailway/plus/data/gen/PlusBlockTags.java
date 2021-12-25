@@ -36,7 +36,8 @@ public class PlusBlockTags extends BlockTagsProvider
         this.tag(Tags.Blocks.STORAGE_BLOCKS).addTag(STORAGE_BLOCK_ROSE_GOLD);
 
         this.tag(BlockTags.BEACON_BASE_BLOCKS).add(PlusBlocks.ROSE_GOLD_BLOCK.get());
-        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(PlusBlocks.ROSE_GOLD_BLOCK.get());
-        this.tag(BlockTags.NEEDS_STONE_TOOL).add(PlusBlocks.ROSE_GOLD_BLOCK.get());
+        this.tag(BlockTags.GUARDED_BY_PIGLINS).add(PlusBlocks.RAW_ROSE_GOLD_BLOCK.get(), PlusBlocks.ROSE_GOLD_BLOCK.get());
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(PlusBlocks.RAW_ROSE_GOLD_BLOCK.get(), PlusBlocks.ROSE_GOLD_BLOCK.get());
+        this.tag(BlockTags.NEEDS_IRON_TOOL).add(PlusBlocks.RAW_ROSE_GOLD_BLOCK.get(), PlusBlocks.ROSE_GOLD_BLOCK.get());
     }
 }
