@@ -104,7 +104,7 @@ processResources {
     // this will replace the property "${version}" in your mods.toml
     // with the version you've defined in your gradle.properties
     filesMatching("META-INF/mods.toml") {
-        expand 'name': project.modId, 'id': project.modId, 'version': project.modVersion, 'author': project.modAuthor
+        expand 'name': project.modName, 'id': project.modId, 'version': project.modVersion, 'author': project.modAuthor
     }
 }
 
