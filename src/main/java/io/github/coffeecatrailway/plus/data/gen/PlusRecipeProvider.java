@@ -129,6 +129,16 @@ public class PlusRecipeProvider extends RecipeProvider
                 .pattern(" #")
                 .unlockedBy("has_rose_gold_ingot", has(PlusItems.ROSE_GOLD_INGOT.get()))
                 .save(consumer);
+
+        ShapedRecipeBuilder.shaped(PlusBlocks.GLOW_LANTERN.get())
+                .define('#', Items.GLOW_INK_SAC)
+                .define('X', Items.IRON_NUGGET)
+                .pattern("XXX")
+                .pattern("X#X")
+                .pattern("XXX")
+                .unlockedBy("has_iron_nugget", has(Items.IRON_NUGGET))
+                .unlockedBy("has_glow_ink_sac", has(Items.GLOW_INK_SAC))
+                .save(consumer);
     }
     
     private static void storageRecipe(Consumer<FinishedRecipe> consumer, ItemLike ingot, ItemLike block, boolean big)

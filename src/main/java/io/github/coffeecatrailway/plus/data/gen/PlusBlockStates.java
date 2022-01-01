@@ -2,6 +2,7 @@ package io.github.coffeecatrailway.plus.data.gen;
 
 import io.github.coffeecatrailway.plus.Plus;
 import io.github.coffeecatrailway.plus.common.block.BrittleBasaltBlock;
+import io.github.coffeecatrailway.plus.common.block.GlowLanternBlock;
 import io.github.coffeecatrailway.plus.common.block.SawBenchBlock;
 import io.github.coffeecatrailway.plus.registry.PlusBlocks;
 import net.minecraft.core.Direction;
@@ -51,6 +52,10 @@ public class PlusBlockStates extends BlockStateProvider
         this.toItem(PlusBlocks.RAW_ROSE_GOLD_BLOCK.get());
         this.simpleBlock(PlusBlocks.ROSE_GOLD_BLOCK.get());
         this.toItem(PlusBlocks.ROSE_GOLD_BLOCK.get());
+
+        this.getVariantBuilder(PlusBlocks.GLOW_LANTERN.get())
+                .partialState().with(GlowLanternBlock.HANGING, false).modelForState().modelFile(this.models().getExistingFile(Plus.getLocation("block/glow_lantern"))).addModel()
+                .partialState().with(GlowLanternBlock.HANGING, true).modelForState().modelFile(this.models().getExistingFile(Plus.getLocation("block/hanging_glow_lantern"))).addModel();
     }
 
     private void toItem(Block block)

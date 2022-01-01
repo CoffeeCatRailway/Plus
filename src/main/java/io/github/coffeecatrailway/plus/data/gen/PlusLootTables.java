@@ -83,6 +83,7 @@ public class PlusLootTables extends LootTableProvider
             this.dropSelf(PlusBlocks.SAW_BENCH.get());
             this.dropSelf(PlusBlocks.RAW_ROSE_GOLD_BLOCK.get());
             this.dropSelf(PlusBlocks.ROSE_GOLD_BLOCK.get());
+            this.dropSelf(PlusBlocks.GLOW_LANTERN.get());
         }
 
         @Override

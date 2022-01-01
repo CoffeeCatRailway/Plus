@@ -24,8 +24,10 @@ public class ClientEvents
     {
         event.enqueueWork(() -> {
             RenderType cutoutMipped = RenderType.cutoutMipped();
+            RenderType cutout = RenderType.cutout();
 
             ItemBlockRenderTypes.setRenderLayer(PlusBlocks.SAW_BENCH.get(), cutoutMipped);
+            ItemBlockRenderTypes.setRenderLayer(PlusBlocks.GLOW_LANTERN.get(), cutout);
         });
         MenuScreens.register(PlusMenuTypes.SAW_BENCH.get(), SawBenchScreen::new);
     }
