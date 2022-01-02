@@ -1,43 +1,30 @@
 package io.github.coffeecatrailway.plus;
 
-import io.github.coffeecatrailway.plus.registry.PlusItems;
-import me.shedaniel.autoconfig.AutoConfig;
-import me.shedaniel.autoconfig.ConfigHolder;
-import me.shedaniel.autoconfig.serializer.PartitioningSerializer;
-import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.resources.ResourceLocation;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import gg.moonflower.pollen.api.platform.Platform;
 
-/**
- * @author CoffeeCatRailway
- * Created: 19/12/2021
- */
 public class Plus
 {
     public static final String MOD_ID = "plus";
-    public static final Logger LOGGER = LogManager.getLogger();
+    public static final Platform PLATFORM = Platform.builder(MOD_ID)
+            .clientInit(Plus::onClientInit)
+            .clientPostInit(Plus::onClientPostInit)
+            .commonInit(Plus::onCommonInit)
+            .commonPostInit(Plus::onCommonPostInit)
+            .build();
 
-    public static PlusConfig SERVER_CONFIG;
-
-    public static void init()
+    public static void onClientInit()
     {
-        ConfigHolder<PlusConfig> holder = AutoConfig.register(PlusConfig.class, PartitioningSerializer.wrap(Toml4jConfigSerializer::new));
-        SERVER_CONFIG = holder.getConfig();
-
-        PlusItems.init();
     }
 
-    @Environment(EnvType.CLIENT)
-    public static void initClient()
+    public static void onClientPostInit(Platform.ModSetupContext ctx)
     {
-        AutoConfig.getGuiRegistry(PlusConfig.class);
     }
 
-    public static ResourceLocation getLocation(String path)
+    public static void onCommonInit()
     {
-        return new ResourceLocation(MOD_ID, path);
+    }
+
+    public static void onCommonPostInit(Platform.ModSetupContext ctx)
+    {
     }
 }

@@ -1,11 +1,11 @@
 dependencies {
     // We depend on fabric loader here to use the fabric @Environment annotations and get the mixin dependencies
     // Do NOT use other classes from fabric loader
-    modImplementation "net.fabricmc:fabric-loader:${rootProject.fabricVersion}"
+    modImplementation "net.fabricmc:fabric-loader:${rootProject.fabricLoaderVersion}"
 
-    modApi "dev.architectury:architectury:${rootProject.architecturyVersion}"
+    modApi("gg.moonflower:pollen:${rootProject.pollenVersion}") { transitive = false }
 
-    modCompileOnly("me.shedaniel.cloth:cloth-config:${rootProject.clothVersion}") {
+    modCompileOnly("me.shedaniel.cloth:cloth-config:${rootProject.clothConfigVersion}") {
         exclude(group: "net.fabricmc.fabric-api")
     }
 }
@@ -14,28 +14,15 @@ architectury {
     common()
 }
 
-java {
-    withSourcesJar()
-}
-
 loom {
-//    accessWidenerPath.set(file("src/main/resources/${project.mod_id}.accesswidener"))
+//    accessWidenerPath.set(file("src/main/resources/${project.modId}.accesswidener"))
 }
 
 publishing {
     publications {
         mavenCommon(MavenPublication) {
-            artifactId = rootProject.archivesBaseName
-            // add all the jars that should be included when publishing to maven
-            artifact remapJar
-            artifact(sourcesJar) {
-                builtBy remapSourcesJar
-            }
+            artifactId = project.archivesBaseName
+            from components.java
         }
-    }
-
-    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
-    repositories {
-        // Add repositories to publish to here.
     }
 }

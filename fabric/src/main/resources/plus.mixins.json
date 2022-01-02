@@ -1,11 +1,12 @@
 {
   "required": true,
-  "package": "io.github.coffeecatrailway.plus.mixin.fabric",
-  "compatibilityLevel": "JAVA_8",
+  "package": "io.github.coffeecatrailway.plus.mixins.fabric",
+  "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
+  "client": [
+  ],
   "mixins": [
   ],
-  "client": [],
   "injectors": {
     "defaultRequire": 1
   }

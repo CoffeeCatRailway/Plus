@@ -1,5 +1,5 @@
-//import groovy.json.JsonOutput
-//import groovy.json.JsonSlurper
+import groovy.json.JsonOutput
+import groovy.json.JsonSlurper
 
 plugins {
     id "com.github.johnrengelman.shadow" version "7.0.0"
@@ -16,15 +16,6 @@ loom {
 
 //        convertAccessWideners.set(true)
 //        extraAccessWideners.add("${project.modId}.accesswidener")
-
-        dataGen {
-            mod project.modId
-        }
-        launches {
-            data {
-                arg "--existing", file("src/main/resources").absolutePath
-            }
-        }
     }
     mixin {
         defaultRefmapName = "${project.modId}-refmap.json"
@@ -49,46 +40,43 @@ repositories {
         name = "Progwml6 (Just Enough Items)"
         url = "https://dvs1.progwml6.com/files/maven/"
     }
-	maven {
+    maven {
         name = "JustEnoughItems fallback"
         url = "https://modmaven.k-4u.nl"
     }
 }
 
 dependencies {
-    forge "net.minecraftforge:forge:${rootProject.mcVersion}-${rootProject.forgeVersion}"
-    modApi "dev.architectury:architectury-forge:${rootProject.architecturyVersion}"
+    forge "net.minecraftforge:forge:${rootProject.minecraftVersion}-${rootProject.forgeVersion}"
 
-    modImplementation "me.shedaniel.cloth:cloth-config-forge:${rootProject.clothVersion}"
+    modApi("gg.moonflower:pollen-forge:${rootProject.pollenVersion}") { transitive = false }
 
-    modImplementation "mezz.jei:jei-1.18.1:${rootProject.jeiVersion}"
+    modImplementation "me.shedaniel.cloth:cloth-config-forge:${rootProject.clothConfigVersion}"
+    modImplementation("mezz.jei:jei-1.18.1:${jeiVersion}") { transitive = false }
+    modRuntime("curse.maven:shutupexperimentalsettings-407174:3544525")
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
-    implementation(project(path: ":common")) { transitive = false }
-    developmentForge(project(path: ":common")) { transitive = false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
-}
-
-sourceSets.main.resources {
-    srcDir "${rootDir}/forge/src/generated/resources"
 }
 
 processResources {
     inputs.property "id", rootProject.modId
-    inputs.property "name", rootProject.name
+    inputs.property "name", rootProject.modName
     inputs.property "version", rootProject.modVersion
+    inputs.property "repo", rootProject.name
 
     filesMatching(["META-INF/mods.toml", "pack.mcmeta"]) {
         expand "id": rootProject.modId,
-                "name": rootProject.name,
-                "version": rootProject.modVersion
+                "name": rootProject.modName,
+                "version": rootProject.modVersion,
+                "repo": rootProject.name
     }
 
-//    doLast {
-//        fileTree(dir: outputs.files.asPath, include: "**/*.json").each {
-//            File file -> file.text = JsonOutput.toJson(new JsonSlurper().parse(file))
-//        }
-//    }
+    doLast {
+        fileTree(dir: outputs.files.asPath, include: "**/*.json").each {
+            File file -> file.text = JsonOutput.toJson(new JsonSlurper().parse(file))
+        }
+    }
 }
 
 shadowJar {
@@ -102,7 +90,7 @@ shadowJar {
 remapJar {
     input.set shadowJar.archiveFile
     dependsOn shadowJar
-    classifier "forge"
+    classifier null
 }
 
 jar {
@@ -124,19 +112,8 @@ components.java {
 publishing {
     publications {
         mavenForge(MavenPublication) {
-            artifactId = rootProject.archivesBaseName + "-" + project.name
-            // add all the jars that should be included when publishing to maven
-            artifact(remapJar) {
-                classifier null
-            }
-            artifact(sourcesJar) {
-                builtBy remapSourcesJar
-            }
+            artifactId = project.archivesBaseName
+            from components.java
         }
-    }
-
-    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
-    repositories {
-        // Add repositories to publish to here.
     }
 }

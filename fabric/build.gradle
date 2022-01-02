@@ -1,9 +1,11 @@
-//import groovy.json.JsonOutput
-//import groovy.json.JsonSlurper
+import groovy.json.JsonOutput
+import groovy.json.JsonSlurper
 
 plugins {
     id "com.github.johnrengelman.shadow" version "7.0.0"
 }
+
+archivesBaseName = "${rootProject.archivesBaseName}-${project.name}"
 
 architectury {
     platformSetupLoomIde()
@@ -14,7 +16,7 @@ loom {
     mixin {
         defaultRefmapName = "${project.modId}-refmap.json"
     }
-//    accessWidenerPath.set(project(":common").file("src/main/resources/${project.mod_id}.accesswidener"))
+//    accessWidenerPath.set(project(":common").file("src/main/resources/${project.modId}.accesswidener"))
 }
 
 configurations {
@@ -31,37 +33,37 @@ repositories {
 }
 
 dependencies {
-    modImplementation "net.fabricmc:fabric-loader:${rootProject.fabricVersion}"
+    modImplementation "net.fabricmc:fabric-loader:${rootProject.fabricLoaderVersion}"
     modApi "net.fabricmc.fabric-api:fabric-api:${rootProject.fabricApiVersion}"
-    modApi "dev.architectury:architectury-fabric:${rootProject.architecturyVersion}"
+    modApi("gg.moonflower:pollen-fabric:${rootProject.pollenVersion}") { transitive = false }
 
-    modImplementation("me.shedaniel.cloth:cloth-config-fabric:${rootProject.clothVersion}") {
+    modImplementation("me.shedaniel.cloth:cloth-config-fabric:${rootProject.clothConfigVersion}") {
         exclude(group: "net.fabricmc.fabric-api")
     }
-    modImplementation "com.terraformersmc:modmenu:${rootProject.modMenuVersion}"
+    modRuntimeOnly "com.terraformersmc:modmenu:${rootProject.modMenuVersion}"
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
-    implementation(project(path: ":common")) { transitive = false }
-    developmentFabric(project(path: ":common")) { transitive = false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
 }
 
 processResources {
     inputs.property "id", rootProject.modId
-    inputs.property "name", rootProject.name
+    inputs.property "name", rootProject.modName
     inputs.property "version", rootProject.modVersion
+    inputs.property "repo", rootProject.name
 
     filesMatching("fabric.mod.json") {
         expand "id": rootProject.modId,
-                "name": rootProject.name,
-                "version": rootProject.modVersion
+                "name": rootProject.modName,
+                "version": rootProject.modVersion,
+                "repo": rootProject.name
     }
 
-//    doLast {
-//        fileTree(dir: outputs.files.asPath, include: "**/*.json").each {
-//            File file -> file.text = JsonOutput.toJson(new JsonSlurper().parse(file))
-//        }
-//    }
+    doLast {
+        fileTree(dir: outputs.files.asPath, include: "**/*.json").each {
+            File file -> file.text = JsonOutput.toJson(new JsonSlurper().parse(file))
+        }
+    }
 }
 
 shadowJar {
@@ -74,7 +76,7 @@ shadowJar {
 remapJar {
     input.set shadowJar.archiveFile
     dependsOn shadowJar
-    classifier "fabric"
+    classifier null
 }
 
 jar {
@@ -96,19 +98,8 @@ components.java {
 publishing {
     publications {
         mavenFabric(MavenPublication) {
-            artifactId = rootProject.archivesBaseName + "-" + project.name
-            // add all the jars that should be included when publishing to maven
-            artifact(remapJar) {
-                classifier null
-            }
-            artifact(sourcesJar) {
-                builtBy remapSourcesJar
-            }
+            artifactId = project.archivesBaseName
+            from components.java
         }
-    }
-
-    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
-    repositories {
-        // Add repositories to publish to here.
     }
 }

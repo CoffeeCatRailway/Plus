@@ -1,7 +1,0 @@
-{
-  "conditions": [],
-  "item": "minecraft:netherite_scrap",
-  "chance": 0.01,
-  "entity": "minecraft:strider",
-  "type": "plus:chance"
-}
