@@ -13,10 +13,18 @@ architectury {
 }
 
 loom {
+//    accessWidenerPath.set(project(":common").file("src/main/resources/${project.modId}.accesswidener"))
+
+    runConfigs.configureEach {
+        if (name == "client")
+            runDir = "../run"
+        else if (name == "server")
+            runDir = "../run/server-fabric"
+    }
+
     mixin {
         defaultRefmapName = "${project.modId}-refmap.json"
     }
-//    accessWidenerPath.set(project(":common").file("src/main/resources/${project.modId}.accesswidener"))
 }
 
 configurations {
