@@ -8,6 +8,7 @@ dependencies {
     modCompileOnly("me.shedaniel.cloth:cloth-config:${rootProject.clothConfigVersion}") {
         exclude(group: "net.fabricmc.fabric-api")
     }
+    modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:${rootProject.reiVersion}"
 }
 
 architectury {
@@ -16,6 +17,10 @@ architectury {
 
 loom {
 //    accessWidenerPath.set(file("src/main/resources/${project.modId}.accesswidener"))
+}
+
+sourceSets.main.resources {
+    srcDir project(":forge").file("src/generated/resources").absolutePath
 }
 
 publishing {

@@ -19,3 +19,9 @@ classes/
 .vscode
 .settings
 *.launch
+
+*.ase
+*.bbmodel
+Plus-TODO.txt
+src-old/
+forge/src/generated/resources/.cache/cache

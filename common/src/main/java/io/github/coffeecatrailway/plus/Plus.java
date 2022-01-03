@@ -1,6 +1,7 @@
 package io.github.coffeecatrailway.plus;
 
 import gg.moonflower.pollen.api.platform.Platform;
+import net.minecraft.resources.ResourceLocation;
 
 public class Plus
 {
@@ -26,5 +27,10 @@ public class Plus
 
     public static void onCommonPostInit(Platform.ModSetupContext ctx)
     {
+    }
+
+    public static ResourceLocation getLocation(String path)
+    {
+        return new ResourceLocation(MOD_ID, path);
     }
 }
