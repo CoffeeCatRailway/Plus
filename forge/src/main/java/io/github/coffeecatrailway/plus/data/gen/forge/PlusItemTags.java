@@ -8,6 +8,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.Tag;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 import javax.annotation.Nullable;
@@ -19,9 +21,12 @@ import javax.annotation.Nullable;
 @SuppressWarnings("unchecked")
 public class PlusItemTags extends ItemTagsProvider
 {
-    public static final Tag.Named<Item> STORAGE_BLOCK_ROSE_GOLD = ItemTags.createOptional(new ResourceLocation("forge", "storage_blocks/rose_gold"));
-    public static final Tag.Named<Item> INGOTS_ROSE_GOLD = ItemTags.createOptional(new ResourceLocation("forge", "ingots/rose_gold"));
-    public static final Tag.Named<Item> NUGGETS_ROSE_GOLD = ItemTags.createOptional(new ResourceLocation("forge", "nuggets/rose_gold"));
+//    public static final Tag.Named<Item> STORAGE_BLOCK_ROSE_GOLD = ItemTags.createOptional(new ResourceLocation("forge", "storage_blocks/rose_gold"));
+//    public static final Tag.Named<Item> INGOTS_ROSE_GOLD = ItemTags.createOptional(new ResourceLocation("forge", "ingots/rose_gold"));
+//    public static final Tag.Named<Item> NUGGETS_ROSE_GOLD = ItemTags.createOptional(new ResourceLocation("forge", "nuggets/rose_gold"));
+
+    public static final Tag.Named<Item> INGOTS_IRON_FABRIC = ItemTags.createOptional(new ResourceLocation("c", "iron_ingots"));
+    public static final Tag.Named<Item> NUGGETS_IRON_FABRIC = ItemTags.createOptional(new ResourceLocation("c", "iron_nuggets"));
 
     public PlusItemTags(DataGenerator generator, BlockTagsProvider provider, @Nullable ExistingFileHelper fileHelper)
     {
@@ -39,5 +44,8 @@ public class PlusItemTags extends ItemTagsProvider
 //        this.tag(Tags.Items.NUGGETS).addTag(NUGGETS_ROSE_GOLD);
 //        this.tag(ItemTags.PIGLIN_LOVED).add(PlusBlocks.ROSE_GOLD_BLOCK.get().asItem(), PlusBlocks.ROSE_GOLD_BLOCK.get().asItem(), PlusItems.RAW_ROSE_GOLD.get(), PlusItems.ROSE_GOLD_INGOT.get(), PlusItems.ROSE_GOLD_NUGGET.get(), PlusItems.ROSE_GOLD_SWORD.get(), PlusItems.ROSE_GOLD_SHOVEL.get(), PlusItems.ROSE_GOLD_PICKAXE.get(), PlusItems.ROSE_GOLD_AXE.get(), PlusItems.ROSE_GOLD_HOE.get());
 //        this.tag(ItemTags.CLUSTER_MAX_HARVESTABLES).add(PlusItems.ROSE_GOLD_PICKAXE.get());
+
+        this.tag(INGOTS_IRON_FABRIC).addOptionalTag(Tags.Items.INGOTS_IRON.getName()).add(Items.IRON_INGOT);
+        this.tag(NUGGETS_IRON_FABRIC).addOptionalTag(Tags.Items.NUGGETS_IRON.getName()).add(Items.IRON_NUGGET);
     }
 }

@@ -9,7 +9,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Consumer;
@@ -35,7 +34,7 @@ public class PlusRecipeProvider extends RecipeProvider
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(PlusItems.FOX_MEAT.get()), PlusItems.COOKED_FOX_MEAT.get(), .35f, 100, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_fox_meat", has(PlusItems.FOX_MEAT.get())).save(consumer, Plus.getLocation("cooked_fox_meat_from_smoking"));
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(PlusItems.FOX_MEAT.get()), PlusItems.COOKED_FOX_MEAT.get(), .35f, 600, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_fox_meat", has(PlusItems.FOX_MEAT.get())).save(consumer, Plus.getLocation("cooked_fox_meat_from_campfire"));
 
-//        ShapedRecipeBuilder.shaped(PlusBlocks.SAW_BENCH.get()).define('i', Tags.Items.INGOTS_IRON).define('p', ItemTags.PLANKS).pattern(" i ").pattern("ppp").unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON)).unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
+//        ShapedRecipeBuilder.shaped(PlusBlocks.SAW_BENCH.get()).define('i', PlusItemTags.IRON_INGOTS).define('p', ItemTags.PLANKS).pattern(" i ").pattern("ppp").unlockedBy("has_iron", has(PlusItemTags.IRON_INGOTS)).unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
 //        sawBench(Ingredient.of(ItemTags.PLANKS), Items.STICK, 2).unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer, Plus.getLocation("sticks_from_saw_bench"));
 //        sawBench(Ingredient.of(ItemTags.LOGS), Items.STICK, 12).unlockedBy("has_logs", has(ItemTags.LOGS)).save(consumer, Plus.getLocation("sticks_logs_from_saw_bench"));
 //
@@ -56,6 +55,7 @@ public class PlusRecipeProvider extends RecipeProvider
 //        sawBenchRecipes(consumer, "crimson", Blocks.CRIMSON_STEM, Blocks.CRIMSON_HYPHAE, ItemTags.CRIMSON_STEMS, Blocks.STRIPPED_CRIMSON_STEM, Blocks.STRIPPED_CRIMSON_HYPHAE, Blocks.CRIMSON_PLANKS, Blocks.CRIMSON_STAIRS, Blocks.CRIMSON_SLAB,
 //                Blocks.CRIMSON_FENCE, Blocks.CRIMSON_FENCE_GATE, Blocks.CRIMSON_BUTTON, Blocks.CRIMSON_PRESSURE_PLATE, Blocks.CRIMSON_DOOR, Blocks.CRIMSON_TRAPDOOR, Blocks.CRIMSON_SIGN);
 
+        ShapedRecipeBuilder.shaped(PlusItems.CHAIN_LINK.get(), 3).define('i', PlusItemTags.INGOTS_IRON_FABRIC).define('n', PlusItemTags.NUGGETS_IRON_FABRIC).pattern("i").pattern("n").unlockedBy("has_iron", has(PlusItemTags.INGOTS_IRON_FABRIC)).unlockedBy("has_nugget", has(PlusItemTags.NUGGETS_IRON_FABRIC)).save(consumer);
         ShapedRecipeBuilder.shaped(Items.CHAIN).define('l', PlusItems.CHAIN_LINK.get()).pattern("l").pattern("l").pattern("l").unlockedBy("has_link", has(PlusItems.CHAIN_LINK.get())).save(consumer, new ResourceLocation("chain"));
         ShapedRecipeBuilder.shaped(Items.CHAINMAIL_HELMET).define('l', PlusItems.CHAIN_LINK.get()).pattern("lll").pattern("l l").unlockedBy("has_link", has(PlusItems.CHAIN_LINK.get())).save(consumer);
         ShapedRecipeBuilder.shaped(Items.CHAINMAIL_CHESTPLATE).define('l', PlusItems.CHAIN_LINK.get()).pattern("l l").pattern("lll").pattern("lll").unlockedBy("has_link", has(PlusItems.CHAIN_LINK.get())).save(consumer);
