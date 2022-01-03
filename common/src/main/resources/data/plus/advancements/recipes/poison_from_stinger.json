@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "plus:poison_from_stinger"
+    ]
+  },
+  "criteria": {
+    "has_stinger": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "plus:stinger"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "plus:poison_from_stinger"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_stinger",
+      "has_the_recipe"
+    ]
+  ]
+}

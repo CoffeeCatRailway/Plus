@@ -1,0 +1,8 @@
+{
+  "type": "pollen:brewing",
+  "from": "minecraft:awkward",
+  "ingredient": {
+    "item": "plus:stinger"
+  },
+  "result": "minecraft:poison"
+}
