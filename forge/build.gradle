@@ -11,7 +11,7 @@ loom {
 //    accessWidenerPath.set(project(":common").file("src/main/resources/${project.modId}.accesswidener"))
 
     runConfigs.configureEach {
-        if (name == "client")
+        if (name == "client" || name == "data")
             runDir = "../run"
         else if (name == "server")
             runDir = "../run/server-forge"
