@@ -1,6 +1,5 @@
 package io.github.coffeecatrailway.plus.data.gen.forge;
 
-import io.github.coffeecatrailway.plus.data.gen.PlusDataGenHelper;
 import io.github.coffeecatrailway.plus.data.gen.PlusDataGenHelperCommon;
 import net.minecraft.world.item.Item;
 import org.jetbrains.annotations.Nullable;

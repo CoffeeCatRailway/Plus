@@ -1,6 +1,5 @@
 package io.github.coffeecatrailway.plus.common.item;
 
-import dev.architectury.injectables.annotations.ExpectPlatform;
 import io.github.coffeecatrailway.plus.Plus;
 import io.github.coffeecatrailway.plus.client.entity.FoxHatModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;

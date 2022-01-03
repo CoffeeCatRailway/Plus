@@ -1,6 +1,5 @@
 package io.github.coffeecatrailway.plus;
 
-import gg.moonflower.pollen.api.advancement.AdvancementModifier;
 import gg.moonflower.pollen.api.platform.Platform;
 import io.github.coffeecatrailway.plus.registry.PlusItems;
 import me.shedaniel.autoconfig.AutoConfig;
