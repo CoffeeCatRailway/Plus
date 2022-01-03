@@ -20,6 +20,9 @@
   "entrypoints": {
     "main": [
       "io.github.coffeecatrailway.plus.fabric.PlusFabric"
+    ],
+    "client": [
+      "io.github.coffeecatrailway.plus.fabric.PlusFabricClient"
     ]
   },
   "depends": {

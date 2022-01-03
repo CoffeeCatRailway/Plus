@@ -1,6 +1,8 @@
 package io.github.coffeecatrailway.plus;
 
+import gg.moonflower.pollen.api.advancement.AdvancementModifier;
 import gg.moonflower.pollen.api.platform.Platform;
+import io.github.coffeecatrailway.plus.registry.PlusItems;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigHolder;
 import me.shedaniel.autoconfig.serializer.PartitioningSerializer;
@@ -32,6 +34,8 @@ public class Plus
     {
         ConfigHolder<PlusConfig> holder = AutoConfig.register(PlusConfig.class, PartitioningSerializer.wrap(Toml4jConfigSerializer::new));
         CONFIG_SERVER = holder.getConfig();
+
+        PlusItems.load(PLATFORM);
     }
 
     public static void onCommonPostInit(Platform.ModSetupContext ctx)
