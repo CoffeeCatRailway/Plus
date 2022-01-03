@@ -1,6 +1,10 @@
 package io.github.coffeecatrailway.plus;
 
 import gg.moonflower.pollen.api.platform.Platform;
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.ConfigHolder;
+import me.shedaniel.autoconfig.serializer.PartitioningSerializer;
+import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
 import net.minecraft.resources.ResourceLocation;
 
 public class Plus
@@ -13,8 +17,11 @@ public class Plus
             .commonPostInit(Plus::onCommonPostInit)
             .build();
 
+    public static PlusConfig CONFIG_SERVER;
+
     public static void onClientInit()
     {
+        AutoConfig.getGuiRegistry(PlusConfig.class);
     }
 
     public static void onClientPostInit(Platform.ModSetupContext ctx)
@@ -23,6 +30,8 @@ public class Plus
 
     public static void onCommonInit()
     {
+        ConfigHolder<PlusConfig> holder = AutoConfig.register(PlusConfig.class, PartitioningSerializer.wrap(Toml4jConfigSerializer::new));
+        CONFIG_SERVER = holder.getConfig();
     }
 
     public static void onCommonPostInit(Platform.ModSetupContext ctx)
