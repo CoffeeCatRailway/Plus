@@ -1,7 +1,17 @@
 {
   "gui.plus.jei.category.saw_bench": "Saw Bench",
+  "item.plus.bat": "Raw Bat",
+  "item.plus.calamari": "Calamari Ring",
+  "item.plus.chain_link": "Chain Link",
+  "item.plus.cooked_bat": "Cooked Bat",
+  "item.plus.cooked_fox_meat": "Cooked Fox",
+  "item.plus.cooked_turtle": "Cooked Turtle",
   "item.plus.fox_fur": "Fox Fur",
   "item.plus.fox_hat": "Fox Hat",
+  "item.plus.fox_meat": "Raw Fox",
   "item.plus.snow_fox_fur": "Snow Fox Fur",
-  "item.plus.snow_fox_hat": "Snow Fox Hat"
+  "item.plus.snow_fox_hat": "Snow Fox Hat",
+  "item.plus.squid": "Raw Calamari Ring",
+  "item.plus.stinger": "Stinger",
+  "item.plus.turtle": "Turtle"
 }
