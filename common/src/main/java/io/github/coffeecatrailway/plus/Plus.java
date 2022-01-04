@@ -2,6 +2,7 @@ package io.github.coffeecatrailway.plus;
 
 import gg.moonflower.pollen.api.event.events.lifecycle.TickEvent;
 import gg.moonflower.pollen.api.platform.Platform;
+import io.github.coffeecatrailway.plus.registry.PlusBlocks;
 import io.github.coffeecatrailway.plus.registry.PlusExtras;
 import io.github.coffeecatrailway.plus.registry.PlusItems;
 import me.shedaniel.autoconfig.AutoConfig;
@@ -38,6 +39,7 @@ public class Plus
         ConfigHolder<PlusConfig> holder = AutoConfig.register(PlusConfig.class, PartitioningSerializer.wrap(Toml4jConfigSerializer::new));
         CONFIG_SERVER = holder.getConfig();
 
+        PlusBlocks.load(PLATFORM);
         PlusItems.load(PLATFORM);
         PlusExtras.load();
     }

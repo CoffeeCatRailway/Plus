@@ -2,6 +2,7 @@ package io.github.coffeecatrailway.plus.data.gen.forge;
 
 import io.github.coffeecatrailway.plus.data.gen.PlusDataGenHelperCommon;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Supplier;
@@ -20,5 +21,10 @@ public class PlusDataGenHelperImpl
     public static void languageExtra(String key, String value)
     {
         PlusLanguage.EXTRA.put(key, value);
+    }
+
+    public static <T extends Block> void languageBlock(Supplier<T> supplier, String id, @Nullable String name)
+    {
+        PlusLanguage.BLOCKS.put(supplier, name == null ? PlusDataGenHelperCommon.capitalize(id) : name);
     }
 }

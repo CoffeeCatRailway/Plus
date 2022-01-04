@@ -1,6 +1,7 @@
 package io.github.coffeecatrailway.plus.data.gen.forge;
 
 import io.github.coffeecatrailway.plus.Plus;
+import io.github.coffeecatrailway.plus.registry.PlusBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
@@ -41,10 +42,10 @@ public class PlusBlockStates extends BlockStateProvider
 //            partialState.with(SawBenchBlock.FACING, dir).modelForState().rotationY((int) dir.getOpposite().toYRot()).modelFile(model).addModel();
 //        this.toItem(PlusBlocks.SAW_BENCH.get());
 //
-//        this.simpleBlock(PlusBlocks.RAW_ROSE_GOLD_BLOCK.get());
-//        this.toItem(PlusBlocks.RAW_ROSE_GOLD_BLOCK.get());
-//        this.simpleBlock(PlusBlocks.ROSE_GOLD_BLOCK.get());
-//        this.toItem(PlusBlocks.ROSE_GOLD_BLOCK.get());
+        this.simpleBlock(PlusBlocks.RAW_ROSE_GOLD_BLOCK.get());
+        this.toItem(PlusBlocks.RAW_ROSE_GOLD_BLOCK.get());
+        this.simpleBlock(PlusBlocks.ROSE_GOLD_BLOCK.get());
+        this.toItem(PlusBlocks.ROSE_GOLD_BLOCK.get());
 //
 //        this.getVariantBuilder(PlusBlocks.GLOW_LANTERN.get())
 //                .partialState().with(GlowLanternBlock.HANGING, false).modelForState().modelFile(this.models().getExistingFile(Plus.getLocation("block/glow_lantern"))).addModel()

@@ -3,6 +3,7 @@ package io.github.coffeecatrailway.plus.data.gen.forge;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import io.github.coffeecatrailway.plus.Plus;
+import io.github.coffeecatrailway.plus.registry.PlusBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.data.loot.ChestLoot;
@@ -80,8 +81,8 @@ public class PlusLootTables extends LootTableProvider
         {
 //            this.add(PlusBlocks.BRITTLE_BASALT.get(), noDrop());
 //            this.dropSelf(PlusBlocks.SAW_BENCH.get());
-//            this.dropSelf(PlusBlocks.RAW_ROSE_GOLD_BLOCK.get());
-//            this.dropSelf(PlusBlocks.ROSE_GOLD_BLOCK.get());
+            this.dropSelf(PlusBlocks.RAW_ROSE_GOLD_BLOCK.get());
+            this.dropSelf(PlusBlocks.ROSE_GOLD_BLOCK.get());
 //            this.dropSelf(PlusBlocks.GLOW_LANTERN.get());
         }
 
