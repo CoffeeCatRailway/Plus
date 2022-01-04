@@ -16,7 +16,7 @@ architectury {
 }
 
 loom {
-//    accessWidenerPath.set(file("src/main/resources/${project.modId}.accesswidener"))
+    accessWidenerPath = file("src/main/resources/${project.modId}.accesswidener")
 }
 
 sourceSets.main.resources {

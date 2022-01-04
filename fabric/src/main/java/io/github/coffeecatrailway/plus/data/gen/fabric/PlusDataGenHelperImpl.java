@@ -13,6 +13,9 @@ public class PlusDataGenHelperImpl
 {
     public static <T extends Item> void languageItem(Supplier<T> supplier, String id, @Nullable String name)
     {
+    }
 
+    public static void languageExtra(String key, String value)
+    {
     }
 }

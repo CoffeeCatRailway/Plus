@@ -16,4 +16,9 @@ public class PlusDataGenHelperImpl
     {
         PlusLanguage.ITEMS.put(supplier, name == null ? PlusDataGenHelperCommon.capitalize(id) : name);
     }
+
+    public static void languageExtra(String key, String value)
+    {
+        PlusLanguage.EXTRA.put(key, value);
+    }
 }

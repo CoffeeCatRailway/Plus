@@ -17,4 +17,10 @@ public class PlusDataGenHelper
     {
         throw new AssertionError();
     }
+
+    @ExpectPlatform
+    public static void languageExtra(String key, String value)
+    {
+        throw new AssertionError();
+    }
 }

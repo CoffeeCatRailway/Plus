@@ -45,11 +45,11 @@ public class PlusConfig extends PartitioningSerializer.GlobalData
     {
         @Comment("How much damage is dealt to entities standing on a stonecutter/saw bench")
         @ConfigEntry.BoundedDiscrete(min = 1L, max = Long.MAX_VALUE)
-        public double sawBladeDamage;
+        public float sawBladeDamage;
 
         public Blocks()
         {
-            this.sawBladeDamage = 2d;
+            this.sawBladeDamage = 2f;
         }
     }
 
