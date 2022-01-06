@@ -3,6 +3,7 @@ package io.github.coffeecatrailway.plus.registry;
 import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.PollinatedRegistry;
 import io.github.coffeecatrailway.plus.Plus;
+import io.github.coffeecatrailway.plus.common.block.GlowLanternBlock;
 import io.github.coffeecatrailway.plus.data.gen.PlusDataGenHelper;
 import io.github.coffeecatrailway.plus.data.gen.PlusDataGenHelperCommon;
 import io.github.coffeecatrailway.plus.registry.PlusItems;
@@ -11,6 +12,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
@@ -34,6 +36,8 @@ public class PlusBlocks
 
     public static final Supplier<Block> RAW_ROSE_GOLD_BLOCK = register("raw_rose_gold_block", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_PINK).requiresCorrectToolForDrops().strength(5f, 6f).sound(SoundType.STONE)), prop -> prop.tab(CreativeModeTab.TAB_BUILDING_BLOCKS));
     public static final Supplier<Block> ROSE_GOLD_BLOCK = register("rose_gold_block", () -> new Block(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.TERRACOTTA_PINK).requiresCorrectToolForDrops().strength(3f, 6f).sound(SoundType.METAL)), prop -> prop.tab(CreativeModeTab.TAB_BUILDING_BLOCKS));
+
+    public static final Supplier<GlowLanternBlock> GLOW_LANTERN = register("glowing_lantern", () -> new GlowLanternBlock(BlockBehaviour.Properties.copy(Blocks.LANTERN).lightLevel(state -> 10)), prop -> prop.tab(CreativeModeTab.TAB_DECORATIONS));
 
     public static <T extends Block> Supplier<T> register(String id, Supplier<T> block, Function<Item.Properties, Item.Properties> properties)
     {

@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import io.github.coffeecatrailway.plus.Plus;
+import io.github.coffeecatrailway.plus.registry.PlusBlocks;
 import io.github.coffeecatrailway.plus.registry.PlusItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
@@ -90,7 +91,7 @@ public class PlusItemModels implements DataProvider
         this.generateFlatItem(PlusItems.ROSE_GOLD_AXE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         this.generateFlatItem(PlusItems.ROSE_GOLD_HOE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
 
-//        this.generateFlatItem(PlusBlocks.GLOW_LANTERN.get().asItem(), Plus.getLocation("item/glow_lantern"), ModelTemplates.FLAT_ITEM);
+        this.generateFlatItem(PlusBlocks.GLOW_LANTERN.get().asItem(), Plus.getLocation("item/glow_lantern"), ModelTemplates.FLAT_ITEM);
     }
 
     private void generateFlatItem(Item item, ModelTemplate modelsUtil)

@@ -2,6 +2,7 @@ package io.github.coffeecatrailway.plus;
 
 import gg.moonflower.pollen.api.event.events.lifecycle.TickEvent;
 import gg.moonflower.pollen.api.platform.Platform;
+import gg.moonflower.pollen.api.registry.client.RenderTypeRegistry;
 import io.github.coffeecatrailway.plus.registry.PlusBlocks;
 import io.github.coffeecatrailway.plus.registry.PlusExtras;
 import io.github.coffeecatrailway.plus.registry.PlusItems;
@@ -9,6 +10,7 @@ import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigHolder;
 import me.shedaniel.autoconfig.serializer.PartitioningSerializer;
 import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -32,6 +34,7 @@ public class Plus
 
     public static void onClientPostInit(Platform.ModSetupContext ctx)
     {
+        RenderTypeRegistry.register(PlusBlocks.GLOW_LANTERN.get(), RenderType.cutout());
     }
 
     public static void onCommonInit()
