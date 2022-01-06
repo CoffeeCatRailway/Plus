@@ -9,7 +9,8 @@
     "FrostWalkerEnchantmentMixin",
     "LivingEntityMixin",
     "CampfireBlockMixin",
-    "MagmaBlockMixin"
+    "MagmaBlockMixin",
+    "TurtleMixin"
   ],
   "injectors": {
     "defaultRequire": 1
