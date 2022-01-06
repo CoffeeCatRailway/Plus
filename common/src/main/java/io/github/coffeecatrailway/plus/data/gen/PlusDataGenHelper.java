@@ -2,6 +2,7 @@ package io.github.coffeecatrailway.plus.data.gen;
 
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.Nullable;
 
@@ -21,6 +22,12 @@ public class PlusDataGenHelper
 
     @ExpectPlatform
     public static <T extends Block> void languageBlock(Supplier<T> supplier, String id, @Nullable String name)
+    {
+        throw new AssertionError();
+    }
+
+    @ExpectPlatform
+    public static <T extends Enchantment> void languageEnchantment(Supplier<T> supplier, String id)
     {
         throw new AssertionError();
     }

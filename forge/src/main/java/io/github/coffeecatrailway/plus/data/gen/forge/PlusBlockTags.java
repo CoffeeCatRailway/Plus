@@ -25,6 +25,7 @@ public class PlusBlockTags extends BlockTagsProvider
     public static final Tag.Named<Block> BASALT = BlockTags.createOptional(new ResourceLocation("forge", "basalt"));
     public static final Tag.Named<Block> STORAGE_BLOCK_ROSE_GOLD = BlockTags.createOptional(new ResourceLocation("forge", "storage_blocks/rose_gold"));
 
+    public static final Tag.Named<Block> BASALT_FABRIC = BlockTags.createOptional(new ResourceLocation("c", "basalt"));
     public static final Tag.Named<Block> ROSE_GOLD_BLOCKS_FABRIC = BlockTags.createOptional(new ResourceLocation("c", "rose_gold_blocks"));
 
     public PlusBlockTags(DataGenerator generator, @Nullable ExistingFileHelper fileHelper)
@@ -35,7 +36,7 @@ public class PlusBlockTags extends BlockTagsProvider
     @Override
     protected void addTags()
     {
-//        this.tag(BASALT).add(Blocks.BASALT, PlusBlocks.BRITTLE_BASALT.get());
+        this.tag(BASALT).add(Blocks.BASALT, PlusBlocks.BRITTLE_BASALT.get());
         this.tag(BASALT_FABRIC).addTag(BASALT);
 
         this.tag(STORAGE_BLOCK_ROSE_GOLD).add(PlusBlocks.ROSE_GOLD_BLOCK.get());
@@ -46,7 +47,7 @@ public class PlusBlockTags extends BlockTagsProvider
         this.tag(BlockTags.GUARDED_BY_PIGLINS).add(PlusBlocks.RAW_ROSE_GOLD_BLOCK.get(), PlusBlocks.ROSE_GOLD_BLOCK.get());
 
 //        this.tag(BlockTags.MINEABLE_WITH_AXE).add(PlusBlocks.SAW_BENCH.get());
-        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(PlusBlocks.RAW_ROSE_GOLD_BLOCK.get(), PlusBlocks.ROSE_GOLD_BLOCK.get());//, PlusBlocks.BRITTLE_BASALT.get());
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(PlusBlocks.RAW_ROSE_GOLD_BLOCK.get(), PlusBlocks.ROSE_GOLD_BLOCK.get(), PlusBlocks.BRITTLE_BASALT.get());
         this.tag(BlockTags.NEEDS_IRON_TOOL).add(PlusBlocks.RAW_ROSE_GOLD_BLOCK.get(), PlusBlocks.ROSE_GOLD_BLOCK.get());
     }
 }

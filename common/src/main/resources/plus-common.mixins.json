@@ -6,6 +6,10 @@
   "client": [
   ],
   "mixins": [
+    "FrostWalkerEnchantmentMixin",
+    "LivingEntityMixin",
+    "CampfireBlockMixin",
+    "MagmaBlockMixin"
   ],
   "injectors": {
     "defaultRequire": 1

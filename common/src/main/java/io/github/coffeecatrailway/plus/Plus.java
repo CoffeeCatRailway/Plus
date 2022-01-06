@@ -4,6 +4,7 @@ import gg.moonflower.pollen.api.event.events.lifecycle.TickEvent;
 import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.client.RenderTypeRegistry;
 import io.github.coffeecatrailway.plus.registry.PlusBlocks;
+import io.github.coffeecatrailway.plus.registry.PlusEnchantments;
 import io.github.coffeecatrailway.plus.registry.PlusExtras;
 import io.github.coffeecatrailway.plus.registry.PlusItems;
 import me.shedaniel.autoconfig.AutoConfig;
@@ -44,6 +45,8 @@ public class Plus
 
         PlusBlocks.load(PLATFORM);
         PlusItems.load(PLATFORM);
+        PlusEnchantments.load(PLATFORM);
+
         PlusExtras.load();
     }
 

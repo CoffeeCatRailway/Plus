@@ -1,8 +1,10 @@
 {
+  "block.plus.brittle_basalt": "Brittle Basalt",
   "block.plus.glowing_lantern": "Glowing Lantern",
   "block.plus.raw_rose_gold_block": "Raw Rose Gold Block",
   "block.plus.rose_gold_block": "Rose Gold Block",
   "death.attack.plus.sawBlade": "%1$s was cut in half",
+  "enchantment.plus.heat_walker": "Heat Walker",
   "gui.plus.jei.category.saw_bench": "Saw Bench",
   "item.plus.bat": "Raw Bat",
   "item.plus.calamari": "Calamari Ring",
