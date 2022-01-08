@@ -58,7 +58,7 @@ public class Plus
 
     public static void onCommonPostInit(Platform.ModSetupContext ctx)
     {
-        TickEvent.LIVING_POST.register(entity -> { // TODO: Test
+        TickEvent.LIVING_POST.register(entity -> {
             BlockState state = entity.level.getBlockState(entity.blockPosition());
             if (!state.is(Blocks.STONECUTTER))
                 return;

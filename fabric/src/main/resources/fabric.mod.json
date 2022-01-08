@@ -3,6 +3,7 @@
   "id": "${id}",
   "version": "${version}",
   "name": "${name}",
+  "icon": "icon.png",
   "description": "Minceraft plus some stuffs!\nDisclaimer: I only upload to https://www.curseforge.com & https://modrinth.com",
   "authors": [ "CoffeeCatRailway" ],
   "contributors": [ "Nyctoniac" ],
