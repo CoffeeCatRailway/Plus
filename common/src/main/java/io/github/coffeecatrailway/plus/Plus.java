@@ -3,10 +3,9 @@ package io.github.coffeecatrailway.plus;
 import gg.moonflower.pollen.api.event.events.lifecycle.TickEvent;
 import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.client.RenderTypeRegistry;
-import io.github.coffeecatrailway.plus.registry.PlusBlocks;
-import io.github.coffeecatrailway.plus.registry.PlusEnchantments;
-import io.github.coffeecatrailway.plus.registry.PlusExtras;
-import io.github.coffeecatrailway.plus.registry.PlusItems;
+import gg.moonflower.pollen.api.registry.client.ScreenRegistry;
+import io.github.coffeecatrailway.plus.client.gui.SawBenchScreen;
+import io.github.coffeecatrailway.plus.registry.*;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigHolder;
 import me.shedaniel.autoconfig.serializer.PartitioningSerializer;
@@ -35,6 +34,11 @@ public class Plus
 
     public static void onClientPostInit(Platform.ModSetupContext ctx)
     {
+        ctx.enqueueWork(() -> {
+            ScreenRegistry.register(PlusMenuTypes.SAW_BENCH.get(), SawBenchScreen::new);
+        });
+
+        RenderTypeRegistry.register(PlusBlocks.SAW_BENCH.get(), RenderType.cutoutMipped());
         RenderTypeRegistry.register(PlusBlocks.GLOW_LANTERN.get(), RenderType.cutout());
     }
 
@@ -46,6 +50,8 @@ public class Plus
         PlusBlocks.load(PLATFORM);
         PlusItems.load(PLATFORM);
         PlusEnchantments.load(PLATFORM);
+        PlusMenuTypes.load(PLATFORM);
+        PlusRecipes.load(PLATFORM);
 
         PlusExtras.load();
     }

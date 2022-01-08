@@ -8,7 +8,7 @@ plugins {
 archivesBaseName = "${rootProject.archivesBaseName}-${project.name}"
 
 loom {
-//    accessWidenerPath.set(project(":common").file("src/main/resources/${project.modId}.accesswidener"))
+    accessWidenerPath.set(project(":common").file("src/main/resources/${project.modId}.accesswidener"))
 
     runConfigs.configureEach {
         if (name == "client" || name == "data")
@@ -21,8 +21,8 @@ loom {
         mixinConfig "${project.modId}-common.mixins.json"
         mixinConfig "${project.modId}.mixins.json"
 
-//        convertAccessWideners.set(true)
-//        extraAccessWideners.add("${project.modId}.accesswidener")
+        convertAccessWideners.set(true)
+        extraAccessWideners.add("${project.modId}.accesswidener")
 
         dataGen {
             mod project.modId

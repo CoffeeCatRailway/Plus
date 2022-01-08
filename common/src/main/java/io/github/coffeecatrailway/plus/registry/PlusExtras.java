@@ -22,12 +22,23 @@ public class PlusExtras
 
     public static final DamageSource SAW_BLADE_DAMAGE_SOURCE = registerDamageSource("sawBlade", "%1$s was cut in half", DamageSource::bypassArmor);
 
+    public static final ResourceLocation INTERACT_WITH_SAW_BENCH = registerStat("interact_with_saw_bench", "Interactions with Saw Bench", StatFormatter.DEFAULT);
+
     private static DamageSource registerDamageSource(String id, String deathMsg, Function<DamageSource, DamageSource> factory)
     {
         id = Plus.MOD_ID + "." + id;
         DamageSource source = factory.apply(new DamageSource(id));
         PlusDataGenHelper.languageExtra("death.attack." + id, deathMsg);
         return source;
+    }
+
+    private static ResourceLocation registerStat(String id, String name, StatFormatter formatter)
+    {
+        ResourceLocation location = Plus.getLocation(id);
+        Registry.register(Registry.CUSTOM_STAT, id, location);
+        Stats.CUSTOM.get(location, formatter);
+        PlusDataGenHelper.languageExtra("stat." + Plus.MOD_ID + "." + id, name);
+        return location;
     }
 
     public static void load()

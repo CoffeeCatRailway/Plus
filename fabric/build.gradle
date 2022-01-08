@@ -13,7 +13,7 @@ architectury {
 }
 
 loom {
-//    accessWidenerPath.set(project(":common").file("src/main/resources/${project.modId}.accesswidener"))
+    accessWidenerPath.set(project(":common").file("src/main/resources/${project.modId}.accesswidener"))
 
     runConfigs.configureEach {
         if (name == "client")
