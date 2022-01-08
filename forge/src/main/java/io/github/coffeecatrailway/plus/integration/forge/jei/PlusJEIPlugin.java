@@ -1,4 +1,4 @@
-package io.github.coffeecatrailway.plus.integration.jei;
+package io.github.coffeecatrailway.plus.integration.forge.jei;
 
 import io.github.coffeecatrailway.plus.Plus;
 import io.github.coffeecatrailway.plus.registry.PlusBlocks;

@@ -48,6 +48,7 @@ dependencies {
     modImplementation("me.shedaniel.cloth:cloth-config-fabric:${rootProject.clothConfigVersion}") {
         exclude(group: "net.fabricmc.fabric-api")
     }
+    modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${rootProject.reiVersion}"
     modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${rootProject.reiVersion}"
     modRuntimeOnly "com.terraformersmc:modmenu:${rootProject.modMenuVersion}"
 

@@ -23,6 +23,10 @@
     ],
     "client": [
       "io.github.coffeecatrailway.plus.fabric.PlusFabricClient"
+    ],
+    "rei": [
+      "io.github.coffeecatrailway.plus.integration.fabric.rei.PlusREIPlugin",
+      "io.github.coffeecatrailway.plus.integration.fabric.rei.client.PlusREIClientPlugin"
     ]
   },
   "depends": {

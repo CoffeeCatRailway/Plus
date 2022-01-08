@@ -31,6 +31,7 @@ public class PlusLanguage extends LanguageProvider
     protected void addTranslations()
     {
         this.add("gui." + Plus.MOD_ID + ".jei.category.saw_bench", "Saw Bench");
+        this.add("category." + Plus.MOD_ID + ".rei.saw_bench", "Saw Bench");
         EXTRA.forEach(this::add);
         ITEMS.forEach((item, name) -> this.add(item.get(), name));
         BLOCKS.forEach((block, name) -> this.add(block.get(), name));
