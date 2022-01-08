@@ -38,3 +38,10 @@ mandatory = true
 versionRange = "[1.0.0,)"
 ordering = "BEFORE"
 side = "BOTH"
+
+[[dependencies.${id}]]
+modId = "jei"
+mandatory = false
+versionRange = "[9,)"
+ordering = "BEFORE"
+side = "BOTH"
