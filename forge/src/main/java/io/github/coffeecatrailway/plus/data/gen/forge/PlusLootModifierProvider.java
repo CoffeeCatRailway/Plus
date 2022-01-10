@@ -32,10 +32,9 @@ public class PlusLootModifierProvider extends GlobalLootModifierProvider
     {
         this.add("fox", PlusLootModifiers.POOL_LOOT.get(), new PlusLootModifier(new LootItemCondition[0], Plus.getLocation("modifier/fox"), EntityType.FOX));
         this.add("bat", PlusLootModifiers.POOL_LOOT.get(), new PlusLootModifier(new LootItemCondition[0], Plus.getLocation("modifier/bat"), EntityType.BAT));
-//        this.add("squid", PlusLootModifiers.COOKABLE.get(), new CookableFoodLootModifier(new LootItemCondition[0], PlusItems.SQUID::get, new IntRangeOld(2, 6), true, EntityType.SQUID));
-//        this.add("glow_squid", PlusLootModifiers.COOKABLE.get(), new CookableFoodLootModifier(new LootItemCondition[0], PlusItems.SQUID::get, new IntRangeOld(2, 6), true, EntityType.GLOW_SQUID));
-//        this.add("strider", PlusLootModifiers.CHANCE.get(), new ChanceLootModifier(new LootItemCondition[0], () -> Items.NETHERITE_SCRAP, .01f, EntityType.STRIDER));
-//        this.add("bee", PlusLootModifiers.CHANCE.get(), new ChanceLootModifier(new LootItemCondition[0], PlusItems.STINGER::get, .5f, EntityType.BEE));
-//        this.add("turtle", PlusLootModifiers.COOKABLE.get(), new CookableFoodLootModifier(new LootItemCondition[0], PlusItems.TURTLE::get, new IntRangeOld(1, 1), false, EntityType.TURTLE));
+        this.add("squid", PlusLootModifiers.POOL_LOOT.get(), new PlusLootModifier(new LootItemCondition[0], Plus.getLocation("modifier/squid"), EntityType.SQUID));
+        this.add("glow_squid", PlusLootModifiers.POOL_LOOT.get(), new PlusLootModifier(new LootItemCondition[0], Plus.getLocation("modifier/squid"), EntityType.GLOW_SQUID));
+        this.add("bee", PlusLootModifiers.POOL_LOOT.get(), new PlusLootModifier(new LootItemCondition[0], Plus.getLocation("modifier/bee"), EntityType.BEE));
+        this.add("turtle", PlusLootModifiers.POOL_LOOT.get(), new PlusLootModifier(new LootItemCondition[0], Plus.getLocation("modifier/turtle"), EntityType.TURTLE));
     }
 }

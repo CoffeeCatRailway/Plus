@@ -26,7 +26,7 @@
               "count": {
                 "type": "minecraft:uniform",
                 "min": 1.0,
-                "max": 4.0
+                "max": 3.0
               },
               "add": false
             },
@@ -58,7 +58,7 @@
               "count": {
                 "type": "minecraft:uniform",
                 "min": 1.0,
-                "max": 4.0
+                "max": 3.0
               },
               "add": false
             },
@@ -72,7 +72,13 @@
             }
           ],
           "name": "plus:snow_fox_fur"
-        },
+        }
+      ]
+    },
+    {
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
+      "entries": [
         {
           "type": "minecraft:item",
           "functions": [
@@ -81,7 +87,7 @@
               "count": {
                 "type": "minecraft:uniform",
                 "min": 1.0,
-                "max": 3.0
+                "max": 2.0
               },
               "add": false
             },
@@ -98,14 +104,6 @@
                   "entity": "this"
                 }
               ]
-            },
-            {
-              "function": "minecraft:looting_enchant",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": 0.0,
-                "max": 1.0
-              }
             }
           ],
           "name": "plus:fox_meat"

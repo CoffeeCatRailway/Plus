@@ -1,7 +1,11 @@
 {
   "replace": false,
   "entries": [
+    "plus:bee",
     "plus:bat",
+    "plus:turtle",
+    "plus:glow_squid",
+    "plus:squid",
     "plus:fox"
   ]
 }

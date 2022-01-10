@@ -3,9 +3,11 @@ package io.github.coffeecatrailway.plus.common.loot.forge;
 import com.google.gson.JsonObject;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
+import net.minecraft.world.Container;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
@@ -41,7 +43,8 @@ public class PlusLootModifier extends LootModifier
     protected List<ItemStack> doApply(List<ItemStack> list, LootContext context)
     {
         Entity entity = context.getParamOrNull(LootContextParams.THIS_ENTITY);
-        if (entity == null || !entity.getType().getRegistryName().equals(entityId))
+        BlockEntity blockEntity = context.getParamOrNull(LootContextParams.BLOCK_ENTITY);
+        if (entity == null || !entity.getType().getRegistryName().equals(entityId) || (blockEntity != null && !(blockEntity instanceof Container)))
             return list;
 
         context.getLootTable(this.lootTable).getRandomItems(context, list::add);

@@ -19,10 +19,6 @@ public class PlusLootModifiers
     private static final Logger LOGGER = LogManager.getLogger();
     protected static final DeferredRegister<GlobalLootModifierSerializer<?>> LOOT_MODIFIERS = DeferredRegister.create(ForgeRegistries.LOOT_MODIFIER_SERIALIZERS, Plus.MOD_ID);
 
-//    public static final RegistryObject<FoxLootModifier.Serializer> FOX = LOOT_MODIFIERS.register("fox", FoxLootModifier.Serializer::new);
-//    public static final RegistryObject<CookableFoodLootModifier.Serializer> COOKABLE = LOOT_MODIFIERS.register("cookable", CookableFoodLootModifier.Serializer::new);
-//    public static final RegistryObject<ChanceLootModifier.Serializer> CHANCE = LOOT_MODIFIERS.register("chance", ChanceLootModifier.Serializer::new);
-
     public static final RegistryObject<PlusLootModifier.Serializer> POOL_LOOT = LOOT_MODIFIERS.register("pool_loot", PlusLootModifier.Serializer::new);
 
     public static void load(IEventBus bus)

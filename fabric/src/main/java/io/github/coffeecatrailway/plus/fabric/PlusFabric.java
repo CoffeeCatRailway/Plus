@@ -21,6 +21,12 @@ public class PlusFabric implements ModInitializer
                 supplier.copyFrom(manager.get(Plus.getLocation("modifier/fox")));
             if (EntityType.BAT.getDefaultLootTable().equals(id))
                 supplier.copyFrom(manager.get(Plus.getLocation("modifier/bat")));
+            if (EntityType.SQUID.getDefaultLootTable().equals(id) || EntityType.GLOW_SQUID.getDefaultLootTable().equals(id))
+                supplier.copyFrom(manager.get(Plus.getLocation("modifier/squid")));
+            if (EntityType.BEE.getDefaultLootTable().equals(id))
+                supplier.copyFrom(manager.get(Plus.getLocation("modifier/bee")));
+            if (EntityType.TURTLE.getDefaultLootTable().equals(id))
+                supplier.copyFrom(manager.get(Plus.getLocation("modifier/turtle")));
         });
     }
 }

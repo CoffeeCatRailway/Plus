@@ -18,6 +18,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.LootPool;
@@ -90,18 +91,32 @@ public class PlusLootTables extends LootTableProvider
             this.add(Plus.getLocation("modifier/fox"), LootTable.lootTable()
                     .withPool(LootPool.lootPool().setRolls(UniformGenerator.between(1f, 2f))
                             .add(LootItem.lootTableItem(PlusItems.FOX_FUR.get())
-                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1f, 4f)))
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1f, 3f)))
                                     .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0f, 1f)))
                                     .when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().nbt(new NbtPredicate(redFoxTag)))))
                             .add(LootItem.lootTableItem(PlusItems.SNOW_FOX_FUR.get())
-                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1f, 4f)))
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1f, 3f)))
                                     .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0f, 1f)))
-                                    .when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().nbt(new NbtPredicate(snowFoxTag)))))
-                            .add(cookableLootItem(PlusItems.FOX_MEAT, UniformGenerator.between(1f, 3f), true))));
+                                    .when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().nbt(new NbtPredicate(snowFoxTag))))))
+                    .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1f))
+                            .add(cookableLootItem(PlusItems.FOX_MEAT, UniformGenerator.between(1f, 2f), false))));
 
             this.add(Plus.getLocation("modifier/bat"), LootTable.lootTable()
                     .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1f))
                             .add(cookableLootItem(PlusItems.BAT, ConstantValue.exactly(1f), false))));
+
+            this.add(Plus.getLocation("modifier/squid"), LootTable.lootTable()
+                    .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1f))
+                            .add(cookableLootItem(PlusItems.SQUID, UniformGenerator.between(2f, 6f), true))));
+
+            this.add(Plus.getLocation("modifier/bee"), LootTable.lootTable()
+                    .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1f))
+                            .add(LootItem.lootTableItem(PlusItems.STINGER.get())
+                                    .when(LootItemRandomChanceCondition.randomChance(.5f)))));
+
+            this.add(Plus.getLocation("modifier/turtle"), LootTable.lootTable()
+                    .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1f))
+                            .add(cookableLootItem(PlusItems.TURTLE, ConstantValue.exactly(1f), false))));
         }
 
         @Override
