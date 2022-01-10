@@ -3,6 +3,7 @@ package io.github.coffeecatrailway.plus.forge;
 import io.github.coffeecatrailway.plus.Plus;
 import io.github.coffeecatrailway.plus.common.item.PlusTiers;
 import io.github.coffeecatrailway.plus.data.gen.forge.*;
+import io.github.coffeecatrailway.plus.registry.forge.PlusLootModifiers;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.Tiers;
 import net.minecraftforge.common.TierSortingRegistry;
@@ -24,6 +25,7 @@ public class PlusForge
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         bus.addListener(this::onCommonSetup);
         bus.addListener(this::onGatherData);
+        PlusLootModifiers.load(bus);
     }
 
     private void onCommonSetup(final FMLCommonSetupEvent event)

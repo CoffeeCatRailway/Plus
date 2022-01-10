@@ -1,4 +1,7 @@
 {
   "replace": false,
-  "entries": []
+  "entries": [
+    "plus:bat",
+    "plus:fox"
+  ]
 }
