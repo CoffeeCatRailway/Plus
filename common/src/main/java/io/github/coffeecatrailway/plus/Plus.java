@@ -4,6 +4,7 @@ import gg.moonflower.pollen.api.event.events.lifecycle.TickEvent;
 import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.client.RenderTypeRegistry;
 import gg.moonflower.pollen.api.registry.client.ScreenRegistry;
+import gg.moonflower.pollen.api.util.PollinatedModContainer;
 import io.github.coffeecatrailway.plus.client.gui.SawBenchScreen;
 import io.github.coffeecatrailway.plus.registry.*;
 import me.shedaniel.autoconfig.AutoConfig;
@@ -11,6 +12,7 @@ import me.shedaniel.autoconfig.ConfigHolder;
 import me.shedaniel.autoconfig.serializer.PartitioningSerializer;
 import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -23,6 +25,7 @@ public class Plus
             .clientPostInit(Plus::onClientPostInit)
             .commonInit(Plus::onCommonInit)
             .commonPostInit(Plus::onCommonPostInit)
+            .dataInit(Plus::onDataInit)
             .build();
 
     public static PlusConfig CONFIG_SERVER;
@@ -64,6 +67,12 @@ public class Plus
                 return;
             entity.hurt(PlusExtras.SAW_BLADE_DAMAGE_SOURCE, CONFIG_SERVER.blocks.sawBladeDamage * 1.5f);
         });
+    }
+
+    public static void onDataInit(Platform.DataSetupContext ctx)
+    {
+        DataGenerator generator = ctx.getGenerator();
+        PollinatedModContainer container = ctx.getMod();
     }
 
     public static ResourceLocation getLocation(String path)
