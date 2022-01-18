@@ -44,7 +44,7 @@ public class PlusForge
 //        generator.addProvider(new PlusItemModels(generator));
         generator.addProvider(new PlusBlockStates(generator, existingFileHelper));
 //        generator.addProvider(new PlusLanguage(generator));
-//        generator.addProvider(new PlusLootModifierProvider(generator));
+        generator.addProvider(new PlusLootModifierProvider(generator));
 //        generator.addProvider(new PlusRecipeProvider(generator));
     }
 }
