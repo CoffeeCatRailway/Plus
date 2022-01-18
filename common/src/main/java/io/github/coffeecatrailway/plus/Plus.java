@@ -8,6 +8,7 @@ import gg.moonflower.pollen.api.util.PollinatedModContainer;
 import io.github.coffeecatrailway.plus.client.gui.SawBenchScreen;
 import io.github.coffeecatrailway.plus.data.gen.PlusBlockTags;
 import io.github.coffeecatrailway.plus.data.gen.PlusItemTags;
+import io.github.coffeecatrailway.plus.data.gen.PlusItemModels;
 import io.github.coffeecatrailway.plus.registry.*;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigHolder;
@@ -78,6 +79,7 @@ public class Plus
         PlusBlockTags blockTags = new PlusBlockTags(generator, container);
         generator.addProvider(blockTags);
         generator.addProvider(new PlusItemTags(generator, container, blockTags));
+        generator.addProvider(new PlusItemModels(generator, container));
     }
 
     public static ResourceLocation getLocation(String path)
