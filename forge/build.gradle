@@ -27,6 +27,11 @@ loom {
         dataGen {
             mod project.modId
         }
+        launches {
+            data {
+                arg "--existing", project(":common").file("src/main/resources/").absolutePath
+            }
+        }
     }
 
     mixin {
