@@ -1,6 +1,7 @@
 package io.github.coffeecatrailway.plus.data.gen.forge;
 
 import io.github.coffeecatrailway.plus.Plus;
+import io.github.coffeecatrailway.plus.data.gen.PlusItemTags;
 import io.github.coffeecatrailway.plus.registry.PlusBlocks;
 import io.github.coffeecatrailway.plus.registry.PlusItems;
 import io.github.coffeecatrailway.plus.registry.PlusRecipes;
@@ -90,43 +91,43 @@ public class PlusRecipeProvider extends RecipeProvider
         storageRecipe(consumer, PlusItems.ROSE_GOLD_NUGGET.get(), PlusItems.ROSE_GOLD_INGOT.get(), true);
         ShapedRecipeBuilder.shaped(PlusItems.ROSE_GOLD_SWORD.get())
                 .define('#', Items.STICK)
-                .define('X', PlusItems.ROSE_GOLD_INGOT.get())
+                .define('X', PlusItemTags.INGOTS_ROSE_GOLD_FABRIC)
                 .pattern("X")
                 .pattern("X")
                 .pattern("#")
-                .unlockedBy("has_rose_gold_ingot", has(PlusItems.ROSE_GOLD_INGOT.get()))
+                .unlockedBy("has_rose_gold_ingot", has(PlusItemTags.INGOTS_ROSE_GOLD_FABRIC))
                 .save(consumer);
         ShapedRecipeBuilder.shaped(PlusItems.ROSE_GOLD_SHOVEL.get())
                 .define('#', Items.STICK)
-                .define('X', PlusItems.ROSE_GOLD_INGOT.get())
+                .define('X', PlusItemTags.INGOTS_ROSE_GOLD_FABRIC)
                 .pattern("X")
                 .pattern("#")
                 .pattern("#")
-                .unlockedBy("has_rose_gold_ingot", has(PlusItems.ROSE_GOLD_INGOT.get()))
+                .unlockedBy("has_rose_gold_ingot", has(PlusItemTags.INGOTS_ROSE_GOLD_FABRIC))
                 .save(consumer);
         ShapedRecipeBuilder.shaped(PlusItems.ROSE_GOLD_PICKAXE.get())
                 .define('#', Items.STICK)
-                .define('X', PlusItems.ROSE_GOLD_INGOT.get())
+                .define('X', PlusItemTags.INGOTS_ROSE_GOLD_FABRIC)
                 .pattern("XXX")
                 .pattern(" # ")
                 .pattern(" # ")
-                .unlockedBy("has_rose_gold_ingot", has(PlusItems.ROSE_GOLD_INGOT.get()))
+                .unlockedBy("has_rose_gold_ingot", has(PlusItemTags.INGOTS_ROSE_GOLD_FABRIC))
                 .save(consumer);
         ShapedRecipeBuilder.shaped(PlusItems.ROSE_GOLD_AXE.get())
                 .define('#', Items.STICK)
-                .define('X', PlusItems.ROSE_GOLD_INGOT.get())
+                .define('X', PlusItemTags.INGOTS_ROSE_GOLD_FABRIC)
                 .pattern("XX")
                 .pattern("X#")
                 .pattern(" #")
-                .unlockedBy("has_rose_gold_ingot", has(PlusItems.ROSE_GOLD_INGOT.get()))
+                .unlockedBy("has_rose_gold_ingot", has(PlusItemTags.INGOTS_ROSE_GOLD_FABRIC))
                 .save(consumer);
         ShapedRecipeBuilder.shaped(PlusItems.ROSE_GOLD_HOE.get())
                 .define('#', Items.STICK)
-                .define('X', PlusItems.ROSE_GOLD_INGOT.get())
+                .define('X', PlusItemTags.INGOTS_ROSE_GOLD_FABRIC)
                 .pattern("XX")
                 .pattern(" #")
                 .pattern(" #")
-                .unlockedBy("has_rose_gold_ingot", has(PlusItems.ROSE_GOLD_INGOT.get()))
+                .unlockedBy("has_rose_gold_ingot", has(PlusItemTags.INGOTS_ROSE_GOLD_FABRIC))
                 .save(consumer);
 
         ShapedRecipeBuilder.shaped(PlusBlocks.GLOW_LANTERN.get())

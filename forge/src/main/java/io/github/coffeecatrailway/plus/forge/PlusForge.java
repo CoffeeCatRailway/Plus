@@ -37,14 +37,9 @@ public class PlusForge
     {
         DataGenerator generator = event.getGenerator();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
-//        PlusBlockTags blockTags = new PlusBlockTags(generator, existingFileHelper);
-//        generator.addProvider(new PlusItemTags(generator, blockTags, existingFileHelper));
-//        generator.addProvider(blockTags);
         generator.addProvider(new PlusLootTables(generator));
-//        generator.addProvider(new PlusItemModels(generator));
         generator.addProvider(new PlusBlockStates(generator, existingFileHelper));
-//        generator.addProvider(new PlusLanguage(generator));
         generator.addProvider(new PlusLootModifierProvider(generator));
-//        generator.addProvider(new PlusRecipeProvider(generator));
+        generator.addProvider(new PlusRecipeProvider(generator));
     }
 }
