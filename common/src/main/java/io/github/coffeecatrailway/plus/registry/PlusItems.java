@@ -5,7 +5,7 @@ import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.PollinatedRegistry;
 import io.github.coffeecatrailway.plus.Plus;
 import io.github.coffeecatrailway.plus.common.item.*;
-import io.github.coffeecatrailway.plus.data.gen.PlusDataGenHelper;
+import io.github.coffeecatrailway.plus.data.gen.PlusLanguage;
 import net.minecraft.core.Registry;
 import net.minecraft.world.item.*;
 import org.apache.logging.log4j.LogManager;
@@ -71,7 +71,7 @@ public class PlusItems
     {
         Supplier<T> object = ITEMS.register(id, () -> factory.apply(new Item.Properties()));
         if (addLang)
-            PlusDataGenHelper.languageItem(object, id, name);
+            PlusLanguage.ITEMS.put(object, name == null ? PlusLanguage.capitalize(id) : name);
         return object;
     }
 

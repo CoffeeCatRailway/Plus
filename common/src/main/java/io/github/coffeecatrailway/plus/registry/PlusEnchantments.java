@@ -4,7 +4,7 @@ import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.PollinatedRegistry;
 import io.github.coffeecatrailway.plus.Plus;
 import io.github.coffeecatrailway.plus.common.enchantment.HeatWalkerEnchantment;
-import io.github.coffeecatrailway.plus.data.gen.PlusDataGenHelper;
+import io.github.coffeecatrailway.plus.data.gen.PlusLanguage;
 import net.minecraft.core.Registry;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -27,7 +27,7 @@ public class PlusEnchantments
     private static <T extends Enchantment> Supplier<T> register(String id, Supplier<T> enchantment)
     {
         Supplier<T> object = ENCHANTMENTS.register(id, enchantment);
-        PlusDataGenHelper.languageEnchantment(object, id);
+        PlusLanguage.ENCHANTMENTS.put(object, PlusLanguage.capitalize(id));
         return object;
     }
 

@@ -9,6 +9,7 @@ import io.github.coffeecatrailway.plus.client.gui.SawBenchScreen;
 import io.github.coffeecatrailway.plus.data.gen.PlusBlockTags;
 import io.github.coffeecatrailway.plus.data.gen.PlusItemTags;
 import io.github.coffeecatrailway.plus.data.gen.PlusItemModels;
+import io.github.coffeecatrailway.plus.data.gen.PlusLanguage;
 import io.github.coffeecatrailway.plus.registry.*;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigHolder;
@@ -80,6 +81,7 @@ public class Plus
         generator.addProvider(blockTags);
         generator.addProvider(new PlusItemTags(generator, container, blockTags));
         generator.addProvider(new PlusItemModels(generator, container));
+        generator.addProvider(new PlusLanguage(generator, container));
     }
 
     public static ResourceLocation getLocation(String path)

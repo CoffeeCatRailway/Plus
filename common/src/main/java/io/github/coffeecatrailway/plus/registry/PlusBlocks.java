@@ -6,9 +6,7 @@ import io.github.coffeecatrailway.plus.Plus;
 import io.github.coffeecatrailway.plus.common.block.BrittleBasaltBlock;
 import io.github.coffeecatrailway.plus.common.block.GlowLanternBlock;
 import io.github.coffeecatrailway.plus.common.block.SawBenchBlock;
-import io.github.coffeecatrailway.plus.data.gen.PlusDataGenHelper;
-import io.github.coffeecatrailway.plus.data.gen.PlusDataGenHelperCommon;
-import io.github.coffeecatrailway.plus.registry.PlusItems;
+import io.github.coffeecatrailway.plus.data.gen.PlusLanguage;
 import net.minecraft.core.Registry;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -52,7 +50,7 @@ public class PlusBlocks
 
     private static <T extends Block> Supplier<T> registerWithItem(String id, Supplier<T> block, @Nullable BiFunction<Supplier<T>, Item.Properties, Item> item)
     {
-        return registerWithItemAndName(id, block, item, PlusDataGenHelperCommon.capitalize(id));
+        return registerWithItemAndName(id, block, item, PlusLanguage.capitalize(id));
     }
 
     private static <T extends Block> Supplier<T> registerWithItemAndName(String id, Supplier<T> block, @Nullable BiFunction<Supplier<T>, Item.Properties, Item> item, @Nullable String name)
@@ -60,8 +58,7 @@ public class PlusBlocks
         Supplier<T> object = BLOCKS.register(id, block);
         if (item != null)
             PlusItems.ITEMS.register(id, () -> item.apply(object, new Item.Properties()));
-        if (name != null)
-            PlusDataGenHelper.languageBlock(object, id, name);
+        PlusLanguage.BLOCKS.put(object, name == null ? PlusLanguage.capitalize(id) : name);
         return object;
     }
 

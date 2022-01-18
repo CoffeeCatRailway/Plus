@@ -1,7 +1,7 @@
 package io.github.coffeecatrailway.plus.registry;
 
 import io.github.coffeecatrailway.plus.Plus;
-import io.github.coffeecatrailway.plus.data.gen.PlusDataGenHelper;
+import io.github.coffeecatrailway.plus.data.gen.PlusLanguage;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.stats.StatFormatter;
@@ -28,7 +28,7 @@ public class PlusExtras
     {
         id = Plus.MOD_ID + "." + id;
         DamageSource source = factory.apply(new DamageSource(id));
-        PlusDataGenHelper.languageExtra("death.attack." + id, deathMsg);
+        PlusLanguage.EXTRA.put("death.attack." + id, deathMsg);
         return source;
     }
 
@@ -37,7 +37,7 @@ public class PlusExtras
         ResourceLocation location = Plus.getLocation(id);
         Registry.register(Registry.CUSTOM_STAT, id, location);
         Stats.CUSTOM.get(location, formatter);
-        PlusDataGenHelper.languageExtra("stat." + Plus.MOD_ID + "." + id, name);
+        PlusLanguage.EXTRA.put("stat." + Plus.MOD_ID + "." + id, name);
         return location;
     }
 

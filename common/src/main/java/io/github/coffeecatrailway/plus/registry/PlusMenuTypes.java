@@ -4,8 +4,7 @@ import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.PollinatedRegistry;
 import io.github.coffeecatrailway.plus.Plus;
 import io.github.coffeecatrailway.plus.common.inventory.SawBenchMenu;
-import io.github.coffeecatrailway.plus.data.gen.PlusDataGenHelper;
-import io.github.coffeecatrailway.plus.data.gen.PlusDataGenHelperCommon;
+import io.github.coffeecatrailway.plus.data.gen.PlusLanguage;
 import net.minecraft.core.Registry;
 import net.minecraft.world.inventory.MenuType;
 import org.apache.logging.log4j.LogManager;
@@ -27,7 +26,7 @@ public class PlusMenuTypes
     private static <T extends MenuType<?>> Supplier<T> register(String id, Supplier<T> menu)
     {
         Supplier<T> object = MENUS.register(id, menu);
-        PlusDataGenHelper.languageExtra("container." + Plus.MOD_ID + "." + id, PlusDataGenHelperCommon.capitalize(id));
+        PlusLanguage.EXTRA.put("container." + Plus.MOD_ID + "." + id, PlusLanguage.capitalize(id));
         return object;
     }
 
