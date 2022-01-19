@@ -46,9 +46,8 @@ public class FoxHatModel extends HumanoidModel<LivingEntity>
     }
 
     @Override
-    public void renderToBuffer(PoseStack arg, VertexConsumer arg2, int i, int j, float f, float g, float h, float k)
-    {
+    public void renderToBuffer(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
         this.setAllVisible(true);
-        super.renderToBuffer(arg, arg2, i, j, f, g, h, k);
+        super.renderToBuffer(poseStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
     }
 }

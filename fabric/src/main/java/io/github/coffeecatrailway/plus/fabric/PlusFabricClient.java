@@ -22,14 +22,13 @@ public class PlusFabricClient implements ClientModInitializer
     {
         EntityModelLayerRegistry.registerModelLayer(FoxHatItem.LAYER, FoxHatModel::createBodyLayer);
         ArmorRenderer.register((matrices, vertexConsumers, stack, entity, slot, light, contextModel) -> {
-            if (FoxHatItem.MODEL == null)
-                FoxHatItem.MODEL = new FoxHatModel(Minecraft.getInstance().getEntityModels().bakeLayer(FoxHatItem.LAYER));
-            contextModel.copyPropertiesTo(FoxHatItem.MODEL);
-            FoxHatItem.MODEL.setAllVisible(true);
+            FoxHatModel model = FoxHatItem.getModel();
+            contextModel.copyPropertiesTo(model);
+            model.setAllVisible(true);
             if (stack.getItem().equals(PlusItems.FOX_HAT.get()))
-                ArmorRenderer.renderPart(matrices, vertexConsumers, light, stack, FoxHatItem.MODEL, FoxHatItem.TEXTURE);
+                ArmorRenderer.renderPart(matrices, vertexConsumers, light, stack, model, FoxHatItem.TEXTURE);
             else if (stack.getItem().equals(PlusItems.SNOW_FOX_HAT.get()))
-                ArmorRenderer.renderPart(matrices, vertexConsumers, light, stack, FoxHatItem.MODEL, FoxHatItem.SNOW_TEXTURE);
+                ArmorRenderer.renderPart(matrices, vertexConsumers, light, stack, model, FoxHatItem.SNOW_TEXTURE);
         }, PlusItems.FOX_HAT.get(), PlusItems.SNOW_FOX_HAT.get());
     }
 }

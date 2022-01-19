@@ -2,6 +2,7 @@ package io.github.coffeecatrailway.plus.client.forge;
 
 import io.github.coffeecatrailway.plus.Plus;
 import io.github.coffeecatrailway.plus.client.entity.FoxHatModel;
+import io.github.coffeecatrailway.plus.common.item.FoxHatItem;
 import io.github.coffeecatrailway.plus.common.item.forge.FoxHatItemForge;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -24,6 +25,6 @@ public class PlusModelLayers
     @SubscribeEvent
     public static void initModels(EntityRenderersEvent.AddLayers event)
     {
-        FoxHatItemForge.MODEL = new FoxHatModel(event.getEntityModels().bakeLayer(FoxHatItemForge.LAYER));
+        FoxHatItem.getModel();
     }
 }

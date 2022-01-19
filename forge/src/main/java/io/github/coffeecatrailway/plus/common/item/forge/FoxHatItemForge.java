@@ -49,7 +49,7 @@ public class FoxHatItemForge extends FoxHatItem
             {
                 if (!stack.isEmpty())
                 {
-                    FoxHatModel hatModel = FoxHatItemForge.MODEL;
+                    FoxHatModel hatModel = FoxHatItem.getModel();
                     hatModel.setAllVisible(true);
                     hatModel.crouching = parent.crouching;
                     hatModel.young = parent.young;
