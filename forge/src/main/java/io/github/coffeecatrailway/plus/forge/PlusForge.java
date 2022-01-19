@@ -6,6 +6,7 @@ import io.github.coffeecatrailway.plus.data.gen.forge.PlusBlockStates;
 import io.github.coffeecatrailway.plus.data.gen.forge.PlusLootModifierProvider;
 import io.github.coffeecatrailway.plus.data.gen.forge.PlusLootTables;
 import io.github.coffeecatrailway.plus.data.gen.forge.PlusRecipeProvider;
+import io.github.coffeecatrailway.plus.registry.PlusItems;
 import io.github.coffeecatrailway.plus.registry.forge.PlusLootModifiers;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.Tiers;
@@ -43,6 +44,7 @@ public class PlusForge
 
     private void onClientSetup(final FMLClientSetupEvent event)
     {
+        CuriosRendererRegistry.register(PlusItems.WARMTH_AMULET.get(), () -> (ICurioRenderer) PlusItems.WARMTH_AMULET.get());
     }
 
     private void onCommonSetup(final FMLCommonSetupEvent event)
