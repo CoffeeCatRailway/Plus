@@ -37,7 +37,14 @@ configurations {
 
 
 repositories {
-    maven { url "https://maven.terraformersmc.com/" }
+    maven {
+        name = "TerraformersMC"
+        url "https://maven.terraformersmc.com/"
+    }
+    maven {
+        name = "Ladysnake Libs"
+        url = "https://ladysnake.jfrog.io/artifactory/mods"
+    }
 }
 
 dependencies {
@@ -51,6 +58,7 @@ dependencies {
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${rootProject.reiVersion}"
     modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${rootProject.reiVersion}"
     modRuntimeOnly "com.terraformersmc:modmenu:${rootProject.modMenuVersion}"
+    modImplementation "dev.emi:trinkets:${rootProject.trinketsVersion}"
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }

@@ -61,6 +61,9 @@ repositories {
         name = "JustEnoughItems fallback"
         url = "https://modmaven.k-4u.nl"
     }
+    maven { // Curios
+        url = "https://maven.theillusivec4.top/"
+    }
 }
 
 dependencies {
@@ -70,7 +73,9 @@ dependencies {
 
     modImplementation "me.shedaniel.cloth:cloth-config-forge:${rootProject.clothConfigVersion}"
     //modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-forge:${rootProject.reiVersion}"
-    modImplementation("mezz.jei:jei-1.18.1:${jeiVersion}") { transitive = false }
+    modImplementation("mezz.jei:jei-1.18.1:${rootProject.jeiVersion}") { transitive = false }
+    modImplementation "top.theillusivec4.curios:curios-forge:${rootProject.curisVersion}"
+
     modRuntime("curse.maven:shutupexperimentalsettings-407174:3544525")
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
