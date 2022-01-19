@@ -28,9 +28,6 @@ public class PlusItems
     public static final Supplier<Item> FOX_FUR = registerIdAsName("fox_fur", prop -> new Item(prop.tab(CreativeModeTab.TAB_MISC)));
     public static final Supplier<Item> SNOW_FOX_FUR = registerIdAsName("snow_fox_fur", prop -> new Item(prop.tab(CreativeModeTab.TAB_MISC)));
 
-    public static final Supplier<FoxHatItem> FOX_HAT = registerIdAsName("fox_hat", getFoxHatItem());
-    public static final Supplier<FoxHatItem> SNOW_FOX_HAT = registerIdAsName("snow_fox_hat", getSnowFoxHatItem());
-
     public static final Supplier<Item> FOX_MEAT = registerWithName("fox_meat", "Raw Fox", prop -> new Item(prop.food(PlusFoods.FOX_MEAT).tab(CreativeModeTab.TAB_FOOD)));
     public static final Supplier<Item> COOKED_FOX_MEAT = registerWithName("cooked_fox_meat", "Cooked Fox", prop -> new Item(prop.food(PlusFoods.COOKED_FOX_MEAT).tab(CreativeModeTab.TAB_FOOD)));
 
@@ -46,6 +43,12 @@ public class PlusItems
     public static final Supplier<Item> COOKED_TURTLE = registerIdAsName("cooked_turtle", prop -> new Item(prop.food(PlusFoods.COOKED_TURTLE).tab(CreativeModeTab.TAB_FOOD)));
 
     public static final Supplier<Item> STINGER = registerIdAsName("stinger", prop -> new Item(prop.stacksTo(32).tab(CreativeModeTab.TAB_MISC)));
+
+    // Vanity
+    public static final Supplier<FoxHatItem> FOX_HAT = registerIdAsName("fox_hat", getFoxHatItem());
+    public static final Supplier<FoxHatItem> SNOW_FOX_HAT = registerIdAsName("snow_fox_hat", getSnowFoxHatItem());
+
+    public static final Supplier<WarmthAmuletItem> WARMTH_AMULET = registerIdAsName("warmth_amulet", getWarmthAmuletItem());
 
     // Rose Gold
     public static final Supplier<Item> RAW_ROSE_GOLD = registerIdAsName("raw_rose_gold", prop -> new Item(prop.tab(CreativeModeTab.TAB_MATERIALS)));
@@ -83,6 +86,12 @@ public class PlusItems
 
     @ExpectPlatform
     private static Function<Item.Properties, FoxHatItem> getSnowFoxHatItem()
+    {
+        throw new AssertionError();
+    }
+
+    @ExpectPlatform
+    private static Function<Item.Properties, WarmthAmuletItem> getWarmthAmuletItem()
     {
         throw new AssertionError();
     }

@@ -35,6 +35,9 @@ public class PlusItemTags extends PollinatedItemTagsProvider
     public static final Tag.Named<Item> INGOTS_IRON_FORGE = TagRegistry.bindItem(new ResourceLocation("forge", "ingots/iron"));
     public static final Tag.Named<Item> NUGGETS_IRON_FORGE = TagRegistry.bindItem(new ResourceLocation("forge", "nuggets/iron"));
 
+    public static final Tag.Named<Item> NECKLACE_CURIOS = TagRegistry.bindItem(new ResourceLocation("curios", "necklace"));
+    public static final Tag.Named<Item> NECKLACE_TRINKETS = TagRegistry.bindItem(new ResourceLocation("trinkets", "chest/necklace"));
+
     public PlusItemTags(DataGenerator generator, PollinatedModContainer container, BlockTagsProvider blockTags)
     {
         super(generator, container, blockTags);
@@ -44,18 +47,24 @@ public class PlusItemTags extends PollinatedItemTagsProvider
     protected void addTags()
     {
         this.tag(ItemTags.BEACON_PAYMENT_ITEMS).add(PlusItems.ROSE_GOLD_INGOT.get());
+
         this.copy(PlusBlockTags.STORAGE_BLOCK_ROSE_GOLD, STORAGE_BLOCK_ROSE_GOLD);
         this.tag(INGOTS_ROSE_GOLD_FORGE).add(PlusItems.ROSE_GOLD_INGOT.get());
         this.tag(INGOTS_FORGE).addTag(INGOTS_ROSE_GOLD_FORGE);
         this.tag(NUGGETS_ROSE_GOLD_FORGE).add(PlusItems.ROSE_GOLD_NUGGET.get());
         this.tag(NUGGETS_FORGE).addTag(NUGGETS_ROSE_GOLD_FORGE);
+
         this.tag(ItemTags.PIGLIN_LOVED).add(PlusBlocks.ROSE_GOLD_BLOCK.get().asItem(), PlusBlocks.ROSE_GOLD_BLOCK.get().asItem(), PlusItems.RAW_ROSE_GOLD.get(), PlusItems.ROSE_GOLD_INGOT.get(), PlusItems.ROSE_GOLD_NUGGET.get(), PlusItems.ROSE_GOLD_SWORD.get(), PlusItems.ROSE_GOLD_SHOVEL.get(), PlusItems.ROSE_GOLD_PICKAXE.get(), PlusItems.ROSE_GOLD_AXE.get(), PlusItems.ROSE_GOLD_HOE.get());
         this.tag(ItemTags.CLUSTER_MAX_HARVESTABLES).add(PlusItems.ROSE_GOLD_PICKAXE.get());
+
         this.tag(ROSE_GOLD_BLOCKS_FABRIC).addTag(STORAGE_BLOCK_ROSE_GOLD);
         this.tag(INGOTS_ROSE_GOLD_FABRIC).addTag(INGOTS_ROSE_GOLD_FORGE);
         this.tag(NUGGETS_ROSE_GOLD_FABRIC).addTag(NUGGETS_ROSE_GOLD_FORGE);
 
         this.tag(INGOTS_IRON_FABRIC).addOptionalTag(INGOTS_IRON_FORGE.getName()).add(Items.IRON_INGOT);
         this.tag(NUGGETS_IRON_FABRIC).addOptionalTag(NUGGETS_IRON_FORGE.getName()).add(Items.IRON_NUGGET);
+
+        this.tag(NECKLACE_CURIOS).add(PlusItems.WARMTH_AMULET.get());
+        this.tag(NECKLACE_TRINKETS).addTag(NECKLACE_CURIOS);
     }
 }
