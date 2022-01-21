@@ -1,7 +1,11 @@
 package io.github.coffeecatrailway.plus.fabric;
 
+import dev.emi.trinkets.api.client.TrinketRenderer;
+import dev.emi.trinkets.api.client.TrinketRendererRegistry;
+import io.github.coffeecatrailway.plus.client.entity.AmuletModel;
 import io.github.coffeecatrailway.plus.client.entity.FoxHatModel;
 import io.github.coffeecatrailway.plus.common.item.FoxHatItem;
+import io.github.coffeecatrailway.plus.common.item.WarmthAmuletItem;
 import io.github.coffeecatrailway.plus.registry.PlusItems;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -30,5 +34,8 @@ public class PlusFabricClient implements ClientModInitializer
             else if (stack.getItem().equals(PlusItems.SNOW_FOX_HAT.get()))
                 ArmorRenderer.renderPart(matrices, vertexConsumers, light, stack, model, FoxHatItem.SNOW_TEXTURE);
         }, PlusItems.FOX_HAT.get(), PlusItems.SNOW_FOX_HAT.get());
+
+        EntityModelLayerRegistry.registerModelLayer(WarmthAmuletItem.LAYER, AmuletModel::createBodyLayer);
+        TrinketRendererRegistry.registerRenderer(PlusItems.WARMTH_AMULET.get(), (TrinketRenderer) PlusItems.WARMTH_AMULET.get());
     }
 }
