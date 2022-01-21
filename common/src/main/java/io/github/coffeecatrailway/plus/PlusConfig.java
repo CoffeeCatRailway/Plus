@@ -36,7 +36,7 @@ public class PlusConfig extends PartitioningSerializer.GlobalData
 
         public Items()
         {
-            this.warmthAmuletSize = 4d;
+            this.warmthAmuletSize = 2d;
         }
 
         @Config(name = "enchantments")

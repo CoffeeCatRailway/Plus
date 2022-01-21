@@ -33,6 +33,7 @@ public class PlusLanguage extends PollinatedLanguageProvider
     {
         this.add("gui." + Plus.MOD_ID + ".jei.category.saw_bench", "Saw Bench");
         this.add("category." + Plus.MOD_ID + ".rei.saw_bench", "Saw Bench");
+        this.add("item." + Plus.MOD_ID + ".warmth_amulet.use2", "Melts ice within %s blocks");
         EXTRA.forEach(this::add);
         ITEMS.forEach(this::addItem);
         BLOCKS.forEach(this::addBlock);
