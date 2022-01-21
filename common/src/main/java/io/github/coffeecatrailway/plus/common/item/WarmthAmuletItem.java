@@ -43,13 +43,20 @@ public class WarmthAmuletItem extends Item
 
     public WarmthAmuletItem(Properties properties)
     {
-        super(properties.stacksTo(1).rarity(Rarity.UNCOMMON).tab(CreativeModeTab.TAB_COMBAT));
+        super(properties.stacksTo(1).rarity(Rarity.UNCOMMON).tab(CreativeModeTab.TAB_TOOLS));
     }
 
     @Override
     public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> list, TooltipFlag tooltipFlag)
     {
         list.add(new TranslatableComponent("item." + Plus.MOD_ID + ".warmth_amulet.use2", Plus.CONFIG_SERVER.items.warmthAmuletSize));
+    }
+
+    @Override
+    public void inventoryTick(ItemStack stack, Level level, Entity entity, int index, boolean selected)
+    {
+        if (entity instanceof Player && Inventory.isHotbarSlot(index))
+            this.tick((LivingEntity) entity);
     }
 
     protected void tick(LivingEntity entity)
