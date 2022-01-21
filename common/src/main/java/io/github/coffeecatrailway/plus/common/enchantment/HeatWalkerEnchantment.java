@@ -59,7 +59,7 @@ public class HeatWalkerEnchantment extends Enchantment
         if (!entity.isOnGround())
             return;
         BlockState basalt = PlusBlocks.BRITTLE_BASALT.get().defaultBlockState();
-        double size = Math.min(16d, Plus.CONFIG_SERVER.items.heatWalkerLevel + enchantmentLevel);
+        double size = Math.min(16d, Plus.CONFIG_SERVER.items.enchantments.heatWalkerLevel + enchantmentLevel);
         BlockPos.MutableBlockPos mutablePos = new BlockPos.MutableBlockPos();
 
         for (BlockPos pos : BlockPos.betweenClosed(entityPos.offset(-size, -1d, -size), entityPos.offset(size, -1d, size)))

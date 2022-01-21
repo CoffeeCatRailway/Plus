@@ -16,6 +16,6 @@ public class FrostWalkerEnchantmentMixin
     @ModifyArg(method = "onEntityMoved(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;I)V", at = @At(value = "INVOKE", target = "Ljava/lang/Math;min(II)I"), index = 1)
     private static int onEntityMoved(int b)
     {
-        return (int) (b - 2 + Plus.CONFIG_SERVER.items.frostWalkerLevel);
+        return (int) (b - 2 + Plus.CONFIG_SERVER.items.enchantments.frostWalkerLevel);
     }
 }

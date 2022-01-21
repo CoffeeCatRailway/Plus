@@ -28,6 +28,18 @@ public class WarmthAmuletItemForge extends WarmthAmuletItem implements ICurioIte
     }
 
     @Override
+    public void curioTick(SlotContext slotContext, ItemStack stack)
+    {
+        super.tick(slotContext.entity());
+    }
+
+    @Override
+    public boolean canEquipFromUse(SlotContext slotContext, ItemStack stack)
+    {
+        return true;
+    }
+
+    @Override
     public <T extends LivingEntity, M extends EntityModel<T>> void render(ItemStack stack, SlotContext slotContext, PoseStack matrixStack, RenderLayerParent<T, M> renderLayerParent, MultiBufferSource renderTypeBuffer, int light, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch)
     {
         AmuletModel model = getModel();

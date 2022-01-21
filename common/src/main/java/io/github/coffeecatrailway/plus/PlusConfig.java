@@ -14,29 +14,46 @@ import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
 public class PlusConfig extends PartitioningSerializer.GlobalData
 {
     @ConfigEntry.Category("items")
-    @ConfigEntry.Gui.TransitiveObject
+    @ConfigEntry.Gui.CollapsibleObject
     public Items items = new Items();
     @ConfigEntry.Category("blocks")
-    @ConfigEntry.Gui.TransitiveObject
+    @ConfigEntry.Gui.CollapsibleObject
     public Blocks blocks = new Blocks();
     @ConfigEntry.Category("entities")
-    @ConfigEntry.Gui.TransitiveObject
+    @ConfigEntry.Gui.CollapsibleObject
     public Entities entities = new Entities();
 
     @Config(name = "items")
     public static class Items implements ConfigData
     {
-        @Comment("Default heat walker enchant level. min(16, level + modifier")
+        @ConfigEntry.Category("enchantments")
+        @ConfigEntry.Gui.CollapsibleObject
+        public Enchantments enchantments = new Enchantments();
+
+        @Comment("Default area effect size for \"Warmth Amulet\".")
         @ConfigEntry.BoundedDiscrete(min = 1L, max = 16L)
-        public double heatWalkerLevel;
-        @Comment("Default frost walker enchant level. min(16, level + modifier")
-        @ConfigEntry.BoundedDiscrete(min = 1L, max = 16L)
-        public double frostWalkerLevel;
+        public double warmthAmuletSize;
 
         public Items()
         {
-            this.heatWalkerLevel = 2d;
-            this.frostWalkerLevel = 2d;
+            this.warmthAmuletSize = 4d;
+        }
+
+        @Config(name = "enchantments")
+        public static class Enchantments implements ConfigData
+        {
+            @Comment("Default heat walker enchant level. min(16, level + modifier)")
+            @ConfigEntry.BoundedDiscrete(min = 1L, max = 16L)
+            public double heatWalkerLevel;
+            @Comment("Default frost walker enchant level. min(16, level + modifier)")
+            @ConfigEntry.BoundedDiscrete(min = 1L, max = 16L)
+            public double frostWalkerLevel;
+
+            public Enchantments()
+            {
+                this.heatWalkerLevel = 2d;
+                this.frostWalkerLevel = 2d;
+            }
         }
     }
 

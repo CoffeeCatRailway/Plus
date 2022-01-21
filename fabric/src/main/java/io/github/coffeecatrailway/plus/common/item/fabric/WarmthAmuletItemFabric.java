@@ -33,6 +33,12 @@ public class WarmthAmuletItemFabric extends WarmthAmuletItem implements Trinket,
     }
 
     @Override
+    public void tick(ItemStack stack, SlotReference slot, LivingEntity entity)
+    {
+        super.tick(entity);
+    }
+
+    @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand)
     {
         ItemStack stack = player.getItemInHand(hand);
