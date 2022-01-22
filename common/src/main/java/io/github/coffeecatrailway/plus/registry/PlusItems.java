@@ -44,6 +44,8 @@ public class PlusItems
 
     public static final Supplier<Item> STINGER = registerIdAsName("stinger", prop -> new Item(prop.stacksTo(32).tab(CreativeModeTab.TAB_MISC)));
 
+    public static final Supplier<Item> WARMTH_CRYSTAL = registerIdAsName("warmth_crystal", prop -> new Item(prop.tab(CreativeModeTab.TAB_MISC)));
+
     // Vanity
     public static final Supplier<FoxHatItem> FOX_HAT = registerIdAsName("fox_hat", getFoxHatItem());
     public static final Supplier<FoxHatItem> SNOW_FOX_HAT = registerIdAsName("snow_fox_hat", getSnowFoxHatItem());
@@ -51,9 +53,9 @@ public class PlusItems
     public static final Supplier<WarmthAmuletItem> WARMTH_AMULET = registerIdAsName("warmth_amulet", getWarmthAmuletItem());
 
     // Rose Gold
-    public static final Supplier<Item> RAW_ROSE_GOLD = registerIdAsName("raw_rose_gold", prop -> new Item(prop.tab(CreativeModeTab.TAB_MATERIALS)));
-    public static final Supplier<Item> ROSE_GOLD_INGOT = registerIdAsName("rose_gold_ingot", prop -> new Item(prop.tab(CreativeModeTab.TAB_MATERIALS)));
-    public static final Supplier<Item> ROSE_GOLD_NUGGET = registerIdAsName("rose_gold_nugget", prop -> new Item(prop.tab(CreativeModeTab.TAB_MATERIALS)));
+    public static final Supplier<Item> RAW_ROSE_GOLD = registerIdAsName("raw_rose_gold", prop -> new Item(prop.tab(CreativeModeTab.TAB_MISC)));
+    public static final Supplier<Item> ROSE_GOLD_INGOT = registerIdAsName("rose_gold_ingot", prop -> new Item(prop.tab(CreativeModeTab.TAB_MISC)));
+    public static final Supplier<Item> ROSE_GOLD_NUGGET = registerIdAsName("rose_gold_nugget", prop -> new Item(prop.tab(CreativeModeTab.TAB_MISC)));
     public static final Supplier<SwordItem> ROSE_GOLD_SWORD = registerIdAsName("rose_gold_sword", prop -> new SwordItem(PlusTiers.ROSE_GOLD, 3, -2.4f, prop.tab(CreativeModeTab.TAB_COMBAT)));
     public static final Supplier<ShovelItem> ROSE_GOLD_SHOVEL = registerIdAsName("rose_gold_shovel", prop -> new ShovelItem(PlusTiers.ROSE_GOLD, 1.5f, -3f, prop.tab(CreativeModeTab.TAB_TOOLS)));
     public static final Supplier<PickaxeItem> ROSE_GOLD_PICKAXE = registerIdAsName("rose_gold_pickaxe", prop -> new PlusPickaxeItem(PlusTiers.ROSE_GOLD, 1, -2.8f, prop.tab(CreativeModeTab.TAB_TOOLS)));

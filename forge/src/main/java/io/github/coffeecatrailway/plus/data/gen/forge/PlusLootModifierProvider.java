@@ -36,5 +36,6 @@ public class PlusLootModifierProvider extends GlobalLootModifierProvider
         this.add("glow_squid", PlusLootModifiers.POOL_LOOT.get(), new PlusLootModifier(new LootItemCondition[0], Plus.getLocation("modifier/squid"), EntityType.GLOW_SQUID));
         this.add("bee", PlusLootModifiers.POOL_LOOT.get(), new PlusLootModifier(new LootItemCondition[0], Plus.getLocation("modifier/bee"), EntityType.BEE));
         this.add("turtle", PlusLootModifiers.POOL_LOOT.get(), new PlusLootModifier(new LootItemCondition[0], Plus.getLocation("modifier/turtle"), EntityType.TURTLE));
+        this.add("stray", PlusLootModifiers.POOL_LOOT.get(), new PlusLootModifier(new LootItemCondition[0], Plus.getLocation("modifier/stray"), EntityType.STRAY));
     }
 }

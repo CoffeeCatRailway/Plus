@@ -34,5 +34,6 @@
   "item.plus.warmth_amulet": "Warmth Amulet",
   "item.plus.warmth_amulet.use1": "Prevents freezing when in Powdered Snow",
   "item.plus.warmth_amulet.use2": "Melts ice within %s blocks",
+  "item.plus.warmth_crystal": "Warmth Crystal",
   "stat.plus.interact_with_saw_bench": "Interactions with Saw Bench"
 }

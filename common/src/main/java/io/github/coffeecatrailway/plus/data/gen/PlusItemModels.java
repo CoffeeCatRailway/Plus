@@ -59,6 +59,8 @@ public class PlusItemModels extends PollinatedModelProvider
 
             this.generateFlatItem(PlusItems.STINGER.get(), ModelTemplates.FLAT_ITEM);
 
+            this.generateFlatItem(PlusItems.WARMTH_CRYSTAL.get(), ModelTemplates.FLAT_ITEM);
+
             this.generateFlatItem(PlusItems.FOX_HAT.get(), ModelTemplates.FLAT_ITEM);
             this.generateFlatItem(PlusItems.SNOW_FOX_HAT.get(), ModelTemplates.FLAT_ITEM);
 

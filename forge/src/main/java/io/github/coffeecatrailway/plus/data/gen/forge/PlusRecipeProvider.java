@@ -139,6 +139,16 @@ public class PlusRecipeProvider extends RecipeProvider
                 .unlockedBy("has_iron_nugget", has(Items.IRON_NUGGET))
                 .unlockedBy("has_glow_ink_sac", has(Items.GLOW_INK_SAC))
                 .save(consumer);
+
+        ShapedRecipeBuilder.shaped(PlusItems.WARMTH_AMULET.get())
+                .define('w', PlusItems.WARMTH_CRYSTAL.get())
+                .define('l', PlusItems.CHAIN_LINK.get())
+                .pattern(" l ")
+                .pattern("l l")
+                .pattern(" w ")
+                .unlockedBy("has_warmth_crystal", has(PlusItems.WARMTH_CRYSTAL.get()))
+                .unlockedBy("has_chain_link", has(PlusItems.CHAIN_LINK.get()))
+                .save(consumer);
     }
 
     private static void storageRecipe(Consumer<FinishedRecipe> consumer, ItemLike ingot, ItemLike block, boolean big)

@@ -117,6 +117,11 @@ public class PlusLootTables extends LootTableProvider
             this.add(Plus.getLocation("modifier/turtle"), LootTable.lootTable()
                     .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1f))
                             .add(cookableLootItem(PlusItems.TURTLE, ConstantValue.exactly(1f), false))));
+
+            this.add(Plus.getLocation("modifier/stray"), LootTable.lootTable()
+                    .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1f))
+                            .add(LootItem.lootTableItem(PlusItems.WARMTH_CRYSTAL.get())
+                                    .when(LootItemRandomChanceCondition.randomChance(.5f)))));
         }
 
         @Override
