@@ -10,7 +10,8 @@
     "LivingEntityMixin",
     "CampfireBlockMixin",
     "MagmaBlockMixin",
-    "TurtleMixin"
+    "TurtleMixin",
+    "PowderSnowBlockMixin"
   ],
   "injectors": {
     "defaultRequire": 1
