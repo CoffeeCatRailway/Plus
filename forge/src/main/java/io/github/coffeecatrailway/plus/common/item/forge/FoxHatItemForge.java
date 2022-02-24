@@ -45,7 +45,7 @@ public class FoxHatItemForge extends FoxHatItem
         consumer.accept(new IItemRenderProperties()
         {
             @Override
-            public <A extends HumanoidModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack stack, EquipmentSlot armorSlot, A parent)
+            public HumanoidModel<?> getArmorModel(LivingEntity entityLiving, ItemStack stack, EquipmentSlot armorSlot, HumanoidModel<?> parent)
             {
                 if (!stack.isEmpty())
                 {
@@ -53,7 +53,7 @@ public class FoxHatItemForge extends FoxHatItem
                     hatModel.setAllVisible(true);
                     hatModel.crouching = parent.crouching;
                     hatModel.young = parent.young;
-                    return (A) hatModel;
+                    return hatModel;
                 }
                 return null;
             }
