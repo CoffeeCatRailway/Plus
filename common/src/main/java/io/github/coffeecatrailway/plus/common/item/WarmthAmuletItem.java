@@ -5,10 +5,13 @@ import io.github.coffeecatrailway.plus.client.entity.AmuletModel;
 import io.github.coffeecatrailway.plus.common.enchantment.HeatWalkerEnchantment;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.TextColor;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -42,10 +45,10 @@ public class WarmthAmuletItem extends Item
     }
 
     @Override
-    public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> list, TooltipFlag tooltipFlag)
+    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> list, TooltipFlag tooltipFlag)
     {
-        list.add(new TranslatableComponent("item." + Plus.MOD_ID + ".warmth_amulet.use1"));
-        list.add(new TranslatableComponent("item." + Plus.MOD_ID + ".warmth_amulet.use2", Plus.CONFIG_SERVER.warmthAmuletSize.get()));
+        list.add(new TranslatableComponent("item." + Plus.MOD_ID + ".warmth_amulet.use1").withStyle(ChatFormatting.GRAY));
+        list.add(new TranslatableComponent("item." + Plus.MOD_ID + ".warmth_amulet.use2", Plus.CONFIG_SERVER.warmthAmuletSize.get()).withStyle(ChatFormatting.GRAY));
     }
 
     @Override

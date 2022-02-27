@@ -31,7 +31,7 @@ public class PlusItems
     public static final Supplier<Item> FOX_MEAT = registerWithName("fox_meat", "Raw Fox", prop -> new Item(prop.food(PlusFoods.FOX_MEAT).tab(CreativeModeTab.TAB_FOOD)));
     public static final Supplier<Item> COOKED_FOX_MEAT = registerWithName("cooked_fox_meat", "Cooked Fox", prop -> new Item(prop.food(PlusFoods.COOKED_FOX_MEAT).tab(CreativeModeTab.TAB_FOOD)));
 
-    public static final Supplier<Item> CHAIN_LINK = registerIdAsName("chain_link", prop -> new Item(prop.tab(CreativeModeTab.TAB_DECORATIONS)));
+    public static final Supplier<DescribedItem> CHAIN_LINK = registerWithDescription("chain_link", prop -> new DescribedItem(prop.tab(CreativeModeTab.TAB_DECORATIONS)), "Used to make chainmail & maybe something else...");
 
     public static final Supplier<Item> BAT = registerWithName("bat", "Raw Bat", prop -> new Item(prop.food(PlusFoods.BAT).tab(CreativeModeTab.TAB_FOOD)));
     public static final Supplier<Item> COOKED_BAT = registerWithName("cooked_bat", "Cooked Bat", prop -> new Item(prop.food(PlusFoods.COOKED_BAT).tab(CreativeModeTab.TAB_FOOD)));
@@ -42,9 +42,9 @@ public class PlusItems
     public static final Supplier<Item> TURTLE = registerIdAsName("turtle", prop -> new Item(prop.food(PlusFoods.TURTLE).tab(CreativeModeTab.TAB_FOOD)));
     public static final Supplier<Item> COOKED_TURTLE = registerIdAsName("cooked_turtle", prop -> new Item(prop.food(PlusFoods.COOKED_TURTLE).tab(CreativeModeTab.TAB_FOOD)));
 
-    public static final Supplier<Item> STINGER = registerIdAsName("stinger", prop -> new Item(prop.stacksTo(32).tab(CreativeModeTab.TAB_MISC)));
+    public static final Supplier<DescribedItem> STINGER = registerWithDescription("stinger", prop -> new DescribedItem(prop.stacksTo(32).tab(CreativeModeTab.TAB_MISC)), "A poisonous stinger");
 
-    public static final Supplier<Item> WARMTH_CRYSTAL = registerIdAsName("warmth_crystal", prop -> new Item(prop.tab(CreativeModeTab.TAB_MISC)));
+    public static final Supplier<DescribedItem> WARMTH_CRYSTAL = registerWithDescription("warmth_crystal", prop -> new DescribedItem(prop.tab(CreativeModeTab.TAB_MISC)), "Maybe it's heat can be used?");
 
     // Vanity
     public static final Supplier<FoxHatItem> FOX_HAT = registerIdAsName("fox_hat", getFoxHatItem());
@@ -62,21 +62,27 @@ public class PlusItems
     public static final Supplier<AxeItem> ROSE_GOLD_AXE = registerIdAsName("rose_gold_axe", prop -> new PlusAxeItem(PlusTiers.ROSE_GOLD, 6f, -3f, prop.tab(CreativeModeTab.TAB_TOOLS)));
     public static final Supplier<HoeItem> ROSE_GOLD_HOE = registerIdAsName("rose_gold_hoe", prop -> new PlusHoeItem(PlusTiers.ROSE_GOLD, 0, -3f, prop.tab(CreativeModeTab.TAB_TOOLS)));
 
-    protected static <T extends Item> Supplier<T> registerIdAsName(String id, Function<Item.Properties, T> factory)
+    protected static <T extends DescribedItem> Supplier<T> registerWithDescription(String id, Function<Item.Properties, T> factory, String description)
     {
-        return registerWithName(id, null, factory);
+        PlusLanguage.EXTRA.put("item." + Plus.MOD_ID + "." + id + ".description", description);
+        return registerIdAsName(id, factory);
     }
 
-    private static <T extends Item> Supplier<T> registerWithName(String id, @Nullable String name, Function<Item.Properties, T> factory)
+    protected static <T extends Item> Supplier<T> registerIdAsName(String id, Function<Item.Properties, T> factory)
+    {
+        return registerWithName(id, PlusLanguage.capitalize(id), factory);
+    }
+
+    private static <T extends Item> Supplier<T> registerWithName(String id, String name, Function<Item.Properties, T> factory)
     {
         return register(id, name, true, factory);
     }
 
-    private static <T extends Item> Supplier<T> register(String id, @Nullable String name, boolean addLang, Function<Item.Properties, T> factory)
+    private static <T extends Item> Supplier<T> register(String id, String name, boolean addLang, Function<Item.Properties, T> factory)
     {
         Supplier<T> object = ITEMS.register(id, () -> factory.apply(new Item.Properties()));
         if (addLang)
-            PlusLanguage.ITEMS.put(object, name == null ? PlusLanguage.capitalize(id) : name);
+            PlusLanguage.ITEMS.put(object, name);
         return object;
     }
 
