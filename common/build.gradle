@@ -5,9 +5,6 @@ dependencies {
 
     modApi("gg.moonflower:pollen:${rootProject.pollenVersion}") { transitive = false }
 
-    modCompileOnly("me.shedaniel.cloth:cloth-config:${rootProject.clothConfigVersion}") {
-        exclude(group: "net.fabricmc.fabric-api")
-    }
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:${rootProject.reiVersion}"
 }
 

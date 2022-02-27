@@ -28,7 +28,7 @@ public abstract class TurtleMixin extends Animal
     @Inject(method = "ageBoundaryReached()V", at = @At(value = "TAIL"))
     protected void ageBoundaryReached(CallbackInfo callback)
     {
-        int amount = Plus.CONFIG_SERVER.entities.turtleScuteDrop - 1;
+        int amount = Plus.CONFIG_SERVER.turtleScuteDrop.get() - 1;
         if (amount > 0 && !this.isBaby() && this.level.getGameRules().getBoolean(GameRules.RULE_DOMOBLOOT))
             this.spawnAtLocation(Items.SCUTE, amount);
     }

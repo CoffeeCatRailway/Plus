@@ -1,5 +1,7 @@
 package io.github.coffeecatrailway.plus;
 
+import gg.moonflower.pollen.api.config.ConfigManager;
+import gg.moonflower.pollen.api.config.PollinatedConfigType;
 import gg.moonflower.pollen.api.event.events.lifecycle.TickEvent;
 import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.client.RenderTypeRegistry;
@@ -7,8 +9,8 @@ import gg.moonflower.pollen.api.registry.client.ScreenRegistry;
 import gg.moonflower.pollen.api.util.PollinatedModContainer;
 import io.github.coffeecatrailway.plus.client.gui.SawBenchScreen;
 import io.github.coffeecatrailway.plus.data.gen.PlusBlockTags;
-import io.github.coffeecatrailway.plus.data.gen.PlusItemTags;
 import io.github.coffeecatrailway.plus.data.gen.PlusItemModels;
+import io.github.coffeecatrailway.plus.data.gen.PlusItemTags;
 import io.github.coffeecatrailway.plus.data.gen.PlusLanguage;
 import io.github.coffeecatrailway.plus.registry.*;
 import me.shedaniel.autoconfig.AutoConfig;
@@ -24,6 +26,7 @@ import net.minecraft.world.level.block.state.BlockState;
 public class Plus
 {
     public static final String MOD_ID = "plus";
+    public static PlusConfig.Server CONFIG_SERVER = ConfigManager.register(MOD_ID, PollinatedConfigType.SERVER, PlusConfig.Server::new);
     public static final Platform PLATFORM = Platform.builder(MOD_ID)
             .clientInit(Plus::onClientInit)
             .clientPostInit(Plus::onClientPostInit)
@@ -32,11 +35,8 @@ public class Plus
             .dataInit(Plus::onDataInit)
             .build();
 
-    public static PlusConfig CONFIG_SERVER;
-
     public static void onClientInit()
     {
-        AutoConfig.getGuiRegistry(PlusConfig.class);
     }
 
     public static void onClientPostInit(Platform.ModSetupContext ctx)
@@ -51,9 +51,6 @@ public class Plus
 
     public static void onCommonInit()
     {
-        ConfigHolder<PlusConfig> holder = AutoConfig.register(PlusConfig.class, PartitioningSerializer.wrap(Toml4jConfigSerializer::new));
-        CONFIG_SERVER = holder.getConfig();
-
         PlusBlocks.load(PLATFORM);
         PlusItems.load(PLATFORM);
         PlusEnchantments.load(PLATFORM);
@@ -69,7 +66,7 @@ public class Plus
             BlockState state = entity.level.getBlockState(entity.blockPosition());
             if (!state.is(Blocks.STONECUTTER))
                 return;
-            entity.hurt(PlusExtras.SAW_BLADE_DAMAGE_SOURCE, CONFIG_SERVER.blocks.sawBladeDamage * 1.5f);
+            entity.hurt(PlusExtras.SAW_BLADE_DAMAGE_SOURCE, CONFIG_SERVER.sawBladeDamage.get().floatValue());
         });
     }
 

@@ -45,7 +45,7 @@ public class WarmthAmuletItem extends Item
     public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> list, TooltipFlag tooltipFlag)
     {
         list.add(new TranslatableComponent("item." + Plus.MOD_ID + ".warmth_amulet.use1"));
-        list.add(new TranslatableComponent("item." + Plus.MOD_ID + ".warmth_amulet.use2", Plus.CONFIG_SERVER.items.warmthAmuletSize));
+        list.add(new TranslatableComponent("item." + Plus.MOD_ID + ".warmth_amulet.use2", Plus.CONFIG_SERVER.warmthAmuletSize.get()));
     }
 
     @Override
@@ -60,7 +60,7 @@ public class WarmthAmuletItem extends Item
         if (!entity.isOnGround() || entity.isCrouching())
             return;
         BlockState iceState = Blocks.FROSTED_ICE.defaultBlockState();
-        double size = Plus.CONFIG_SERVER.items.warmthAmuletSize;
+        double size = Plus.CONFIG_SERVER.warmthAmuletSize.get();
         BlockPos.MutableBlockPos mutablePos = new BlockPos.MutableBlockPos();
         Level level = entity.level;
         BlockPos entityPos = entity.blockPosition();

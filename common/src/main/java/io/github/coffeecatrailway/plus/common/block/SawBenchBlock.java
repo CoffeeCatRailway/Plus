@@ -54,7 +54,7 @@ public class SawBenchBlock extends StonecutterBlock
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity)
     {
         if (entity instanceof LivingEntity)
-            entity.hurt(PlusExtras.SAW_BLADE_DAMAGE_SOURCE, Plus.CONFIG_SERVER.blocks.sawBladeDamage);
+            entity.hurt(PlusExtras.SAW_BLADE_DAMAGE_SOURCE, Plus.CONFIG_SERVER.sawBladeDamage.get().floatValue());
         super.entityInside(state, level, pos, entity);
     }
 }
