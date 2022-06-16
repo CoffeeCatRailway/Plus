@@ -52,22 +52,26 @@ public class Plus
         PlusEnchantments.load(PLATFORM);
         PlusMenuTypes.load(PLATFORM);
         PlusRecipes.load(PLATFORM);
+
+        PlusDamageSources.load();
+        PlusStats.Localize.load();
     }
 
     public static void onCommonPostInit(Platform.ModSetupContext ctx)
     {
-        ctx.enqueueWork(() -> PlusExtras.load(PLATFORM));
+        ctx.enqueueWork(() -> PlusStats.load(PLATFORM));
+
         TickEvent.LIVING_POST.register(entity -> {
             BlockState state = entity.level.getBlockState(entity.blockPosition());
             if (!state.is(Blocks.STONECUTTER))
                 return;
-            entity.hurt(PlusExtras.SAW_BLADE_DAMAGE_SOURCE, CONFIG_SERVER.sawBladeDamage.get().floatValue());
+            entity.hurt(PlusDamageSources.SAW_BLADE_DAMAGE_SOURCE, CONFIG_SERVER.sawBladeDamage.get().floatValue());
         });
     }
 
     public static void onDataInit(Platform.DataSetupContext ctx)
     {
-        DataGenerator generator = ctx.getGenerator();
+        DataGenerator generator = ctx.getGenerator(); // TODO: Convert to fabric
         PollinatedModContainer container = ctx.getMod();
         PlusBlockTags blockTags = new PlusBlockTags(generator, container);
         generator.addProvider(blockTags);

@@ -2,7 +2,8 @@ package io.github.coffeecatrailway.plus.common.block;
 
 import io.github.coffeecatrailway.plus.Plus;
 import io.github.coffeecatrailway.plus.common.inventory.SawBenchMenu;
-import io.github.coffeecatrailway.plus.registry.PlusExtras;
+import io.github.coffeecatrailway.plus.registry.PlusDamageSources;
+import io.github.coffeecatrailway.plus.registry.PlusStats;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -39,7 +40,7 @@ public class SawBenchBlock extends StonecutterBlock
             return InteractionResult.SUCCESS;
         } else {
             player.openMenu(state.getMenuProvider(level, pos));
-            player.awardStat(PlusExtras.INTERACT_WITH_SAW_BENCH);
+            player.awardStat(PlusStats.INTERACT_WITH_SAW_BENCH);
             return InteractionResult.CONSUME;
         }
     }
@@ -54,7 +55,7 @@ public class SawBenchBlock extends StonecutterBlock
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity)
     {
         if (entity instanceof LivingEntity)
-            entity.hurt(PlusExtras.SAW_BLADE_DAMAGE_SOURCE, Plus.CONFIG_SERVER.sawBladeDamage.get().floatValue());
+            entity.hurt(PlusDamageSources.SAW_BLADE_DAMAGE_SOURCE, Plus.CONFIG_SERVER.sawBladeDamage.get().floatValue());
         super.entityInside(state, level, pos, entity);
     }
 }
