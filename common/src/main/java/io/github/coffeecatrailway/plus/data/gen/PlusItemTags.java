@@ -10,6 +10,7 @@ import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 
@@ -19,24 +20,24 @@ import net.minecraft.world.item.Items;
  */
 public class PlusItemTags extends PollinatedItemTagsProvider
 {
-    public static final Tag.Named<Item> ROSE_GOLD_BLOCKS_FABRIC = TagRegistry.bindItem(new ResourceLocation("c", "rose_gold_blocks"));
-    public static final Tag.Named<Item> INGOTS_ROSE_GOLD_FABRIC = TagRegistry.bindItem(new ResourceLocation("c", "rose_gold_ingots"));
-    public static final Tag.Named<Item> NUGGETS_ROSE_GOLD_FABRIC = TagRegistry.bindItem(new ResourceLocation("c", "rose_gold_nuggets"));
+    public static final TagKey<Item> ROSE_GOLD_BLOCKS_FABRIC = TagRegistry.bindItem(new ResourceLocation("c", "rose_gold_blocks"));
+    public static final TagKey<Item> INGOTS_ROSE_GOLD_FABRIC = TagRegistry.bindItem(new ResourceLocation("c", "rose_gold_ingots"));
+    public static final TagKey<Item> NUGGETS_ROSE_GOLD_FABRIC = TagRegistry.bindItem(new ResourceLocation("c", "rose_gold_nuggets"));
 
-    public static final Tag.Named<Item> STORAGE_BLOCK_ROSE_GOLD = TagRegistry.bindItem(new ResourceLocation("forge", "storage_blocks/rose_gold"));
-    public static final Tag.Named<Item> INGOTS_ROSE_GOLD_FORGE = TagRegistry.bindItem(new ResourceLocation("forge", "ingots/rose_gold"));
-    public static final Tag.Named<Item> NUGGETS_ROSE_GOLD_FORGE = TagRegistry.bindItem(new ResourceLocation("forge", "nuggets/rose_gold"));
+    public static final TagKey<Item> STORAGE_BLOCK_ROSE_GOLD = TagRegistry.bindItem(new ResourceLocation("forge", "storage_blocks/rose_gold"));
+    public static final TagKey<Item> INGOTS_ROSE_GOLD_FORGE = TagRegistry.bindItem(new ResourceLocation("forge", "ingots/rose_gold"));
+    public static final TagKey<Item> NUGGETS_ROSE_GOLD_FORGE = TagRegistry.bindItem(new ResourceLocation("forge", "nuggets/rose_gold"));
 
-    public static final Tag.Named<Item> INGOTS_IRON_FABRIC = TagRegistry.bindItem(new ResourceLocation("c", "iron_ingots"));
-    public static final Tag.Named<Item> NUGGETS_IRON_FABRIC = TagRegistry.bindItem(new ResourceLocation("c", "iron_nuggets"));
+    public static final TagKey<Item> INGOTS_IRON_FABRIC = TagRegistry.bindItem(new ResourceLocation("c", "iron_ingots"));
+    public static final TagKey<Item> NUGGETS_IRON_FABRIC = TagRegistry.bindItem(new ResourceLocation("c", "iron_nuggets"));
 
-    public static final Tag.Named<Item> INGOTS_FORGE = TagRegistry.bindItem(new ResourceLocation("forge", "ingots"));
-    public static final Tag.Named<Item> NUGGETS_FORGE = TagRegistry.bindItem(new ResourceLocation("forge", "nuggets"));
-    public static final Tag.Named<Item> INGOTS_IRON_FORGE = TagRegistry.bindItem(new ResourceLocation("forge", "ingots/iron"));
-    public static final Tag.Named<Item> NUGGETS_IRON_FORGE = TagRegistry.bindItem(new ResourceLocation("forge", "nuggets/iron"));
+    public static final TagKey<Item> INGOTS_FORGE = TagRegistry.bindItem(new ResourceLocation("forge", "ingots"));
+    public static final TagKey<Item> NUGGETS_FORGE = TagRegistry.bindItem(new ResourceLocation("forge", "nuggets"));
+    public static final TagKey<Item> INGOTS_IRON_FORGE = TagRegistry.bindItem(new ResourceLocation("forge", "ingots/iron"));
+    public static final TagKey<Item> NUGGETS_IRON_FORGE = TagRegistry.bindItem(new ResourceLocation("forge", "nuggets/iron"));
 
-    public static final Tag.Named<Item> NECKLACE_CURIOS = TagRegistry.bindItem(new ResourceLocation("curios", "necklace"));
-    public static final Tag.Named<Item> NECKLACE_TRINKETS = TagRegistry.bindItem(new ResourceLocation("trinkets", "chest/necklace"));
+    public static final TagKey<Item> NECKLACE_CURIOS = TagRegistry.bindItem(new ResourceLocation("curios", "necklace"));
+    public static final TagKey<Item> NECKLACE_TRINKETS = TagRegistry.bindItem(new ResourceLocation("trinkets", "chest/necklace"));
 
     public PlusItemTags(DataGenerator generator, PollinatedModContainer container, BlockTagsProvider blockTags)
     {
@@ -61,8 +62,8 @@ public class PlusItemTags extends PollinatedItemTagsProvider
         this.tag(INGOTS_ROSE_GOLD_FABRIC).addTag(INGOTS_ROSE_GOLD_FORGE);
         this.tag(NUGGETS_ROSE_GOLD_FABRIC).addTag(NUGGETS_ROSE_GOLD_FORGE);
 
-        this.tag(INGOTS_IRON_FABRIC).addOptionalTag(INGOTS_IRON_FORGE.getName()).add(Items.IRON_INGOT);
-        this.tag(NUGGETS_IRON_FABRIC).addOptionalTag(NUGGETS_IRON_FORGE.getName()).add(Items.IRON_NUGGET);
+        this.tag(INGOTS_IRON_FABRIC).addOptionalTag(INGOTS_IRON_FORGE.location()).add(Items.IRON_INGOT);
+        this.tag(NUGGETS_IRON_FABRIC).addOptionalTag(NUGGETS_IRON_FORGE.location()).add(Items.IRON_NUGGET);
 
         this.tag(NECKLACE_CURIOS).add(PlusItems.WARMTH_AMULET.get());
         this.tag(NECKLACE_TRINKETS).addTag(NECKLACE_CURIOS);

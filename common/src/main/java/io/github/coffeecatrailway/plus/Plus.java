@@ -13,10 +13,6 @@ import io.github.coffeecatrailway.plus.data.gen.PlusItemModels;
 import io.github.coffeecatrailway.plus.data.gen.PlusItemTags;
 import io.github.coffeecatrailway.plus.data.gen.PlusLanguage;
 import io.github.coffeecatrailway.plus.registry.*;
-import me.shedaniel.autoconfig.AutoConfig;
-import me.shedaniel.autoconfig.ConfigHolder;
-import me.shedaniel.autoconfig.serializer.PartitioningSerializer;
-import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
@@ -28,8 +24,8 @@ public class Plus
     public static final String MOD_ID = "plus";
     public static PlusConfig.Server CONFIG_SERVER = ConfigManager.register(MOD_ID, PollinatedConfigType.SERVER, PlusConfig.Server::new);
     public static final Platform PLATFORM = Platform.builder(MOD_ID)
-            .clientInit(Plus::onClientInit)
-            .clientPostInit(Plus::onClientPostInit)
+            .clientInit(() -> Plus::onClientInit)
+            .clientPostInit(() -> Plus::onClientPostInit)
             .commonInit(Plus::onCommonInit)
             .commonPostInit(Plus::onCommonPostInit)
             .dataInit(Plus::onDataInit)
@@ -51,17 +47,16 @@ public class Plus
 
     public static void onCommonInit()
     {
-        PlusBlocks.load(PLATFORM);
         PlusItems.load(PLATFORM);
+        PlusBlocks.load(PLATFORM);
         PlusEnchantments.load(PLATFORM);
         PlusMenuTypes.load(PLATFORM);
         PlusRecipes.load(PLATFORM);
-
-        PlusExtras.load();
     }
 
     public static void onCommonPostInit(Platform.ModSetupContext ctx)
     {
+        ctx.enqueueWork(() -> PlusExtras.load(PLATFORM));
         TickEvent.LIVING_POST.register(entity -> {
             BlockState state = entity.level.getBlockState(entity.blockPosition());
             if (!state.is(Blocks.STONECUTTER))

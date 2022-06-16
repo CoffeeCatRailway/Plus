@@ -10,6 +10,7 @@ import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -162,7 +163,7 @@ public class PlusRecipeProvider extends RecipeProvider
                     .unlockedBy(getHasName(ingot), has(ingot)).save(consumer, Plus.getLocation(getItemName(block) + "_from_" + getItemName(ingot)));
     }
 
-    private static void sawBenchRecipes(Consumer<FinishedRecipe> consumer, String woodName, Block log, Block wood, Tag.Named<Item> logTag, Block strippedLog, Block strippedWood, Block planks, Block stairs, Block slab,
+    private static void sawBenchRecipes(Consumer<FinishedRecipe> consumer, String woodName, Block log, Block wood, TagKey<Item> logTag, Block strippedLog, Block strippedWood, Block planks, Block stairs, Block slab,
                                         Block fence, Block fenceGate, Block button, Block pressurePlate, Block door, Block trapDoor, Block sign)
     {
         Ingredient planksIngredient = Ingredient.of(planks);
@@ -189,15 +190,5 @@ public class PlusRecipeProvider extends RecipeProvider
     private static SingleItemRecipeBuilder sawBench(Ingredient ingredient, ItemLike result, int count)
     {
         return new SingleItemRecipeBuilder(PlusRecipes.SAW_BENCH_SERIALIZER.get(), ingredient, result, count);
-    }
-
-    private static String getHasName(ItemLike arg)
-    {
-        return "has_" + getItemName(arg);
-    }
-
-    private static String getItemName(ItemLike arg)
-    {
-        return ForgeRegistries.ITEMS.getKey(arg.asItem()).getPath();
     }
 }

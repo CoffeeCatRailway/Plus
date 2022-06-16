@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[39,)"
+loaderVersion = "[40,)"
 issueTrackerURL = "https://github.com/CoffeeCatRailway/Plus/issues"
 license = "GPLv3"
 
@@ -21,21 +21,21 @@ logoFile = "icon.png"
 [[dependencies.${id}]]
 modId = "forge"
 mandatory = true
-versionRange = "[39,)"
+versionRange = "[40,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.${id}]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.18,)"
+versionRange = "[1.18.2]"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.${id}]]
 modId = "pollen"
 mandatory = true
-versionRange = "[1.0,)"
+versionRange = "[1.4,)"
 ordering = "BEFORE"
 side = "BOTH"
 
@@ -49,6 +49,6 @@ side = "BOTH"
 [[dependencies.${id}]]
 modId = "curios"
 mandatory = false
-versionRange = "[1.18.1-5,)"
+versionRange = "[1.18.2-5,)"
 ordering = "BEFORE"
 side = "BOTH"

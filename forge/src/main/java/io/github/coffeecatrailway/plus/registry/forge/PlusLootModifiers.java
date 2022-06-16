@@ -17,7 +17,7 @@ import org.apache.logging.log4j.Logger;
 public class PlusLootModifiers
 {
     private static final Logger LOGGER = LogManager.getLogger();
-    protected static final DeferredRegister<GlobalLootModifierSerializer<?>> LOOT_MODIFIERS = DeferredRegister.create(ForgeRegistries.LOOT_MODIFIER_SERIALIZERS, Plus.MOD_ID);
+    protected static final DeferredRegister<GlobalLootModifierSerializer<?>> LOOT_MODIFIERS = DeferredRegister.create(ForgeRegistries.Keys.LOOT_MODIFIER_SERIALIZERS, Plus.MOD_ID);
 
     public static final RegistryObject<PlusLootModifier.Serializer> POOL_LOOT = LOOT_MODIFIERS.register("pool_loot", PlusLootModifier.Serializer::new);
 

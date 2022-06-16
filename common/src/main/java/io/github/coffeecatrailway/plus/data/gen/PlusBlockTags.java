@@ -8,6 +8,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
@@ -17,12 +18,12 @@ import net.minecraft.world.level.block.Blocks;
  */
 public class PlusBlockTags extends PollinatedBlockTagsProvider
 {
-    public static final Tag.Named<Block> BASALT = TagRegistry.bindBlock(new ResourceLocation("forge", "basalt"));
-    public static final Tag.Named<Block> STORAGE_BLOCKS = TagRegistry.bindBlock(new ResourceLocation("forge", "storage_blocks"));
-    public static final Tag.Named<Block> STORAGE_BLOCK_ROSE_GOLD = TagRegistry.bindBlock(new ResourceLocation("forge", "storage_blocks/rose_gold"));
+    public static final TagKey<Block> BASALT = TagRegistry.bindBlock(new ResourceLocation("forge", "basalt"));
+    public static final TagKey<Block> STORAGE_BLOCKS = TagRegistry.bindBlock(new ResourceLocation("forge", "storage_blocks"));
+    public static final TagKey<Block> STORAGE_BLOCK_ROSE_GOLD = TagRegistry.bindBlock(new ResourceLocation("forge", "storage_blocks/rose_gold"));
 
-    public static final Tag.Named<Block> BASALT_FABRIC = TagRegistry.bindBlock(new ResourceLocation("c", "basalt"));
-    public static final Tag.Named<Block> ROSE_GOLD_BLOCKS_FABRIC = TagRegistry.bindBlock(new ResourceLocation("c", "rose_gold_blocks"));
+    public static final TagKey<Block> BASALT_FABRIC = TagRegistry.bindBlock(new ResourceLocation("c", "basalt"));
+    public static final TagKey<Block> ROSE_GOLD_BLOCKS_FABRIC = TagRegistry.bindBlock(new ResourceLocation("c", "rose_gold_blocks"));
 
     public PlusBlockTags(DataGenerator generator, PollinatedModContainer container)
     {

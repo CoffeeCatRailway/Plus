@@ -64,7 +64,7 @@ public class HeatWalkerEnchantment extends Enchantment
 
         for (BlockPos pos : BlockPos.betweenClosed(entityPos.offset(-size, -1d, -size), entityPos.offset(size, -1d, size)))
         {
-            if (pos.closerThan(entity.position(), size))
+            if (pos.closerToCenterThan(entity.position(), size))
             {
                 mutablePos.set(pos.getX(), pos.getY() + 1, pos.getZ());
                 BlockState state = level.getBlockState(mutablePos);
