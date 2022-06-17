@@ -10,6 +10,7 @@ import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -43,15 +44,23 @@ public class SawBenchCategory implements IRecipeCategory<SawBenchRecipe>
     }
 
     @Override
-    public ResourceLocation getUid()
+    public RecipeType<SawBenchRecipe> getRecipeType()
     {
-        return PlusJEIPlugin.SAW_BENCH_UID;
+        return PlusJEIPlugin.SAW_BENCH;
     }
 
+    @SuppressWarnings("removal")
+    @Override
+    public ResourceLocation getUid()
+    {
+        return this.getRecipeType().getUid();
+    }
+
+    @SuppressWarnings("removal")
     @Override
     public Class<? extends SawBenchRecipe> getRecipeClass()
     {
-        return SawBenchRecipe.class;
+        return this.getRecipeType().getRecipeClass();
     }
 
     @Override
