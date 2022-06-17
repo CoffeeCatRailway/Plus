@@ -16,7 +16,7 @@ import java.util.function.Supplier;
  * @author CoffeeCatRailway
  * Created: 27/09/2021
  */
-public class PlusMenuTypes
+public class PlusMenus
 {
     private static final Logger LOGGER = LogManager.getLogger();
     protected static final PollinatedRegistry<MenuType<?>> MENUS = PollinatedRegistry.create(Registry.MENU, Plus.MOD_ID);

@@ -38,7 +38,7 @@ public class Plus
     public static void onClientPostInit(Platform.ModSetupContext ctx)
     {
         ctx.enqueueWork(() -> {
-            ScreenRegistry.register(PlusMenuTypes.SAW_BENCH.get(), SawBenchScreen::new);
+            ScreenRegistry.register(PlusMenus.SAW_BENCH.get(), SawBenchScreen::new);
         });
 
         RenderTypeRegistry.register(PlusBlocks.SAW_BENCH.get(), RenderType.cutoutMipped());
@@ -49,12 +49,11 @@ public class Plus
     {
         PlusItems.load(PLATFORM);
         PlusBlocks.load(PLATFORM);
-        PlusEnchantments.load(PLATFORM);
-        PlusMenuTypes.load(PLATFORM);
         PlusRecipes.load(PLATFORM);
-
-        PlusDamageSources.load();
         PlusStats.Localize.load();
+        PlusDamageSources.load();
+        PlusEnchantments.load(PLATFORM);
+        PlusMenus.load(PLATFORM);
     }
 
     public static void onCommonPostInit(Platform.ModSetupContext ctx)

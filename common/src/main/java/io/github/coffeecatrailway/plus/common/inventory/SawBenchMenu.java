@@ -3,7 +3,7 @@ package io.github.coffeecatrailway.plus.common.inventory;
 import com.google.common.collect.Lists;
 import io.github.coffeecatrailway.plus.common.item.crafting.SawBenchRecipe;
 import io.github.coffeecatrailway.plus.registry.PlusBlocks;
-import io.github.coffeecatrailway.plus.registry.PlusMenuTypes;
+import io.github.coffeecatrailway.plus.registry.PlusMenus;
 import io.github.coffeecatrailway.plus.registry.PlusRecipes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -55,7 +55,7 @@ public class SawBenchMenu extends AbstractContainerMenu
 
     public SawBenchMenu(int id, Inventory inventory, ContainerLevelAccess access)
     {
-        super(PlusMenuTypes.SAW_BENCH.get(), id);
+        super(PlusMenus.SAW_BENCH.get(), id);
         this.access = access;
         this.level = inventory.player.level;
         this.inputSlot = this.addSlot(new Slot(this.container, 0, 20, 33));
@@ -175,7 +175,7 @@ public class SawBenchMenu extends AbstractContainerMenu
     @Override
     public MenuType<?> getType()
     {
-        return PlusMenuTypes.SAW_BENCH.get();
+        return PlusMenus.SAW_BENCH.get();
     }
 
     public void registerUpdateListener(Runnable listener)
