@@ -70,19 +70,19 @@ public class PlusItems
 
     protected static <T extends Item> Supplier<T> registerIdAsName(String id, Function<Item.Properties, T> factory)
     {
-        return registerWithName(id, PlusLanguage.capitalize(id), factory);
+        return registerWithName(id, null, factory);
     }
 
-    private static <T extends Item> Supplier<T> registerWithName(String id, String name, Function<Item.Properties, T> factory)
+    private static <T extends Item> Supplier<T> registerWithName(String id, @Nullable String name, Function<Item.Properties, T> factory)
     {
         return register(id, name, true, factory);
     }
 
-    private static <T extends Item> Supplier<T> register(String id, String name, boolean addLang, Function<Item.Properties, T> factory)
+    private static <T extends Item> Supplier<T> register(String id, @Nullable String name, boolean addLang, Function<Item.Properties, T> factory)
     {
         Supplier<T> object = ITEMS.register(id, () -> factory.apply(new Item.Properties()));
         if (addLang)
-            PlusLanguage.ITEMS.put(object, name);
+            PlusLanguage.ITEMS.put(object, name == null ? PlusLanguage.capitalize(id) : name);
         return object;
     }
 
