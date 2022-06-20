@@ -1,38 +1,52 @@
 {
-  "schemaVersion": 1,
-  "id": "${id}",
-  "version": "${version}",
-  "name": "${name}",
-  "icon": "icon.png",
-  "description": "Minceraft plus some stuffs!\nDisclaimer: I only upload to https://www.curseforge.com & https://modrinth.com",
-  "authors": [ "CoffeeCatRailway" ],
-  "contributors": [ "Nyctoniac" ],
-  "contact": {
-    "homepage": "https://discord.com/invite/JM4NjRzZPS",
-	"issues": "https://github.com/CoffeeCatRailway/Plus/issues",
-    "sources": "https://github.com/CoffeeCatRailway/Plus/"
-  },
-  "license": "GPLv3",
-  "environment": "*",
-  "mixins": [
-    "${id}-common.mixins.json",
-    "${id}.mixins.json"
-  ],
-  "entrypoints": {
-    "main": [
-      "io.github.coffeecatrailway.plus.fabric.PlusFabric"
+    "schemaVersion": 1,
+    "id": "${id}",
+    "version": "${version}",
+    "name": "${name}",
+    "icon": "icon.png",
+    "description": "Minceraft plus some stuffs!\nDisclaimer: I only upload to https://www.curseforge.com & https://modrinth.com",
+    "authors": [
+        "CoffeeCatRailway"
     ],
-    "client": [
-      "io.github.coffeecatrailway.plus.fabric.PlusFabricClient"
+    "contributors": [
+        "Nyctoniac"
     ],
-    "rei": [
-      "io.github.coffeecatrailway.plus.integration.fabric.rei.PlusREIPlugin",
-      "io.github.coffeecatrailway.plus.integration.fabric.rei.client.PlusREIClientPlugin"
-    ]
-  },
-  "depends": {
-    "fabric": "*",
-    "minecraft": "1.18.2",
-    "pollen": "1.4.x"
-  }
+    "contact": {
+        "homepage": "https://discord.com/invite/JM4NjRzZPS",
+        "issues": "https://github.com/CoffeeCatRailway/Plus/issues",
+        "sources": "https://github.com/CoffeeCatRailway/Plus/"
+    },
+    "license": "GPLv3",
+    "environment": "*",
+    "mixins": [
+        "${id}-common.mixins.json",
+        "${id}.mixins.json"
+    ],
+    "entrypoints": {
+        "main": [
+            "io.github.coffeecatrailway.plus.fabric.PlusFabric"
+        ],
+        "client": [
+            "io.github.coffeecatrailway.plus.fabric.PlusFabricClient"
+        ],
+        "fabric-datagen": [
+            "io.github.coffeecatrailway.plus.data.gen.fabric.PlusDataEntryPoint"
+        ],
+        "rei": [
+            "io.github.coffeecatrailway.plus.integration.fabric.rei.PlusREIPlugin",
+            "io.github.coffeecatrailway.plus.integration.fabric.rei.client.PlusREIClientPlugin"
+        ]
+    },
+    "depends": {
+        "fabric": "*",
+        "minecraft": "1.18.2",
+        "pollen": "1.4.x"
+    },
+    "custom": {
+        "modmenu": {
+            "links": {
+                "modmenu.discord": "https://discord.gg/GkeexxWnyz"
+            }
+        }
+    }
 }

@@ -8,10 +8,7 @@ import gg.moonflower.pollen.api.registry.client.RenderTypeRegistry;
 import gg.moonflower.pollen.api.registry.client.ScreenRegistry;
 import gg.moonflower.pollen.api.util.PollinatedModContainer;
 import io.github.coffeecatrailway.plus.client.gui.SawBenchScreen;
-import io.github.coffeecatrailway.plus.data.gen.PlusBlockTags;
-import io.github.coffeecatrailway.plus.data.gen.PlusItemModels;
-import io.github.coffeecatrailway.plus.data.gen.PlusItemTags;
-import io.github.coffeecatrailway.plus.data.gen.PlusLanguage;
+import io.github.coffeecatrailway.plus.data.gen.*;
 import io.github.coffeecatrailway.plus.registry.*;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.data.DataGenerator;
@@ -70,13 +67,15 @@ public class Plus
 
     public static void onDataInit(Platform.DataSetupContext ctx)
     {
-        DataGenerator generator = ctx.getGenerator(); // TODO: Convert to fabric
+        DataGenerator generator = ctx.getGenerator();
         PollinatedModContainer container = ctx.getMod();
         PlusBlockTags blockTags = new PlusBlockTags(generator, container);
         generator.addProvider(blockTags);
         generator.addProvider(new PlusItemTags(generator, container, blockTags));
-        generator.addProvider(new PlusItemModels(generator, container));
+        generator.addProvider(new PlusModels(generator, container));
         generator.addProvider(new PlusLanguage(generator, container));
+        generator.addProvider(new PlusRecipeProvider(generator));
+        generator.addProvider(new PlusLootTableProvider(generator));
     }
 
     public static ResourceLocation getLocation(String path)

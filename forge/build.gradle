@@ -24,19 +24,23 @@ loom {
         convertAccessWideners.set(true)
         extraAccessWideners.add("${project.modId}.accesswidener")
 
-        dataGen {
-            mod project.modId
-        }
-        launches {
-            data {
-                arg "--existing", project(":common").file("src/main/resources/").absolutePath
-            }
-        }
+//        dataGen {
+//            mod project.modId
+//        }
+//        launches {
+//            data {
+//                arg "--existing", project(":common").file("src/main/resources/").absolutePath
+//            }
+//        }
     }
 
     mixin {
         defaultRefmapName = "${project.modId}-refmap.json"
     }
+}
+
+sourceSets.main.resources {
+    srcDir project(":fabric").file("src/generated/resources/")
 }
 
 architectury {
@@ -53,11 +57,11 @@ configurations {
 }
 
 repositories {
-    maven {
+    maven { // JustEnoughItems
         name = "Progwml6 (Just Enough Items)"
         url = "https://dvs1.progwml6.com/files/maven/"
     }
-    maven {
+    maven { // JustEnoughItems fallback
         name = "JustEnoughItems fallback"
         url = "https://modmaven.k-4u.nl"
     }

@@ -1,44 +1,36 @@
-package io.github.coffeecatrailway.plus.data.gen.forge;
+package io.github.coffeecatrailway.plus.data.gen.loot;
 
-import com.google.common.collect.ImmutableList;
-import com.mojang.datafixers.util.Pair;
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 import io.github.coffeecatrailway.plus.Plus;
-import io.github.coffeecatrailway.plus.registry.PlusBlocks;
 import io.github.coffeecatrailway.plus.registry.PlusItems;
 import net.minecraft.advancements.critereon.EntityFlagsPredicate;
 import net.minecraft.advancements.critereon.EntityPredicate;
-import net.minecraft.advancements.critereon.EntityTypePredicate;
 import net.minecraft.advancements.critereon.NbtPredicate;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.loot.BlockLoot;
-import net.minecraft.data.loot.ChestLoot;
-import net.minecraft.data.loot.EntityLoot;
-import net.minecraft.data.loot.LootTableProvider;
+import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.world.level.storage.loot.ValidationContext;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolSingletonContainer;
 import net.minecraft.world.level.storage.loot.functions.LootingEnchantFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.functions.SmeltItemFunction;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
-import net.minecraft.world.level.storage.loot.predicates.*;
+import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.NumberProvider;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
-import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -46,44 +38,20 @@ import java.util.stream.Collectors;
 
 /**
  * @author CoffeeCatRailway
- * Created: 17/03/2021
+ * Created: 17/06/2022
+ * <p>
+ * Based on {@link net.minecraft.data.loot.EntityLoot}
  */
-public class PlusLootTables extends LootTableProvider
+public class PlusEntityLoot implements Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>
 {
-    private final List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> tables = ImmutableList.of(
-            Pair.of(ChestProvider::new, LootContextParamSets.CHEST),
-            Pair.of(EntityProvider::new, LootContextParamSets.ENTITY),
-            Pair.of(BlockProvider::new, LootContextParamSets.BLOCK));
+    private static final EntityPredicate.Builder ENTITY_ON_FIRE = EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setOnFire(true).build());
 
-    public PlusLootTables(DataGenerator generator)
-    {
-        super(generator);
-    }
+    private static final Set<EntityType<?>> SPECIAL_LOOT_TABLE_TYPES = ImmutableSet.of(EntityType.PLAYER, EntityType.ARMOR_STAND, EntityType.IRON_GOLEM, EntityType.SNOW_GOLEM, EntityType.VILLAGER);
+    private final Map<ResourceLocation, LootTable.Builder> map = Maps.newHashMap();
 
     @Override
-    protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> getTables()
+    public void accept(BiConsumer<ResourceLocation, LootTable.Builder> consumer)
     {
-        return this.tables;
-    }
-
-    @Override
-    protected void validate(Map<ResourceLocation, LootTable> map, ValidationContext validationtracker)
-    {
-    }
-
-    private static class ChestProvider extends ChestLoot
-    {
-        @Override
-        public void accept(BiConsumer<ResourceLocation, LootTable.Builder> registry)
-        {
-        }
-    }
-
-    private static class EntityProvider extends EntityLoot
-    {
-        @Override
-        protected void addTables()
-        {
             CompoundTag redFoxTag = new CompoundTag();
             redFoxTag.putString("Type", "red");
             CompoundTag snowFoxTag = new CompoundTag();
@@ -122,41 +90,52 @@ public class PlusLootTables extends LootTableProvider
                     .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1f))
                             .add(LootItem.lootTableItem(PlusItems.WARMTH_CRYSTAL.get())
                                     .when(LootItemRandomChanceCondition.randomChance(.5f)))));
+
+        Set<ResourceLocation> set = Sets.newHashSet();
+        Set<ResourceLocation> entityTypeKeys = Registry.ENTITY_TYPE.keySet().stream().filter(entityType -> Plus.MOD_ID.equals(entityType.getNamespace())).collect(Collectors.toSet());
+        for (ResourceLocation entityTypeKey : entityTypeKeys)
+        {
+            EntityType<?> entityType = Registry.ENTITY_TYPE.get(entityTypeKey);
+            ResourceLocation resourcelocation = entityType.getDefaultLootTable();
+            if (this.isNonLiving(entityType))
+            {
+                if (resourcelocation != BuiltInLootTables.EMPTY && this.map.remove(resourcelocation) != null)
+                    throw new IllegalStateException(String.format("Weird loottable '%s' for '%s', not a LivingEntity so should not have loot", resourcelocation, entityTypeKey));
+            } else if (resourcelocation != BuiltInLootTables.EMPTY && set.add(resourcelocation))
+            {
+                LootTable.Builder loottable$builder = this.map.remove(resourcelocation);
+                if (loottable$builder == null)
+                    throw new IllegalStateException(String.format("Missing loottable '%s' for '%s'", resourcelocation, entityTypeKey));
+
+                consumer.accept(resourcelocation, loottable$builder);
+            }
         }
 
-        @Override
-        protected Iterable<EntityType<?>> getKnownEntities()
-        {
-            return ForgeRegistries.ENTITIES.getValues().stream().filter(entityType -> entityType.getRegistryName() != null && Plus.MOD_ID.equals(entityType.getRegistryName().getNamespace())).collect(Collectors.toSet());
-        }
-
-        private static LootPoolSingletonContainer.Builder<?> cookableLootItem(Supplier<Item> item, NumberProvider provider, boolean allowLooting)
-        {
-            LootPoolSingletonContainer.Builder<?> builder = LootItem.lootTableItem(item.get())
-                    .apply(SetItemCountFunction.setCount(provider))
-                    .apply(SmeltItemFunction.smelted().when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE)));
-            if (allowLooting)
-                builder = builder.apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0f, 1f)));
-            return builder;
-        }
+        this.map.forEach(consumer);
     }
 
-    private static class BlockProvider extends BlockLoot
+    protected boolean isNonLiving(EntityType<?> entityType)
     {
-        @Override
-        protected void addTables()
-        {
-            this.add(PlusBlocks.BRITTLE_BASALT.get(), noDrop());
-            this.dropSelf(PlusBlocks.SAW_BENCH.get());
-            this.dropSelf(PlusBlocks.RAW_ROSE_GOLD_BLOCK.get());
-            this.dropSelf(PlusBlocks.ROSE_GOLD_BLOCK.get());
-            this.dropSelf(PlusBlocks.GLOW_LANTERN.get());
-        }
+        return !SPECIAL_LOOT_TABLE_TYPES.contains(entityType) && entityType.getCategory() == MobCategory.MISC;
+    }
 
-        @Override
-        protected Iterable<Block> getKnownBlocks()
-        {
-            return ForgeRegistries.BLOCKS.getValues().stream().filter(entityType -> entityType.getRegistryName() != null && Plus.MOD_ID.equals(entityType.getRegistryName().getNamespace())).collect(Collectors.toSet());
-        }
+//    private void add(EntityType<?> entityType, LootTable.Builder builder)
+//    {
+//        this.add(entityType.getDefaultLootTable(), builder);
+//    }
+
+    private void add(ResourceLocation resourceLocation, LootTable.Builder builder)
+    {
+        this.map.put(resourceLocation, builder);
+    }
+
+    private static LootPoolSingletonContainer.Builder<?> cookableLootItem(Supplier<Item> item, NumberProvider provider, boolean allowLooting)
+    {
+        LootPoolSingletonContainer.Builder<?> builder = LootItem.lootTableItem(item.get())
+                .apply(SetItemCountFunction.setCount(provider))
+                .apply(SmeltItemFunction.smelted().when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE)));
+        if (allowLooting)
+            builder = builder.apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0f, 1f)));
+        return builder;
     }
 }

@@ -17,7 +17,7 @@ loom {
 }
 
 sourceSets.main.resources {
-    srcDir project(":forge").file("src/generated/resources").absolutePath
+    srcDir project(":fabric").file("src/generated/resources").absolutePath
 }
 
 publishing {

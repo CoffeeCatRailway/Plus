@@ -4,7 +4,9 @@ import gg.moonflower.pollen.api.datagen.provider.tags.PollinatedBlockTagsProvide
 import gg.moonflower.pollen.api.registry.resource.TagRegistry;
 import gg.moonflower.pollen.api.util.PollinatedModContainer;
 import io.github.coffeecatrailway.plus.registry.PlusBlocks;
+import net.minecraft.core.Registry;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.Tag;
@@ -18,12 +20,12 @@ import net.minecraft.world.level.block.Blocks;
  */
 public class PlusBlockTags extends PollinatedBlockTagsProvider
 {
-    public static final TagKey<Block> BASALT = TagRegistry.bindBlock(new ResourceLocation("forge", "basalt"));
-    public static final TagKey<Block> STORAGE_BLOCKS = TagRegistry.bindBlock(new ResourceLocation("forge", "storage_blocks"));
-    public static final TagKey<Block> STORAGE_BLOCK_ROSE_GOLD = TagRegistry.bindBlock(new ResourceLocation("forge", "storage_blocks/rose_gold"));
+    public static final TagKey<Block> BASALT = bind(new ResourceLocation("forge", "basalt"));
+    public static final TagKey<Block> STORAGE_BLOCKS = bind(new ResourceLocation("forge", "storage_blocks"));
+    public static final TagKey<Block> STORAGE_BLOCK_ROSE_GOLD = bind(new ResourceLocation("forge", "storage_blocks/rose_gold"));
 
-    public static final TagKey<Block> BASALT_FABRIC = TagRegistry.bindBlock(new ResourceLocation("c", "basalt"));
-    public static final TagKey<Block> ROSE_GOLD_BLOCKS_FABRIC = TagRegistry.bindBlock(new ResourceLocation("c", "rose_gold_blocks"));
+    public static final TagKey<Block> BASALT_FABRIC = bind(new ResourceLocation("c", "basalt"));
+    public static final TagKey<Block> ROSE_GOLD_BLOCKS_FABRIC = bind(new ResourceLocation("c", "rose_gold_blocks"));
 
     public PlusBlockTags(DataGenerator generator, PollinatedModContainer container)
     {
@@ -46,5 +48,10 @@ public class PlusBlockTags extends PollinatedBlockTagsProvider
         this.tag(BlockTags.MINEABLE_WITH_AXE).add(PlusBlocks.SAW_BENCH.get());
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(PlusBlocks.RAW_ROSE_GOLD_BLOCK.get(), PlusBlocks.ROSE_GOLD_BLOCK.get(), PlusBlocks.BRITTLE_BASALT.get());
         this.tag(BlockTags.NEEDS_IRON_TOOL).add(PlusBlocks.RAW_ROSE_GOLD_BLOCK.get(), PlusBlocks.ROSE_GOLD_BLOCK.get());
+    }
+    
+    private static TagKey<Block> bind(ResourceLocation location)
+    {
+        return TagKey.create(Registry.BLOCK_REGISTRY, location);
     }
 }

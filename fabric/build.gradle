@@ -12,8 +12,13 @@ architectury {
     fabric()
 }
 
+def generatedResources = project(":fabric").file("src/generated/resources/")
+def accessWidenerFile  = project(":common").file("src/main/resources/${project.modId}.accesswidener")
+
 loom {
-    accessWidenerPath.set(project(":common").file("src/main/resources/${project.modId}.accesswidener"))
+    mixin {
+        defaultRefmapName = "${project.modId}-refmap.json"
+    }
 
     runConfigs.configureEach {
         if (name == "client")
@@ -22,9 +27,21 @@ loom {
             runDir = "../run/server-fabric"
     }
 
-    mixin {
-        defaultRefmapName = "${project.modId}-refmap.json"
+    runs {
+        datagen {
+            client()
+
+            name "Minecraft Data"
+            vmArg "-Dfabric-api.datagen"
+            vmArg "-Dfabric-api.datagen.output-dir=${generatedResources.absolutePath}"
+            vmArg "-Dfabric-api.datagen.modid=${project.modId}"
+        }
     }
+    accessWidenerPath.set(accessWidenerFile)
+}
+
+sourceSets.main.resources {
+    srcDir generatedResources
 }
 
 configurations {
@@ -59,6 +76,11 @@ dependencies {
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
+}
+
+task copyAccessWidener(type: Copy) {
+    from(accessWidenerFile)
+    into(generatedResources)
 }
 
 processResources {

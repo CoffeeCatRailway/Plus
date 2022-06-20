@@ -1,15 +1,15 @@
-package io.github.coffeecatrailway.plus.data.gen.forge;
+package io.github.coffeecatrailway.plus.data.gen;
 
+import gg.moonflower.pollen.api.datagen.provider.PollinatedRecipeProvider;
 import io.github.coffeecatrailway.plus.Plus;
-import io.github.coffeecatrailway.plus.data.gen.PlusItemTags;
 import io.github.coffeecatrailway.plus.registry.PlusBlocks;
 import io.github.coffeecatrailway.plus.registry.PlusItems;
 import io.github.coffeecatrailway.plus.registry.PlusRecipes;
+import net.minecraft.core.Registry;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.Tag;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -18,7 +18,6 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Consumer;
 
@@ -26,7 +25,7 @@ import java.util.function.Consumer;
  * @author CoffeeCatRailway
  * Created: 26/09/2021
  */
-public class PlusRecipeProvider extends RecipeProvider
+public class PlusRecipeProvider extends PollinatedRecipeProvider
 {
     public PlusRecipeProvider(DataGenerator generator)
     {
@@ -34,7 +33,7 @@ public class PlusRecipeProvider extends RecipeProvider
     }
 
     @Override
-    protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer)
+    protected void buildRecipes(Consumer<FinishedRecipe> consumer)
     {
         ShapedRecipeBuilder.shaped(PlusItems.FOX_HAT.get()).define('f', PlusItems.FOX_FUR.get()).pattern("fff").pattern("f f").pattern(" f ").unlockedBy("has_fur", has(PlusItems.FOX_FUR.get())).save(consumer);
         ShapedRecipeBuilder.shaped(PlusItems.SNOW_FOX_HAT.get()).define('f', PlusItems.SNOW_FOX_FUR.get()).pattern("fff").pattern("f f").pattern(" f ").unlockedBy("has_fur", has(PlusItems.SNOW_FOX_FUR.get())).save(consumer);
@@ -161,6 +160,16 @@ public class PlusRecipeProvider extends RecipeProvider
         else
             ShapedRecipeBuilder.shaped(block).define('#', ingot).pattern("##").pattern("##")
                     .unlockedBy(getHasName(ingot), has(ingot)).save(consumer, Plus.getLocation(getItemName(block) + "_from_" + getItemName(ingot)));
+    }
+
+    private static String getItemName(ItemLike item)
+    {
+        return Registry.ITEM.getKey(item.asItem()).getPath();
+    }
+
+    private static String getHasName(ItemLike item)
+    {
+        return "has_" + getItemName(item);
     }
 
     private static void sawBenchRecipes(Consumer<FinishedRecipe> consumer, String woodName, Block log, Block wood, TagKey<Item> logTag, Block strippedLog, Block strippedWood, Block planks, Block stairs, Block slab,
