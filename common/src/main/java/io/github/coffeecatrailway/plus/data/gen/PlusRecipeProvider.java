@@ -42,7 +42,7 @@ public class PlusRecipeProvider extends PollinatedRecipeProvider
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(PlusItems.FOX_MEAT.get()), PlusItems.COOKED_FOX_MEAT.get(), .35f, 100, RecipeSerializer.SMOKING_RECIPE).unlockedBy("has_fox_meat", has(PlusItems.FOX_MEAT.get())).save(consumer, Plus.getLocation("cooked_fox_meat_from_smoking"));
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(PlusItems.FOX_MEAT.get()), PlusItems.COOKED_FOX_MEAT.get(), .35f, 600, RecipeSerializer.CAMPFIRE_COOKING_RECIPE).unlockedBy("has_fox_meat", has(PlusItems.FOX_MEAT.get())).save(consumer, Plus.getLocation("cooked_fox_meat_from_campfire"));
 
-        ShapedRecipeBuilder.shaped(PlusBlocks.SAW_BENCH.get()).define('i', PlusItemTags.INGOTS_IRON_FABRIC).define('p', ItemTags.PLANKS).pattern(" i ").pattern("ppp").unlockedBy("has_iron", has(PlusItemTags.INGOTS_IRON_FABRIC)).unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
+        ShapedRecipeBuilder.shaped(PlusBlocks.SAW_BENCH.get()).define('i', PlusItemTags.INGOTS_IRON_COMMON).define('p', ItemTags.PLANKS).pattern(" i ").pattern("ppp").unlockedBy("has_iron", has(PlusItemTags.INGOTS_IRON_COMMON)).unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
         sawBench(Ingredient.of(ItemTags.PLANKS), Items.STICK, 2).unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer, Plus.getLocation("sticks_from_saw_bench"));
         sawBench(Ingredient.of(ItemTags.LOGS), Items.STICK, 12).unlockedBy("has_logs", has(ItemTags.LOGS)).save(consumer, Plus.getLocation("sticks_logs_from_saw_bench"));
 
@@ -63,7 +63,7 @@ public class PlusRecipeProvider extends PollinatedRecipeProvider
         sawBenchRecipes(consumer, "crimson", Blocks.CRIMSON_STEM, Blocks.CRIMSON_HYPHAE, ItemTags.CRIMSON_STEMS, Blocks.STRIPPED_CRIMSON_STEM, Blocks.STRIPPED_CRIMSON_HYPHAE, Blocks.CRIMSON_PLANKS, Blocks.CRIMSON_STAIRS, Blocks.CRIMSON_SLAB,
                 Blocks.CRIMSON_FENCE, Blocks.CRIMSON_FENCE_GATE, Blocks.CRIMSON_BUTTON, Blocks.CRIMSON_PRESSURE_PLATE, Blocks.CRIMSON_DOOR, Blocks.CRIMSON_TRAPDOOR, Blocks.CRIMSON_SIGN);
 
-        ShapedRecipeBuilder.shaped(PlusItems.CHAIN_LINK.get(), 3).define('i', PlusItemTags.INGOTS_IRON_FABRIC).define('n', PlusItemTags.NUGGETS_IRON_FABRIC).pattern("i").pattern("n").unlockedBy("has_iron", has(PlusItemTags.INGOTS_IRON_FABRIC)).unlockedBy("has_nugget", has(PlusItemTags.NUGGETS_IRON_FABRIC)).save(consumer);
+        ShapedRecipeBuilder.shaped(PlusItems.CHAIN_LINK.get(), 3).define('i', PlusItemTags.INGOTS_IRON_COMMON).define('n', PlusItemTags.NUGGETS_IRON_COMMON).pattern("i").pattern("n").unlockedBy("has_iron", has(PlusItemTags.INGOTS_IRON_COMMON)).unlockedBy("has_nugget", has(PlusItemTags.NUGGETS_IRON_COMMON)).save(consumer);
         ShapedRecipeBuilder.shaped(Items.CHAIN).define('l', PlusItems.CHAIN_LINK.get()).pattern("l").pattern("l").pattern("l").unlockedBy("has_link", has(PlusItems.CHAIN_LINK.get())).save(consumer, new ResourceLocation("chain"));
         ShapedRecipeBuilder.shaped(Items.CHAINMAIL_HELMET).define('l', PlusItems.CHAIN_LINK.get()).pattern("lll").pattern("l l").unlockedBy("has_link", has(PlusItems.CHAIN_LINK.get())).save(consumer);
         ShapedRecipeBuilder.shaped(Items.CHAINMAIL_CHESTPLATE).define('l', PlusItems.CHAIN_LINK.get()).pattern("l l").pattern("lll").pattern("lll").unlockedBy("has_link", has(PlusItems.CHAIN_LINK.get())).save(consumer);
@@ -86,48 +86,48 @@ public class PlusRecipeProvider extends PollinatedRecipeProvider
         ShapelessRecipeBuilder.shapeless(PlusBlocks.RAW_ROSE_GOLD_BLOCK.get(), 2).requires(Items.RAW_GOLD_BLOCK).requires(Items.RAW_COPPER_BLOCK).unlockedBy("has_raw_gold", has(Items.RAW_GOLD_BLOCK)).unlockedBy("has_raw_copper", has(Items.RAW_COPPER_BLOCK)).save(consumer, Plus.getLocation("raw_rose_gold_block_from_crafting"));
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(PlusItems.RAW_ROSE_GOLD.get()), PlusItems.ROSE_GOLD_INGOT.get(), 1f, 200).unlockedBy("has_raw_rose_gold", has(PlusItems.RAW_ROSE_GOLD.get())).save(consumer, Plus.getLocation("rose_gold_ingot_from_smelting"));
         SimpleCookingRecipeBuilder.blasting(Ingredient.of(PlusItems.RAW_ROSE_GOLD.get()), PlusItems.ROSE_GOLD_INGOT.get(), .35f, 100).unlockedBy("has_raw_rose_gold", has(PlusItems.RAW_ROSE_GOLD.get())).save(consumer, Plus.getLocation("rose_gold_ingot_from_blasting"));
-        storageRecipe(consumer, PlusItems.RAW_ROSE_GOLD.get(), PlusBlocks.RAW_ROSE_GOLD_BLOCK.get(), true);
-        storageRecipe(consumer, PlusItems.ROSE_GOLD_INGOT.get(), PlusBlocks.ROSE_GOLD_BLOCK.get(), true);
-        storageRecipe(consumer, PlusItems.ROSE_GOLD_NUGGET.get(), PlusItems.ROSE_GOLD_INGOT.get(), true);
+        this.storageRecipe(consumer, PlusItems.RAW_ROSE_GOLD.get(), PlusBlocks.RAW_ROSE_GOLD_BLOCK.get(), true);
+        this.storageRecipe(consumer, PlusItems.ROSE_GOLD_INGOT.get(), PlusBlocks.ROSE_GOLD_BLOCK.get(), true);
+        this.storageRecipe(consumer, PlusItems.ROSE_GOLD_NUGGET.get(), PlusItems.ROSE_GOLD_INGOT.get(), true);
         ShapedRecipeBuilder.shaped(PlusItems.ROSE_GOLD_SWORD.get())
                 .define('#', Items.STICK)
-                .define('X', PlusItemTags.INGOTS_ROSE_GOLD_FABRIC)
+                .define('X', PlusItemTags.INGOTS_ROSE_GOLD_COMMON)
                 .pattern("X")
                 .pattern("X")
                 .pattern("#")
-                .unlockedBy("has_rose_gold_ingot", has(PlusItemTags.INGOTS_ROSE_GOLD_FABRIC))
+                .unlockedBy("has_rose_gold_ingot", has(PlusItemTags.INGOTS_ROSE_GOLD_COMMON))
                 .save(consumer);
         ShapedRecipeBuilder.shaped(PlusItems.ROSE_GOLD_SHOVEL.get())
                 .define('#', Items.STICK)
-                .define('X', PlusItemTags.INGOTS_ROSE_GOLD_FABRIC)
+                .define('X', PlusItemTags.INGOTS_ROSE_GOLD_COMMON)
                 .pattern("X")
                 .pattern("#")
                 .pattern("#")
-                .unlockedBy("has_rose_gold_ingot", has(PlusItemTags.INGOTS_ROSE_GOLD_FABRIC))
+                .unlockedBy("has_rose_gold_ingot", has(PlusItemTags.INGOTS_ROSE_GOLD_COMMON))
                 .save(consumer);
         ShapedRecipeBuilder.shaped(PlusItems.ROSE_GOLD_PICKAXE.get())
                 .define('#', Items.STICK)
-                .define('X', PlusItemTags.INGOTS_ROSE_GOLD_FABRIC)
+                .define('X', PlusItemTags.INGOTS_ROSE_GOLD_COMMON)
                 .pattern("XXX")
                 .pattern(" # ")
                 .pattern(" # ")
-                .unlockedBy("has_rose_gold_ingot", has(PlusItemTags.INGOTS_ROSE_GOLD_FABRIC))
+                .unlockedBy("has_rose_gold_ingot", has(PlusItemTags.INGOTS_ROSE_GOLD_COMMON))
                 .save(consumer);
         ShapedRecipeBuilder.shaped(PlusItems.ROSE_GOLD_AXE.get())
                 .define('#', Items.STICK)
-                .define('X', PlusItemTags.INGOTS_ROSE_GOLD_FABRIC)
+                .define('X', PlusItemTags.INGOTS_ROSE_GOLD_COMMON)
                 .pattern("XX")
                 .pattern("X#")
                 .pattern(" #")
-                .unlockedBy("has_rose_gold_ingot", has(PlusItemTags.INGOTS_ROSE_GOLD_FABRIC))
+                .unlockedBy("has_rose_gold_ingot", has(PlusItemTags.INGOTS_ROSE_GOLD_COMMON))
                 .save(consumer);
         ShapedRecipeBuilder.shaped(PlusItems.ROSE_GOLD_HOE.get())
                 .define('#', Items.STICK)
-                .define('X', PlusItemTags.INGOTS_ROSE_GOLD_FABRIC)
+                .define('X', PlusItemTags.INGOTS_ROSE_GOLD_COMMON)
                 .pattern("XX")
                 .pattern(" #")
                 .pattern(" #")
-                .unlockedBy("has_rose_gold_ingot", has(PlusItemTags.INGOTS_ROSE_GOLD_FABRIC))
+                .unlockedBy("has_rose_gold_ingot", has(PlusItemTags.INGOTS_ROSE_GOLD_COMMON))
                 .save(consumer);
 
         ShapedRecipeBuilder.shaped(PlusBlocks.GLOW_LANTERN.get())
@@ -151,7 +151,7 @@ public class PlusRecipeProvider extends PollinatedRecipeProvider
                 .save(consumer);
     }
 
-    private static void storageRecipe(Consumer<FinishedRecipe> consumer, ItemLike ingot, ItemLike block, boolean big)
+    private void storageRecipe(Consumer<FinishedRecipe> consumer, ItemLike ingot, ItemLike block, boolean big)
     {
         ShapelessRecipeBuilder.shapeless(ingot, big ? 9 : 4).requires(block).unlockedBy(getHasName(block), has(block)).save(consumer);
         if (big)
