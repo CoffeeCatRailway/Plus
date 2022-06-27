@@ -1,17 +1,15 @@
 package io.github.coffeecatrailway.plus.common.item;
 
 import io.github.coffeecatrailway.plus.Plus;
+import io.github.coffeecatrailway.plus.client.PlusModelLayers;
 import io.github.coffeecatrailway.plus.client.entity.AmuletModel;
 import io.github.coffeecatrailway.plus.common.enchantment.HeatWalkerEnchantment;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Style;
-import net.minecraft.network.chat.TextColor;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -36,7 +34,6 @@ import java.util.Objects;
 public class WarmthAmuletItem extends Item
 {
     public static final ResourceLocation TEXTURE = Plus.getLocation("textures/models/amulet/warmth.png");
-    public static final ModelLayerLocation LAYER = new ModelLayerLocation(Plus.getLocation("amulet"), "main");
     private static AmuletModel model = null;
 
     public WarmthAmuletItem(Properties properties)
@@ -91,7 +88,7 @@ public class WarmthAmuletItem extends Item
     public static AmuletModel getModel()
     {
         if (model == null)
-            model = new AmuletModel(Minecraft.getInstance().getEntityModels().bakeLayer(LAYER));
+            model = new AmuletModel(Minecraft.getInstance().getEntityModels().bakeLayer(PlusModelLayers.AMULET));
         return Objects.requireNonNull(model);
     }
 }

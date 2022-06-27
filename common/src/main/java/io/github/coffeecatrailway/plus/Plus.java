@@ -4,9 +4,11 @@ import gg.moonflower.pollen.api.config.ConfigManager;
 import gg.moonflower.pollen.api.config.PollinatedConfigType;
 import gg.moonflower.pollen.api.event.events.lifecycle.TickEvent;
 import gg.moonflower.pollen.api.platform.Platform;
-import gg.moonflower.pollen.api.registry.client.RenderTypeRegistry;
-import gg.moonflower.pollen.api.registry.client.ScreenRegistry;
+import gg.moonflower.pollen.api.registry.client.*;
 import gg.moonflower.pollen.api.util.PollinatedModContainer;
+import io.github.coffeecatrailway.plus.client.PlusModelLayers;
+import io.github.coffeecatrailway.plus.client.entity.AmuletModel;
+import io.github.coffeecatrailway.plus.client.entity.FoxHatModel;
 import io.github.coffeecatrailway.plus.client.gui.SawBenchScreen;
 import io.github.coffeecatrailway.plus.data.gen.*;
 import io.github.coffeecatrailway.plus.registry.*;
@@ -30,6 +32,8 @@ public class Plus
 
     public static void onClientInit()
     {
+        EntityRendererRegistry.registerLayerDefinition(PlusModelLayers.FOX_HAT, FoxHatModel::createBodyLayer);
+        EntityRendererRegistry.registerLayerDefinition(PlusModelLayers.AMULET, AmuletModel::createBodyLayer);
     }
 
     public static void onClientPostInit(Platform.ModSetupContext ctx)
