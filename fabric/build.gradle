@@ -54,11 +54,11 @@ configurations {
 
 
 repositories {
-    maven {
+    maven { // ModMenu
         name = "TerraformersMC"
         url "https://maven.terraformersmc.com/"
     }
-    maven {
+    maven { // Trinkets
         name = "Ladysnake Libs"
         url = "https://ladysnake.jfrog.io/artifactory/mods"
     }
@@ -67,11 +67,13 @@ repositories {
 dependencies {
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabricLoaderVersion}"
     modApi "net.fabricmc.fabric-api:fabric-api:${rootProject.fabricApiVersion}"
-    modApi("gg.moonflower:pollen-fabric:${rootProject.pollenVersion}") { transitive = false }
+    modApi "gg.moonflower:pollen-fabric:${rootProject.pollenVersion}+${rootProject.minecraftVersion}"
 
-    modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${rootProject.reiVersion}"
-    modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${rootProject.reiVersion}"
+    modCompileOnlyApi "mezz.jei:jei-${rootProject.minecraftVersion}-fabric-api:${rootProject.jeiVersion}"
+    modRuntimeOnly "mezz.jei:jei-${rootProject.minecraftVersion}-fabric:${rootProject.jeiVersion}"
+
     modRuntimeOnly "com.terraformersmc:modmenu:${rootProject.modMenuVersion}"
+
     modImplementation "dev.emi:trinkets:${rootProject.trinketsVersion}"
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
@@ -124,6 +126,7 @@ sourcesJar {
     def commonSources = project(":common").sourcesJar
     dependsOn commonSources
     from commonSources.archiveFile.map { zipTree(it) }
+    duplicatesStrategy(DuplicatesStrategy.INCLUDE)
 }
 
 components.java {

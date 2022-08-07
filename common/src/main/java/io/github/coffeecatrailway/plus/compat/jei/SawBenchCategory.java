@@ -1,4 +1,4 @@
-package io.github.coffeecatrailway.plus.integration.forge.jei;
+package io.github.coffeecatrailway.plus.compat.jei;
 
 import io.github.coffeecatrailway.plus.Plus;
 import io.github.coffeecatrailway.plus.common.item.crafting.SawBenchRecipe;
@@ -37,10 +37,9 @@ public class SawBenchCategory implements IRecipeCategory<SawBenchRecipe>
 
     public SawBenchCategory(IGuiHelper guiHelper)
     {
-        ResourceLocation location = RECIPE_GUI_VANILLA;
-        background = guiHelper.createDrawable(location, 0, 220, width, height);
-        icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM, new ItemStack(PlusBlocks.SAW_BENCH.get()));
-        localizedName = new TranslatableComponent("gui." + Plus.MOD_ID + ".jei.category.saw_bench");
+        this.background = guiHelper.createDrawable(RECIPE_GUI_VANILLA, 0, 220, width, height);
+        this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(PlusBlocks.SAW_BENCH.get()));
+        this.localizedName = new TranslatableComponent("gui." + Plus.MOD_ID + ".jei.category.saw_bench");
     }
 
     @Override
@@ -85,6 +84,6 @@ public class SawBenchCategory implements IRecipeCategory<SawBenchRecipe>
     public void setRecipe(IRecipeLayoutBuilder builder, SawBenchRecipe recipe, IFocusGroup focuses)
     {
         builder.addSlot(RecipeIngredientRole.INPUT, 1, 9).addIngredients(recipe.getIngredients().get(0));
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 61, 9).addIngredient(VanillaTypes.ITEM, recipe.getResultItem());
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 61, 9).addIngredient(VanillaTypes.ITEM_STACK, recipe.getResultItem());
     }
 }

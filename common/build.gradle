@@ -3,9 +3,9 @@ dependencies {
     // Do NOT use other classes from fabric loader
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabricLoaderVersion}"
 
-    modApi("gg.moonflower:pollen:${rootProject.pollenVersion}") { transitive = false }
+    modApi "gg.moonflower:pollen:${rootProject.pollenVersion}+${rootProject.minecraftVersion}"
 
-//    modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:${rootProject.reiVersion}"
+    modCompileOnlyApi "mezz.jei:jei-${rootProject.minecraftVersion}-common-api:${rootProject.jeiVersion}"
 }
 
 architectury {
@@ -16,9 +16,9 @@ loom {
     accessWidenerPath = file("src/main/resources/${project.modId}.accesswidener")
 }
 
-sourceSets.main.resources {
-    srcDir project(":fabric").file("src/generated/resources").absolutePath
-}
+//sourceSets.main.resources {
+//    srcDir project(":fabric").file("src/generated/resources").absolutePath
+//}
 
 publishing {
     publications {

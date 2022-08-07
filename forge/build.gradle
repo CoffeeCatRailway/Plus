@@ -57,14 +57,6 @@ configurations {
 }
 
 repositories {
-    maven { // JustEnoughItems
-        name = "Progwml6 (Just Enough Items)"
-        url = "https://dvs1.progwml6.com/files/maven/"
-    }
-    maven { // JustEnoughItems fallback
-        name = "JustEnoughItems fallback"
-        url = "https://modmaven.k-4u.nl"
-    }
     maven { // Curios
         url = "https://maven.theillusivec4.top/"
     }
@@ -73,13 +65,15 @@ repositories {
 dependencies {
     forge "net.minecraftforge:forge:${rootProject.minecraftVersion}-${rootProject.forgeVersion}"
 
-    modApi("gg.moonflower:pollen-forge:${rootProject.pollenVersion}") { transitive = false }
+    modApi "gg.moonflower:pollen-forge:${rootProject.pollenVersion}+${rootProject.minecraftVersion}"
 
-    //modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-forge:${rootProject.reiVersion}"
-    modImplementation("mezz.jei:jei-${rootProject.jeiVersion}") { transitive = false }
+    modCompileOnlyApi "mezz.jei:jei-${rootProject.minecraftVersion}-forge-api:${rootProject.jeiVersion}"
+    modRuntimeOnly "mezz.jei:jei-${rootProject.minecraftVersion}-forge:${rootProject.jeiVersion}"
+
     modImplementation "top.theillusivec4.curios:curios-forge:${rootProject.curisVersion}"
 
-//    modRuntime("curse.maven:shutupexperimentalsettings-407174:3544525")
+    modRuntimeOnly "curse.maven:shutupexperimentalsettings-407174:${rootProject.shutupVersion}"
+    modRuntimeOnly "curse.maven:configured-457570:${rootProject.configuredVersion}"
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
@@ -127,6 +121,7 @@ sourcesJar {
     def commonSources = project(":common").sourcesJar
     dependsOn commonSources
     from commonSources.archiveFile.map { zipTree(it) }
+    duplicatesStrategy(DuplicatesStrategy.INCLUDE)
 }
 
 components.java {
