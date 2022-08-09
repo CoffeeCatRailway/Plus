@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "pmp",
+    "ppp",
+    " p "
+  ],
+  "key": {
+    "p": {
+      "tag": "minecraft:planks"
+    },
+    "m": {
+      "tag": "c:stones"
+    }
+  },
+  "result": {
+    "item": "plus:stone_shield"
+  }
+}

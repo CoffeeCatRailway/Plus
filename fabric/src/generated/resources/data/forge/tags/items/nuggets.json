@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "#forge:nuggets/rose_gold"
+    "#c:rose_gold_nuggets",
+    "#c:iron_nuggets"
   ]
 }

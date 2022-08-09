@@ -149,6 +149,23 @@ public class PlusRecipeProvider extends PollinatedRecipeProvider
                 .unlockedBy("has_warmth_crystal", has(PlusItems.WARMTH_CRYSTAL.get()))
                 .unlockedBy("has_chain_link", has(PlusItems.CHAIN_LINK.get()))
                 .save(consumer);
+
+        this.shieldRecipe(consumer, PlusItems.WOODEN_SHIELD.get(), PlusItemTags.STICKS_COMMON);
+        this.shieldRecipe(consumer, PlusItems.STONE_SHIELD.get(), PlusItemTags.STONE_COMMON);
+        this.shieldRecipe(consumer, PlusItems.GOLD_SHIELD.get(), PlusItemTags.INGOTS_GOLD_COMMON);
+        ShapedRecipeBuilder.shaped(PlusItems.DIAMOND_SHIELD.get()).define('p', ItemTags.PLANKS).define('d', PlusItemTags.GEMS_DIAMOND_COMMON).define('i', PlusItemTags.INGOTS_IRON_COMMON)
+                .pattern("pdp").pattern("ipi").pattern(" p ")
+                .unlockedBy("has_planks", has(ItemTags.PLANKS)).unlockedBy("has_diamond", has(PlusItemTags.GEMS_DIAMOND_COMMON)).unlockedBy("has_iron", has(PlusItemTags.INGOTS_IRON_COMMON)).save(consumer);
+        UpgradeRecipeBuilder.smithing(Ingredient.of(PlusItems.DIAMOND_SHIELD.get()), Ingredient.of(Items.NETHERITE_INGOT), PlusItems.NETHERITE_SHIELD.get())
+                .unlocks("has_netherite", has(Items.NETHERITE_INGOT)).unlocks("has_diamond_shield", has(PlusItems.NETHERITE_SHIELD.get())).save(consumer, Plus.getLocation("netherite_shield"));
+        this.shieldRecipe(consumer, PlusItems.ROSE_GOLD_SHIELD.get(), PlusItemTags.INGOTS_ROSE_GOLD_COMMON);
+    }
+
+    private void shieldRecipe(Consumer<FinishedRecipe> consumer, Item item, TagKey<Item> material)
+    {
+        ShapedRecipeBuilder.shaped(item).define('p', ItemTags.PLANKS).define('m', material)
+                .pattern("pmp").pattern("ppp").pattern(" p ")
+                .unlockedBy("has_planks", has(ItemTags.PLANKS)).unlockedBy("has_material", has(material)).save(consumer);
     }
 
     private void storageRecipe(Consumer<FinishedRecipe> consumer, ItemLike ingot, ItemLike block, boolean big)

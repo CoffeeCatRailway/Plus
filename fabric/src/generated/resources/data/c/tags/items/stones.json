@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "#forge:nuggets/iron"
+    "#forge:stone",
+    "#c:cobblestone"
   ]
 }

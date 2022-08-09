@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "pmp",
+    "ppp",
+    " p "
+  ],
+  "key": {
+    "p": {
+      "tag": "minecraft:planks"
+    },
+    "m": {
+      "tag": "c:rose_gold_ingots"
+    }
+  },
+  "result": {
+    "item": "plus:rose_gold_shield"
+  }
+}

@@ -11,4 +11,5 @@ public class PlusModelLayers
 {
     public static final ModelLayerLocation FOX_HAT = new ModelLayerLocation(Plus.getLocation("fox_hat"), "main");
     public static final ModelLayerLocation AMULET = new ModelLayerLocation(Plus.getLocation("amulet"), "main");
+    public static final ModelLayerLocation SHIELD = new ModelLayerLocation(Plus.getLocation("shield"), "main");
 }

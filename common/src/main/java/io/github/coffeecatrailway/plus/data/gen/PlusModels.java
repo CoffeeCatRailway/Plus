@@ -6,18 +6,15 @@ import gg.moonflower.pollen.api.datagen.provider.model.PollinatedItemModelGenera
 import gg.moonflower.pollen.api.datagen.provider.model.PollinatedModelProvider;
 import gg.moonflower.pollen.api.util.PollinatedModContainer;
 import io.github.coffeecatrailway.plus.Plus;
-import io.github.coffeecatrailway.plus.common.block.BrittleBasaltBlock;
-import io.github.coffeecatrailway.plus.common.block.GlowLanternBlock;
 import io.github.coffeecatrailway.plus.common.block.SawBenchBlock;
 import io.github.coffeecatrailway.plus.registry.PlusBlocks;
 import io.github.coffeecatrailway.plus.registry.PlusItems;
 import net.minecraft.core.Direction;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.models.blockstates.BlockStateGenerator;
+import net.minecraft.data.models.blockstates.*;
 import net.minecraft.data.models.model.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
 
 import java.util.Optional;
 import java.util.function.BiConsumer;
@@ -93,6 +90,8 @@ public class PlusModels extends PollinatedModelProvider
 
     private static class BlockModelGenerator extends PollinatedBlockModelGenerator
     {
+        private static final ModelTemplate STONECUTTER = new ModelTemplate(Optional.of(new ResourceLocation("block/stonecutter")), Optional.empty(), TextureSlot.PARTICLE, TextureSlot.BOTTOM, TextureSlot.TOP, TextureSlot.SIDE);
+
         public BlockModelGenerator(Consumer<BlockStateGenerator> blockStateOutput, BiConsumer<ResourceLocation, Supplier<JsonElement>> modelOutput, Consumer<Item> skippedAutoModelsOutput)
         {
             super(blockStateOutput, modelOutput, skippedAutoModelsOutput);
@@ -110,36 +109,39 @@ public class PlusModels extends PollinatedModelProvider
 //                for (Direction.Axis axis : Direction.Axis.values())
 //                    partialState.with(BrittleBasaltBlock.AGE, i).with(BrittleBasaltBlock.AXIS, axis).modelForState().rotationX(axis == Direction.Axis.X || axis == Direction.Axis.Z ? 90 : 0).rotationY(axis == Direction.Axis.X ? 90 : 0).modelFile(model).addModel();
 //            }
-//
-//            partialState = this.getVariantBuilder(PlusBlocks.SAW_BENCH.get()).partialState();
-//            model = this.models().withExistingParent("saw_bench", "stonecutter")
-//                    .texture("particle", Plus.getLocation("block/saw_bench_bottom"))
-//                    .texture("bottom", Plus.getLocation("block/saw_bench_bottom"))
-//                    .texture("top", Plus.getLocation("block/saw_bench_top"))
-//                    .texture("side", Plus.getLocation("block/saw_bench_side"));
-//            for (Direction dir : Direction.Plane.HORIZONTAL)
-//                partialState.with(SawBenchBlock.FACING, dir).modelForState().rotationY((int) dir.getOpposite().toYRot()).modelFile(model).addModel();
-//            this.toItem(PlusBlocks.SAW_BENCH.get());
-//
+
+            ResourceLocation cutterModelLocation = STONECUTTER.create(PlusBlocks.SAW_BENCH.get(),
+                    new TextureMapping().put(TextureSlot.PARTICLE, Plus.getLocation("block/saw_bench_bottom"))
+                            .put(TextureSlot.BOTTOM, Plus.getLocation("block/saw_bench_bottom"))
+                            .put(TextureSlot.TOP, Plus.getLocation("block/saw_bench_top"))
+                            .put(TextureSlot.SIDE, Plus.getLocation("block/saw_bench_side")),
+                    this.getModelOutput());
+            PropertyDispatch.C1<Direction> propertyDispatch = PropertyDispatch.property(SawBenchBlock.FACING);
+            for (Direction direction : Direction.Plane.HORIZONTAL)
+                propertyDispatch = propertyDispatch.select(direction, Variant.variant().with(VariantProperties.MODEL, cutterModelLocation).with(VariantProperties.Y_ROT, this.yRotationFromDirection(direction)));
+
+            this.getBlockStateOutput().accept(MultiVariantGenerator.multiVariant(PlusBlocks.SAW_BENCH.get()).with(propertyDispatch));
+            this.delegateItemModel(PlusBlocks.SAW_BENCH.get(), cutterModelLocation);
+
 //            this.simpleBlock(PlusBlocks.RAW_ROSE_GOLD_BLOCK.get());
 //            this.toItem(PlusBlocks.RAW_ROSE_GOLD_BLOCK.get());
 //            this.simpleBlock(PlusBlocks.ROSE_GOLD_BLOCK.get());
 //            this.toItem(PlusBlocks.ROSE_GOLD_BLOCK.get());
-//
+
 //            this.getVariantBuilder(PlusBlocks.GLOW_LANTERN.get())
 //                    .partialState().with(GlowLanternBlock.HANGING, false).modelForState().modelFile(this.models().getExistingFile(Plus.getLocation("block/glow_lantern"))).addModel()
 //                    .partialState().with(GlowLanternBlock.HANGING, true).modelForState().modelFile(this.models().getExistingFile(Plus.getLocation("block/hanging_glow_lantern"))).addModel();
         }
 
-//        private void toItem(Block block)
-//        {
-//            this.toItem(block, Plus.getLocation("block/" + block.getRegistryName().getPath()));
-//        }
-//
-//        private void toItem(Block block, ResourceLocation model)
-//        {
-//            String path = block.getRegistryName().getPath();
-//            this.itemModels().withExistingParent(path, model);
-//        }
+        private VariantProperties.Rotation yRotationFromDirection(Direction direction)
+        {
+            return switch (direction)
+                    {
+                        default -> VariantProperties.Rotation.R0;
+                        case SOUTH -> VariantProperties.Rotation.R180;
+                        case WEST -> VariantProperties.Rotation.R270;
+                        case EAST -> VariantProperties.Rotation.R90;
+                    };
+        }
     }
 }

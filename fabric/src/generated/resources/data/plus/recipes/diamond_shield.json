@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "pdp",
+    "ipi",
+    " p "
+  ],
+  "key": {
+    "p": {
+      "tag": "minecraft:planks"
+    },
+    "d": {
+      "tag": "c:diamonds"
+    },
+    "i": {
+      "tag": "c:iron_ingots"
+    }
+  },
+  "result": {
+    "item": "plus:diamond_shield"
+  }
+}
