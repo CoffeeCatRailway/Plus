@@ -6,6 +6,8 @@ import gg.moonflower.pollen.api.datagen.provider.model.PollinatedItemModelGenera
 import gg.moonflower.pollen.api.datagen.provider.model.PollinatedModelProvider;
 import gg.moonflower.pollen.api.util.PollinatedModContainer;
 import io.github.coffeecatrailway.plus.Plus;
+import io.github.coffeecatrailway.plus.common.block.BrittleBasaltBlock;
+import io.github.coffeecatrailway.plus.common.block.GlowLanternBlock;
 import io.github.coffeecatrailway.plus.common.block.SawBenchBlock;
 import io.github.coffeecatrailway.plus.registry.PlusBlocks;
 import io.github.coffeecatrailway.plus.registry.PlusItems;
@@ -19,6 +21,7 @@ import net.minecraft.world.item.Item;
 import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 /**
@@ -100,15 +103,20 @@ public class PlusModels extends PollinatedModelProvider
         @Override
         public void run()
         {
-//            int i;
-//            VariantBlockStateBuilder.PartialBlockstate partialState = this.getVariantBuilder(PlusBlocks.BRITTLE_BASALT.get()).partialState();
-//            ModelFile model;
-//            for (i = 0; i < 4; i++)
-//            {
-//                model = this.models().cubeColumn("brittle_basalt_" + i, Plus.getLocation("block/brittle_basalt_side_" + i), Plus.getLocation("block/brittle_basalt_top_" + i));
-//                for (Direction.Axis axis : Direction.Axis.values())
-//                    partialState.with(BrittleBasaltBlock.AGE, i).with(BrittleBasaltBlock.AXIS, axis).modelForState().rotationX(axis == Direction.Axis.X || axis == Direction.Axis.Z ? 90 : 0).rotationY(axis == Direction.Axis.X ? 90 : 0).modelFile(model).addModel();
-//            }
+            PropertyDispatch.C2<Integer, Direction.Axis> dispatchBasalt = PropertyDispatch.properties(BrittleBasaltBlock.AGE, BrittleBasaltBlock.AXIS);
+            Function<Integer, ResourceLocation> basaltModelLocation = stage -> TexturedModel.COLUMN.updateTexture(mapping -> mapping.put(TextureSlot.SIDE, Plus.getLocation("block/brittle_basalt_side_" + stage)).put(TextureSlot.END, Plus.getLocation("block/brittle_basalt_top_" + stage))).createWithSuffix(PlusBlocks.BRITTLE_BASALT.get(), "_" + stage, this.getModelOutput());
+            for (int i = 0; i < 4; i++)
+            {
+                ResourceLocation model = basaltModelLocation.apply(i);
+                for (Direction.Axis axis : Direction.Axis.values())
+                {
+                    dispatchBasalt = dispatchBasalt.select(i, axis, Variant.variant().with(VariantProperties.MODEL, model)
+                            .with(VariantProperties.X_ROT, axis == Direction.Axis.X || axis == Direction.Axis.Z ? VariantProperties.Rotation.R90 : VariantProperties.Rotation.R0)
+                            .with(VariantProperties.Y_ROT, axis == Direction.Axis.X ? VariantProperties.Rotation.R90 : VariantProperties.Rotation.R0));
+                }
+            }
+            this.getBlockStateOutput().accept(MultiVariantGenerator.multiVariant(PlusBlocks.BRITTLE_BASALT.get()).with(dispatchBasalt));
+            this.delegateItemModel(PlusBlocks.BRITTLE_BASALT.get(), Plus.getLocation("block/brittle_basalt_0"));
 
             ResourceLocation cutterModelLocation = STONECUTTER.create(PlusBlocks.SAW_BENCH.get(),
                     new TextureMapping().put(TextureSlot.PARTICLE, Plus.getLocation("block/saw_bench_bottom"))
@@ -116,21 +124,23 @@ public class PlusModels extends PollinatedModelProvider
                             .put(TextureSlot.TOP, Plus.getLocation("block/saw_bench_top"))
                             .put(TextureSlot.SIDE, Plus.getLocation("block/saw_bench_side")),
                     this.getModelOutput());
-            PropertyDispatch.C1<Direction> propertyDispatch = PropertyDispatch.property(SawBenchBlock.FACING);
+            PropertyDispatch.C1<Direction> dispatcSawBench = PropertyDispatch.property(SawBenchBlock.FACING);
             for (Direction direction : Direction.Plane.HORIZONTAL)
-                propertyDispatch = propertyDispatch.select(direction, Variant.variant().with(VariantProperties.MODEL, cutterModelLocation).with(VariantProperties.Y_ROT, this.yRotationFromDirection(direction)));
+                dispatcSawBench = dispatcSawBench.select(direction, Variant.variant().with(VariantProperties.MODEL, cutterModelLocation).with(VariantProperties.Y_ROT, this.yRotationFromDirection(direction)));
 
-            this.getBlockStateOutput().accept(MultiVariantGenerator.multiVariant(PlusBlocks.SAW_BENCH.get()).with(propertyDispatch));
+            this.getBlockStateOutput().accept(MultiVariantGenerator.multiVariant(PlusBlocks.SAW_BENCH.get()).with(dispatcSawBench));
             this.delegateItemModel(PlusBlocks.SAW_BENCH.get(), cutterModelLocation);
 
-//            this.simpleBlock(PlusBlocks.RAW_ROSE_GOLD_BLOCK.get());
-//            this.toItem(PlusBlocks.RAW_ROSE_GOLD_BLOCK.get());
-//            this.simpleBlock(PlusBlocks.ROSE_GOLD_BLOCK.get());
-//            this.toItem(PlusBlocks.ROSE_GOLD_BLOCK.get());
+            this.createTrivialCube(PlusBlocks.RAW_ROSE_GOLD_BLOCK.get());
+            this.createTrivialCube(PlusBlocks.ROSE_GOLD_BLOCK.get());
 
-//            this.getVariantBuilder(PlusBlocks.GLOW_LANTERN.get())
-//                    .partialState().with(GlowLanternBlock.HANGING, false).modelForState().modelFile(this.models().getExistingFile(Plus.getLocation("block/glow_lantern"))).addModel()
-//                    .partialState().with(GlowLanternBlock.HANGING, true).modelForState().modelFile(this.models().getExistingFile(Plus.getLocation("block/hanging_glow_lantern"))).addModel();
+            PropertyDispatch.C2<Boolean, Boolean> dispatchLantern = PropertyDispatch.properties(GlowLanternBlock.HANGING, GlowLanternBlock.WATERLOGGED)
+                    .select(false, false, Variant.variant().with(VariantProperties.MODEL, Plus.getLocation("block/glow_lantern")))
+                    .select(false, true, Variant.variant().with(VariantProperties.MODEL, Plus.getLocation("block/glow_lantern")))
+                    .select(true, false, Variant.variant().with(VariantProperties.MODEL, Plus.getLocation("block/hanging_glow_lantern")))
+                    .select(true, true, Variant.variant().with(VariantProperties.MODEL, Plus.getLocation("block/hanging_glow_lantern")));
+            this.getBlockStateOutput().accept(MultiVariantGenerator.multiVariant(PlusBlocks.GLOW_LANTERN.get()).with(dispatchLantern));
+            this.skipAutoItemBlock(PlusBlocks.GLOW_LANTERN.get());
         }
 
         private VariantProperties.Rotation yRotationFromDirection(Direction direction)

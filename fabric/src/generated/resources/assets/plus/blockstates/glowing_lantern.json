@@ -1,9 +1,15 @@
 {
   "variants": {
-    "hanging=false": {
+    "hanging=false,waterlogged=false": {
       "model": "plus:block/glow_lantern"
     },
-    "hanging=true": {
+    "hanging=false,waterlogged=true": {
+      "model": "plus:block/glow_lantern"
+    },
+    "hanging=true,waterlogged=false": {
+      "model": "plus:block/hanging_glow_lantern"
+    },
+    "hanging=true,waterlogged=true": {
       "model": "plus:block/hanging_glow_lantern"
     }
   }

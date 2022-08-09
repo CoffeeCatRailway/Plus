@@ -1,7 +1,12 @@
 {
   "variants": {
+    "facing=east": {
+      "model": "plus:block/saw_bench",
+      "y": 90
+    },
     "facing=north": {
-      "model": "plus:block/saw_bench"
+      "model": "plus:block/saw_bench",
+      "y": 0
     },
     "facing=south": {
       "model": "plus:block/saw_bench",
@@ -10,10 +15,6 @@
     "facing=west": {
       "model": "plus:block/saw_bench",
       "y": 270
-    },
-    "facing=east": {
-      "model": "plus:block/saw_bench",
-      "y": 90
     }
   }
 }
