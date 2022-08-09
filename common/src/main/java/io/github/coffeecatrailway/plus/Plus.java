@@ -69,6 +69,10 @@ public class Plus
             registry.accept(ROSE_GOLD_SHIELD_BASE.texture());
             registry.accept(ROSE_GOLD_SHIELD_NO_PATTERN.texture());
         });
+
+        PollinatedModContainer.get(MOD_ID).ifPresent(container -> {
+            ResourceRegistry.registerBuiltinResourcePack(getLocation("shieldrevamp"), container, true);
+        });
     }
 
     public static void onClientPostInit(Platform.ModSetupContext ctx)
