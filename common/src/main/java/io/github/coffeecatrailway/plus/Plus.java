@@ -14,6 +14,8 @@ import io.github.coffeecatrailway.plus.client.entity.FoxHatModel;
 import io.github.coffeecatrailway.plus.client.gui.SawBenchScreen;
 import io.github.coffeecatrailway.plus.client.item.PlusShieldItemRenderer;
 import io.github.coffeecatrailway.plus.data.gen.*;
+import io.github.coffeecatrailway.plus.data.gen.loot.PlusLootModifierProvider;
+import io.github.coffeecatrailway.plus.data.gen.loot.PlusLootTableProvider;
 import io.github.coffeecatrailway.plus.registry.*;
 import net.minecraft.client.model.ShieldModel;
 import net.minecraft.client.renderer.RenderType;
@@ -133,6 +135,7 @@ public class Plus
         generator.addProvider(new PlusLanguage(generator, container));
         generator.addProvider(new PlusRecipeProvider(generator));
         generator.addProvider(new PlusLootTableProvider(generator));
+        generator.addProvider(new PlusLootModifierProvider(generator));
     }
 
     public static ResourceLocation getLocation(String path)

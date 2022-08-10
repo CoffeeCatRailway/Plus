@@ -1,4 +1,4 @@
-package io.github.coffeecatrailway.plus.data.gen;
+package io.github.coffeecatrailway.plus.data.gen.loot;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
