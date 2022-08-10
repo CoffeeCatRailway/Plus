@@ -2,12 +2,10 @@ package io.github.coffeecatrailway.plus.fabric;
 
 import io.github.coffeecatrailway.plus.Plus;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.loot.v1.FabricLootPoolBuilder;
-import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
+import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.level.storage.loot.LootContext;
-import net.minecraft.world.level.storage.loot.LootPool;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+
+import java.util.Arrays;
 
 public class PlusFabric implements ModInitializer
 {
@@ -16,19 +14,19 @@ public class PlusFabric implements ModInitializer
     {
         Plus.PLATFORM.setup();
 
-        LootTableLoadingCallback.EVENT.register((resourceManager, manager, id, supplier, setter) -> {
+        LootTableEvents.MODIFY.register((resourceManager, manager, id, tableBuilder, source) -> {
             if (EntityType.FOX.getDefaultLootTable().equals(id))
-                supplier.copyFrom(manager.get(Plus.getLocation("modifier/fox")));
+                tableBuilder.pools(Arrays.asList(manager.get(Plus.getLocation("modifier/fox")).pools));
             if (EntityType.BAT.getDefaultLootTable().equals(id))
-                supplier.copyFrom(manager.get(Plus.getLocation("modifier/bat")));
+                tableBuilder.pools(Arrays.asList(manager.get(Plus.getLocation("modifier/bat")).pools));
             if (EntityType.SQUID.getDefaultLootTable().equals(id) || EntityType.GLOW_SQUID.getDefaultLootTable().equals(id))
-                supplier.copyFrom(manager.get(Plus.getLocation("modifier/squid")));
+                tableBuilder.pools(Arrays.asList(manager.get(Plus.getLocation("modifier/squid")).pools));
             if (EntityType.BEE.getDefaultLootTable().equals(id))
-                supplier.copyFrom(manager.get(Plus.getLocation("modifier/bee")));
+                tableBuilder.pools(Arrays.asList(manager.get(Plus.getLocation("modifier/bee")).pools));
             if (EntityType.TURTLE.getDefaultLootTable().equals(id))
-                supplier.copyFrom(manager.get(Plus.getLocation("modifier/turtle")));
+                tableBuilder.pools(Arrays.asList(manager.get(Plus.getLocation("modifier/turtle")).pools));
             if (EntityType.STRAY.getDefaultLootTable().equals(id))
-                supplier.copyFrom(manager.get(Plus.getLocation("modifier/stray")));
+                tableBuilder.pools(Arrays.asList(manager.get(Plus.getLocation("modifier/stray")).pools));
         });
     }
 }
