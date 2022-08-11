@@ -12,10 +12,10 @@ credits = "Nyctoniac"
 description = '''
 Minceraft plus some stuffs!
 
-Disclaimer: I only upload to https://www.curseforge.com & https://modrinth.com
+Disclaimer: I only upload to https://www.curseforge.com
 Discord: https://discord.com/invite/JM4NjRzZPS
 '''
-updateJSONURL = "https://raw.githubusercontent.com/CoffeeCatRailway/Plus/main/update_checker.json"
+updateJSONURL = "https://raw.githubusercontent.com/CoffeeCatRailway/Online-Mod-Resources/main/Plus/update_checker.json"
 logoFile = "icon.png"
 
 [[dependencies.${id}]]

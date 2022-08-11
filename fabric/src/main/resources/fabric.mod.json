@@ -4,7 +4,7 @@
     "version": "${version}",
     "name": "${name}",
     "icon": "icon.png",
-    "description": "Minceraft plus some stuffs!\nDisclaimer: I only upload to https://www.curseforge.com & https://modrinth.com",
+    "description": "Minceraft plus some stuffs!\nDisclaimer: I only upload to https://www.curseforge.com",
     "authors": [
         "CoffeeCatRailway"
     ],
