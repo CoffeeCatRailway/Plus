@@ -2,6 +2,7 @@ package io.github.coffeecatrailway.plus;
 
 import gg.moonflower.pollen.api.config.ConfigManager;
 import gg.moonflower.pollen.api.config.PollinatedConfigType;
+import gg.moonflower.pollen.api.event.events.entity.EntityEvents;
 import gg.moonflower.pollen.api.event.events.lifecycle.TickEvent;
 import gg.moonflower.pollen.api.event.events.registry.client.RegisterAtlasSpriteEvent;
 import gg.moonflower.pollen.api.platform.Platform;
@@ -13,15 +14,18 @@ import io.github.coffeecatrailway.plus.client.entity.AmuletModel;
 import io.github.coffeecatrailway.plus.client.entity.FoxHatModel;
 import io.github.coffeecatrailway.plus.client.gui.SawBenchScreen;
 import io.github.coffeecatrailway.plus.client.item.PlusShieldItemRenderer;
+import io.github.coffeecatrailway.plus.common.entity.ai.goal.FindGlowLanternGoal;
 import io.github.coffeecatrailway.plus.data.gen.*;
 import io.github.coffeecatrailway.plus.data.gen.loot.PlusLootModifierProvider;
 import io.github.coffeecatrailway.plus.data.gen.loot.PlusLootTableProvider;
+import io.github.coffeecatrailway.plus.mixins.MobAccessor;
 import io.github.coffeecatrailway.plus.registry.*;
 import net.minecraft.client.model.ShieldModel;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.GlowSquid;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -110,6 +114,12 @@ public class Plus
         PlusDamageSources.load();
         PlusEnchantments.load(PLATFORM);
         PlusMenus.load(PLATFORM);
+
+        EntityEvents.JOIN.register(((entity, level) -> {
+            if (entity instanceof GlowSquid)
+                ((MobAccessor) entity).getTargetSelector().addGoal(0, new FindGlowLanternGoal((GlowSquid) entity));
+            return true;
+        }));
     }
 
     public static void onCommonPostInit(Platform.ModSetupContext ctx)

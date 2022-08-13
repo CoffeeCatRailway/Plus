@@ -10,6 +10,7 @@
         "FrostWalkerEnchantmentMixin",
         "LivingEntityMixin",
         "MagmaBlockMixin",
+        "MobAccessor",
         "PowderSnowBlockMixin",
         "ShieldDecorationRecipeMixin",
         "TurtleMixin"
