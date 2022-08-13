@@ -42,7 +42,7 @@ public class PlusItems
     public static final Supplier<Item> TURTLE = registerIdAsName("turtle", prop -> new Item(prop.food(PlusFoods.TURTLE).tab(CreativeModeTab.TAB_FOOD)));
     public static final Supplier<Item> COOKED_TURTLE = registerIdAsName("cooked_turtle", prop -> new Item(prop.food(PlusFoods.COOKED_TURTLE).tab(CreativeModeTab.TAB_FOOD)));
 
-    public static final Supplier<DescribedItem> STINGER = registerWithDescription("stinger", prop -> new DescribedItem(prop.stacksTo(32).tab(CreativeModeTab.TAB_MISC)), "A poisonous stinger");
+    public static final Supplier<DescribedItem> STINGER = registerWithDescription("stinger", prop -> new DescribedItem(prop.stacksTo(32).tab(CreativeModeTab.TAB_BREWING)), "A poisonous stinger");
 
     public static final Supplier<DescribedItem> WARMTH_CRYSTAL = registerWithDescription("warmth_crystal", prop -> new DescribedItem(prop.tab(CreativeModeTab.TAB_MISC)), "Maybe it's heat can be used?");
 
