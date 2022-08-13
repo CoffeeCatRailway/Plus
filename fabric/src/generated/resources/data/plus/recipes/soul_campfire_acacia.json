@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " S ",
+    "S#S",
+    "LLL"
+  ],
+  "key": {
+    "L": {
+      "tag": "minecraft:acacia_logs"
+    },
+    "S": {
+      "tag": "c:wood_sticks"
+    },
+    "#": {
+      "tag": "minecraft:soul_fire_base_blocks"
+    }
+  },
+  "result": {
+    "item": "plus:soul_campfire_acacia"
+  }
+}

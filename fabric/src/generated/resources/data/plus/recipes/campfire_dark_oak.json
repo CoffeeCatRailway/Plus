@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " S ",
+    "S#S",
+    "LLL"
+  ],
+  "key": {
+    "L": {
+      "tag": "minecraft:dark_oak_logs"
+    },
+    "S": {
+      "tag": "c:wood_sticks"
+    },
+    "#": {
+      "tag": "minecraft:coals"
+    }
+  },
+  "result": {
+    "item": "plus:campfire_dark_oak"
+  }
+}

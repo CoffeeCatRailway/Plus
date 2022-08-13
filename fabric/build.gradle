@@ -76,6 +76,8 @@ dependencies {
 
     modImplementation "dev.emi:trinkets:${rootProject.trinketsVersion}"
 
+    modRuntimeOnly "curse.maven:hamncheese-273214:${rootProject.hamNCheeseFabricVerison}"
+
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
 }

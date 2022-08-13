@@ -6,6 +6,7 @@
     "client": [
     ],
     "mixins": [
+        "BlockEntityTypeMixin",
         "CampfireBlockMixin",
         "FrostWalkerEnchantmentMixin",
         "LivingEntityMixin",

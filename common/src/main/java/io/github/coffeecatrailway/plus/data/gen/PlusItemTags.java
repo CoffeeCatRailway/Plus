@@ -54,6 +54,8 @@ public class PlusItemTags extends PollinatedItemTagsProvider
     public static final TagKey<Item> NECKLACE_CURIOS = TagRegistry.bindItem(new ResourceLocation("curios", "necklace"));
     public static final TagKey<Item> NECKLACE_TRINKETS = TagRegistry.bindItem(new ResourceLocation("trinkets", "chest/necklace"));
 
+    public static final TagKey<Item> HNC_MAPLE_LOGS = TagRegistry.bindItem(new ResourceLocation("hamncheese", "maple_logs"));
+
     public PlusItemTags(DataGenerator generator, PollinatedModContainer container, BlockTagsProvider blockTags)
     {
         super(generator, container, blockTags);

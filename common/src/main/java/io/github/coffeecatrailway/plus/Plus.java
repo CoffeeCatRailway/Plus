@@ -90,6 +90,24 @@ public class Plus
         RenderTypeRegistry.register(PlusBlocks.SAW_BENCH.get(), RenderType.cutoutMipped());
         RenderTypeRegistry.register(PlusBlocks.GLOW_LANTERN.get(), RenderType.cutout());
 
+        RenderTypeRegistry.register(PlusBlocks.CAMPFIRE_BIRCH.get(), RenderType.cutout());
+        RenderTypeRegistry.register(PlusBlocks.CAMPFIRE_SPRUCE.get(), RenderType.cutout());
+        RenderTypeRegistry.register(PlusBlocks.CAMPFIRE_JUNGLE.get(), RenderType.cutout());
+        RenderTypeRegistry.register(PlusBlocks.CAMPFIRE_ACACIA.get(), RenderType.cutout());
+        RenderTypeRegistry.register(PlusBlocks.CAMPFIRE_DARK_OAK.get(), RenderType.cutout());
+
+        RenderTypeRegistry.register(PlusBlocks.SOUL_CAMPFIRE_BIRCH.get(), RenderType.cutout());
+        RenderTypeRegistry.register(PlusBlocks.SOUL_CAMPFIRE_SPRUCE.get(), RenderType.cutout());
+        RenderTypeRegistry.register(PlusBlocks.SOUL_CAMPFIRE_JUNGLE.get(), RenderType.cutout());
+        RenderTypeRegistry.register(PlusBlocks.SOUL_CAMPFIRE_ACACIA.get(), RenderType.cutout());
+        RenderTypeRegistry.register(PlusBlocks.SOUL_CAMPFIRE_DARK_OAK.get(), RenderType.cutout());
+
+        RenderTypeRegistry.register(PlusBlocks.CAMPFIRE_CRIMSON.get(), RenderType.cutout());
+        RenderTypeRegistry.register(PlusBlocks.CAMPFIRE_WARPED.get(), RenderType.cutout());
+
+        RenderTypeRegistry.register(PlusBlocks.CAMPFIRE_MAPLE.get(), RenderType.cutout());
+        RenderTypeRegistry.register(PlusBlocks.SOUL_CAMPFIRE_MAPLE.get(), RenderType.cutout());
+
         ItemPredicateRegistry.register(PlusItems.WOODEN_SHIELD.get(), new ResourceLocation("blocking"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1f : 0f);
         ItemPredicateRegistry.register(PlusItems.STONE_SHIELD.get(), new ResourceLocation("blocking"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1f : 0f);
         ItemPredicateRegistry.register(PlusItems.GOLD_SHIELD.get(), new ResourceLocation("blocking"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1f : 0f);

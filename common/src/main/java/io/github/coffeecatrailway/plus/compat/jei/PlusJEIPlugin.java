@@ -6,6 +6,7 @@ import io.github.coffeecatrailway.plus.registry.PlusBlocks;
 import io.github.coffeecatrailway.plus.registry.PlusRecipes;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
+import mezz.jei.api.constants.RecipeTypes;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
@@ -59,5 +60,7 @@ public class PlusJEIPlugin implements IModPlugin
     public void registerRecipeCatalysts(IRecipeCatalystRegistration reg)
     {
         reg.addRecipeCatalyst(new ItemStack(PlusBlocks.SAW_BENCH.get()), SAW_BENCH);
+
+        reg.addRecipeCatalyst(new ItemStack(PlusBlocks.CAMPFIRE_BIRCH.get()), RecipeTypes.CAMPFIRE_COOKING.getUid());
     }
 }

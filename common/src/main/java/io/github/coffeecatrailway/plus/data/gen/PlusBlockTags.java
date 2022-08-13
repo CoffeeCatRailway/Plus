@@ -2,6 +2,7 @@ package io.github.coffeecatrailway.plus.data.gen;
 
 import gg.moonflower.pollen.api.datagen.provider.tags.PollinatedBlockTagsProvider;
 import gg.moonflower.pollen.api.util.PollinatedModContainer;
+import io.github.coffeecatrailway.plus.Plus;
 import io.github.coffeecatrailway.plus.registry.PlusBlocks;
 import net.minecraft.core.Registry;
 import net.minecraft.data.DataGenerator;
@@ -45,6 +46,10 @@ public class PlusBlockTags extends PollinatedBlockTagsProvider
         this.tag(BlockTags.MINEABLE_WITH_AXE).add(PlusBlocks.SAW_BENCH.get());
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(PlusBlocks.RAW_ROSE_GOLD_BLOCK.get(), PlusBlocks.ROSE_GOLD_BLOCK.get(), PlusBlocks.BRITTLE_BASALT.get());
         this.tag(BlockTags.NEEDS_IRON_TOOL).add(PlusBlocks.RAW_ROSE_GOLD_BLOCK.get(), PlusBlocks.ROSE_GOLD_BLOCK.get());
+
+        this.tag(BlockTags.CAMPFIRES).add(PlusBlocks.CAMPFIRE_BIRCH.get(), PlusBlocks.CAMPFIRE_SPRUCE.get(), PlusBlocks.CAMPFIRE_JUNGLE.get(), PlusBlocks.CAMPFIRE_ACACIA.get(), PlusBlocks.CAMPFIRE_DARK_OAK.get(),
+                PlusBlocks.SOUL_CAMPFIRE_BIRCH.get(), PlusBlocks.SOUL_CAMPFIRE_SPRUCE.get(), PlusBlocks.SOUL_CAMPFIRE_JUNGLE.get(), PlusBlocks.SOUL_CAMPFIRE_ACACIA.get(), PlusBlocks.SOUL_CAMPFIRE_DARK_OAK.get(),
+                PlusBlocks.CAMPFIRE_CRIMSON.get(), PlusBlocks.CAMPFIRE_WARPED.get()).addOptional(Plus.getLocation("campfire_maple")).addOptional(Plus.getLocation("soul_campfire_maple"));
     }
     
     private static TagKey<Block> bind(ResourceLocation location)

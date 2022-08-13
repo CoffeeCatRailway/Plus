@@ -18,6 +18,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CampfireBlock;
 
 import java.util.function.Consumer;
 
@@ -159,6 +160,39 @@ public class PlusRecipeProvider extends PollinatedRecipeProvider
         UpgradeRecipeBuilder.smithing(Ingredient.of(PlusItems.DIAMOND_SHIELD.get()), Ingredient.of(Items.NETHERITE_INGOT), PlusItems.NETHERITE_SHIELD.get())
                 .unlocks("has_netherite", has(Items.NETHERITE_INGOT)).unlocks("has_diamond_shield", has(PlusItems.NETHERITE_SHIELD.get())).save(consumer, Plus.getLocation("netherite_shield"));
         this.shieldRecipe(consumer, PlusItems.ROSE_GOLD_SHIELD.get(), PlusItemTags.INGOTS_ROSE_GOLD_COMMON);
+
+        this.campfire(consumer, PlusBlocks.CAMPFIRE_BIRCH.get(), ItemTags.BIRCH_LOGS, ItemTags.COALS);
+        this.campfire(consumer, PlusBlocks.CAMPFIRE_SPRUCE.get(), ItemTags.SPRUCE_LOGS, ItemTags.COALS);
+        this.campfire(consumer, PlusBlocks.CAMPFIRE_JUNGLE.get(), ItemTags.JUNGLE_LOGS, ItemTags.COALS);
+        this.campfire(consumer, PlusBlocks.CAMPFIRE_ACACIA.get(), ItemTags.ACACIA_LOGS, ItemTags.COALS);
+        this.campfire(consumer, PlusBlocks.CAMPFIRE_DARK_OAK.get(), ItemTags.DARK_OAK_LOGS, ItemTags.COALS);
+
+        this.campfire(consumer, PlusBlocks.SOUL_CAMPFIRE_BIRCH.get(), ItemTags.BIRCH_LOGS, ItemTags.SOUL_FIRE_BASE_BLOCKS);
+        this.campfire(consumer, PlusBlocks.SOUL_CAMPFIRE_SPRUCE.get(), ItemTags.SPRUCE_LOGS, ItemTags.SOUL_FIRE_BASE_BLOCKS);
+        this.campfire(consumer, PlusBlocks.SOUL_CAMPFIRE_JUNGLE.get(), ItemTags.JUNGLE_LOGS, ItemTags.SOUL_FIRE_BASE_BLOCKS);
+        this.campfire(consumer, PlusBlocks.SOUL_CAMPFIRE_ACACIA.get(), ItemTags.ACACIA_LOGS, ItemTags.SOUL_FIRE_BASE_BLOCKS);
+        this.campfire(consumer, PlusBlocks.SOUL_CAMPFIRE_DARK_OAK.get(), ItemTags.DARK_OAK_LOGS, ItemTags.SOUL_FIRE_BASE_BLOCKS);
+
+        this.campfire(consumer, PlusBlocks.CAMPFIRE_CRIMSON.get(), ItemTags.CRIMSON_STEMS, ItemTags.SOUL_FIRE_BASE_BLOCKS);
+        this.campfire(consumer, PlusBlocks.CAMPFIRE_WARPED.get(), ItemTags.WARPED_STEMS, ItemTags.SOUL_FIRE_BASE_BLOCKS);
+
+        this.campfire(consumer, PlusBlocks.CAMPFIRE_MAPLE.get(), PlusItemTags.HNC_MAPLE_LOGS, ItemTags.COALS);
+        this.campfire(consumer, PlusBlocks.SOUL_CAMPFIRE_MAPLE.get(), PlusItemTags.HNC_MAPLE_LOGS, ItemTags.SOUL_FIRE_BASE_BLOCKS);
+    }
+
+    private void campfire(Consumer<FinishedRecipe> consumer, CampfireBlock campfireBlock, TagKey<Item> log, TagKey<Item> fireBase)
+    {
+        ShapedRecipeBuilder.shaped(campfireBlock)
+                .define('L', log)
+                .define('S', PlusItemTags.STICKS_COMMON)
+                .define('#', fireBase)
+                .pattern(" S ")
+                .pattern("S#S")
+                .pattern("LLL")
+                .unlockedBy("has_log", has(log))
+                .unlockedBy("has_stick", has(PlusItemTags.STICKS_COMMON))
+                .unlockedBy("has_soul_sand", has(fireBase))
+                .save(consumer);
     }
 
     private void shieldRecipe(Consumer<FinishedRecipe> consumer, Item item, TagKey<Item> material)

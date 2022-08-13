@@ -17,6 +17,8 @@ import net.minecraft.data.models.blockstates.*;
 import net.minecraft.data.models.model.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.CampfireBlock;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 import java.util.Optional;
 import java.util.function.BiConsumer;
@@ -93,7 +95,10 @@ public class PlusModels extends PollinatedModelProvider
 
     private static class BlockModelGenerator extends PollinatedBlockModelGenerator
     {
+        private static final TextureSlot LOG_TEXTURE_SLOT = TextureSlot.create("log");
+
         private static final ModelTemplate STONECUTTER = new ModelTemplate(Optional.of(new ResourceLocation("block/stonecutter")), Optional.empty(), TextureSlot.PARTICLE, TextureSlot.BOTTOM, TextureSlot.TOP, TextureSlot.SIDE);
+        private static final ModelTemplate CAMPFIRE_OFF = new ModelTemplate(Optional.of(new ResourceLocation("block/campfire_off")), Optional.empty(), TextureSlot.PARTICLE, LOG_TEXTURE_SLOT);
 
         public BlockModelGenerator(Consumer<BlockStateGenerator> blockStateOutput, BiConsumer<ResourceLocation, Supplier<JsonElement>> modelOutput, Consumer<Item> skippedAutoModelsOutput)
         {
@@ -124,11 +129,11 @@ public class PlusModels extends PollinatedModelProvider
                             .put(TextureSlot.TOP, Plus.getLocation("block/saw_bench_top"))
                             .put(TextureSlot.SIDE, Plus.getLocation("block/saw_bench_side")),
                     this.getModelOutput());
-            PropertyDispatch.C1<Direction> dispatcSawBench = PropertyDispatch.property(SawBenchBlock.FACING);
+            PropertyDispatch.C1<Direction> dispatchSawBench = PropertyDispatch.property(SawBenchBlock.FACING);
             for (Direction direction : Direction.Plane.HORIZONTAL)
-                dispatcSawBench = dispatcSawBench.select(direction, Variant.variant().with(VariantProperties.MODEL, cutterModelLocation).with(VariantProperties.Y_ROT, this.yRotationFromDirection(direction)));
+                dispatchSawBench = dispatchSawBench.select(direction, Variant.variant().with(VariantProperties.MODEL, cutterModelLocation).with(VariantProperties.Y_ROT, this.yRotationFromDirection(direction)));
 
-            this.getBlockStateOutput().accept(MultiVariantGenerator.multiVariant(PlusBlocks.SAW_BENCH.get()).with(dispatcSawBench));
+            this.getBlockStateOutput().accept(MultiVariantGenerator.multiVariant(PlusBlocks.SAW_BENCH.get()).with(dispatchSawBench));
             this.delegateItemModel(PlusBlocks.SAW_BENCH.get(), cutterModelLocation);
 
             this.createTrivialCube(PlusBlocks.RAW_ROSE_GOLD_BLOCK.get());
@@ -141,6 +146,36 @@ public class PlusModels extends PollinatedModelProvider
                     .select(true, true, Variant.variant().with(VariantProperties.MODEL, Plus.getLocation("block/hanging_glow_lantern")));
             this.getBlockStateOutput().accept(MultiVariantGenerator.multiVariant(PlusBlocks.GLOW_LANTERN.get()).with(dispatchLantern));
             this.skipAutoItemBlock(PlusBlocks.GLOW_LANTERN.get());
+
+            this.campfire(PlusBlocks.CAMPFIRE_BIRCH.get(), false, false);
+            this.campfire(PlusBlocks.CAMPFIRE_SPRUCE.get(), false, false);
+            this.campfire(PlusBlocks.CAMPFIRE_JUNGLE.get(), false, false);
+            this.campfire(PlusBlocks.CAMPFIRE_ACACIA.get(), false, false);
+            this.campfire(PlusBlocks.CAMPFIRE_DARK_OAK.get(), false, false);
+
+            this.campfire(PlusBlocks.SOUL_CAMPFIRE_BIRCH.get(), true, false);
+            this.campfire(PlusBlocks.SOUL_CAMPFIRE_SPRUCE.get(), true, false);
+            this.campfire(PlusBlocks.SOUL_CAMPFIRE_JUNGLE.get(), true, false);
+            this.campfire(PlusBlocks.SOUL_CAMPFIRE_ACACIA.get(), true, false);
+            this.campfire(PlusBlocks.SOUL_CAMPFIRE_DARK_OAK.get(), true, false);
+
+            this.campfire(PlusBlocks.CAMPFIRE_CRIMSON.get(), false, true);
+            this.campfire(PlusBlocks.CAMPFIRE_WARPED.get(), false, true);
+
+            this.campfire(PlusBlocks.CAMPFIRE_MAPLE.get(), false, false);
+            this.campfire(PlusBlocks.SOUL_CAMPFIRE_MAPLE.get(), true, false);
+        }
+
+        private void campfire(CampfireBlock campfireBlock, boolean isSoulFire, boolean hasSoulFire)
+        {
+            ResourceLocation campfireLogTexture = TextureMapping.getBlockTexture(campfireBlock, "_log");
+            if (isSoulFire)
+                campfireLogTexture = new ResourceLocation(campfireLogTexture.getNamespace(), campfireLogTexture.getPath().replace("soul_", ""));
+            ResourceLocation offLocation = CAMPFIRE_OFF.createWithSuffix(campfireBlock, "_off", new TextureMapping().put(TextureSlot.PARTICLE, campfireLogTexture).put(LOG_TEXTURE_SLOT, campfireLogTexture), this.getModelOutput());
+            ResourceLocation onLocation = ModelTemplates.CAMPFIRE.create(campfireBlock, new TextureMapping().put(TextureSlot.LIT_LOG, TextureMapping.getBlockTexture(campfireBlock, "_log_lit")).put(TextureSlot.FIRE, new ResourceLocation(isSoulFire || hasSoulFire ? "block/soul_campfire_fire" : "block/campfire_fire")).putForced(TextureSlot.PARTICLE, campfireLogTexture).putForced(LOG_TEXTURE_SLOT, campfireLogTexture), this.getModelOutput());
+
+            this.createSimpleFlatItemModel(campfireBlock.asItem());
+            this.getBlockStateOutput().accept(MultiVariantGenerator.multiVariant(campfireBlock).with(createBooleanModelDispatch(BlockStateProperties.LIT, onLocation, offLocation)).with(createHorizontalFacingDispatchAlt()));
         }
 
         private VariantProperties.Rotation yRotationFromDirection(Direction direction)

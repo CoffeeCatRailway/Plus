@@ -1,0 +1,25 @@
+{
+  "replace": false,
+  "values": [
+    "plus:campfire_birch",
+    "plus:campfire_spruce",
+    "plus:campfire_jungle",
+    "plus:campfire_acacia",
+    "plus:campfire_dark_oak",
+    "plus:soul_campfire_birch",
+    "plus:soul_campfire_spruce",
+    "plus:soul_campfire_jungle",
+    "plus:soul_campfire_acacia",
+    "plus:soul_campfire_dark_oak",
+    "plus:campfire_crimson",
+    "plus:campfire_warped",
+    {
+      "id": "plus:campfire_maple",
+      "required": false
+    },
+    {
+      "id": "plus:soul_campfire_maple",
+      "required": false
+    }
+  ]
+}

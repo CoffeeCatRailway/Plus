@@ -75,6 +75,9 @@ dependencies {
     modRuntimeOnly "curse.maven:shutupexperimentalsettings-407174:${rootProject.shutupVersion}"
     modRuntimeOnly "curse.maven:configured-457570:${rootProject.configuredVersion}"
 
+    modImplementation "curse.maven:appleskin-248787:3686482"
+    modRuntimeOnly "curse.maven:hamncheese-273214:${rootProject.hamNCheeseForgeVerison}"
+
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
 }
