@@ -1,6 +1,7 @@
 package io.github.coffeecatrailway.plus.registry;
 
 import dev.architectury.injectables.annotations.ExpectPlatform;
+import gg.moonflower.pollen.api.item.TabInsertItem;
 import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.PollinatedRegistry;
 import io.github.coffeecatrailway.plus.Plus;
@@ -31,7 +32,7 @@ public class PlusItems
     public static final Supplier<Item> FOX_MEAT = registerWithName("fox_meat", "Raw Fox", prop -> new Item(prop.food(PlusFoods.FOX_MEAT).tab(CreativeModeTab.TAB_FOOD)));
     public static final Supplier<Item> COOKED_FOX_MEAT = registerWithName("cooked_fox_meat", "Cooked Fox", prop -> new Item(prop.food(PlusFoods.COOKED_FOX_MEAT).tab(CreativeModeTab.TAB_FOOD)));
 
-    public static final Supplier<DescribedItem> CHAIN_LINK = registerWithDescription("chain_link", prop -> new DescribedItem(prop.tab(CreativeModeTab.TAB_DECORATIONS)), "Used to make chainmail & maybe something else...");
+    public static final Supplier<DescribedItem> CHAIN_LINK = registerWithDescription("chain_link", prop -> new DescribedItem(Items.CHAIN, prop.tab(CreativeModeTab.TAB_DECORATIONS)), "Used to make chainmail & maybe something else...");
 
     public static final Supplier<Item> BAT = registerWithName("bat", "Raw Bat", prop -> new Item(prop.food(PlusFoods.BAT).tab(CreativeModeTab.TAB_FOOD)));
     public static final Supplier<Item> COOKED_BAT = registerWithName("cooked_bat", "Cooked Bat", prop -> new Item(prop.food(PlusFoods.COOKED_BAT).tab(CreativeModeTab.TAB_FOOD)));
@@ -42,9 +43,9 @@ public class PlusItems
     public static final Supplier<Item> TURTLE = registerIdAsName("turtle", prop -> new Item(prop.food(PlusFoods.TURTLE).tab(CreativeModeTab.TAB_FOOD)));
     public static final Supplier<Item> COOKED_TURTLE = registerIdAsName("cooked_turtle", prop -> new Item(prop.food(PlusFoods.COOKED_TURTLE).tab(CreativeModeTab.TAB_FOOD)));
 
-    public static final Supplier<DescribedItem> STINGER = registerWithDescription("stinger", prop -> new DescribedItem(prop.stacksTo(32).tab(CreativeModeTab.TAB_BREWING)), "A poisonous stinger");
+    public static final Supplier<DescribedItem> STINGER = registerWithDescription("stinger", prop -> new DescribedItem(Items.RABBIT_FOOT, prop.stacksTo(32).tab(CreativeModeTab.TAB_BREWING)), "A poisonous stinger");
 
-    public static final Supplier<DescribedItem> WARMTH_CRYSTAL = registerWithDescription("warmth_crystal", prop -> new DescribedItem(prop.tab(CreativeModeTab.TAB_MISC)), "Maybe it's heat can be used?");
+    public static final Supplier<DescribedItem> WARMTH_CRYSTAL = registerWithDescription("warmth_crystal", prop -> new DescribedItem(Items.AMETHYST_SHARD, prop.tab(CreativeModeTab.TAB_MISC)), "Maybe it's heat can be used?");
 
     // Vanity
     public static final Supplier<FoxHatItem> FOX_HAT = registerIdAsName("fox_hat", getFoxHatItem());
@@ -61,8 +62,8 @@ public class PlusItems
     public static final Supplier<PlusShieldItem> ROSE_GOLD_SHIELD = registerIdAsName("rose_gold_shield", prop -> new PlusShieldItem(prop, PlusTiers.ROSE_GOLD, Plus.ROSE_GOLD_SHIELD_BASE, Plus.ROSE_GOLD_SHIELD_NO_PATTERN));
 
     // Rose Gold
-    public static final Supplier<Item> RAW_ROSE_GOLD = registerIdAsName("raw_rose_gold", prop -> new Item(prop.tab(CreativeModeTab.TAB_MISC)));
-    public static final Supplier<Item> ROSE_GOLD_INGOT = registerIdAsName("rose_gold_ingot", prop -> new Item(prop.tab(CreativeModeTab.TAB_MISC)));
+    public static final Supplier<Item> RAW_ROSE_GOLD = registerIdAsName("raw_rose_gold", prop -> new TabInsertItem(Items.GOLD_INGOT, prop.tab(CreativeModeTab.TAB_MISC)));
+    public static final Supplier<Item> ROSE_GOLD_INGOT = registerIdAsName("rose_gold_ingot", prop -> new TabInsertItem(RAW_ROSE_GOLD.get(), prop.tab(CreativeModeTab.TAB_MISC)));
     public static final Supplier<Item> ROSE_GOLD_NUGGET = registerIdAsName("rose_gold_nugget", prop -> new Item(prop.tab(CreativeModeTab.TAB_MISC)));
     public static final Supplier<SwordItem> ROSE_GOLD_SWORD = registerIdAsName("rose_gold_sword", prop -> new SwordItem(PlusTiers.ROSE_GOLD, 3, -2.4f, prop.tab(CreativeModeTab.TAB_COMBAT)));
     public static final Supplier<ShovelItem> ROSE_GOLD_SHOVEL = registerIdAsName("rose_gold_shovel", prop -> new ShovelItem(PlusTiers.ROSE_GOLD, 1.5f, -3f, prop.tab(CreativeModeTab.TAB_TOOLS)));
