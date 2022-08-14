@@ -61,6 +61,22 @@ public class PlusJEIPlugin implements IModPlugin
     {
         reg.addRecipeCatalyst(new ItemStack(PlusBlocks.SAW_BENCH.get()), SAW_BENCH);
 
-        reg.addRecipeCatalyst(new ItemStack(PlusBlocks.CAMPFIRE_BIRCH.get()), RecipeTypes.CAMPFIRE_COOKING.getUid());
+        reg.addRecipeCatalyst(new ItemStack(PlusBlocks.CAMPFIRE_BIRCH.get()), RecipeTypes.CAMPFIRE_COOKING);
+        reg.addRecipeCatalyst(new ItemStack(PlusBlocks.CAMPFIRE_SPRUCE.get()), RecipeTypes.CAMPFIRE_COOKING);
+        reg.addRecipeCatalyst(new ItemStack(PlusBlocks.CAMPFIRE_JUNGLE.get()), RecipeTypes.CAMPFIRE_COOKING);
+        reg.addRecipeCatalyst(new ItemStack(PlusBlocks.CAMPFIRE_ACACIA.get()), RecipeTypes.CAMPFIRE_COOKING);
+        reg.addRecipeCatalyst(new ItemStack(PlusBlocks.CAMPFIRE_DARK_OAK.get()), RecipeTypes.CAMPFIRE_COOKING);
+
+        reg.addRecipeCatalyst(new ItemStack(PlusBlocks.SOUL_CAMPFIRE_BIRCH.get()), RecipeTypes.CAMPFIRE_COOKING);
+        reg.addRecipeCatalyst(new ItemStack(PlusBlocks.SOUL_CAMPFIRE_SPRUCE.get()), RecipeTypes.CAMPFIRE_COOKING);
+        reg.addRecipeCatalyst(new ItemStack(PlusBlocks.SOUL_CAMPFIRE_JUNGLE.get()), RecipeTypes.CAMPFIRE_COOKING);
+        reg.addRecipeCatalyst(new ItemStack(PlusBlocks.SOUL_CAMPFIRE_ACACIA.get()), RecipeTypes.CAMPFIRE_COOKING);
+        reg.addRecipeCatalyst(new ItemStack(PlusBlocks.SOUL_CAMPFIRE_DARK_OAK.get()), RecipeTypes.CAMPFIRE_COOKING);
+
+        reg.addRecipeCatalyst(new ItemStack(PlusBlocks.CAMPFIRE_CRIMSON.get()), RecipeTypes.CAMPFIRE_COOKING);
+        reg.addRecipeCatalyst(new ItemStack(PlusBlocks.CAMPFIRE_WARPED.get()), RecipeTypes.CAMPFIRE_COOKING);
+
+        reg.addRecipeCatalyst(new ItemStack(PlusBlocks.CAMPFIRE_MAPLE.get()), RecipeTypes.CAMPFIRE_COOKING);
+        reg.addRecipeCatalyst(new ItemStack(PlusBlocks.SOUL_CAMPFIRE_MAPLE.get()), RecipeTypes.CAMPFIRE_COOKING);
     }
 }

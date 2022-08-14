@@ -32,9 +32,8 @@
         "fabric-datagen": [
             "io.github.coffeecatrailway.plus.data.gen.fabric.PlusDataEntryPoint"
         ],
-        "rei": [
-            "io.github.coffeecatrailway.plus.integration.fabric.rei.PlusREIPlugin",
-            "io.github.coffeecatrailway.plus.integration.fabric.rei.client.PlusREIClientPlugin"
+        "jei_mod_plugin": [
+            "io.github.coffeecatrailway.plus.compat.jei.PlusJEIPlugin"
         ]
     },
     "depends": {
