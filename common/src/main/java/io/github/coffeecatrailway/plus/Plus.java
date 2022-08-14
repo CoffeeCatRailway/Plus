@@ -3,7 +3,7 @@ package io.github.coffeecatrailway.plus;
 import gg.moonflower.pollen.api.config.ConfigManager;
 import gg.moonflower.pollen.api.config.PollinatedConfigType;
 import gg.moonflower.pollen.api.event.events.entity.EntityEvents;
-import gg.moonflower.pollen.api.event.events.lifecycle.TickEvent;
+import gg.moonflower.pollen.api.event.events.lifecycle.TickEvents;
 import gg.moonflower.pollen.api.event.events.registry.client.RegisterAtlasSpriteEvent;
 import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.client.*;
@@ -138,18 +138,17 @@ public class Plus
                 ((MobAccessor) entity).getTargetSelector().addGoal(0, new FindGlowLanternGoal((GlowSquid) entity));
             return true;
         }));
+
+        TickEvents.LIVING_POST.register(entity -> {
+            BlockState state = entity.level.getBlockState(entity.blockPosition());
+            if (state.is(Blocks.STONECUTTER))
+                entity.hurt(PlusDamageSources.SAW_BLADE_DAMAGE_SOURCE, CONFIG_SERVER.sawBladeDamage.get().floatValue());
+        });
     }
 
     public static void onCommonPostInit(Platform.ModSetupContext ctx)
     {
         ctx.enqueueWork(() -> PlusStats.load(PLATFORM));
-
-        TickEvent.LIVING_POST.register(entity -> {
-            BlockState state = entity.level.getBlockState(entity.blockPosition());
-            if (!state.is(Blocks.STONECUTTER))
-                return;
-            entity.hurt(PlusDamageSources.SAW_BLADE_DAMAGE_SOURCE, CONFIG_SERVER.sawBladeDamage.get().floatValue());
-        });
     }
 
     public static void onDataInit(Platform.DataSetupContext ctx)
