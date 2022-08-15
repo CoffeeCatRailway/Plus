@@ -1,9 +1,10 @@
 package io.github.coffeecatrailway.plus.registry.fabric;
 
+import gg.moonflower.pollen.api.platform.Platform;
 import io.github.coffeecatrailway.plus.common.item.FoxHatItem;
 import io.github.coffeecatrailway.plus.common.item.PlusArmorMaterials;
 import io.github.coffeecatrailway.plus.common.item.WarmthAmuletItem;
-import io.github.coffeecatrailway.plus.common.item.fabric.WarmthAmuletItemFabric;
+import io.github.coffeecatrailway.plus.common.item.fabric.WarmthAmuletItemTrinket;
 import net.minecraft.world.item.Item;
 
 import java.util.function.Function;
@@ -26,6 +27,8 @@ public class PlusItemsImpl
 
     public static Function<Item.Properties, WarmthAmuletItem> getWarmthAmuletItem()
     {
-        return WarmthAmuletItemFabric::new;
+        if (Platform.isModLoaded("trinkets"))
+            return WarmthAmuletItemTrinket::new;
+        return WarmthAmuletItem::new;
     }
 }

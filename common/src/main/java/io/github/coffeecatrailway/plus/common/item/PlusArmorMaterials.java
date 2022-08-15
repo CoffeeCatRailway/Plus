@@ -7,6 +7,7 @@ import net.minecraft.util.LazyLoadedValue;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.Blocks;
 
 import java.util.function.Supplier;
 
@@ -17,7 +18,8 @@ import java.util.function.Supplier;
 public enum PlusArmorMaterials implements ArmorMaterial
 {
     FOX_HAT("fox_hat", 5, new int[]{1, 1, 1, 1}, 15, SoundEvents.ARMOR_EQUIP_LEATHER, 0f, 0f, () -> Ingredient.of(PlusItems.FOX_FUR.get())),
-    SNOW_FOX_HAT("snow_fox_hat", 7, new int[]{1, 1, 1, 1}, 15, SoundEvents.ARMOR_EQUIP_LEATHER, 0f, 0f, () -> Ingredient.of(PlusItems.SNOW_FOX_FUR.get()));
+    SNOW_FOX_HAT("snow_fox_hat", 7, new int[]{1, 1, 1, 1}, 15, SoundEvents.ARMOR_EQUIP_LEATHER, 0f, 0f, () -> Ingredient.of(PlusItems.SNOW_FOX_FUR.get())),
+    COSMETIC("cosmetic", 1, new int[] {0, 0, 0, 0}, 0, SoundEvents.ARMOR_EQUIP_LEATHER, 0f, 0f, () -> Ingredient.of(Blocks.BEDROCK));
 
     private static final int[] HEALTH_PER_SLOT = new int[]{13, 15, 16, 11};
     private final String name;

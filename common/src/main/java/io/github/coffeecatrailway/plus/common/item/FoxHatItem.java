@@ -22,7 +22,7 @@ public class FoxHatItem extends ArmorItem
 {
     public static final ResourceLocation TEXTURE = Plus.getLocation("textures/models/armor/fox_hat.png");
     public static final ResourceLocation SNOW_TEXTURE = Plus.getLocation("textures/models/armor/snow_fox_hat.png");
-    private static FoxHatModel model = null;
+    private static FoxHatModel MODEL = null;
 
     public FoxHatItem(ArmorMaterial material, Properties properties)
     {
@@ -32,8 +32,8 @@ public class FoxHatItem extends ArmorItem
     @Environment(EnvType.CLIENT)
     public static FoxHatModel getModel()
     {
-        if (model == null)
-            model = new FoxHatModel(Minecraft.getInstance().getEntityModels().bakeLayer(PlusModelLayers.FOX_HAT));
-        return Objects.requireNonNull(model);
+        if (MODEL == null)
+            MODEL = new FoxHatModel(Minecraft.getInstance().getEntityModels().bakeLayer(PlusModelLayers.FOX_HAT));
+        return Objects.requireNonNull(MODEL);
     }
 }

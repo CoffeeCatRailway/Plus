@@ -7,8 +7,10 @@ import dev.emi.trinkets.api.Trinket;
 import dev.emi.trinkets.api.TrinketItem;
 import dev.emi.trinkets.api.TrinketsApi;
 import dev.emi.trinkets.api.client.TrinketRenderer;
+import dev.emi.trinkets.api.client.TrinketRendererRegistry;
 import io.github.coffeecatrailway.plus.client.entity.AmuletModel;
 import io.github.coffeecatrailway.plus.common.item.WarmthAmuletItem;
+import io.github.coffeecatrailway.plus.registry.PlusItems;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -24,9 +26,9 @@ import net.minecraft.world.level.Level;
  * @author CoffeeCatRailway
  * Created: 18/01/2022
  */
-public class WarmthAmuletItemFabric extends WarmthAmuletItem implements Trinket, TrinketRenderer
+public class WarmthAmuletItemTrinket extends WarmthAmuletItem implements Trinket, TrinketRenderer
 {
-    public WarmthAmuletItemFabric(Properties properties)
+    public WarmthAmuletItemTrinket(Properties properties)
     {
         super(properties);
         TrinketsApi.registerTrinket(this, this);
@@ -53,17 +55,18 @@ public class WarmthAmuletItemFabric extends WarmthAmuletItem implements Trinket,
         if (contextModel instanceof PlayerModel<? extends LivingEntity>)
         {
             AmuletModel model = getModel();
-            if (entity.isCrouching())
-                matrices.translate(0f, .43f, .235f);
-            else
-                matrices.translate(0f, .5f, 0f);
+            model.setCurrentEntity(entity);
             model.setupAnim(entity, limbAngle, limbDistance, animationProgress, animationProgress, headPitch);
             model.prepareMobModel(entity, limbAngle, limbDistance, tickDelta);
-            TrinketRenderer.followBodyRotations(entity, model);
 
             VertexConsumer buffer = vertexConsumers.getBuffer(model.renderType(TEXTURE));
             matrices.scale(1.01f, 1.01f, 1.01f);
             model.renderToBuffer(matrices, buffer, light, OverlayTexture.NO_OVERLAY, 1f, 1f, 1f, 1f);
         }
+    }
+
+    public static void registerRenderer()
+    {
+        TrinketRendererRegistry.registerRenderer(PlusItems.WARMTH_AMULET.get(), (TrinketRenderer) PlusItems.WARMTH_AMULET.get());
     }
 }

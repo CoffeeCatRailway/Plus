@@ -1,9 +1,11 @@
 package io.github.coffeecatrailway.plus.fabric;
 
-import dev.emi.trinkets.api.client.TrinketRenderer;
-import dev.emi.trinkets.api.client.TrinketRendererRegistry;
+import gg.moonflower.pollen.api.platform.Platform;
+import io.github.coffeecatrailway.plus.client.entity.AmuletModel;
 import io.github.coffeecatrailway.plus.client.entity.FoxHatModel;
 import io.github.coffeecatrailway.plus.common.item.FoxHatItem;
+import io.github.coffeecatrailway.plus.common.item.WarmthAmuletItem;
+import io.github.coffeecatrailway.plus.common.item.fabric.WarmthAmuletItemTrinket;
 import io.github.coffeecatrailway.plus.registry.PlusItems;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -30,6 +32,14 @@ public class PlusFabricClient implements ClientModInitializer
                 ArmorRenderer.renderPart(matrices, vertexConsumers, light, stack, model, FoxHatItem.SNOW_TEXTURE);
         }, PlusItems.FOX_HAT.get(), PlusItems.SNOW_FOX_HAT.get());
 
-        TrinketRendererRegistry.registerRenderer(PlusItems.WARMTH_AMULET.get(), (TrinketRenderer) PlusItems.WARMTH_AMULET.get());
+        ArmorRenderer.register((matrices, vertexConsumers, stack, entity, slot, light, contextModel) -> {
+            AmuletModel model = WarmthAmuletItem.getModel();
+            model.setCurrentEntity(entity);
+            contextModel.copyPropertiesTo(model);
+            model.setAllVisible(true);
+            ArmorRenderer.renderPart(matrices, vertexConsumers, light, stack, model, WarmthAmuletItem.TEXTURE);
+        }, PlusItems.WARMTH_AMULET.get());
+        if (Platform.isModLoaded("trinkets"))
+            WarmthAmuletItemTrinket.registerRenderer();
     }
 }

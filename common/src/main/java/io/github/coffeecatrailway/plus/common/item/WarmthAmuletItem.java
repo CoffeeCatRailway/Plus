@@ -14,8 +14,8 @@ import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
@@ -31,14 +31,14 @@ import java.util.Objects;
  * @author CoffeeCatRailway
  * Created: 18/01/2022
  */
-public class WarmthAmuletItem extends Item
+public class WarmthAmuletItem extends ArmorItem
 {
     public static final ResourceLocation TEXTURE = Plus.getLocation("textures/models/amulet/warmth.png");
-    private static AmuletModel model = null;
+    private static AmuletModel MODEL = null;
 
     public WarmthAmuletItem(Properties properties)
     {
-        super(properties.stacksTo(1).rarity(Rarity.UNCOMMON).tab(CreativeModeTab.TAB_TOOLS));
+        super(PlusArmorMaterials.COSMETIC, EquipmentSlot.CHEST, properties.stacksTo(1).rarity(Rarity.UNCOMMON).tab(CreativeModeTab.TAB_TOOLS));
     }
 
     @Override
@@ -51,7 +51,7 @@ public class WarmthAmuletItem extends Item
     @Override
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int index, boolean selected)
     {
-        if (entity instanceof Player && Inventory.isHotbarSlot(index))
+        if (entity instanceof Player player && player.getInventory().armor.get(2).getItem() == this)
             this.tick((LivingEntity) entity);
     }
 
@@ -87,8 +87,8 @@ public class WarmthAmuletItem extends Item
     @Environment(EnvType.CLIENT)
     public static AmuletModel getModel()
     {
-        if (model == null)
-            model = new AmuletModel(Minecraft.getInstance().getEntityModels().bakeLayer(PlusModelLayers.AMULET));
-        return Objects.requireNonNull(model);
+        if (MODEL == null)
+            MODEL = new AmuletModel(Minecraft.getInstance().getEntityModels().bakeLayer(PlusModelLayers.AMULET));
+        return Objects.requireNonNull(MODEL);
     }
 }

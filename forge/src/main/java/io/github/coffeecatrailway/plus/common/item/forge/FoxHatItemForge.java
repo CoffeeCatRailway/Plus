@@ -49,11 +49,11 @@ public class FoxHatItemForge extends FoxHatItem
             {
                 if (!stack.isEmpty())
                 {
-                    FoxHatModel hatModel = FoxHatItem.getModel();
-                    hatModel.setAllVisible(true);
-                    hatModel.crouching = parent.crouching;
-                    hatModel.young = parent.young;
-                    return hatModel;
+                    FoxHatModel model = FoxHatItem.getModel();
+                    model.setAllVisible(true);
+                    model.crouching = parent.crouching;
+                    model.young = parent.young;
+                    return model;
                 }
                 return null;
             }
