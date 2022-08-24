@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "plus:item/playing_cards/blank",
+    "layer2": "plus:item/playing_cards/queen_black",
+    "layer1": "plus:item/playing_cards/suits/spades/ace"
+  }
+}

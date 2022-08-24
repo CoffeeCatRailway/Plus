@@ -1,5 +1,7 @@
 package io.github.coffeecatrailway.plus.registry;
 
+import com.google.common.collect.Table;
+import com.google.common.collect.Tables;
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import gg.moonflower.pollen.api.item.TabInsertItem;
 import gg.moonflower.pollen.api.platform.Platform;
@@ -13,6 +15,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.HashMap;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -70,6 +73,24 @@ public class PlusItems
     public static final Supplier<PickaxeItem> ROSE_GOLD_PICKAXE = registerIdAsName("rose_gold_pickaxe", prop -> new PlusPickaxeItem(PlusTiers.ROSE_GOLD, 1, -2.8f, prop.tab(CreativeModeTab.TAB_TOOLS)));
     public static final Supplier<AxeItem> ROSE_GOLD_AXE = registerIdAsName("rose_gold_axe", prop -> new PlusAxeItem(PlusTiers.ROSE_GOLD, 6f, -3f, prop.tab(CreativeModeTab.TAB_TOOLS)));
     public static final Supplier<HoeItem> ROSE_GOLD_HOE = registerIdAsName("rose_gold_hoe", prop -> new PlusHoeItem(PlusTiers.ROSE_GOLD, 0, -3f, prop.tab(CreativeModeTab.TAB_TOOLS)));
+
+    // Cards
+    public static final Supplier<PlayingCardItem> CARD_JOKER_BLACK = registerWithName("playing_card_joker_black", "Black Joker", prop -> new PlayingCardItem(prop.stacksTo(54).tab(CreativeModeTab.TAB_MISC), null, PlayingCardItem.Number.JOKER));
+    public static final Supplier<PlayingCardItem> CARD_JOKER_RED = registerWithName("playing_card_joker_red", "Red Joker", prop -> new PlayingCardItem(prop.stacksTo(54).tab(CreativeModeTab.TAB_MISC), null, PlayingCardItem.Number.JOKER));
+    public static final Table<PlayingCardItem.Suit, PlayingCardItem.Number, Supplier<PlayingCardItem>> PLAYING_CARDS = Tables.newCustomTable(new HashMap<>(), HashMap::new);
+    static
+    {
+        for (PlayingCardItem.Suit suit : PlayingCardItem.Suit.values())
+        {
+            for (PlayingCardItem.Number number : PlayingCardItem.Number.values())
+            {
+                if (number.equals(PlayingCardItem.Number.JOKER))
+                    continue;
+                String name = PlusLanguage.capitalize(number.getName()) + " of " + PlusLanguage.capitalize(suit.getName());
+                PLAYING_CARDS.put(suit, number, registerWithName("playing_card_" + suit.getName() + "_" + number.getName(), name, prop -> new PlayingCardItem(prop.stacksTo(54).tab(CreativeModeTab.TAB_MISC), suit, number)));
+            }
+        }
+    }
 
     protected static <T extends DescribedItem> Supplier<T> registerWithDescription(String id, Function<Item.Properties, T> factory, String description)
     {

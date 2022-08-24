@@ -3,6 +3,8 @@ package io.github.coffeecatrailway.plus.data.gen;
 import gg.moonflower.pollen.api.datagen.provider.tags.PollinatedItemTagsProvider;
 import gg.moonflower.pollen.api.registry.resource.TagRegistry;
 import gg.moonflower.pollen.api.util.PollinatedModContainer;
+import io.github.coffeecatrailway.plus.Plus;
+import io.github.coffeecatrailway.plus.common.item.PlayingCardItem;
 import io.github.coffeecatrailway.plus.registry.PlusBlocks;
 import io.github.coffeecatrailway.plus.registry.PlusItems;
 import net.minecraft.data.DataGenerator;
@@ -13,6 +15,8 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
+
+import java.util.function.Supplier;
 
 /**
  * @author CoffeeCatRailway
@@ -55,6 +59,8 @@ public class PlusItemTags extends PollinatedItemTagsProvider
     public static final TagKey<Item> NECKLACE_TRINKETS = TagRegistry.bindItem(new ResourceLocation("trinkets", "chest/necklace"));
 
     public static final TagKey<Item> HNC_MAPLE_LOGS = TagRegistry.bindItem(new ResourceLocation("hamncheese", "maple_logs"));
+
+    public static final TagKey<Item> PLAYING_CARDS = TagRegistry.bindItem(Plus.getLocation("playing_cards"));
 
     public PlusItemTags(DataGenerator generator, PollinatedModContainer container, BlockTagsProvider blockTags)
     {
@@ -102,5 +108,7 @@ public class PlusItemTags extends PollinatedItemTagsProvider
 
         this.tag(NECKLACE_CURIOS).add(PlusItems.WARMTH_AMULET.get());
         this.tag(NECKLACE_TRINKETS).addTag(NECKLACE_CURIOS);
+
+        this.tag(PLAYING_CARDS).add(PlusItems.PLAYING_CARDS.values().stream().map(Supplier::get).toArray(PlayingCardItem[]::new));
     }
 }
