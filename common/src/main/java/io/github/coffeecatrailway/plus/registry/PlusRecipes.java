@@ -5,15 +5,12 @@ import gg.moonflower.pollen.api.registry.PollinatedRegistry;
 import io.github.coffeecatrailway.plus.Plus;
 import io.github.coffeecatrailway.plus.common.item.crafting.SawBenchRecipe;
 import net.minecraft.core.Registry;
-import net.minecraft.world.Container;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.level.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Optional;
 import java.util.function.Supplier;
 
 /**
@@ -27,7 +24,7 @@ public class PlusRecipes
     protected static final PollinatedRegistry<RecipeSerializer<?>> SERIALIZERS = PollinatedRegistry.create(Registry.RECIPE_SERIALIZER, Plus.MOD_ID);
 
     public static final Supplier<RecipeType<SawBenchRecipe>> SAW_BENCH_TYPE = register("saw_bench");
-    public static final Supplier<RecipeSerializer<SawBenchRecipe>> SAW_BENCH_SERIALIZER = SERIALIZERS.register("saw_bench", () -> new SawBenchRecipe.Serializer<>(SawBenchRecipe::new));
+    public static final Supplier<RecipeSerializer<SawBenchRecipe>> SAW_BENCH_SERIALIZER = SERIALIZERS.register("saw_bench", () -> new SawBenchRecipe.Serializer(SawBenchRecipe::new));
 
     private static <R extends Recipe<?>> Supplier<RecipeType<R>> register(String id)
     {
