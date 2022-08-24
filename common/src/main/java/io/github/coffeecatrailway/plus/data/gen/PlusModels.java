@@ -88,12 +88,6 @@ public class PlusModels extends PollinatedModelProvider
             this.generateFlatItem(PlusItems.ROSE_GOLD_AXE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
             this.generateFlatItem(PlusItems.ROSE_GOLD_HOE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
 
-            this.generateFlatItem(PlusBlocks.GLOW_LANTERN.get().asItem(), Plus.getLocation("item/glow_lantern"), ModelTemplates.FLAT_ITEM);
-        }
-
-        private void generateFlatItem(Item item, ResourceLocation texture, ModelTemplate modelTemplate)
-        {
-            modelTemplate.create(ModelLocationUtils.getModelLocation(item), TextureMapping.layer0(texture), this.getModelOutput());
             PlusItems.PLAYING_CARDS.values().stream().map(Supplier::get).forEach(card -> {
                 ResourceLocation suitLocation = Plus.getLocation("item/playing_cards/suits/" + card.getSuit().getName() + "/" + card.getNumber().getName());
                 if (card.getNumber().equals(PlayingCardItem.Number.JACK) || card.getNumber().equals(PlayingCardItem.Number.QUEEN) || card.getNumber().equals(PlayingCardItem.Number.KING))
@@ -158,7 +152,7 @@ public class PlusModels extends PollinatedModelProvider
                     .select(true, false, Variant.variant().with(VariantProperties.MODEL, Plus.getLocation("block/hanging_glow_lantern")))
                     .select(true, true, Variant.variant().with(VariantProperties.MODEL, Plus.getLocation("block/hanging_glow_lantern")));
             this.getBlockStateOutput().accept(MultiVariantGenerator.multiVariant(PlusBlocks.GLOW_LANTERN.get()).with(dispatchLantern));
-            this.skipAutoItemBlock(PlusBlocks.GLOW_LANTERN.get());
+            this.createSimpleFlatItemModel(PlusBlocks.GLOW_LANTERN.get().asItem());
 
             this.campfire(PlusBlocks.CAMPFIRE_BIRCH.get(), false, false);
             this.campfire(PlusBlocks.CAMPFIRE_SPRUCE.get(), false, false);
