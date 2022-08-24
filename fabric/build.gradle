@@ -52,7 +52,6 @@ configurations {
     developmentFabric.extendsFrom common
 }
 
-
 repositories {
     maven { // ModMenu
         name = "TerraformersMC"
@@ -88,6 +87,7 @@ task copyAccessWidener(type: Copy) {
 }
 
 processResources {
+    dependsOn(copyAccessWidener)
     inputs.property "id", rootProject.modId
     inputs.property "name", rootProject.modName
     inputs.property "version", rootProject.modVersion
