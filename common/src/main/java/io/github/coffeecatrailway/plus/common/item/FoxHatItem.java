@@ -2,7 +2,7 @@ package io.github.coffeecatrailway.plus.common.item;
 
 import io.github.coffeecatrailway.plus.Plus;
 import io.github.coffeecatrailway.plus.client.PlusModelLayers;
-import io.github.coffeecatrailway.plus.client.entity.FoxHatModel;
+import io.github.coffeecatrailway.plus.client.entity.model.FoxHatModel;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;

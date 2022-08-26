@@ -2,7 +2,7 @@ package io.github.coffeecatrailway.plus.common.item;
 
 import io.github.coffeecatrailway.plus.Plus;
 import io.github.coffeecatrailway.plus.client.PlusModelLayers;
-import io.github.coffeecatrailway.plus.client.entity.AmuletModel;
+import io.github.coffeecatrailway.plus.client.entity.model.AmuletModel;
 import io.github.coffeecatrailway.plus.common.enchantment.HeatWalkerEnchantment;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
