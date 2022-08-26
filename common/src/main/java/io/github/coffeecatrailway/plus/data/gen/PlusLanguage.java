@@ -4,6 +4,7 @@ import gg.moonflower.pollen.api.datagen.provider.PollinatedLanguageProvider;
 import gg.moonflower.pollen.api.util.PollinatedModContainer;
 import io.github.coffeecatrailway.plus.Plus;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.block.Block;
@@ -22,6 +23,7 @@ public class PlusLanguage extends PollinatedLanguageProvider
     public static final Map<Supplier<? extends Item>, String> ITEMS = new HashMap<>();
     public static final Map<Supplier<? extends Block>, String> BLOCKS = new HashMap<>();
     public static final Map<Supplier<? extends Enchantment>, String> ENCHANTMENTS = new HashMap<>();
+    public static final Map<Supplier<? extends EntityType<?>>, String> ENTITIES = new HashMap<>();
 
     public PlusLanguage(DataGenerator generator, PollinatedModContainer container)
     {
@@ -143,6 +145,7 @@ public class PlusLanguage extends PollinatedLanguageProvider
         ITEMS.forEach(this::addItem);
         BLOCKS.forEach(this::addBlock);
         ENCHANTMENTS.forEach(this::addEnchantment);
+        ENTITIES.forEach(this::addEntityType);
     }
 
     public static String capitalize(String id)

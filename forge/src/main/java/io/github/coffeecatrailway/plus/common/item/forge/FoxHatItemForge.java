@@ -1,6 +1,6 @@
 package io.github.coffeecatrailway.plus.common.item.forge;
 
-import io.github.coffeecatrailway.plus.client.entity.FoxHatModel;
+import io.github.coffeecatrailway.plus.client.entity.model.FoxHatModel;
 import io.github.coffeecatrailway.plus.common.item.FoxHatItem;
 import io.github.coffeecatrailway.plus.common.item.PlusArmorMaterials;
 import net.minecraft.client.model.HumanoidModel;

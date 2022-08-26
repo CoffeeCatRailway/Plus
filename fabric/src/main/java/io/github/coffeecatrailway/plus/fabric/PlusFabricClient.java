@@ -1,8 +1,8 @@
 package io.github.coffeecatrailway.plus.fabric;
 
 import gg.moonflower.pollen.api.platform.Platform;
-import io.github.coffeecatrailway.plus.client.entity.AmuletModel;
-import io.github.coffeecatrailway.plus.client.entity.FoxHatModel;
+import io.github.coffeecatrailway.plus.client.entity.model.AmuletModel;
+import io.github.coffeecatrailway.plus.client.entity.model.FoxHatModel;
 import io.github.coffeecatrailway.plus.common.item.FoxHatItem;
 import io.github.coffeecatrailway.plus.common.item.WarmthAmuletItem;
 import io.github.coffeecatrailway.plus.common.item.fabric.WarmthAmuletItemTrinket;

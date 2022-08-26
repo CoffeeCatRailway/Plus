@@ -1,5 +1,6 @@
 package io.github.coffeecatrailway.plus.common.item;
 
+import io.github.coffeecatrailway.plus.common.entity.PlayingCardEntity;
 import io.github.coffeecatrailway.plus.registry.PlusItems;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -7,7 +8,6 @@ import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.Snowball;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -53,10 +53,10 @@ public class PlayingCardItem extends Item
         level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.SNOWBALL_THROW, SoundSource.NEUTRAL, .5f, .4f / (level.getRandom().nextFloat() * .4f + .8f));
         if (!level.isClientSide)
         {
-            Snowball snowball = new Snowball(level, player);
-            snowball.setItem(stack);
-            snowball.shootFromRotation(player, player.getXRot(), player.getYRot(), 0f, 1.5f, 1f);
-            level.addFreshEntity(snowball);
+            PlayingCardEntity cardEntity = new PlayingCardEntity(level, player, (PlayingCardItem) stack.getItem());
+            cardEntity.setItem(stack);
+            cardEntity.shootFromRotation(player, player.getXRot(), player.getYRot(), 0f, 1.5f, 1f);
+            level.addFreshEntity(cardEntity);
         }
 
         player.awardStat(Stats.ITEM_USED.get(this));

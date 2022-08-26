@@ -4,6 +4,7 @@ import gg.moonflower.pollen.api.config.ConfigManager;
 import gg.moonflower.pollen.api.config.PollinatedConfigType;
 import gg.moonflower.pollen.api.event.events.entity.EntityEvents;
 import gg.moonflower.pollen.api.event.events.lifecycle.TickEvents;
+import gg.moonflower.pollen.api.event.events.registry.client.ParticleFactoryRegistryEvent;
 import gg.moonflower.pollen.api.event.events.registry.client.RegisterAtlasSpriteEvent;
 import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.client.*;
@@ -12,6 +13,7 @@ import gg.moonflower.pollen.api.util.PollinatedModContainer;
 import io.github.coffeecatrailway.plus.client.PlusModelLayers;
 import io.github.coffeecatrailway.plus.client.entity.model.AmuletModel;
 import io.github.coffeecatrailway.plus.client.entity.model.FoxHatModel;
+import io.github.coffeecatrailway.plus.client.entity.renderer.PlayingCardEntityRenderer;
 import io.github.coffeecatrailway.plus.client.gui.SawBenchScreen;
 import io.github.coffeecatrailway.plus.client.item.PlusShieldItemRenderer;
 import io.github.coffeecatrailway.plus.common.entity.ai.goal.FindGlowLanternGoal;
@@ -21,12 +23,14 @@ import io.github.coffeecatrailway.plus.data.gen.loot.PlusLootTableProvider;
 import io.github.coffeecatrailway.plus.mixins.MobAccessor;
 import io.github.coffeecatrailway.plus.registry.*;
 import net.minecraft.client.model.ShieldModel;
+import net.minecraft.client.particle.BreakingItemParticle;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.GlowSquid;
 import net.minecraft.world.inventory.InventoryMenu;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -61,6 +65,8 @@ public class Plus
         EntityRendererRegistry.registerLayerDefinition(PlusModelLayers.AMULET, AmuletModel::createBodyLayer);
         EntityRendererRegistry.registerLayerDefinition(PlusModelLayers.SHIELD, ShieldModel::createLayer);
 
+        EntityRendererRegistry.register(PlusEntities.PLAYING_CARD, PlayingCardEntityRenderer::new);
+
         RegisterAtlasSpriteEvent.event(InventoryMenu.BLOCK_ATLAS).register((atlas, registry) -> {
             registry.accept(WOODEN_SHIELD_BASE.texture());
             registry.accept(WOODEN_SHIELD_NO_PATTERN.texture());
@@ -75,6 +81,8 @@ public class Plus
             registry.accept(ROSE_GOLD_SHIELD_BASE.texture());
             registry.accept(ROSE_GOLD_SHIELD_NO_PATTERN.texture());
         });
+
+        ParticleFactoryRegistryEvent.EVENT.register(registry -> registry.register(PlusParticles.ITEM_PLAYING_CARD.get(), (particleOptions, clientLevel, d, e, f, g, h, i) -> new BreakingItemParticle(clientLevel, d, e, f, new ItemStack(PlusItems.CARD_JOKER_BLACK.get()))));
 
         PollinatedModContainer.get(MOD_ID).ifPresent(container -> {
             ResourceRegistry.registerBuiltinResourcePack(getLocation("shieldrevamp"), container, true);
@@ -132,6 +140,8 @@ public class Plus
         PlusDamageSources.load();
         PlusEnchantments.load(PLATFORM);
         PlusMenus.load(PLATFORM);
+        PlusEntities.load(PLATFORM);
+        PlusParticles.load(PLATFORM);
 
         EntityEvents.JOIN.register(((entity, level) -> {
             if (entity instanceof GlowSquid)

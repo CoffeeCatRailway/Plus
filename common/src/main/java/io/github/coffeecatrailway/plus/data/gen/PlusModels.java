@@ -88,6 +88,8 @@ public class PlusModels extends PollinatedModelProvider
             this.generateFlatItem(PlusItems.ROSE_GOLD_AXE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
             this.generateFlatItem(PlusItems.ROSE_GOLD_HOE.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
 
+            ModelTemplates.FLAT_ITEM.create(ModelLocationUtils.getModelLocation(PlusItems.CARD_JOKER_BLACK.get()), TextureMapping.layer0(Plus.getLocation("item/playing_cards/blank")).putForced(LAYER1, Plus.getLocation("item/playing_cards/joker_black")), this.getModelOutput());
+            ModelTemplates.FLAT_ITEM.create(ModelLocationUtils.getModelLocation(PlusItems.CARD_JOKER_RED.get()), TextureMapping.layer0(Plus.getLocation("item/playing_cards/blank")).putForced(LAYER1, Plus.getLocation("item/playing_cards/joker_red")), this.getModelOutput());
             PlusItems.PLAYING_CARDS.values().stream().map(Supplier::get).forEach(card -> {
                 ResourceLocation suitLocation = Plus.getLocation("item/playing_cards/suits/" + card.getSuit().getName() + "/" + card.getNumber().getName());
                 if (card.getNumber().equals(PlayingCardItem.Number.JACK) || card.getNumber().equals(PlayingCardItem.Number.QUEEN) || card.getNumber().equals(PlayingCardItem.Number.KING))
@@ -95,8 +97,6 @@ public class PlusModels extends PollinatedModelProvider
                 ResourceLocation numberLocation = Plus.getLocation("item/playing_cards/" + card.getNumber().getName() + (card.isRed() ? "_red" : "_black"));
                 ModelTemplates.FLAT_ITEM.create(ModelLocationUtils.getModelLocation(card), TextureMapping.layer0(Plus.getLocation("item/playing_cards/blank")).putForced(LAYER1, suitLocation).putForced(LAYER2, numberLocation), this.getModelOutput());
             });
-            ModelTemplates.FLAT_ITEM.create(ModelLocationUtils.getModelLocation(PlusItems.CARD_JOKER_BLACK.get()), TextureMapping.layer0(Plus.getLocation("item/playing_cards/blank")).putForced(LAYER1, Plus.getLocation("item/playing_cards/joker_black")), this.getModelOutput());
-            ModelTemplates.FLAT_ITEM.create(ModelLocationUtils.getModelLocation(PlusItems.CARD_JOKER_RED.get()), TextureMapping.layer0(Plus.getLocation("item/playing_cards/blank")).putForced(LAYER1, Plus.getLocation("item/playing_cards/joker_red")), this.getModelOutput());
         }
     }
 

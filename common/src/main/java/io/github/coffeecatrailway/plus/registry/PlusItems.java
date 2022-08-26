@@ -75,8 +75,8 @@ public class PlusItems
     public static final Supplier<HoeItem> ROSE_GOLD_HOE = registerIdAsName("rose_gold_hoe", prop -> new PlusHoeItem(PlusTiers.ROSE_GOLD, 0, -3f, prop.tab(CreativeModeTab.TAB_TOOLS)));
 
     // Cards
-    public static final Supplier<PlayingCardItem> CARD_JOKER_BLACK = registerWithName("playing_card_joker_black", "Black Joker", prop -> new PlayingCardItem(prop.stacksTo(54).tab(CreativeModeTab.TAB_MISC), null, PlayingCardItem.Number.JOKER));
-    public static final Supplier<PlayingCardItem> CARD_JOKER_RED = registerWithName("playing_card_joker_red", "Red Joker", prop -> new PlayingCardItem(prop.stacksTo(54).tab(CreativeModeTab.TAB_MISC), null, PlayingCardItem.Number.JOKER));
+    public static final Supplier<PlayingCardItem> CARD_JOKER_BLACK = registerWithName("playing_card_joker_black", "Black Joker", prop -> new PlayingCardItem(prop.stacksTo(52), null, PlayingCardItem.Number.JOKER));
+    public static final Supplier<PlayingCardItem> CARD_JOKER_RED = registerWithName("playing_card_joker_red", "Red Joker", prop -> new PlayingCardItem(prop.stacksTo(52), null, PlayingCardItem.Number.JOKER));
     public static final Table<PlayingCardItem.Suit, PlayingCardItem.Number, Supplier<PlayingCardItem>> PLAYING_CARDS = Tables.newCustomTable(new HashMap<>(), HashMap::new);
     static
     {
@@ -87,7 +87,7 @@ public class PlusItems
                 if (number.equals(PlayingCardItem.Number.JOKER))
                     continue;
                 String name = PlusLanguage.capitalize(number.getName()) + " of " + PlusLanguage.capitalize(suit.getName());
-                PLAYING_CARDS.put(suit, number, registerWithName("playing_card_" + suit.getName() + "_" + number.getName(), name, prop -> new PlayingCardItem(prop.stacksTo(54).tab(CreativeModeTab.TAB_MISC), suit, number)));
+                PLAYING_CARDS.put(suit, number, registerWithName("playing_card_" + suit.getName() + "_" + number.getName(), name, prop -> new PlayingCardItem(prop.stacksTo(52), suit, number)));
             }
         }
     }
