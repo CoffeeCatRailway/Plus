@@ -22,6 +22,8 @@ public class PlusStats
 
     public static final ResourceLocation INTERACT_WITH_SAW_BENCH = register("interact_with_saw_bench", StatFormatter.DEFAULT);
 
+    public static final ResourceLocation USE_PLAYING_CARD_PACK = register("use_playing_card_pack", StatFormatter.DEFAULT);
+
     private static ResourceLocation register(String id, StatFormatter formatter)
     {
         ResourceLocation stat = Plus.getLocation(id);

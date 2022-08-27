@@ -14,6 +14,7 @@ import io.github.coffeecatrailway.plus.client.PlusModelLayers;
 import io.github.coffeecatrailway.plus.client.entity.model.AmuletModel;
 import io.github.coffeecatrailway.plus.client.entity.model.FoxHatModel;
 import io.github.coffeecatrailway.plus.client.entity.renderer.PlayingCardEntityRenderer;
+import io.github.coffeecatrailway.plus.client.gui.PlayingCardPackScreen;
 import io.github.coffeecatrailway.plus.client.gui.SawBenchScreen;
 import io.github.coffeecatrailway.plus.client.item.PlusShieldItemRenderer;
 import io.github.coffeecatrailway.plus.common.entity.ai.goal.FindGlowLanternGoal;
@@ -59,6 +60,9 @@ public class Plus
     public static final Material ROSE_GOLD_SHIELD_BASE = new Material(InventoryMenu.BLOCK_ATLAS, getLocation("entity/shield/rose_gold_pattern"));
     public static final Material ROSE_GOLD_SHIELD_NO_PATTERN = new Material(InventoryMenu.BLOCK_ATLAS, getLocation("entity/shield/rose_gold_nopattern"));
 
+    public static final ResourceLocation EMPTY_SLOT_CARD = getLocation("item/empty_card_slot");
+    public static final ResourceLocation EMPTY_SLOT_CARD_PACK = getLocation("item/empty_card_pack_slot");
+
     public static void onClientInit()
     {
         EntityRendererRegistry.registerLayerDefinition(PlusModelLayers.FOX_HAT, FoxHatModel::createBodyLayer);
@@ -87,12 +91,18 @@ public class Plus
         PollinatedModContainer.get(MOD_ID).ifPresent(container -> {
             ResourceRegistry.registerBuiltinResourcePack(getLocation("shieldrevamp"), container, true);
         });
+
+        RegisterAtlasSpriteEvent.event(InventoryMenu.BLOCK_ATLAS).register((atlas, registry) -> {
+            registry.accept(EMPTY_SLOT_CARD);
+            registry.accept(EMPTY_SLOT_CARD_PACK);
+        });
     }
 
     public static void onClientPostInit(Platform.ModSetupContext ctx)
     {
         ctx.enqueueWork(() -> {
             ScreenRegistry.register(PlusMenus.SAW_BENCH.get(), SawBenchScreen::new);
+            ScreenRegistry.register(PlusMenus.PLAYING_CARD_PACK.get(), PlayingCardPackScreen::new);
         });
 
         RenderTypeRegistry.register(PlusBlocks.SAW_BENCH.get(), RenderType.cutoutMipped());

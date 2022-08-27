@@ -109,6 +109,6 @@ public class PlusItemTags extends PollinatedItemTagsProvider
         this.tag(NECKLACE_CURIOS).add(PlusItems.WARMTH_AMULET.get());
         this.tag(NECKLACE_TRINKETS).addTag(NECKLACE_CURIOS);
 
-        this.tag(PLAYING_CARDS).add(PlusItems.PLAYING_CARDS.values().stream().map(Supplier::get).toArray(PlayingCardItem[]::new));
+        this.tag(PLAYING_CARDS).add(PlusItems.PLAYING_CARDS.stream().map(Supplier::get).toArray(PlayingCardItem[]::new));
     }
 }

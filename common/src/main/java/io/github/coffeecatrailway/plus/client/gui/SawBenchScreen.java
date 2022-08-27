@@ -28,6 +28,7 @@ import java.util.List;
 public class SawBenchScreen extends AbstractContainerScreen<SawBenchMenu>
 {
     private static final ResourceLocation BG_LOCATION = Plus.getLocation("textures/gui/container/saw_bench.png");
+
     private float scrollOffs;
     private boolean scrolling;
     private int startIndex;

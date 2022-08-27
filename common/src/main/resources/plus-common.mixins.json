@@ -9,6 +9,7 @@
         "BlockEntityTypeMixin",
         "CampfireBlockMixin",
         "FrostWalkerEnchantmentMixin",
+        "ItemStackMixin",
         "LivingEntityMixin",
         "MagmaBlockMixin",
         "MobAccessor",

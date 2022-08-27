@@ -1,7 +1,5 @@
 package io.github.coffeecatrailway.plus.registry;
 
-import com.google.common.collect.Table;
-import com.google.common.collect.Tables;
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import gg.moonflower.pollen.api.item.TabInsertItem;
 import gg.moonflower.pollen.api.platform.Platform;
@@ -15,7 +13,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -77,7 +76,7 @@ public class PlusItems
     // Cards
     public static final Supplier<PlayingCardItem> CARD_JOKER_BLACK = registerWithName("playing_card_joker_black", "Black Joker", prop -> new PlayingCardItem(prop.stacksTo(52), null, PlayingCardItem.Number.JOKER));
     public static final Supplier<PlayingCardItem> CARD_JOKER_RED = registerWithName("playing_card_joker_red", "Red Joker", prop -> new PlayingCardItem(prop.stacksTo(52), null, PlayingCardItem.Number.JOKER));
-    public static final Table<PlayingCardItem.Suit, PlayingCardItem.Number, Supplier<PlayingCardItem>> PLAYING_CARDS = Tables.newCustomTable(new HashMap<>(), HashMap::new);
+    public static final List<Supplier<PlayingCardItem>> PLAYING_CARDS = new ArrayList<>();
     static
     {
         for (PlayingCardItem.Suit suit : PlayingCardItem.Suit.values())
@@ -87,10 +86,12 @@ public class PlusItems
                 if (number.equals(PlayingCardItem.Number.JOKER))
                     continue;
                 String name = PlusLanguage.capitalize(number.getName()) + " of " + PlusLanguage.capitalize(suit.getName());
-                PLAYING_CARDS.put(suit, number, registerWithName("playing_card_" + suit.getName() + "_" + number.getName(), name, prop -> new PlayingCardItem(prop.stacksTo(52), suit, number)));
+                PLAYING_CARDS.add((number.getNumerical() - 1) + suit.ordinal() * 13, registerWithName("playing_card_" + suit.getName() + "_" + number.getName(), name, prop -> new PlayingCardItem(prop.stacksTo(52), suit, number)));
             }
         }
+        assert PLAYING_CARDS.size() == 52;
     }
+    public static final Supplier<PlayingCardPackItem> PLAYING_CARD_PACK = registerIdAsName("playing_card_pack", prop -> new PlayingCardPackItem(prop.stacksTo(1).tab(CreativeModeTab.TAB_MISC)));
 
     protected static <T extends DescribedItem> Supplier<T> registerWithDescription(String id, Function<Item.Properties, T> factory, String description)
     {
