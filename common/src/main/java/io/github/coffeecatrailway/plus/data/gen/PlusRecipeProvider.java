@@ -178,6 +178,8 @@ public class PlusRecipeProvider extends PollinatedRecipeProvider
 
         this.campfire(consumer, PlusBlocks.CAMPFIRE_MAPLE.get(), PlusItemTags.HNC_MAPLE_LOGS, ItemTags.COALS);
         this.campfire(consumer, PlusBlocks.SOUL_CAMPFIRE_MAPLE.get(), PlusItemTags.HNC_MAPLE_LOGS, ItemTags.SOUL_FIRE_BASE_BLOCKS);
+
+        ShapedRecipeBuilder.shaped(PlusItems.PLAYING_CARD_PACK.get()).define('p', Items.PAPER).pattern("ppp").pattern("ppp").pattern("ppp").unlockedBy("has_paper", has(Items.PAPER)).save(consumer);
     }
 
     private void campfire(Consumer<FinishedRecipe> consumer, CampfireBlock campfireBlock, TagKey<Item> log, TagKey<Item> fireBase)
