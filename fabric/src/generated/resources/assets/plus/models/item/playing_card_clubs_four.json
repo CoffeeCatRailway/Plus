@@ -2,7 +2,7 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "plus:item/playing_cards/blank",
-    "layer2": "plus:item/playing_cards/four_black",
-    "layer1": "plus:item/playing_cards/suits/clubs/four"
+    "layer1": "plus:item/playing_cards/suits/clubs/four",
+    "layer2": "plus:item/playing_cards/four_black"
   }
 }

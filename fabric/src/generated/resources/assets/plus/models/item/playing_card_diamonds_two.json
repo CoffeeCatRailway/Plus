@@ -2,7 +2,7 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "plus:item/playing_cards/blank",
-    "layer2": "plus:item/playing_cards/two_red",
-    "layer1": "plus:item/playing_cards/suits/diamonds/two"
+    "layer1": "plus:item/playing_cards/suits/diamonds/two",
+    "layer2": "plus:item/playing_cards/two_red"
   }
 }

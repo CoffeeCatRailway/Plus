@@ -3,7 +3,7 @@
   "textures": {
     "fire": "minecraft:block/soul_campfire_fire",
     "lit_log": "plus:block/soul_campfire_dark_oak_log_lit",
-    "particle": "plus:block/campfire_dark_oak_log",
-    "log": "plus:block/campfire_dark_oak_log"
+    "log": "plus:block/campfire_dark_oak_log",
+    "particle": "plus:block/campfire_dark_oak_log"
   }
 }
