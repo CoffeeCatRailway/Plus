@@ -25,7 +25,7 @@ public class PlayingCardPackScreen extends AbstractContainerScreen<PlayingCardPa
     {
         super(menu, inventory, component);
         this.imageWidth = 244;
-        this.imageHeight = 192;
+        this.imageHeight = 193;
         this.titleLabelY = 5;
         this.inventoryLabelY = this.imageHeight - 99;
     }
