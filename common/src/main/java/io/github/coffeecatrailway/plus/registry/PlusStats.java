@@ -43,6 +43,7 @@ public class PlusStats
         public static void load()
         {
             register("interact_with_saw_bench", "Interactions with Saw Bench");
+            register("use_playing_card_pack", "Uses of Playing Card Pack");
         }
 
         private static void register(String id, String name)
