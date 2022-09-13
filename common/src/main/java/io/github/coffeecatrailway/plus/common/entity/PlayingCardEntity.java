@@ -55,9 +55,12 @@ public class PlayingCardEntity extends ThrowableItemProjectile
     {
         if (b == 3)
         {
-            ParticleOptions particleOptions = this.getParticle();
-            for (int i = 0; i < 8; ++i)
-                this.level.addParticle(particleOptions, this.getX(), this.getY(), this.getZ(), 0d, 0d, 0d);
+            if (this.level.isClientSide)
+            {
+                ParticleOptions particleOptions = this.getParticle();
+                for (int i = 0; i < 8; i++)
+                    this.level.addParticle(particleOptions, this.getX(), this.getY(), this.getZ(), 0d, 0d, 0d);
+            }
         }
     }
 
