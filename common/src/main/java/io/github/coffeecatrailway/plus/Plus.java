@@ -126,6 +126,8 @@ public class Plus
         RenderTypeRegistry.register(PlusBlocks.CAMPFIRE_MAPLE.get(), RenderType.cutout());
         RenderTypeRegistry.register(PlusBlocks.SOUL_CAMPFIRE_MAPLE.get(), RenderType.cutout());
 
+        RenderTypeRegistry.register(PlusBlocks.CARD_TABLE.get(), RenderType.cutout());
+
         ItemPredicateRegistry.register(PlusItems.WOODEN_SHIELD.get(), new ResourceLocation("blocking"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1f : 0f);
         ItemPredicateRegistry.register(PlusItems.STONE_SHIELD.get(), new ResourceLocation("blocking"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1f : 0f);
         ItemPredicateRegistry.register(PlusItems.GOLD_SHIELD.get(), new ResourceLocation("blocking"), (stack, level, entity, i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1f : 0f);

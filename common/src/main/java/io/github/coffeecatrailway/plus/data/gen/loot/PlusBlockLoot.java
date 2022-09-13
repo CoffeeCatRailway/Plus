@@ -98,6 +98,8 @@ public class PlusBlockLoot implements Consumer<BiConsumer<ResourceLocation, Loot
         this.campfire(PlusBlocks.CAMPFIRE_MAPLE.get());
         this.campfire(PlusBlocks.SOUL_CAMPFIRE_MAPLE.get());
 
+        this.dropSelf(PlusBlocks.CARD_TABLE.get());
+
         Set<ResourceLocation> set = Sets.newHashSet();
         Set<ResourceLocation> blockKeys = Registry.BLOCK.keySet().stream().filter(entityType -> Plus.MOD_ID.equals(entityType.getNamespace())).collect(Collectors.toSet());
         for (ResourceLocation blockKey : blockKeys)

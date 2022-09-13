@@ -4,6 +4,7 @@ import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.PollinatedBlockRegistry;
 import gg.moonflower.pollen.api.registry.PollinatedRegistry;
 import io.github.coffeecatrailway.plus.common.block.BrittleBasaltBlock;
+import io.github.coffeecatrailway.plus.common.block.CardTableBlock;
 import io.github.coffeecatrailway.plus.common.block.GlowLanternBlock;
 import io.github.coffeecatrailway.plus.common.block.SawBenchBlock;
 import io.github.coffeecatrailway.plus.common.item.TabInsertBlockItem;
@@ -69,6 +70,8 @@ public class PlusBlocks
             SOUL_CAMPFIRE_MAPLE = registerWithCustomItem("soul_campfire_maple", () -> new CampfireBlock(false, 2, BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.PODZOL).strength(2f).sound(SoundType.WOOD).lightLevel(litBlockEmission(15)).noOcclusion()), block -> new TabInsertBlockItem(SOUL_CAMPFIRE_DARK_OAK.get().asItem(), block, new Item.Properties().tab(CreativeModeTab.TAB_DECORATIONS)));
         }
     }
+
+    public static final Supplier<CardTableBlock> CARD_TABLE = registerWithItem("card_table", () -> new CardTableBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2.5f).sound(SoundType.WOOD)), prop -> prop.tab(CreativeModeTab.TAB_DECORATIONS));
 
     public static <T extends Block> Supplier<T> registerWithItem(String id, Supplier<T> block, Function<Item.Properties, Item.Properties> properties)
     {

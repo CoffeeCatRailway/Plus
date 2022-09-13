@@ -172,6 +172,8 @@ public class PlusModels extends PollinatedModelProvider
 
             this.campfire(PlusBlocks.CAMPFIRE_MAPLE.get(), false, false);
             this.campfire(PlusBlocks.SOUL_CAMPFIRE_MAPLE.get(), true, false);
+
+            this.getBlockStateOutput().accept(createSimpleBlock(PlusBlocks.CARD_TABLE.get(), Plus.getLocation("block/card_table")));
         }
 
         private void campfire(CampfireBlock campfireBlock, boolean isSoulFire, boolean hasSoulFire)
