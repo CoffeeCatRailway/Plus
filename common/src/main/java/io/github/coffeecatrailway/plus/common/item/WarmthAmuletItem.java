@@ -1,7 +1,7 @@
 package io.github.coffeecatrailway.plus.common.item;
 
 import io.github.coffeecatrailway.plus.Plus;
-import io.github.coffeecatrailway.plus.client.PlusModelLayers;
+import io.github.coffeecatrailway.plus.client.PlusClient;
 import io.github.coffeecatrailway.plus.client.entity.AmuletModel;
 import io.github.coffeecatrailway.plus.common.enchantment.HeatWalkerEnchantment;
 import net.fabricmc.api.EnvType;
@@ -88,7 +88,7 @@ public class WarmthAmuletItem extends ArmorItem
     public static AmuletModel getModel()
     {
         if (MODEL == null)
-            MODEL = new AmuletModel(Minecraft.getInstance().getEntityModels().bakeLayer(PlusModelLayers.AMULET));
+            MODEL = new AmuletModel(Minecraft.getInstance().getEntityModels().bakeLayer(PlusClient.AMULET));
         return Objects.requireNonNull(MODEL);
     }
 }

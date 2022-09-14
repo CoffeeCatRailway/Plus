@@ -4,7 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.datafixers.util.Pair;
 import gg.moonflower.pollen.api.client.render.DynamicItemRenderer;
-import io.github.coffeecatrailway.plus.client.PlusModelLayers;
+import io.github.coffeecatrailway.plus.client.PlusClient;
 import io.github.coffeecatrailway.plus.common.item.PlusShieldItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ShieldModel;
@@ -35,7 +35,7 @@ public class PlusShieldItemRenderer implements DynamicItemRenderer
     public ShieldModel getModel()
     {
         if (this.model == null)
-            this.model = new ShieldModel(Minecraft.getInstance().getEntityModels().bakeLayer(PlusModelLayers.SHIELD));
+            this.model = new ShieldModel(Minecraft.getInstance().getEntityModels().bakeLayer(PlusClient.SHIELD));
         return this.model;
     }
 
