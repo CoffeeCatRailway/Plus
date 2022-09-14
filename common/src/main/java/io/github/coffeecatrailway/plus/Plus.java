@@ -17,6 +17,7 @@ import io.github.coffeecatrailway.plus.client.entity.renderer.PlayingCardEntityR
 import io.github.coffeecatrailway.plus.client.gui.PlayingCardPackScreen;
 import io.github.coffeecatrailway.plus.client.gui.SawBenchScreen;
 import io.github.coffeecatrailway.plus.client.item.PlusShieldItemRenderer;
+import io.github.coffeecatrailway.plus.client.particle.PlayingCardParticleProvider;
 import io.github.coffeecatrailway.plus.common.entity.ai.goal.FindGlowLanternGoal;
 import io.github.coffeecatrailway.plus.data.gen.*;
 import io.github.coffeecatrailway.plus.data.gen.loot.PlusLootModifierProvider;
@@ -86,7 +87,7 @@ public class Plus
             registry.accept(ROSE_GOLD_SHIELD_NO_PATTERN.texture());
         });
 
-        ParticleFactoryRegistryEvent.EVENT.register(registry -> registry.register(PlusParticles.ITEM_PLAYING_CARD.get(), (particleOptions, clientLevel, d, e, f, g, h, i) -> new BreakingItemParticle(clientLevel, d, e, f, new ItemStack(PlusItems.CARD_JOKER_BLACK.get()))));
+        ParticleFactoryRegistryEvent.EVENT.register(registry -> registry.register(PlusParticles.ITEM_PLAYING_CARD.get(), (particleOptions, clientLevel, d, e, f, g, h, i) -> new PlayingCardParticleProvider().createParticle(particleOptions, clientLevel, d, e, f, g, h, i)));
 
         PollinatedModContainer.get(MOD_ID).ifPresent(container -> {
             ResourceRegistry.registerBuiltinResourcePack(getLocation("shieldrevamp"), container, true);
