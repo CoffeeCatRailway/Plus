@@ -56,12 +56,12 @@ public class PlusItems
     public static final Supplier<WarmthAmuletItem> WARMTH_AMULET = registerIdAsName("warmth_amulet", getWarmthAmuletItem());
 
     // Tools/Weapons
-    public static final Supplier<PlusShieldItem> WOODEN_SHIELD = registerIdAsName("wooden_shield", prop -> new PlusShieldItem(prop, Tiers.WOOD, Plus.WOODEN_SHIELD_BASE, Plus.WOODEN_SHIELD_NO_PATTERN));
-    public static final Supplier<PlusShieldItem> STONE_SHIELD = registerIdAsName("stone_shield", prop -> new PlusShieldItem(prop, Tiers.STONE, Plus.STONE_SHIELD_BASE, Plus.STONE_SHIELD_NO_PATTERN));
-    public static final Supplier<PlusShieldItem> GOLD_SHIELD = registerIdAsName("gold_shield", prop -> new PlusShieldItem(prop, Tiers.GOLD, Plus.GOLD_SHIELD_BASE, Plus.GOLD_SHIELD_NO_PATTERN));
-    public static final Supplier<PlusShieldItem> DIAMOND_SHIELD = registerIdAsName("diamond_shield", prop -> new PlusShieldItem(prop, Tiers.DIAMOND, Plus.DIAMOND_SHIELD_BASE, Plus.DIAMOND_SHIELD_NO_PATTERN));
-    public static final Supplier<PlusShieldItem> NETHERITE_SHIELD = registerIdAsName("netherite_shield", prop -> new PlusShieldItem(prop, Tiers.NETHERITE, Plus.NETHERITE_SHIELD_BASE, Plus.NETHERITE_SHIELD_NO_PATTERN));
-    public static final Supplier<PlusShieldItem> ROSE_GOLD_SHIELD = registerIdAsName("rose_gold_shield", prop -> new PlusShieldItem(prop, PlusTiers.ROSE_GOLD, Plus.ROSE_GOLD_SHIELD_BASE, Plus.ROSE_GOLD_SHIELD_NO_PATTERN));
+    public static final Supplier<PlusShieldItem> WOODEN_SHIELD = registerIdAsName("wooden_shield", prop -> new PlusShieldItem(prop, Tiers.WOOD));
+    public static final Supplier<PlusShieldItem> STONE_SHIELD = registerIdAsName("stone_shield", prop -> new PlusShieldItem(prop, Tiers.STONE));
+    public static final Supplier<PlusShieldItem> GOLD_SHIELD = registerIdAsName("gold_shield", prop -> new PlusShieldItem(prop, Tiers.GOLD));
+    public static final Supplier<PlusShieldItem> DIAMOND_SHIELD = registerIdAsName("diamond_shield", prop -> new PlusShieldItem(prop, Tiers.DIAMOND));
+    public static final Supplier<PlusShieldItem> NETHERITE_SHIELD = registerIdAsName("netherite_shield", prop -> new PlusShieldItem(prop, Tiers.NETHERITE));
+    public static final Supplier<PlusShieldItem> ROSE_GOLD_SHIELD = registerIdAsName("rose_gold_shield", prop -> new PlusShieldItem(prop, PlusTiers.ROSE_GOLD));
 
     // Rose Gold
     public static final Supplier<Item> RAW_ROSE_GOLD = registerIdAsName("raw_rose_gold", prop -> new TabInsertItem(Items.GOLD_INGOT, prop.tab(CreativeModeTab.TAB_MISC)));

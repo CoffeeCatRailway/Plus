@@ -1,8 +1,8 @@
 package io.github.coffeecatrailway.plus.common.item;
 
 import io.github.coffeecatrailway.plus.Plus;
-import io.github.coffeecatrailway.plus.client.PlusModelLayers;
-import io.github.coffeecatrailway.plus.client.entity.model.FoxHatModel;
+import io.github.coffeecatrailway.plus.client.PlusClient;
+import io.github.coffeecatrailway.plus.client.entity.FoxHatModel;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
@@ -33,7 +33,7 @@ public class FoxHatItem extends ArmorItem
     public static FoxHatModel getModel()
     {
         if (MODEL == null)
-            MODEL = new FoxHatModel(Minecraft.getInstance().getEntityModels().bakeLayer(PlusModelLayers.FOX_HAT));
+            MODEL = new FoxHatModel(Minecraft.getInstance().getEntityModels().bakeLayer(PlusClient.FOX_HAT));
         return Objects.requireNonNull(MODEL);
     }
 }
