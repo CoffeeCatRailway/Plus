@@ -50,9 +50,25 @@ public class CardTableMenu extends AbstractContainerMenu
             {
                 return Pair.of(InventoryMenu.BLOCK_ATLAS, PlusClient.EMPTY_SLOT_CARD_PACK);
             }
+
+            @Override
+            public void set(ItemStack stack)
+            {
+                super.set(stack);
+                if (this.container.getItem(1).isEmpty())
+                    this.container.setItem(1, PlayingCardPackItem.takeCard(stack, false));
+            }
         });
         this.addSlot(new CardSlot(this.container, 1, 11, 141)
         {
+            @Override
+            public void onTake(Player player, ItemStack stack)
+            {
+                ItemStack packStack = this.container.getItem(0);
+                if (!packStack.isEmpty())
+                    this.set(PlayingCardPackItem.takeCard(packStack, false));
+                super.onTake(player, stack);
+            }
         });
 
         int i;
