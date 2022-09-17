@@ -3,6 +3,7 @@ package io.github.coffeecatrailway.plus.registry;
 import gg.moonflower.pollen.api.platform.Platform;
 import gg.moonflower.pollen.api.registry.PollinatedRegistry;
 import io.github.coffeecatrailway.plus.Plus;
+import io.github.coffeecatrailway.plus.common.inventory.CardTableMenu;
 import io.github.coffeecatrailway.plus.common.inventory.PlayingCardPackMenu;
 import io.github.coffeecatrailway.plus.common.inventory.SawBenchMenu;
 import io.github.coffeecatrailway.plus.data.gen.PlusLanguage;
@@ -25,6 +26,7 @@ public class PlusMenus
     public static final Supplier<MenuType<SawBenchMenu>> SAW_BENCH = register("saw_bench", () -> new MenuType<>(SawBenchMenu::new));
 
     public static final Supplier<MenuType<PlayingCardPackMenu>> PLAYING_CARD_PACK = register("playing_card_pack", () -> new MenuType<>(PlayingCardPackMenu::new));
+    public static final Supplier<MenuType<CardTableMenu>> CARD_TABLE = register("card_table", () -> new MenuType<>(CardTableMenu::new));
 
     private static <T extends MenuType<?>> Supplier<T> register(String id, Supplier<T> menu)
     {

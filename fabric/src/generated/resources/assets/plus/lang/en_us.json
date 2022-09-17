@@ -20,6 +20,7 @@
   "block.plus.soul_campfire_maple": "Soul Campfire Maple",
   "block.plus.soul_campfire_spruce": "Soul Campfire Spruce",
   "category.plus.rei.saw_bench": "Saw Bench",
+  "container.plus.card_table": "Card Table",
   "container.plus.playing_card_pack": "Playing Card Pack",
   "container.plus.saw_bench": "Saw Bench",
   "death.attack.plus.sawBlade": "%1$s was cut in half",
@@ -212,6 +213,7 @@
   "item.plus.wooden_shield.red": "Red Wooden Shield",
   "item.plus.wooden_shield.white": "White Wooden Shield",
   "item.plus.wooden_shield.yellow": "Yellow Wooden Shield",
+  "stat.plus.interact_with_card_table": "Interactions with Card Table",
   "stat.plus.interact_with_saw_bench": "Interactions with Saw Bench",
   "stat.plus.use_playing_card_pack": "Uses of Playing Card Pack"
 }

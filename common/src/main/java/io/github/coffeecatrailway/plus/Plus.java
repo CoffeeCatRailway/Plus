@@ -46,6 +46,7 @@ public class Plus
         PlusMenus.load(PLATFORM);
         PlusEntities.load(PLATFORM);
         PlusParticles.load(PLATFORM);
+        PlusBlockEntities.load(PLATFORM);
 
         EntityEvents.JOIN.register(((entity, level) -> {
             if (entity instanceof GlowSquid)

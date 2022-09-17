@@ -23,6 +23,7 @@ public class PlusStats
     public static final ResourceLocation INTERACT_WITH_SAW_BENCH = register("interact_with_saw_bench", StatFormatter.DEFAULT);
 
     public static final ResourceLocation USE_PLAYING_CARD_PACK = register("use_playing_card_pack", StatFormatter.DEFAULT);
+    public static final ResourceLocation INTERACT_WITH_CARD_TABLE = register("interact_with_card_table", StatFormatter.DEFAULT);
 
     private static ResourceLocation register(String id, StatFormatter formatter)
     {
@@ -44,6 +45,7 @@ public class PlusStats
         {
             register("interact_with_saw_bench", "Interactions with Saw Bench");
             register("use_playing_card_pack", "Uses of Playing Card Pack");
+            register("interact_with_card_table", "Interactions with Card Table");
         }
 
         private static void register(String id, String name)
