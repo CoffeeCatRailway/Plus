@@ -14,17 +14,12 @@ import io.github.coffeecatrailway.plus.data.gen.loot.PlusLootTableProvider;
 import io.github.coffeecatrailway.plus.mixins.MobAccessor;
 import io.github.coffeecatrailway.plus.registry.*;
 import net.minecraft.client.model.ShieldModel;
-import net.minecraft.client.particle.BreakingItemParticle;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.GlowSquid;
 import net.minecraft.world.inventory.InventoryMenu;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.GlowSquid;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 
