@@ -43,12 +43,9 @@ public class SimpleItemContainer extends SimpleContainer
         for (int i = 0; i < this.getContainerSize(); i++)
         {
             ItemStack stack = this.getItem(i);
-            if (!stack.isEmpty())
-            {
-                CompoundTag itemTag = new CompoundTag();
-                itemTag.putByte("Slot", (byte) i);
-                itemsTag.add(stack.save(itemTag));
-            }
+            CompoundTag itemTag = new CompoundTag();
+            itemTag.putByte("Slot", (byte) i);
+            itemsTag.add(stack.save(itemTag));
         }
         this.stack.getOrCreateTag().put("Items", itemsTag);
     }
