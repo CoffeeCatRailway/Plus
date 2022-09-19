@@ -3,7 +3,7 @@
   "textures": {
     "fire": "minecraft:block/campfire_fire",
     "lit_log": "plus:block/campfire_spruce_log_lit",
-    "log": "plus:block/campfire_spruce_log",
-    "particle": "plus:block/campfire_spruce_log"
+    "particle": "plus:block/campfire_spruce_log",
+    "log": "plus:block/campfire_spruce_log"
   }
 }

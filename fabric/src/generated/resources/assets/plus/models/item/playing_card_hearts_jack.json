@@ -2,7 +2,7 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "plus:item/playing_cards/blank",
-    "layer1": "plus:item/playing_cards/suits/hearts/ace",
+    "layer1": "plus:item/playing_cards/suits/hearts/jack",
     "layer2": "plus:item/playing_cards/jack_red"
   }
 }

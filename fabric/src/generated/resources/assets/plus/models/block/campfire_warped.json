@@ -3,7 +3,7 @@
   "textures": {
     "fire": "minecraft:block/soul_campfire_fire",
     "lit_log": "plus:block/campfire_warped_log_lit",
-    "log": "plus:block/campfire_warped_log",
-    "particle": "plus:block/campfire_warped_log"
+    "particle": "plus:block/campfire_warped_log",
+    "log": "plus:block/campfire_warped_log"
   }
 }

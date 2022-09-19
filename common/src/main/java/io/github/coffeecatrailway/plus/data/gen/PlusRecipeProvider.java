@@ -5,6 +5,7 @@ import io.github.coffeecatrailway.plus.Plus;
 import io.github.coffeecatrailway.plus.registry.PlusBlocks;
 import io.github.coffeecatrailway.plus.registry.PlusItems;
 import io.github.coffeecatrailway.plus.registry.PlusRecipes;
+import net.minecraft.core.Registry;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
@@ -205,13 +206,21 @@ public class PlusRecipeProvider extends PollinatedRecipeProvider
 
     private void storageRecipe(Consumer<FinishedRecipe> consumer, ItemLike ingot, ItemLike block, boolean big)
     {
-        ShapelessRecipeBuilder.shapeless(ingot, big ? 9 : 4).requires(block).unlockedBy(getHasName(block), has(block)).save(consumer);
+        ShapelessRecipeBuilder.shapeless(ingot, big ? 9 : 4).requires(block).unlockedBy(getHasNameNoModId(block), has(block)).save(consumer);
         if (big)
             ShapedRecipeBuilder.shaped(block).define('#', ingot).pattern("###").pattern("###").pattern("###")
-                    .unlockedBy(getHasName(ingot), has(ingot)).save(consumer, Plus.getLocation(getItemName(block) + "_from_" + getItemName(ingot)));
+                    .unlockedBy(getHasNameNoModId(ingot), has(ingot)).save(consumer, Plus.getLocation(getItemNameNoModId(block) + "_from_" + getItemNameNoModId(ingot)));
         else
             ShapedRecipeBuilder.shaped(block).define('#', ingot).pattern("##").pattern("##")
-                    .unlockedBy(getHasName(ingot), has(ingot)).save(consumer, Plus.getLocation(getItemName(block) + "_from_" + getItemName(ingot)));
+                    .unlockedBy(getHasNameNoModId(ingot), has(ingot)).save(consumer, Plus.getLocation(getItemNameNoModId(block) + "_from_" + getItemNameNoModId(ingot)));
+    }
+
+    public static String getHasNameNoModId(ItemLike item) {
+        return "has_" + getItemNameNoModId(item);
+    }
+
+    public static String getItemNameNoModId(ItemLike item) {
+        return Registry.ITEM.getKey(item.asItem()).getPath();
     }
 
     private static void sawBenchRecipes(Consumer<FinishedRecipe> consumer, String woodName, Block log, Block wood, TagKey<Item> logTag, Block strippedLog, Block strippedWood, Block planks, Block stairs, Block slab,

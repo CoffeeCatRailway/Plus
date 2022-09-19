@@ -9,7 +9,6 @@ import io.github.coffeecatrailway.plus.Plus;
 import io.github.coffeecatrailway.plus.common.block.BrittleBasaltBlock;
 import io.github.coffeecatrailway.plus.common.block.GlowLanternBlock;
 import io.github.coffeecatrailway.plus.common.block.SawBenchBlock;
-import io.github.coffeecatrailway.plus.common.item.PlayingCardItem;
 import io.github.coffeecatrailway.plus.registry.PlusBlocks;
 import io.github.coffeecatrailway.plus.registry.PlusItems;
 import net.minecraft.core.Direction;
@@ -92,8 +91,6 @@ public class PlusModels extends PollinatedModelProvider
             ModelTemplates.FLAT_ITEM.create(ModelLocationUtils.getModelLocation(PlusItems.CARD_JOKER_RED.get()), TextureMapping.layer0(Plus.getLocation("item/playing_cards/blank")).putForced(LAYER1, Plus.getLocation("item/playing_cards/joker_red")), this.getModelOutput());
             PlusItems.PLAYING_CARDS.stream().map(Supplier::get).forEach(card -> {
                 ResourceLocation suitLocation = Plus.getLocation("item/playing_cards/suits/" + card.getSuit().getName() + "/" + card.getNumber().getName());
-                if (card.getNumber().equals(PlayingCardItem.Number.JACK) || card.getNumber().equals(PlayingCardItem.Number.QUEEN) || card.getNumber().equals(PlayingCardItem.Number.KING))
-                    suitLocation = Plus.getLocation("item/playing_cards/suits/" + card.getSuit().getName() + "/" + PlayingCardItem.Number.ACE.getName());
                 ResourceLocation numberLocation = Plus.getLocation("item/playing_cards/" + card.getNumber().getName() + (card.isRed() ? "_red" : "_black"));
                 ModelTemplates.FLAT_ITEM.create(ModelLocationUtils.getModelLocation(card), TextureMapping.layer0(Plus.getLocation("item/playing_cards/blank")).putForced(LAYER1, suitLocation).putForced(LAYER2, numberLocation), this.getModelOutput());
             });
