@@ -68,7 +68,7 @@ dependencies {
     modApi "gg.moonflower:pollen-forge:${rootProject.pollenVersion}+${rootProject.minecraftVersion}"
 
     modCompileOnlyApi "mezz.jei:jei-${rootProject.minecraftVersion}-forge-api:${rootProject.jeiVersion}"
-    modRuntimeOnly "mezz.jei:jei-${rootProject.minecraftVersion}-forge:${rootProject.jeiVersion}"
+//    modRuntimeOnly "mezz.jei:jei-${rootProject.minecraftVersion}-forge:${rootProject.jeiVersion}"
 
     modImplementation "top.theillusivec4.curios:curios-forge:${rootProject.curisVersion}"
 
