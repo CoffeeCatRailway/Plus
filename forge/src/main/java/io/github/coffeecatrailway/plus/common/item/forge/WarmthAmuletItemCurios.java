@@ -2,7 +2,7 @@ package io.github.coffeecatrailway.plus.common.item.forge;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import io.github.coffeecatrailway.plus.client.entity.AmuletModel;
+import io.github.coffeecatrailway.plus.client.entity.model.AmuletModel;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.ItemRenderer;

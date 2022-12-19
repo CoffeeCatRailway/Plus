@@ -1,6 +1,6 @@
 package io.github.coffeecatrailway.plus.common.item.forge;
 
-import io.github.coffeecatrailway.plus.client.entity.AmuletModel;
+import io.github.coffeecatrailway.plus.client.entity.model.AmuletModel;
 import io.github.coffeecatrailway.plus.common.item.WarmthAmuletItem;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.Entity;

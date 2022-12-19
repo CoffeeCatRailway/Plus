@@ -5,7 +5,6 @@ import io.github.coffeecatrailway.plus.Plus;
 import io.github.coffeecatrailway.plus.registry.PlusBlocks;
 import io.github.coffeecatrailway.plus.registry.PlusItems;
 import io.github.coffeecatrailway.plus.registry.PlusRecipes;
-import net.minecraft.core.Registry;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
@@ -211,16 +210,6 @@ public class PlusRecipeProvider extends PollinatedRecipeProvider
         else
             ShapedRecipeBuilder.shaped(block).define('#', ingot).pattern("##").pattern("##")
                     .unlockedBy(getHasName(ingot), has(ingot)).save(consumer, Plus.getLocation(getItemName(block) + "_from_" + getItemName(ingot)));
-    }
-
-    private static String getItemName(ItemLike item)
-    {
-        return Registry.ITEM.getKey(item.asItem()).getPath();
-    }
-
-    private static String getHasName(ItemLike item)
-    {
-        return "has_" + getItemName(item);
     }
 
     private static void sawBenchRecipes(Consumer<FinishedRecipe> consumer, String woodName, Block log, Block wood, TagKey<Item> logTag, Block strippedLog, Block strippedWood, Block planks, Block stairs, Block slab,

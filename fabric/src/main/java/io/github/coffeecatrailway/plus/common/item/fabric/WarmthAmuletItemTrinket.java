@@ -8,7 +8,7 @@ import dev.emi.trinkets.api.TrinketItem;
 import dev.emi.trinkets.api.TrinketsApi;
 import dev.emi.trinkets.api.client.TrinketRenderer;
 import dev.emi.trinkets.api.client.TrinketRendererRegistry;
-import io.github.coffeecatrailway.plus.client.entity.AmuletModel;
+import io.github.coffeecatrailway.plus.client.entity.model.AmuletModel;
 import io.github.coffeecatrailway.plus.common.item.WarmthAmuletItem;
 import io.github.coffeecatrailway.plus.registry.PlusItems;
 import net.minecraft.client.model.EntityModel;

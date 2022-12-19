@@ -1,4 +1,4 @@
-package io.github.coffeecatrailway.plus.client.entity;
+package io.github.coffeecatrailway.plus.client.entity.model;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.vertex.PoseStack;

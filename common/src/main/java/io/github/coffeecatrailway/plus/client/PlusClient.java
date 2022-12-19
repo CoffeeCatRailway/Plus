@@ -6,13 +6,15 @@ import gg.moonflower.pollen.api.registry.client.*;
 import gg.moonflower.pollen.api.registry.resource.ResourceRegistry;
 import gg.moonflower.pollen.api.util.PollinatedModContainer;
 import io.github.coffeecatrailway.plus.Plus;
-import io.github.coffeecatrailway.plus.client.entity.AmuletModel;
-import io.github.coffeecatrailway.plus.client.entity.FoxHatModel;
+import io.github.coffeecatrailway.plus.client.entity.model.AmuletModel;
+import io.github.coffeecatrailway.plus.client.entity.model.FoxHatModel;
 import io.github.coffeecatrailway.plus.client.gui.SawBenchScreen;
 import io.github.coffeecatrailway.plus.client.item.PlusShieldItemRenderer;
 import io.github.coffeecatrailway.plus.registry.PlusBlocks;
 import io.github.coffeecatrailway.plus.registry.PlusItems;
 import io.github.coffeecatrailway.plus.registry.PlusMenus;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.model.ShieldModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.RenderType;
@@ -24,6 +26,7 @@ import net.minecraft.world.inventory.InventoryMenu;
  * @author CoffeeCatRailway
  * Created: 26/06/2022
  */
+@Environment(EnvType.CLIENT)
 public class PlusClient
 {
     public static final ModelLayerLocation FOX_HAT = new ModelLayerLocation(Plus.getLocation("fox_hat"), "main");
